@@ -24,11 +24,6 @@ import web._01_register.model.OrgBean;
 import web._01_register.model.RegisterServiceDAO;
 import web._01_register.model.RegisterServiceDAO_JDBC;
 
-
-//import ch04.ex01.model.IMemberDAO;
-//import ch04.ex01.model.Member;
-//import ch04.ex01.model.MemberJDBC_DAO;
-
 //@WebServlet("/ch04/ex02/updateMember.do")
 @MultipartConfig(location = "", 
 fileSizeThreshold = 5*1024 * 1024, 
@@ -46,16 +41,14 @@ public class UpdateMemberServlet extends HttpServlet {
 		Map<String, String> msgOK = new HashMap<String, String>();
 		
 		 request.setAttribute("MsgMap", errorMsg);  //顯示錯誤訊息
-	     session.setAttribute("MsgOK", msgOK);      //顯示正常訊息
-	     
+	     session.setAttribute("MsgOK", msgOK);      //顯示正常訊息	     
 	     
 	     MemberBean mb= (MemberBean)session.getAttribute("LoginOK");
-
 	     
 	     int userType = Integer.valueOf(request.getParameter("usertype"));
-	    	//Timestamp postDate;
-	    	//Blob indImage;
+
 	    	String indFileName= "";
+	    	String orgFileName= "";//
 	    	
 	    	String indId= "";
 	    	String indPassword= "";
@@ -73,6 +66,8 @@ public class UpdateMemberServlet extends HttpServlet {
 	        
 			long sizeInBytes = 0;
 			InputStream is = null;
+			long sizeInBytes2 = 0;//
+			InputStream is2 = null;//
 			
 			
 			Collection<Part> parts = request.getParts(); // 取出HTTP multipart request內所有的parts
@@ -87,11 +82,14 @@ public class UpdateMemberServlet extends HttpServlet {
 					if (p.getContentType() == null) {
 						if (fldName.equals("indid")) {
 							indId = value;
-						} else if (fldName.equals("indpassword")) {
-							indPassword = value;
-						} else if (fldName.equalsIgnoreCase("indpassword2")) {
-							indPassword2 = value;
-						} else if (fldName.equalsIgnoreCase("indname")) {
+						} 
+//						else if (fldName.equals("indpassword")) {
+//							indPassword = value;
+//						} 
+//						else if (fldName.equalsIgnoreCase("indpassword2")) {
+//							indPassword2 = value;
+//						} 
+						else if (fldName.equalsIgnoreCase("indname")) {
 							indName = value;
 						} else if (fldName.equalsIgnoreCase("indemail")) {
 							indEmail = value;
@@ -111,15 +109,29 @@ public class UpdateMemberServlet extends HttpServlet {
 							raiseno = value;  
 						}
 					}else {
-						indFileName = GlobalService.getFileName(p); // 此為圖片檔的檔名
-						indFileName = GlobalService.adjustFileName(indFileName, GlobalService.IMAGE_FILENAME_LENGTH);
-						if (indFileName != null && indFileName.trim().length() > 0) {
-							sizeInBytes = p.getSize();
-							is = p.getInputStream();
-						} else {
-							// 代表未修改圖片檔
-							sizeInBytes = -1; 
+						
+						if (fldName.equalsIgnoreCase("file1")) {
+							indFileName = GlobalService.getFileName(p); // 此為圖片檔的檔名
+							indFileName = GlobalService.adjustFileName(indFileName, GlobalService.IMAGE_FILENAME_LENGTH);
+							if (indFileName != null && indFileName.trim().length() > 0) {
+								sizeInBytes = p.getSize();
+								is = p.getInputStream();
+							} else {
+								// 代表會員表格未修改圖片檔
+								sizeInBytes = -1; 
+							}
+						}else if(fldName.equalsIgnoreCase("file2")){
+							orgFileName = GlobalService.getFileName(p); // 此為圖片檔的檔名
+							orgFileName = GlobalService.adjustFileName(orgFileName, GlobalService.IMAGE_FILENAME_LENGTH);
+							if (orgFileName != null && orgFileName.trim().length() > 0) {
+								sizeInBytes2 = p.getSize();
+								is2 = p.getInputStream();
+							} else {
+								// 代表社福表格未修改圖片檔
+								sizeInBytes2 = -1; 
+							}
 						}
+
 					} 
 
 				}
@@ -128,18 +140,18 @@ public class UpdateMemberServlet extends HttpServlet {
 				
 				// 3. 檢查使用者輸入資料
 
-				if (indPassword == null || indPassword.trim().length() == 0) {
-					errorMsg.put("errorPasswordEmpty","密碼欄必須輸入");
-				}
-				if (indPassword2 == null || indPassword2.trim().length() == 0) {
-					errorMsg.put("errorPassword2Empty","密碼確認欄必須輸入");
-				}
-				if (indPassword.trim().length() > 0 && indPassword2.trim().length() > 0){
-					if (!indPassword.trim().equals(indPassword2.trim())){
-						errorMsg.put("errorPassword2Empty","密碼欄必須與確認欄一致");
-						errorMsg.put("errorPasswordEmpty","*");
-					}			
-				}
+//				if (indPassword == null || indPassword.trim().length() == 0) {
+//					errorMsg.put("errorPasswordEmpty","密碼欄必須輸入");
+//				}
+//				if (indPassword2 == null || indPassword2.trim().length() == 0) {
+//					errorMsg.put("errorPassword2Empty","密碼確認欄必須輸入");
+//				}
+//				if (indPassword.trim().length() > 0 && indPassword2.trim().length() > 0){
+//					if (!indPassword.trim().equals(indPassword2.trim())){
+//						errorMsg.put("errorPassword2Empty","密碼欄必須與確認欄一致");
+//						errorMsg.put("errorPasswordEmpty","*");
+//					}			
+//				}
 				if (indName == null || indName.trim().length() == 0) {
 					errorMsg.put("errorName","姓名欄必須輸入");
 				}
@@ -193,26 +205,12 @@ public class UpdateMemberServlet extends HttpServlet {
 				// 1.檢查帳號是否已經存在
 				// 2.儲存會員的資料 
 				RegisterServiceDAO rs = new RegisterServiceDAO_JDBC();  
-//				if (rs.idExists(indId)) {
-//					errorMsg.put("errorIDDup","此代號已存在，請換新代號");
-//				} else {				
+			
 					
 					if(userType==1){	
 						
 							MemberBean mem = new MemberBean(userType,indId,indPassword,indName,
 								indPhone,indEmail,indAddress);								
-							// 將MemberBean mem立即寫入Database
-							
-							
-//							if ( sizeInBytes != -1 ){
-//								byte[] b = new byte[(int)sizeInBytes];
-//								is.read(b);
-//								Blob blob = new SerialBlob(b);
-//								mem.setIndImage(blob);
-//							} else {
-//								// 準備讀取BookBean物件
-//								mem.setIndImage(mb.getIndImage());
-//							}
 							
 							
 							int n = rs.updateMember(mem, is, sizeInBytes, indFileName);
@@ -230,7 +228,7 @@ public class UpdateMemberServlet extends HttpServlet {
 								indPhone,indEmail,indAddress);	
 							OrgBean ob= new OrgBean(indId, intro, leader, orgtypes, registerno, raiseno);
 												
-							int n = rs.updateOrg(mem,ob,is,sizeInBytes,indFileName);
+							int n = rs.updateOrg(mem,ob,is,sizeInBytes,indFileName,is2,sizeInBytes2,orgFileName);
 							if ( n == 1) {
 								msgOK.put("InsertOK","<Font color='red'>新增成功，請開始使用本系統</Font>");
 								response.sendRedirect("index.jsp");
@@ -242,19 +240,10 @@ public class UpdateMemberServlet extends HttpServlet {
 						System.out.println("userType錯誤");
 						errorMsg.put("errUserType", "userType錯誤");
 					}
-					
-					
-					
-					
-					
-					
-					
 
-//				}
 				// 5.依照 Business Logic 運算結果來挑選適當的畫面
 				if (!errorMsg.isEmpty()) {
 					// 導向原來輸入資料的畫面，這次會顯示錯誤訊息	
-//					RequestDispatcher rd = request.getRequestDispatcher("register.jsp");//   ../index.jsp
 					RequestDispatcher rd = request.getRequestDispatcher("/_03_updateMember/updateMember.jsp");
 					rd.forward(request, response);
 					return;
@@ -266,118 +255,6 @@ public class UpdateMemberServlet extends HttpServlet {
 				rd.forward(request, response);
 			}		
 
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-		
-//		String modify = request.getParameter("finalDecision");
-//		String pk = request.getParameter("pk");
-		
-//		int ipk = Integer.parseInt(pk);
-//		IMemberDAO dao = new MemberHBN_DAO();
-//		IMemberDAO dao = new MemberJDBC_DAO();
-//		int count = 0 ;
-//		
-//		if (modify.equalsIgnoreCase("DELETE")) {
-////			count = dao.deleteMember(ipk);
-//			if (count == 1){
-//				hsession.setAttribute("modify", "刪除成功");
-//			} else {
-//				hsession.setAttribute("modify", "刪除時發生異常");
-//			}
-//			//System.out.println("Delete, count=" + count);
-//		} else if (modify.equalsIgnoreCase("UPDATE")) {
-//			String userId = request.getParameter("userId");
-//			String password = request.getParameter("pswd");
-//			String name = request.getParameter("userName");
-//			String mail = request.getParameter("eMail");
-//			String tel = request.getParameter("tel");
-//			String expericnceStr = request.getParameter("experience");
-			
-			// 2. 進行必要的資料轉換
-//			int experience = 0;
-//			try {
-//				experience = Integer.parseInt(expericnceStr.trim());
-//			} catch (NumberFormatException e) {
-//				errorMsg.put("experience", "使用Java經驗格式錯誤，應該為整數");
-//			}
-			// 3. 檢查使用者輸入資料
-//			if (userId == null || userId.trim().length() == 0) {
-//				errorMsg.put("userId", "帳號欄必須輸入");
-//			}
-//			if (password == null || password.trim().length() == 0) {
-//				errorMsg.put("pswd", "密碼欄必須輸入");
-//			}
-//			if (name == null || name.trim().length() == 0) {
-//				errorMsg.put("userName", "姓名欄必須輸入");
-//			}
-//			if (mail == null || mail.trim().length() == 0) {
-//				errorMsg.put("eMail", "EMail欄必須輸入");
-//			}
-//			if (tel == null || tel.trim().length() == 0) {
-//				errorMsg.put("tel", "電話號碼欄必須輸入");
-//			}
-//			if (experience < 0) {
-//				errorMsg.put("experience", "使用Java經驗應該為正整數或 0 ");
-//			}
-//			if (!errorMsg.isEmpty()) {
-//				RequestDispatcher rd = request.getRequestDispatcher("/ch04/ex02/updateMember.jsp");
-//				rd.forward(request, response);
-//				return;
-//			}
-			
-//			Member m = new Member(userId, password, name, mail, tel, experience);
-//			m.setPk(ipk);
-//			count = dao.updateMember(m);
-
-//		if (count == 1){
-//				hsession.setAttribute("modify", "修改成功");
-//			} else {
-//				hsession.setAttribute("modify", "修改時發生異常");
-//			}
-//		} 		
-//		response.sendRedirect(request.getContextPath() + "/ch04/ex02/queryAllMembers.do");
 	}	
 	
 	

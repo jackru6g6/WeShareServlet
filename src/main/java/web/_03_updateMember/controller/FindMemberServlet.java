@@ -18,13 +18,6 @@ import web._01_register.model.OrgBean;
 import web._01_register.model.RegisterServiceDAO;
 import web._01_register.model.RegisterServiceDAO_JDBC;
 
-//import ch04.ex01.model.IMemberDAO;
-//import ch04.ex01.model.Member;
-//import ch04.ex01.model.MemberJDBC_DAO;
-
-/*  
- * 本程式經由Hibernate來存取資料庫
- */
 @WebServlet("/FindMemberServlet")
 //@WebServlet("/ch04/ex02/FindMemberServlet")
 public class FindMemberServlet extends HttpServlet {
@@ -60,23 +53,9 @@ public class FindMemberServlet extends HttpServlet {
 		} catch (Exception e) {			
 			e.printStackTrace();
 		}
-//		int ipk = Integer.parseInt(pk);
-//		IMemberDAO  dao = new MemberJDBC_DAO();
-		//MemberHBN_DAO  dao = new MemberHBN_DAO();
-		// 可以是Session的get()或load()方法
-//		Member member = dao.loadMember(ipk);
-//		request.setAttribute("member", member);              
+            
 		RequestDispatcher rd = request.getRequestDispatcher("/_03_updateMember/updateMember.jsp");
 		rd.forward(request, response);
-		
-		
-//		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-//		rd.forward(request, response);
-//		try{
-//		response.sendRedirect("/index.jsp");
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
 		
 		
 		return;
