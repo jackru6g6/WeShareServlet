@@ -18,7 +18,6 @@ public class EDMTableDataWithImageReset {
 	public static final String UTF8_BOM = "\uFEFF"; // 定義 UTF-8的BOM字元
 
 	public static void main(String args[]) {
-		System.out.println("test");
 		Connection con;
 		PreparedStatement pstmt;
 		PreparedStatement pstmt1;
