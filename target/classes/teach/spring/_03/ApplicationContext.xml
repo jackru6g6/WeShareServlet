@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="birthdayBean" class="java.sql.Date" factory-method="valueOf">
+		<constructor-arg value="1980-2-5"></constructor-arg>
+	</bean>
+	<bean id="loginTimeBean" class="java.sql.Timestamp" factory-method="valueOf">
+		<constructor-arg value="2017-6-20 10:55:20"></constructor-arg>
+	</bean>
+	<!-- 
+	class="java.sql.Date" factory-method="valueOf" 
+	表示要使用class屬性所指定類別的靜態方法：java.sql.Date.valueOf(...) 
+	valueOf()的參數則由<constructor-arg>標籤提供
+	 -->
+	
+	<bean id="eday" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd HH:mm:ss"></constructor-arg>
+	</bean>
+	<bean id="empday" factory-bean="eday" factory-method="parse">
+		<constructor-arg value="2016-5-30 12:30:11"></constructor-arg>
+	</bean>
+	<!--
+	factory-bean="eday" factory-method="parse"
+	表示要使用 factory-bean屬性所指定之物件的非靜態方法eday.parse(...)
+	parse() 的參數則由<constructor-arg>標籤提供 
+	-->
+
+<!-- 	<bean id="empday" class="java.sql.Date" factory-method="valueOf"> -->
+<!-- 		<constructor-arg value="1980-2-5"></constructor-arg> -->
+<!-- 	</bean> -->
+
+
+	<!-- 寵物 -->
+	<bean id="pet1" class="teach.spring._03.Cat">
+		<constructor-arg value="張凱蒂" type='java.lang.String'></constructor-arg>
+		<constructor-arg value="21.9" type='double'></constructor-arg>
+	</bean>
+	<bean id="pet2" class="teach.spring._03.Dog">
+		<constructor-arg value="張歐弟"></constructor-arg>
+		<constructor-arg value="30.8"></constructor-arg>
+	</bean>
+
+	<!-- 子女 -->
+	<bean id="child1" class="teach.spring._03.Person">
+		<constructor-arg value="王大明"></constructor-arg>
+	</bean>
+	<bean id="child2" class="teach.spring._03.Person">
+		<constructor-arg value="李明珠"></constructor-arg>
+	</bean>
+
+
+
+
+
+	<bean id="emp1" class="teach.spring._03.Employee" scope="singleton"
+		lazy-init="default">
+		<property name="empNo" value="10112"></property>
+		<property name="name" value="Jack"></property>
+		<property name="salary" value="55000"></property>
+		<property name="birthday" ref="birthdayBean"></property>
+		<property name="loginTime" ref="loginTimeBean"></property>
+		<property name="employedDate" ref="empday"></property>
+		<property name="children">
+			<list>
+				<ref bean='child1'/>
+				<ref bean='child2'/>
+			</list>
+		</property>
+		<property name="pets">
+			<list>
+				<ref bean='pet1'/>
+				<ref bean='pet2'/>
+			</list>
+		</property>
+		<property name="petMap">
+			<map>
+				<entry key="one" value-ref="pet1"/>
+				<entry key="two" value-ref="pet2"/>
+			</map>
+		</property>
+	</bean>
+
+
+</beans>
