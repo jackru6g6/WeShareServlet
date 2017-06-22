@@ -30,6 +30,7 @@ public class GoodsBean {
 
 	public GoodsBean() {
 		System.out.println("ABCCCCCCCC");
+		System.out.println("GGGGGGGGGGGGGGGGGGG");
 	}
 
 	public GoodsBean(int goodsNo, int goodsStatus, Timestamp updateTime, String indId, String goodsName, int goodsType,
