@@ -21,24 +21,13 @@ import javax.xml.bind.DatatypeConverter;
 public class GlobalService {
 	public static final int    RECORDS_PER_PAGE = 3;
 	public static final String host = "127.0.0.1";
-	//public static final String host = "192.168.11.22";
 	public static final String USERID = "root";
 	public static final String PASSWORD = "jack09";
-	public static final String SYSTEM_NAME = "義新網路購物商城";
 	public static final String JNDI_DB_NAME = "java:comp/env/jdbc/BookDataSQLver";
 	public static final int IMAGE_FILENAME_LENGTH = 20;
-//	public static final String DB_URL = "jdbc:sqlserver://" + GlobalService.host + ":1433;databaseName=JSPDB" ;
 	public static final String DB_URL = "jdbc:sqlserver://" + GlobalService.host + ":1433;databaseName=weshare" ;
-//	public static final String DB_URLMySQL = "jdbc:mysql://" + GlobalService.host + "/jspdb?useUnicode=yes&characterEncoding=utf8" ;
 	public static final String DB_URLMySQL = "jdbc:mysql://" + GlobalService.host + "/weshare?useUnicode=yes&characterEncoding=utf8" ;
 	public static final String KEY = "KittySnoopyMicky";  // 16, 24, 32
-	
-	//public static final String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-
-	public String getSystemName() {   //  systemName 
-		
-		return SYSTEM_NAME;
-	}
     /**
      * 依MD5演算法將參數字串message轉換為128位元(16個位元組)的資料。
      * 

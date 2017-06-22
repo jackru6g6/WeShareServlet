@@ -26,11 +26,8 @@ public class GoodsBean {
 	private Blob image = null;
 	private java.sql.Timestamp deadTime;
 	
-	
 
 	public GoodsBean() {
-		System.out.println("ABCCCCCCCC");
-		System.out.println("132e1f5ef15ef");
 	}
 
 	public GoodsBean(int goodsNo, int goodsStatus, Timestamp updateTime, String indId, String goodsName, int goodsType,
