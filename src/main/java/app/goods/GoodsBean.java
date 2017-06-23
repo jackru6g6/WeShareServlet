@@ -25,7 +25,6 @@ public class GoodsBean {
 	private int goodsShipWay;
 	private Blob image = null;
 	private java.sql.Timestamp deadTime;
-	
 
 	public GoodsBean() {
 	}

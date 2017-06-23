@@ -8,20 +8,15 @@
 	<name>Weshare Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-<!-- public -->
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
-		</dependency>
-<!-- sql & servlet -->
-		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
-		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+<dependency>
+    <groupId>jstl</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
+	
+	
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -29,25 +24,37 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-<!-- android app -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.2.10.Final</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.3.1</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.3.9.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>4.3.9.RELEASE</version>
+		</dependency>
 
 	</dependencies>
 
