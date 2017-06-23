@@ -1,5 +1,7 @@
 package app.user;
 
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import app.goods.GoodsBean;
 import app.main.HibernateUtil;
 
 public class MemberDAO {
@@ -78,7 +81,7 @@ public class MemberDAO {
 		}
 		return n;
 	}
-	
+
 	public int saveIn(MemberBean mb, InstiutionBean ins) {
 		int n = 0;
 		Session session = sessionFactory.openSession();
@@ -96,6 +99,36 @@ public class MemberDAO {
 				session.close();
 		}
 		return n;
+	}
+
+	public byte[] getImage(String id) {
+		byte[] image = null;
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		List<MemberBean> list = new ArrayList<MemberBean>();
+		Blob blob = null;
+		try {
+			String hql = "FROM MemberBean WHERE indId = :uid";
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", id);
+			list = query.getResultList();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+		} finally {
+			session.close();
+		}
+		for (MemberBean mb : list) {
+			try {
+				blob = mb.getImage();
+				int blobLength = (int) blob.length();
+				image = blob.getBytes(1, blobLength);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return image;
 	}
 
 	public int delete(String userId) {
@@ -136,13 +169,20 @@ public class MemberDAO {
 		return n;
 	}
 
-	public MemberBean get(String userId) {
+	public List<MemberBean> get(String userId) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		MemberBean stock = new MemberBean();
+//		List<Object[]> list= new ArrayList<>();
+		List<MemberBean> list= new ArrayList<MemberBean>();
 		try {
-			stock = session.get(MemberBean.class, userId);
+//			String hql = "SELECT m.tal,m.email,m.address FROM MemberBean m WHERE m.userId = :uid";
+			String hql = "SELECT new MemberBean(m.tal,m.email,m.address,m.idType) FROM MemberBean m WHERE m.userId = :uid";
+
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", userId);
+			list = query.getResultList();
 			tx.commit();
+
 		} catch (Exception ex) {
 			tx.rollback();
 			ex.printStackTrace();
@@ -150,7 +190,7 @@ public class MemberDAO {
 			if (session != null)
 				session.close();
 		}
-		return stock;
+		return list;
 	}
 
 	public MemberBean load(String userId) {
