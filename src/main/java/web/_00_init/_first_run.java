@@ -33,15 +33,18 @@ public class _first_run {
 	}
 
 	public static void DropTable(Statement stmt) throws SQLException {
+		stmt.executeUpdate(sql_Common.DROP_TABLE_GOODS);
+		
 		stmt.executeUpdate(sql_Common.DROP_TABLE_GOODSTYPE);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_LOCAL);
-		stmt.executeUpdate(sql_Common.DROP_TABLE_ORGTYPE);
+		
 		
 		stmt.executeUpdate(sql_Common.DROP_TABLE_MSG);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_FEEDBACK);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_DEAL);
-		stmt.executeUpdate(sql_Common.DROP_TABLE_GOODS);
+		
 		stmt.executeUpdate(sql_Common.DROP_TABLE_ORG);
+		stmt.executeUpdate(sql_Common.DROP_TABLE_ORGTYPE);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_IND);
 	}
 
