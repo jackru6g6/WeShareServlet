@@ -152,11 +152,14 @@ public class RegisterServletMP extends HttpServlet {
 			}
 			// 2. 進行必要的資料轉換			
 			
-			try {
-				orgtypes = Integer.parseInt(orgtypes0.trim());
-			} catch (NumberFormatException e) {
-				errorMsg.put("errorFormat","社福類型格式錯誤，應該為整數");
+			if(userType==2){
+				try {
+					orgtypes = Integer.parseInt(orgtypes0.trim());
+				} catch (NumberFormatException e) {
+					errorMsg.put("errorFormat","社福類型格式錯誤，應該為整數");
+				}
 			}
+			
 			
 			
 			// 3. 檢查使用者輸入資料
