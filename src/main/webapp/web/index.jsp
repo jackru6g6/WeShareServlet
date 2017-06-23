@@ -1,6 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<!-- DECLARE JSTL -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="">
 
@@ -12,11 +14,17 @@
 </head>
 
 <body>
+
 	<a href="<c:url value='/_01_register/register.jsp'  />">註冊</a>
-	<a href="<c:url value='/_02_login/login.jsp'  />">登入</a>
-	<a href="<c:url value='/_02_login/logout.jsp'  />">登出</a>
-	會員資料管理:<a href='/Demo/FindMemberServlet?pk=${ LoginOK.indid }'>${ LoginOK.indid }</a>
-	
+	<c:if test="${empty LoginOK}">
+		<a href="<c:url value='/_02_login/login.jsp'  />">登入</a>
+	</c:if>
+	<c:if test="${!empty LoginOK}">
+		<a href="<c:url value='/_02_login/logout.jsp'  />">登出</a>
+	</c:if>
+	會員資料管理:
+	<a href='/Demo/FindMemberServlet?pk=${ LoginOK.indid }'>${ LoginOK.indid }</a>
+
 	<header>
 		<jsp:include page="../fragment/header.jsp" />
 	</header>
