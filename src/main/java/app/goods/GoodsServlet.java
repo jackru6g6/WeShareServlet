@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,11 +14,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import app.main.ImageUtil;
+import app.user.MemberBean;
 
 @SuppressWarnings("serial")
 @WebServlet("/GoodsServlet")
@@ -28,9 +34,11 @@ public class GoodsServlet extends HttpServlet {
 		BufferedReader br = request.getReader();
 		StringBuffer jsonIn = new StringBuffer();
 		String line = null;
+
 		while ((line = br.readLine()) != null) {
 			jsonIn.append(line);
 		}
+
 		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
 		GoodsDAO gDAO = new GoodsDAO();
 		String action = jsonObject.get("action").getAsString();
@@ -43,7 +51,6 @@ public class GoodsServlet extends HttpServlet {
 			OutputStream os = response.getOutputStream();
 			int id = jsonObject.get("goodsId").getAsInt();
 			int imageSize = jsonObject.get("imageSize").getAsInt();
-
 			byte[] image = gDAO.getImage(id);
 
 			if (image != null) {
@@ -52,6 +59,24 @@ public class GoodsServlet extends HttpServlet {
 				response.setContentLength(image.length);
 			}
 			os.write(image);
+		} else if (action.equals("goodsInsert")) {
+			String goodsJson = jsonObject.get("goods").getAsString();
+			GoodsBean goods = gson.fromJson(goodsJson, GoodsBean.class);
+			String imageBase64 = jsonObject.get("imageBase64").getAsString();
+			byte[] image = Base64.getMimeDecoder().decode(imageBase64);
+			int count = 0;
+			boolean check;
+			Blob blob = null;
+			try {
+				blob = new SerialBlob(image);
+				goods.setGoodsImage(blob);
+				count = gDAO.save(goods);
+			} catch (SerialException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
 
