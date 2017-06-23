@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="teach.spring._04"></context:component-scan>
+	<!-- <bean id="controller1" class="teach.spring._02.ToyCar" scope="singleton" -->
+	<!-- lazy-init="default"> -->
+	<!-- <property name="hour" value="5"></property> -->
+	<!-- <property name="speed" value="30"></property> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="controller2" class="teach.spring._02.ToyCar" scope="singleton" -->
+	<!-- lazy-init="default"> -->
+	<!-- <constructor-arg index="0" value="3"></constructor-arg> -->
+	<!-- <constructor-arg index="1" value="20"></constructor-arg> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="controller3" class="teach.spring._02.ToyCar" scope="singleton" -->
+	<!-- lazy-init="default" p:hour='1.5' p:speed='3'> -->
+	<!-- </bean> -->
+	<bean id='kitty' class="java.lang.Integer" factory-method="valueOf">
+		<constructor-arg value='100'></constructor-arg>
+	</bean>
+	<bean id='snoopy' class="java.lang.Double" factory-method="valueOf">
+		<constructor-arg value='4.5'></constructor-arg>
+	</bean>
+	
+	<bean id='speed' class="java.lang.Integer" factory-method="valueOf">
+		<constructor-arg value='200'></constructor-arg>
+	</bean>
+	<bean id='hour' class="java.lang.Double" factory-method="valueOf">
+		<constructor-arg value='4.9'></constructor-arg>
+	</bean>
+	
+
+</beans>

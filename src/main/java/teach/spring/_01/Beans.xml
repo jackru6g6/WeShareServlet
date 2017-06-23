@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="mmid" class="teach.spring._01.Cat" lazy-init="true">
+		<constructor-arg value="嘉飛"></constructor-arg>
+	</bean>
+	
+	<bean id="mmid2" class="teach.spring._01.Dog">
+		<constructor-arg value="史奴比"></constructor-arg>
+	</bean>
+
+	<bean name="/helloName" id="hello" class="teach.spring._01.HelloWorld" scope="singleton">
+		<property name="message" value="大家好"></property>
+<!-- 		<property name="mammal" ref="mmid"></property> -->
+		<property name="mammal" ref="mmid2"></property>
+	</bean>
+
+</beans>
