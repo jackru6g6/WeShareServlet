@@ -23,7 +23,7 @@
 		<a href="<c:url value='/_02_login/logout.jsp'  />">登出</a>
 	</c:if>
 	會員資料管理:
-	<a href='/Demo/FindMemberServlet?pk=${ LoginOK.indid }'>${ LoginOK.indid }</a>
+	<a href='/Demo/FindMemberServlet?pk=${ LoginOK.indid }'>${ LoginOK.indname }</a>
 
 	<header>
 		<jsp:include page="../fragment/header.jsp" />
