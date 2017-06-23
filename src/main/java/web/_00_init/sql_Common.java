@@ -72,4 +72,6 @@ public class sql_Common {
 
 	// -------------------------------------------------------------------------------------<INSERT>
 	static String INSERT_TABLE_IND = "INSERT INTO ind values(?,?,?,?,?,?,?,?,?,?)";
+	static String INSERT_TABLE_ORG = "INSERT INTO org values(?,?,?,?,?,?,?,?,?)";
+
 }
