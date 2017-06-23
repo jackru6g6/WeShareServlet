@@ -30,7 +30,8 @@ function setFocusToUserId(){
 }
 </script>
 </head>
-<body onLoad="setFocusToUserId()" style="background:#EBFFEB;">
+<body style="background:#EBFFEB;">
+<!-- <body onLoad="setFocusToUserId()" style="background:#EBFFEB;"> -->
 <!-- 下列敘述設定變數funcName的值為LOG，top.jsp 會用到此變數 -->
 <c:set var="funcName" value="LOG" scope="session"/>
 <c:set var="msg" value="登入" />
@@ -40,8 +41,8 @@ function setFocusToUserId(){
 <!-- 引入共同的頁首 -->
 <%-- <jsp:include page="/fragment/top.jsp" /> --%>
 
-
-<Form action="<c:url value='login.do' />" method="POST" name="loginForm">
+<Form action="<c:url value='/_02_login/login.do' />" method="POST" name="loginForm">
+<%-- <Form action="<c:url value='login.do' />" method="POST" name="loginForm"> --%>
 <div id='content'>
     <Table  width='500px' style="border-width:2; background:#E0E0E0; 
                         border-style:inset; border-color:#EF02A4;">

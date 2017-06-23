@@ -179,10 +179,7 @@ function showForm(){
           <font color="red" size="-1">${MsgMap.errorEmail}</font>
       <br/>
       
-<!--       <label class="fontSize" >網路購物經驗：</label> -->
-<%--           <input type="text"  name="experience" value="${param.experience}"   class="fieldWidth" style="width: 30px;">年 --%>
-<%--           <font color="red" size="-1">${MsgMap.errorFormat}</font>  --%>
-<!--       <br/> -->
+
       <label class="fontSize" >照片：</label>
       <Input Type="file" size="40" class="fieldWidth" style="width: 480px;"  name="file1"><BR>
       <br/>
@@ -215,6 +212,9 @@ function showForm(){
       <label class="fontSize" >勸募許可：</label>
       <input type="text"  name="raiseno" value="${param.raiseno}"    class="fieldWidth" style="width: 120px;">
       <font color="red" size="-1">${MsgMap.errorRaiseno}</font>
+      <br/>
+      <label class="fontSize" >照片：</label>
+      <Input Type="file" size="40" class="fieldWidth" style="width: 480px;"  name="file2"><BR>
       <br/>
       
       </span>

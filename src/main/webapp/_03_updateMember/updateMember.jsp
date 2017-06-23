@@ -28,38 +28,21 @@
 	  }
 	  return false;
   }
-  function showForm(){
-	  var org = document.getElementsByClassName("org");
-	  
-// 	  	var span = document.getElementById("spandisplay");
 
-		var usertype=${LoginOK.usertype};
-		if(userType==2){
-			org.style.display = 'inline';
-		}else{
-			org.style.display = 'none';
-		}
-	}
   
 </script>
 </head>
-<body onload="showForm()">
-<%-- <jsp:useBean id='ind' class='_01_register.model.MemberBean' scope='session'/> --%>
-<%-- <jsp:useBean id='org' class='_01_register.model.OrgBean' scope='session'/> --%>
-<%-- <c:set target='${indbean}' property='indName' value='cat'/> --%>
-<%-- ${indbean.indName } --%>
+<body>
+
 
 <H1 class='center'>更新會員資料(JDBC版)</H1>
 <hr>
 <p> 
-<form ENCTYPE="multipart/form-data" method="POST" action="<c:url value='updateMember.do' />" class='center' id="register.do" >
-<!-- <Form class='center' Action="updateMember.do" method="POST" > -->
+<form ENCTYPE="multipart/form-data" method="POST" action="<c:url value='/updateMember.do' />" class='center' id="register.do" >
+
     
 
     <input type="hidden" name="indid"     value="${LoginOK.indid}" >
-<%--     <input type="hidden" name="indid"     value="${param.pk}" > --%>
-<%--     <input type="hidden" name="userId" value="${member.userId}${param.userId}" > --%>
-<%--     <input type="hidden" name="pswd"   value="${member.password}${param.pswd}" >          --%>
     <input type="hidden" name="finalDecision" value="" > 
     
     <input type="hidden" name="usertype"   value="${LoginOK.usertype}" >
@@ -79,20 +62,20 @@
              <TD align="LEFT">${LoginOK.indid}</TD>
          </TR>
          
-         <TR>
-             <TD align="RIGHT">密碼：</TD>
-             <TD align="LEFT" >
-                <input type="password" name="indpassword" value="${ind.indpassword}${param.indpassword}"  size="30">
-                <font color='red' size='-3'>${MsgMap.errorPasswordEmpty}</font>
-             </TD>
-         </TR>  
-         <TR>
-             <TD align="RIGHT">密碼確認：</TD>
-             <TD align="LEFT" >
-                <input type="password" name="indpassword2" value="${ind.indpassword}${param.indpassword2}"  size="30">
-                <font color='red' size='-3'>${MsgMap.errorPassword2Empty}</font>               
-             </TD>
-         </TR>   
+<!--          <TR> -->
+<!--              <TD align="RIGHT">密碼：</TD> -->
+<!--              <TD align="LEFT" > -->
+<%--                 <input type="password" name="indpassword" value="${ind.indpassword}${param.indpassword}"  size="30"> --%>
+<%--                 <font color='red' size='-3'>${MsgMap.errorPasswordEmpty}</font> --%>
+<!--              </TD> -->
+<!--          </TR>   -->
+<!--          <TR> -->
+<!--              <TD align="RIGHT">密碼確認：</TD> -->
+<!--              <TD align="LEFT" > -->
+<%--                 <input type="password" name="indpassword2" value="${ind.indpassword}${param.indpassword2}"  size="30"> --%>
+<%--                 <font color='red' size='-3'>${MsgMap.errorPassword2Empty}</font>                --%>
+<!--              </TD> -->
+<!--          </TR>    -->
           
          <TR>
              <TD align="RIGHT">姓名：</TD>
@@ -126,8 +109,8 @@
          <TR>
              <TD align="RIGHT">照片：</TD>
              
-              <td><img height='40px' width='30px' 
-                     src='${pageContext.servletContext.contextPath}/_00_init/getImage?id=${LoginOK.indid}&type=MEMBER'  />
+              <td>
+<%-- <img height='40px' width='30px' src='${pageContext.servletContext.contextPath}/_00_init/getImage?id=${LoginOK.indid}&type=MEMBER'  /> --%>
              </td>
              <TD align="LEFT" >                
                <input type="file"  name="file1" size="40"/>
@@ -137,7 +120,7 @@
          
          
          
-<!--          <span style="display:none" id="spandisplay"> -->
+
          
          <TR class="org">
              <TD align="RIGHT">簡介：</TD>
@@ -175,27 +158,28 @@
              </TD>
          </TR> 
          
-<!--          </span> -->
+         <TR>
+             <TD align="RIGHT">照片：</TD>
+             
+              <td>
+<%-- <img height='40px' width='30px' src='${pageContext.servletContext.contextPath}/_00_init/getImage?id=${LoginOK.indid}&type=ORG'  /> --%>
+             </td>
+             <TD align="LEFT" >                
+               <input type="file"  name="file2" size="40"/>
+               <font color='red' size='-3'>${MsgMap.errorPasswordEmpty}</font>
+             </TD>
+         </TR>
+         
 
 
-<!--          <label class="fontSize" >照片：</label> -->
-<!--       <Input Type="file" size="40" class="fieldWidth" style="width: 480px;"  name="file1"><BR> -->
-<!--       <br/> -->                 
-<!--          <TR> -->
-<!--              <TD align="RIGHT">使用Java經驗：</TD> -->
-<!--              <TD align="LEFT" >  -->
-<%--                <input type="text" name="experience" value="${member.experience}${param.experience}" size="3"> 年 --%>
-<%--                <font color='red' size='-3'>${error.experience}</font> --%>
-<!--              </TD> -->
-<!--          </TR>     -->
+
+
 
 
         <TR>
             <TD colspan="2" align="center">     
             <input type="submit" value="更新" name='updateBtn' onclick="return confirmUpdate('${member.userId}');"> 
             
-<%--             <input type="submit" value="更新" name='updateBtn' onclick="return confirmUpdate('${member.userId}');">  --%>
-<%--             <input type="submit" value="刪除" name='deleteBtn' onclick="return confirmDelete('${member.userId}');" > --%>
             </TD>
             </TR>
          </Table>
