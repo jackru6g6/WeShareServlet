@@ -39,6 +39,13 @@ public class MemberBean {
 		this.password = password;
 	}
 
+	public MemberBean(String tal, String email, String address, int idType) {
+		this.tal = tal;
+		this.email = email;
+		this.address = address;
+		this.idType = idType;
+	}
+
 	public MemberBean(String userId, String password, String name, String tal, String email, String address, Blob image,
 			int idType, Timestamp createDate, String fileName) {
 		super();
