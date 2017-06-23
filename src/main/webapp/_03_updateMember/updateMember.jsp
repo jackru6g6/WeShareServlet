@@ -110,7 +110,7 @@
              <TD align="RIGHT">照片：</TD>
              
               <td>
-<%-- <img height='40px' width='30px' src='${pageContext.servletContext.contextPath}/_00_init/getImage?id=${LoginOK.indid}&type=MEMBER'  /> --%>
+<img height='40px' width='30px' src='${pageContext.servletContext.contextPath}/_00_init/getImage?id=${LoginOK.indid}&type=MEMBER'  />
              </td>
              <TD align="LEFT" >                
                <input type="file"  name="file1" size="40"/>
@@ -162,7 +162,7 @@
              <TD align="RIGHT">照片：</TD>
              
               <td>
-<%-- <img height='40px' width='30px' src='${pageContext.servletContext.contextPath}/_00_init/getImage?id=${LoginOK.indid}&type=ORG'  /> --%>
+<img height='40px' width='30px' src='${pageContext.servletContext.contextPath}/_00_init/getImage?id=${LoginOK.indid}&type=ORG'  />
              </td>
              <TD align="LEFT" >                
                <input type="file"  name="file2" size="40"/>

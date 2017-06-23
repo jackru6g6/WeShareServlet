@@ -15,7 +15,8 @@
 	<a href="<c:url value='/_01_register/register.jsp'  />">註冊</a>
 	<a href="<c:url value='/_02_login/login.jsp'  />">登入</a>
 	<a href="<c:url value='/_02_login/logout.jsp'  />">登出</a>
-	會員資料管理:<a href='FindMemberServlet?pk=${ LoginOK.indid }'>${ LoginOK.indid }</a>
+	會員資料管理:<a href='/Demo/FindMemberServlet?pk=${ LoginOK.indid }'>${ LoginOK.indid }</a>
+	
 	<header>
 		<jsp:include page="../fragment/header.jsp" />
 	</header>
