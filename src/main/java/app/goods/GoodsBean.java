@@ -24,14 +24,14 @@ public class GoodsBean {
 	private String goodsNote;
 	private int goodsShipWay;
 	private Blob goodsImage = null;
-	private java.sql.Timestamp deadLine;
+	private int deadLine;
 
 	public GoodsBean() {
 		super();
 	}
 
 	public GoodsBean(int goodsNo, int goodsStatus, Timestamp updateTime, String indId, String goodsName, int goodsType,
-			int qty, int goodsLoc, String goodsNote, int goodsShipWay, Blob goodsImage, Timestamp deadLine) {
+			int qty, int goodsLoc, String goodsNote, int goodsShipWay, Blob goodsImage, int deadLine) {
 		super();
 		this.goodsNo = goodsNo;
 		this.goodsStatus = goodsStatus;
@@ -48,7 +48,7 @@ public class GoodsBean {
 	}
 
 	public GoodsBean(int goodsNo, int goodsStatus, Timestamp updateTime, String goodsName, int goodsType, int qty,
-			int goodsLoc, String goodsNote, int goodsShipWay, Timestamp deadLine) {
+			int goodsLoc, String goodsNote, int goodsShipWay, int deadLine) {
 		super();
 		this.goodsNo = goodsNo;
 		this.goodsStatus = goodsStatus;
@@ -61,15 +61,18 @@ public class GoodsBean {
 		this.goodsShipWay = goodsShipWay;
 		this.deadLine = deadLine;
 	}
-
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getGoodsNo() {
 		return goodsNo;
 	}
-
+	
 	public void setGoodsNo(int goodsNo) {
 		this.goodsNo = goodsNo;
 	}
 
+	@Column(name="goodsStatus")
 	public int getGoodsStatus() {
 		return goodsStatus;
 	}
@@ -77,15 +80,15 @@ public class GoodsBean {
 	public void setGoodsStatus(int goodsStatus) {
 		this.goodsStatus = goodsStatus;
 	}
-
+	@Column(name="updateTime")
 	public java.sql.Timestamp getUpdateTime() {
 		return updateTime;
 	}
-
+	
 	public void setUpdateTime(java.sql.Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
-
+	@Column(name="indId")
 	public String getIndId() {
 		return indId;
 	}
@@ -93,7 +96,7 @@ public class GoodsBean {
 	public void setIndId(String indId) {
 		this.indId = indId;
 	}
-
+	@Column(name="goodsName")
 	public String getGoodsName() {
 		return goodsName;
 	}
@@ -101,7 +104,7 @@ public class GoodsBean {
 	public void setGoodsName(String goodsName) {
 		this.goodsName = goodsName;
 	}
-
+	@Column(name="goodsTypes")
 	public int getGoodsType() {
 		return goodsType;
 	}
@@ -109,7 +112,8 @@ public class GoodsBean {
 	public void setGoodsType(int goodsType) {
 		this.goodsType = goodsType;
 	}
-
+	
+	@Column(name="Qty")
 	public int getQty() {
 		return Qty;
 	}
@@ -117,7 +121,7 @@ public class GoodsBean {
 	public void setQty(int qty) {
 		Qty = qty;
 	}
-
+	@Column(name="goodsLoc")
 	public int getGoodsLoc() {
 		return goodsLoc;
 	}
@@ -125,7 +129,7 @@ public class GoodsBean {
 	public void setGoodsLoc(int goodsLoc) {
 		this.goodsLoc = goodsLoc;
 	}
-
+	@Column(name="goodsNote")
 	public String getGoodsNote() {
 		return goodsNote;
 	}
@@ -133,7 +137,7 @@ public class GoodsBean {
 	public void setGoodsNote(String goodsNote) {
 		this.goodsNote = goodsNote;
 	}
-
+	@Column(name="goodsShipWay")
 	public int getGoodsShipWay() {
 		return goodsShipWay;
 	}
@@ -141,7 +145,7 @@ public class GoodsBean {
 	public void setGoodsShipWay(int goodsShipWay) {
 		this.goodsShipWay = goodsShipWay;
 	}
-
+	@Column(name="goodsImage")
 	public Blob getGoodsImage() {
 		return goodsImage;
 	}
@@ -149,12 +153,12 @@ public class GoodsBean {
 	public void setGoodsImage(Blob goodsImage) {
 		this.goodsImage = goodsImage;
 	}
-
-	public java.sql.Timestamp getDeadLine() {
+	@Column(name="deadLine")
+	public int getDeadLine() {
 		return deadLine;
 	}
 
-	public void setDeadLine(java.sql.Timestamp deadLine) {
+	public void setDeadLine(int deadLine) {
 		this.deadLine = deadLine;
 	}
 
