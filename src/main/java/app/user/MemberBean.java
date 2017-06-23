@@ -26,7 +26,7 @@ public class MemberBean {
 	private Blob image = null;
 	private int idType;
 	private java.sql.Timestamp createDate;
-	private String fileName = null;
+	private String fileName = "userPicture";
 
 //	private InstiutionBean instiutionBean;
 

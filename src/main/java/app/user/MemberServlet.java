@@ -124,6 +124,46 @@ public class MemberServlet extends HttpServlet {
 
 			} else if (action.equals("userInRegister")) {
 				
+//				try {
+//					String insJson = jsonObject.get("ins").getAsString();
+//					InstiutionBean ins = gson.fromJson(insJson, InstiutionBean.class);// 轉為Spot物件
+//					String imageBase64In = jsonObject.get("imageBase64In").getAsString();
+//					//System.out.println("imageBase64" + imageBase64);
+//					byte[] imageIn = Base64.getMimeDecoder().decode(imageBase64In);
+//					Blob blobIn = null;
+//					if (imageBase64.equals(new byte[0])) {
+//						try {
+//							File f = new File("images/user.png");
+//							long size = f.length();
+//							InputStream is = new FileInputStream(f);
+//							byte[] ba = new byte[(int) size];
+//							blob = new SerialBlob(ba);
+//							System.out.println("asdsadsadsadsaddas" + imageBase64);
+//						} catch (Exception e) {
+//							e.printStackTrace();
+//						}
+//					} else {
+//						// Blob imageBlob = new SerialBlob(image);
+//						blob = new SerialBlob(image);
+//						blobIn = new SerialBlob(imageIn);
+//						System.out.println("有給圖片-----In");
+//					}
+//					// user.setImage(imageBlob);
+//					user.setImage(blob);
+//					ins.setImage(blobIn);
+//					//user.setInstiutionBean(ins);
+//					check = mbDAO.isExists(user.getUserId());
+//					System.out.println("checkRepeat = " + check);
+//					if (check == false) {
+//						count = mbDAO.save(user);
+//					} else {
+//						count = -1;
+//					}
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+				
+				
 				try {
 					String insJson = jsonObject.get("ins").getAsString();
 					InstiutionBean ins = gson.fromJson(insJson, InstiutionBean.class);// 轉為Spot物件
@@ -155,7 +195,7 @@ public class MemberServlet extends HttpServlet {
 					check = mbDAO.isExists(user.getUserId());
 					System.out.println("checkRepeat = " + check);
 					if (check == false) {
-						count = mbDAO.save(user);
+						count = mbDAO.saveIn(user, ins);
 					} else {
 						count = -1;
 					}
