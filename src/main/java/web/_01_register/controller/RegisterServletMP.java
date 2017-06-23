@@ -64,6 +64,7 @@ public class RegisterServletMP extends HttpServlet {
     	//Timestamp postDate;
     	//Blob indImage;
     	String indFileName= "";
+    	String orgFileName= "";
     	
     	String indId= "";
     	String indPassword= "";
@@ -81,6 +82,9 @@ public class RegisterServletMP extends HttpServlet {
         
 		long sizeInBytes = 0;
 		InputStream is = null;
+		
+		long sizeInBytes2 = 0;//
+		InputStream is2 = null;//
 		
 		
 		Collection<Part> parts = request.getParts(); // 取出HTTP multipart request內所有的parts
@@ -119,24 +123,33 @@ public class RegisterServletMP extends HttpServlet {
 						raiseno = value;  
 					}
 				} else {
-					indFileName = GlobalService.getFileName(p); // 此為圖片檔的檔名
-					indFileName = GlobalService.adjustFileName(indFileName, GlobalService.IMAGE_FILENAME_LENGTH);
-					if (indFileName != null && indFileName.trim().length() > 0) {
-						sizeInBytes = p.getSize();
-						is = p.getInputStream();
-					} else {
-						errorMsg.put("errPicture", "必須挑選圖片檔");
-					}
-				
+					//一般|社福會員大頭貼
+					if(fldName.equalsIgnoreCase("file1")){
+						indFileName = GlobalService.getFileName(p); // 此為圖片檔的檔名
+						indFileName = GlobalService.adjustFileName(indFileName, GlobalService.IMAGE_FILENAME_LENGTH);
+						if (indFileName != null && indFileName.trim().length() > 0) {
+							sizeInBytes = p.getSize();
+							is = p.getInputStream();
+						} else {
+//							errorMsg.put("errPicture", "必須挑選圖片檔");
+						}
+					//社福會員照片
+					}else if(fldName.equalsIgnoreCase("file2")){
+						orgFileName = GlobalService.getFileName(p); // 此為圖片檔的檔名
+						orgFileName = GlobalService.adjustFileName(orgFileName, GlobalService.IMAGE_FILENAME_LENGTH);
+						if (orgFileName != null && orgFileName.trim().length() > 0) {
+							sizeInBytes2 = p.getSize();
+							is2 = p.getInputStream();
+						} else {
+//							if(userType==2){
+//								errorMsg.put("errPicture", "必須挑選圖片檔");
+//							}
+							
+						}						
+					}				
 				}
 			}
-			// 2. 進行必要的資料轉換
-			
-//			try {
-//				experience = Integer.parseInt(expericnceStr.trim());
-//			} catch (NumberFormatException e) {
-//				errorMsg.put("errorFormat","網路購物經驗格式錯誤，應該為整數");
-//			}
+			// 2. 進行必要的資料轉換			
 			
 			// 3. 檢查使用者輸入資料
 			if (indId == null || indId.trim().length() == 0) {
@@ -157,20 +170,16 @@ public class RegisterServletMP extends HttpServlet {
 			if (indName == null || indName.trim().length() == 0) {
 				errorMsg.put("errorName","姓名欄必須輸入");
 			}
-			if (indAddress == null || indAddress.trim().length() == 0) {
-				errorMsg.put("errorAddr","地址欄必須輸入");
-			}
-			if (indEmail == null || indEmail.trim().length() == 0) {
-				errorMsg.put("errorEmail","電子郵件欄必須輸入");
-			}
-			if (indPhone == null || indPhone.trim().length() == 0) {
-				errorMsg.put("errorTel","電話號碼欄必須輸入");
-			}
-			
-			
-//			if (experience < 0) {
-//				errorMsg.put("errorFormat","網路購物經驗應該為正整數或 0 ");
+//			if (indAddress == null || indAddress.trim().length() == 0) {
+//				errorMsg.put("errorAddr","地址欄必須輸入");
 //			}
+//			if (indEmail == null || indEmail.trim().length() == 0) {
+//				errorMsg.put("errorEmail","電子郵件欄必須輸入");
+//			}
+//			if (indPhone == null || indPhone.trim().length() == 0) {
+//				errorMsg.put("errorTel","電話號碼欄必須輸入");
+//			}
+
 			
 			if(userType==2){
 				if (intro == null || intro.trim().length() == 0) {
@@ -182,12 +191,12 @@ public class RegisterServletMP extends HttpServlet {
 				if (orgtypes == null || orgtypes.trim().length() == 0) {
 					errorMsg.put("errorOrgtypes","類型欄必須輸入");
 				}
-				if (registerno == null || registerno.trim().length() == 0) {
-					errorMsg.put("errorRegisterno","立案核准欄必須輸入");
-				}
-				if (raiseno == null || raiseno.trim().length() == 0) {
-					errorMsg.put("errorRaiseno","勸募許可欄必須輸入");
-				}
+//				if (registerno == null || registerno.trim().length() == 0) {
+//					errorMsg.put("errorRegisterno","立案核准欄必須輸入");
+//				}
+//				if (raiseno == null || raiseno.trim().length() == 0) {
+//					errorMsg.put("errorRaiseno","勸募許可欄必須輸入");
+//				}
 			}
 			
 			
@@ -236,7 +245,7 @@ public class RegisterServletMP extends HttpServlet {
 					
 						// 將MemberBean mem立即寫入Database				
 						System.out.println("filename:" + indFileName);
-						int n = rs.saveOrg(mem,ob,is,sizeInBytes,indFileName);
+						int n = rs.saveOrg(mem,ob,is,sizeInBytes,indFileName, is2, sizeInBytes2, orgFileName);
 						if ( n == 1) {
 							msgOK.put("InsertOK","<Font color='red'>新增成功，請開始使用本系統</Font>");
 							response.sendRedirect("../index.jsp");
@@ -247,30 +256,8 @@ public class RegisterServletMP extends HttpServlet {
 				}else{
 					System.out.println("userType錯誤");
 					errorMsg.put("errUserType", "userType錯誤");
-				}
-				
-				
-				
-				
-				
-				
-				
-//				MemberBean mem = new MemberBean(userType,indId,indPassword,indName,
-//						indPhone,indEmail,indAddress);
-//				
-////					MemberBean mem = new MemberBean(memberID, 
-////						name, password, addr, email, tel, experience);
-//				
-//					// 將MemberBean mem立即寫入Database				
-//					System.out.println("filename:" + indFileName);
-//					int n = rs.saveMember(mem, is, sizeInBytes, indFileName);
-//					if ( n == 1) {
-//						msgOK.put("InsertOK","<Font color='red'>新增成功，請開始使用本系統</Font>");
-//						response.sendRedirect("../index.jsp");
-//						return;
-//					} else {
-//						errorMsg.put("errorIDDup","新增此筆資料有誤(RegisterServlet)");
-//					}
+				}							
+
 			}
 			// 5.依照 Business Logic 運算結果來挑選適當的畫面
 			if (!errorMsg.isEmpty()) {
