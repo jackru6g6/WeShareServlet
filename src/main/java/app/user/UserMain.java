@@ -33,7 +33,7 @@ public class UserMain {
 		// dao.close();
 		// System.out.println("n = " + n);
 
-		MemberBean user = new MemberBean("jack01", "123", "22沉沉", "0922658795", "jack@gmail.com", "新北市...", blob, 2, ts,
+		MemberBean user = new MemberBean("jack01", "123ffffff", "22沉沉", "0922658795", "jack@gmail.com", "新北市...", blob, 2, ts,
 				"kitty");
 
 		MemberDAO dao = new MemberDAO();
