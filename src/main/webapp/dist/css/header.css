@@ -1,15 +1,28 @@
 @charset "UTF-8";
-/* 內容跟頂端的距離 */
+/* 加入Google font字型(圓體) */
+@font-face {
+  font-family: yen;
+  src: url(../font/cwTeXYen-zhonly.ttf); }
+
+/* 連結不出現底線&出現手的符號 */
+a:hover,
+a:focus {
+  text-decoration: none;
+  cursor: pointer; }
+
+/* 內容跟頂端的距離及網站字體 */
 body {
-  padding-top: 80px; }
+  padding-top: 80px;
+  font-family: yen, serif; }
 
 @media screen and (min-width: 768px) and (max-width: 984px) {
   body {
     padding-top: 155px; } }
 
-/* 手機選單鈕垂直位置 */
+/* 手機選單鈕位置 */
 #navButton {
-  margin-top: 15px; }
+  margin-top: 23px;
+  margin-right: 15px; }
 
 /* 手機導覽列不要出現橫向卷軸 */
 #navMenuLeft,
@@ -17,14 +30,17 @@ body {
   margin-left: 0px;
   margin-right: 0px; }
 
-/* Logo區的高度*/
+/* Logo區的高度及圖片尺寸 */
 #navLogo {
-  height: 60px; }
+  height: 80px;
+  padding-top: 10px; }
+  #navLogo > img {
+    height: 60px; }
 
 /* 導覽列背景色、字體 */
 #navLayout {
   background-color: #ffffff;
-  font-size: 26px; }
+  font-size: 24px; }
 
 /* 導覽列左右內縮40px */
 #navLeft {
@@ -47,10 +63,10 @@ body {
 
 /* 導覽列-送愛心顏色 */
 #navGive span:nth-child(1) {
-  color: #FFC78B; }
+  color: #ef7b00; }
 
 #navGive span:nth-child(2) {
-  background-color: #FFC78B; }
+  background-color: #ef7b00; }
 
 /* 導覽列-以物易物顏色 */
 #navExchange span:nth-child(1) {
@@ -61,24 +77,24 @@ body {
 
 /* 導覽列-社福團體顏色 */
 #navGroup span:nth-child(1) {
-  color: #FFD306; }
+  color: #ffc107; }
 
 #navGroup span:nth-child(2) {
-  background-color: #FFD306; }
+  background-color: #ffc107; }
 
 /* 導覽列-登入 / 註冊顏色 */
 #navLogin span:nth-child(1) {
-  color: #87CEFA; }
+  color: #3381b1; }
 
 #navLogin span:nth-child(2) {
-  background-color: #87CEFA; }
+  background-color: #3381b1; }
 
 /* 導覽列-會員姓名顏色 */
 #navMember span:nth-child(1) {
-  color: #87CEFA; }
+  color: #3381b1; }
 
 #navMember span:nth-child(2) {
-  background-color: #87CEFA; }
+  background-color: #3381b1; }
 
 /* 導覽列-語言顏色 */
 #navLanguage span:nth-child(1) {
@@ -87,10 +103,13 @@ body {
 #navLanguage span:nth-child(2) {
   background-color: #AB82FF; }
 
+#navFBImg {
+  font-size: 30px;
+  color: #6161fd; }
+
 /* 導覽列-選單樣式 */
 #navMenu span:nth-child(1) {
   position: relative;
-  font-weight: bolder;
   transition: 1s; }
 
 #navMenu span:nth-child(2) {
@@ -145,10 +164,10 @@ body {
     transform: skewX(-16deg); }
 
 #navMemberSub li a {
-  color: #87CEFA; }
+  color: #3381b1; }
   #navMemberSub li a:hover {
     color: #ffffff;
-    background-color: #87CEFA;
+    background-color: #3381b1;
     transform: skewX(0deg);
     transition: .3s; }
 
@@ -175,7 +194,3 @@ body {
     background-color: #AB82FF;
     transform: skewX(0deg);
     transition: .3s; }
-
-/* 導覽列-隱藏會員姓名及圖片 */
-.nav .afterLogin {
-  display: none; }

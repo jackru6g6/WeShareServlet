@@ -22,7 +22,7 @@ public class GlobalService {
 	public static final int RECORDS_PER_PAGE = 3;
 	public static final String host = "127.0.0.1";
 	public static final String USERID = "root";
-	public static final String PASSWORD = "jack09";
+	public static final String PASSWORD = "password";
 	public static final String SYSTEM_NAME = "義新網路購物商城";
 	public static final String JNDI_DB_NAME = "java:comp/env/jdbc/BookDataSQLver";
 	public static final int IMAGE_FILENAME_LENGTH = 20;
