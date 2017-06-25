@@ -1,23 +1,14 @@
+@charset "UTF-8";
+/* 登入區塊 */
 #loginContent {
-  text-align: center;
   height: calc(100vh - 290px);
   margin-top: 100px; }
 
-form {
-  max-width: 350px;
-  text-align: center;
-  margin: 20px auto; }
-
-p {
-  margin: 15px auto; }
-
-input {
-  width: 100%;
-  height: auto;
-  padding: 5px;
-  font-size: large;
-  border-radius: 6px; }
-
+/* 帳號登入按鈕 */
 #btLogin {
+  color: #3e3e3e;
   background-color: #87CEFA;
   border-color: #609fe3; }
+
+.loginErrorMsg {
+  color: #ff0000; }
