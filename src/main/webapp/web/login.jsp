@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html lang="zh-Hant">
@@ -59,7 +60,7 @@
 										<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 											<div class="row">
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-													<h4>使用以下服務登入</h4>
+													<h4 class="leftText">使用以下服務登入</h4>
 												</div>
 											</div>
 											<!--Facebook-->
@@ -89,7 +90,7 @@
 										<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 											<div class="row">
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-													<h4>使用帳號登入</h4>
+													<h4 class="rightText">使用帳號登入</h4>
 												</div>
 											</div>
 											<form action="<c:url value='/_02_login/login.do' />" method="POST" name="loginForm">
