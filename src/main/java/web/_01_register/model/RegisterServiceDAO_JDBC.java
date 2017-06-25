@@ -141,7 +141,7 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 	          pstmt2.setTimestamp(2, now2);
 	          pstmt2.setString(3, ob.getIntro());
 	          pstmt2.setString(4, ob.getLeader());
-	          pstmt2.setString(5, ob.getOrgtypes());
+	          pstmt2.setInt(5, ob.getOrgtypes());
 	          pstmt2.setString(6, ob.getRegisterno());
 	          pstmt2.setString(7, ob.getRaiseno());		          
 	          
@@ -236,7 +236,7 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 				java.sql.Timestamp updatetime = rs.getTimestamp("updatetime");//	
 				String intro = rs.getString("INTRO");
 				String leader = rs.getString("LEADER");
-				String orgtypes = rs.getString("ORGTYPES");
+				int orgtypes = rs.getInt("ORGTYPES");
 				String registerno = rs.getString("REGISTERNO");
 				String raiseno = rs.getString("RAISENO");
 				Blob orgimage = rs.getBlob("orgImage");//
@@ -476,7 +476,7 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 	          pstmt2.setTimestamp(2, now2);
 	          pstmt2.setString(1, ob.getIntro());
 	          pstmt2.setString(2, ob.getLeader());
-	          pstmt2.setString(3, ob.getOrgtypes());
+	          pstmt2.setInt(3, ob.getOrgtypes());
 	          pstmt2.setString(4, ob.getRegisterno());
 	          pstmt2.setString(5, ob.getRaiseno());		          
 	          
@@ -559,7 +559,7 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 	          pstmt2.setTimestamp(2, now2);
 	          pstmt2.setString(1, ob.getIntro());
 	          pstmt2.setString(2, ob.getLeader());
-	          pstmt2.setString(3, ob.getOrgtypes());
+	          pstmt2.setInt(3, ob.getOrgtypes());
 	          pstmt2.setString(4, ob.getRegisterno());
 	          pstmt2.setString(5, ob.getRaiseno());
 	          // 設定Image欄位
@@ -646,7 +646,7 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 		          pstmt2.setTimestamp(2, now2);
 		          pstmt2.setString(1, ob.getIntro());
 		          pstmt2.setString(2, ob.getLeader());
-		          pstmt2.setString(3, ob.getOrgtypes());
+		          pstmt2.setInt(3, ob.getOrgtypes());
 		          pstmt2.setString(4, ob.getRegisterno());
 		          pstmt2.setString(5, ob.getRaiseno());		          
 					pstmt2.setString(6, ob.getIndid());
@@ -727,7 +727,7 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 		          pstmt2.setTimestamp(2, now2);
 		          pstmt2.setString(1, ob.getIntro());
 		          pstmt2.setString(2, ob.getLeader());
-		          pstmt2.setString(3, ob.getOrgtypes());
+		          pstmt2.setInt(3, ob.getOrgtypes());
 		          pstmt2.setString(4, ob.getRegisterno());
 		          pstmt2.setString(5, ob.getRaiseno());
 					pstmt2.setString(6, ob.getIndid());
