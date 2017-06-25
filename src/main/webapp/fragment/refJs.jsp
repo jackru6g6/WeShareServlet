@@ -10,6 +10,7 @@
 	var loginOk = "${LoginOK}";
 	var indname = "${LoginOK.indname}";
 	var indid = "${LoginOK.indid}";
+	var rememberMe = "${sessionScope.rememberMe}";
 </script>
 
 <!-- jQuery -->
@@ -24,5 +25,5 @@
 <!-- 個人化 -->
 <script src="${pageContext.request.contextPath}/dist/js/bundle.js"></script>
 <script src="${pageContext.request.contextPath}/dist/js/login.js"></script>
- 
+
 <!-- 引進外部資源頁面 END-->
