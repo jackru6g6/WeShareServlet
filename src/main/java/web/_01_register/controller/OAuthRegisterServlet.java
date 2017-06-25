@@ -183,19 +183,19 @@ public class OAuthRegisterServlet extends HttpServlet {
 
 				} else if (userType == 2) {
 
-					MemberBean mem = new MemberBean(userType, GLB.getUserId(), GLB.getUserPassword(), GLB.getName(),
-							null, GLB.getEmail(), null);
-					OrgBean ob = new OrgBean(GLB.getUserId(), ORGINF, ORGLEADER, ORGTYPES, ORGREGISTERNO, ORGRAISENO);
-
-					// 將MemberBean mem立即寫入Database
-					int n = rs.saveOrg(mem, ob, null, 0L, null, null, 0L, null);
-					if (n == 1) {
-						msgOK.put("InsertOK", "<Font color='red'>新增成功，請開始使用本系統</Font>");
-						response.sendRedirect(contextPath + "/web/index.jsp");
-						return;
-					} else {
-						errorMsg.put("errorIDDup", "新增此筆資料有誤(RegisterServlet)");
-					}
+//					MemberBean mem = new MemberBean(userType, GLB.getUserId(), GLB.getUserPassword(), GLB.getName(),
+//							null, GLB.getEmail(), null);
+//					OrgBean ob = new OrgBean(GLB.getUserId(), ORGINF, ORGLEADER, ORGTYPES, ORGREGISTERNO, ORGRAISENO);
+//
+//					// 將MemberBean mem立即寫入Database
+//					int n = rs.saveOrg(mem, ob, null, 0L, null, null, 0L, null);
+//					if (n == 1) {
+//						msgOK.put("InsertOK", "<Font color='red'>新增成功，請開始使用本系統</Font>");
+//						response.sendRedirect(contextPath + "/web/index.jsp");
+//						return;
+//					} else {
+//						errorMsg.put("errorIDDup", "新增此筆資料有誤(RegisterServlet)");
+//					}
 				} else {
 					System.out.println("userType錯誤");
 					errorMsg.put("errUserType", "userType錯誤");
