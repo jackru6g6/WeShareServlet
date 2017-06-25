@@ -76,7 +76,8 @@ public class RegisterServletMP extends HttpServlet {
     	
     	String intro= "";
     	String leader= "";
-    	String orgtypes= "";
+    	String orgtypes0= "";
+    	int orgtypes= 0;
     	String registerno= "";
     	String raiseno= "";
         
@@ -116,7 +117,7 @@ public class RegisterServletMP extends HttpServlet {
 					}else if (fldName.equalsIgnoreCase("leader")) {
 						leader = value;  
 					}else if (fldName.equalsIgnoreCase("orgtypes")) {
-						orgtypes = value;  
+						orgtypes0 = value;  
 					}else if (fldName.equalsIgnoreCase("registerno")) {
 						registerno = value;  
 					}else if (fldName.equalsIgnoreCase("raiseno")) {
@@ -150,6 +151,16 @@ public class RegisterServletMP extends HttpServlet {
 				}
 			}
 			// 2. 進行必要的資料轉換			
+			
+			if(userType==2){
+				try {
+					orgtypes = Integer.parseInt(orgtypes0.trim());
+				} catch (NumberFormatException e) {
+					errorMsg.put("errorFormat","社福類型格式錯誤，應該為整數");
+				}
+			}
+			
+			
 			
 			// 3. 檢查使用者輸入資料
 			if (indId == null || indId.trim().length() == 0) {
@@ -188,7 +199,7 @@ public class RegisterServletMP extends HttpServlet {
 				if (leader == null || leader.trim().length() == 0) {
 					errorMsg.put("errorLeader","負責人欄必須輸入");
 				}
-				if (orgtypes == null || orgtypes.trim().length() == 0) {
+				if (orgtypes0 == null || orgtypes0.trim().length() == 0) {
 					errorMsg.put("errorOrgtypes","類型欄必須輸入");
 				}
 //				if (registerno == null || registerno.trim().length() == 0) {
