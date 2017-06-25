@@ -54,7 +54,7 @@ public class GoodsDAO {
 		}
 		for (GoodsBean gd : list) {
 			try {
-				blob = gd.getGoodsImage();
+				blob = gd.getImage();
 				int blobLength = (int) blob.length();
 				image = blob.getBytes(1, blobLength);
 			} catch (SQLException e) {

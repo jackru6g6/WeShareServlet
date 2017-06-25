@@ -10,7 +10,7 @@ public class OrgBean implements Serializable {
 	Timestamp updatetime;
 	String intro;
 	String leader;
-	int orgtypes;
+	String orgtypes;
 	String registerno;
 	String raiseno;
 	Blob orgimage;	
@@ -20,7 +20,7 @@ public class OrgBean implements Serializable {
 	
 	
 	
-	public OrgBean(String indid, String intro, String leader, int orgtypes, String registerno, String raiseno) {
+	public OrgBean(String indid, String intro, String leader, String orgtypes, String registerno, String raiseno) {
 		super();
 		this.indid = indid;
 		this.intro = intro;
@@ -31,7 +31,7 @@ public class OrgBean implements Serializable {
 	}
 
 
-	public OrgBean(String indid, Timestamp updatetime, String intro, String leader, int orgtypes, String registerno,
+	public OrgBean(String indid, Timestamp updatetime, String intro, String leader, String orgtypes, String registerno,
 			String raiseno, Blob orgimage, String orgfilename) {
 		super();
 		this.indid = indid;
@@ -95,12 +95,12 @@ public class OrgBean implements Serializable {
 	}
 
 
-	public int getOrgtypes() {
+	public String getOrgtypes() {
 		return orgtypes;
 	}
 
 
-	public void setOrgtypes(int orgtypes) {
+	public void setOrgtypes(String orgtypes) {
 		this.orgtypes = orgtypes;
 	}
 

@@ -3,7 +3,7 @@
   <!--                     MySQL                   -->
 <!--   url="jdbc:mysql://localhost:3306/jspdb" -->
   <Resource name="jdbc/BookDataSQLver" type="javax.sql.DataSource"
-      username="root" password="password"
+      username="root" password="jack09"
       driverClassName="com.mysql.jdbc.Driver"
       url="jdbc:mysql://localhost:3306/weshare"
       connectionProperties="useUnicode=yes;characterEncoding=utf8;"
@@ -12,4 +12,3 @@
       maxWait="5000"
   />  
 </Context>
-<!-- username="root" password="jack09" -->

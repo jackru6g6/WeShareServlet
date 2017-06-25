@@ -33,36 +33,21 @@ public class _first_run {
 	}
 
 	public static void DropTable(Statement stmt) throws SQLException {
-		stmt.executeUpdate(sql_Common.DROP_TABLE_GOODS);
-		
-		stmt.executeUpdate(sql_Common.DROP_TABLE_GOODSTYPE);
-		stmt.executeUpdate(sql_Common.DROP_TABLE_LOCAL);
-		
-		
 		stmt.executeUpdate(sql_Common.DROP_TABLE_MSG);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_FEEDBACK);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_DEAL);
-		
+		stmt.executeUpdate(sql_Common.DROP_TABLE_GOODS);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_ORG);
-		stmt.executeUpdate(sql_Common.DROP_TABLE_ORGTYPE);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_IND);
 	}
 
 	public static void CreateTable(Statement stmt) throws SQLException {
 		stmt.executeUpdate(sql_Common.CREATE_TABLE_IND);
-		stmt.executeUpdate(sql_Common.CREATE_TABLE_ORGTYPE);
 		stmt.executeUpdate(sql_Common.CREATE_TABLE_ORG);
-		stmt.executeUpdate(sql_Common.CREATE_TABLE_GOODSTYPE);
-		stmt.executeUpdate(sql_Common.CREATE_TABLE_LOCAL);
-		
-		
 		stmt.executeUpdate(sql_Common.CREATE_TABLE_GOODS);
 		stmt.executeUpdate(sql_Common.CREATE_TABLE_DEAL);
-		stmt.executeUpdate(sql_Common.CREATE_TABLE_FEEDBACK);
+		stmt.executeUpdate(sql_Common.DROP_TABLE_FEEDBACK);
 		stmt.executeUpdate(sql_Common.CREATE_TABLE_MSG);
-		
-
-		
 	}
 
 	public static void CreateData(Connection con) throws SQLException {
@@ -70,11 +55,11 @@ public class _first_run {
 				null, null);
 		MemberBean mb2 = new MemberBean(2, null, "Google", "123", "谷哥大神", "0229625270", "Google@gmail.com",
 				"台北市大安區xxx巷xxxx號", null, null);
-		OrgBean ob2 = new OrgBean(mb2.getIndid(), null, "我是社福簡介", "社福負責人", 1, "立案核准", "勸募許可", null, null);
+		OrgBean ob2 = new OrgBean(mb2.getIndid(), null, "我是社福簡介", "社福負責人", "社福類別", "立案核准", "勸募許可", null, null);
 		MemberBean mb3 = new MemberBean(1, null, "micky", "123", "米奇", "0228825252", "micky@gmail.com", "米奇的家", null,
 				null);
 		IND_DATA(mb1, con);
-//		ORG_DATA(mb2, ob2, con);
+		ORG_DATA(mb2, ob2, con);
 		IND_DATA(mb3, con);
 
 		// PreparedStatement pstmt2 =
@@ -124,7 +109,7 @@ public class _first_run {
 		pstmt2.setTimestamp(2, ob2.getUpdatetime());
 		pstmt2.setString(3, ob2.getIntro());
 		pstmt2.setString(4, ob2.getLeader());
-		pstmt2.setInt(5, ob2.getOrgtypes());
+		pstmt2.setString(5, ob2.getOrgtypes());
 		pstmt2.setString(6, ob2.getRegisterno());
 		pstmt2.setString(7, ob2.getRaiseno());
 		pstmt2.setBlob(8, mb2.getIndimage());

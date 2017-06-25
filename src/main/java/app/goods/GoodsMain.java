@@ -24,7 +24,7 @@ public static void main(String[] args) throws Exception{
 		// Timestamp ts = new Timestamp(System.currentTimeMillis());//現在時間，跟下面2者一樣，選1用
 		Timestamp ts = new Timestamp(new java.util.Date().getTime());
 
-		//GoodsBean goods = new GoodsBean(1, now, "jack", "印表機", 3, 5, 8, "9成新", 3, blob, dl);
+		GoodsBean goods = new GoodsBean(1, now, "jack", "印表機", 3, 5, 8, "9成新", 3, blob, dl);
 //		GoodsBean goods2 = new GoodsBean(9, "id2", "na6me",3, blob, "c2z",
 //				"cxz", "loc", now, ts, 1, "dsa");
 //		GoodsBean goods3 = new GoodsBean(9, "id6", "name",3, blob, "cz3",
@@ -41,12 +41,11 @@ public static void main(String[] args) throws Exception{
 //		GoodsBean goods8 = new GoodsBean(9, "id6", "name",3, blob, "c5z",
 //				"cxz", "loc", now, ts, 1, "dsa");
 		
-//		GoodsDAO dao = new GoodsDAO();
-//		int n = dao.save(goods);
-//	
-//		dao.close();
-//		System.out.println("n = " + n);
-//	}
+		GoodsDAO dao = new GoodsDAO();
+		int n = dao.save(goods);
+	
+		dao.close();
+		System.out.println("n = " + n);
+	}
 
-}
 }

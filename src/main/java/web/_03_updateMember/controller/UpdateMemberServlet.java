@@ -60,8 +60,7 @@ public class UpdateMemberServlet extends HttpServlet {
 	    	
 	    	String intro= "";
 	    	String leader= "";
-	    	String orgtypes0= "";
-	    	int orgtypes= 0;
+	    	String orgtypes= "";
 	    	String registerno= "";
 	    	String raiseno= "";
 	        
@@ -103,7 +102,7 @@ public class UpdateMemberServlet extends HttpServlet {
 						}else if (fldName.equalsIgnoreCase("leader")) {
 							leader = value;  
 						}else if (fldName.equalsIgnoreCase("orgtypes")) {
-							orgtypes0 = value;  
+							orgtypes = value;  
 						}else if (fldName.equalsIgnoreCase("registerno")) {
 							registerno = value;  
 						}else if (fldName.equalsIgnoreCase("raiseno")) {
@@ -138,15 +137,6 @@ public class UpdateMemberServlet extends HttpServlet {
 				}
 				
 				// 2. 進行必要的資料轉換
-				
-				if(userType==2){
-					try {
-						orgtypes = Integer.parseInt(orgtypes0.trim());
-					} catch (NumberFormatException e) {
-						errorMsg.put("errorFormat","社福類型格式錯誤，應該為整數");
-					}
-				}				
-
 				
 				// 3. 檢查使用者輸入資料
 
@@ -184,7 +174,7 @@ public class UpdateMemberServlet extends HttpServlet {
 					if (leader == null || leader.trim().length() == 0) {
 						errorMsg.put("errorLeader","負責人欄必須輸入");
 					}
-					if (orgtypes0 == null || orgtypes0.trim().length() == 0) {
+					if (orgtypes == null || orgtypes.trim().length() == 0) {
 						errorMsg.put("errorOrgtypes","類型欄必須輸入");
 					}
 					if (registerno == null || registerno.trim().length() == 0) {
