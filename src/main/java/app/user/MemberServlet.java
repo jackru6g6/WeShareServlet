@@ -45,29 +45,33 @@ public class MemberServlet extends HttpServlet {
 
 		if (action.equals("getAll")) {
 			String account = jsonObject.get("account").getAsString();
-			System.out.println("--------------account: " + account);
-			// MemberBean user = mbDAO.get(action);
-			// List<Object[]> user = mbDAO.get(action);
 			List<MemberBean> user = mbDAO.get(account);
+			System.out.println("帳號account: " + account);
 			for (MemberBean pop : user) {
-				System.out.println("" + pop.getTal() + "" + pop.getEmail() + "" + pop.getAddress());
+				System.out.println("電話：" + pop.getTal() + ", Email：" + pop.getEmail() + ", 地址：" + pop.getAddress()
+						+ ", 帳號型態：" + pop.getIdType());
 			}
-			System.out.println("GOGO1");
 			writeText(response, gson.toJson(user));
 		} else if (action.equals("getImage")) {
 			String account = jsonObject.get("account").getAsString();
 			OutputStream os = response.getOutputStream();
-//			account = jsonObject.get("account").getAsString();
+			// account = jsonObject.get("account").getAsString();
 			int imageSize = jsonObject.get("imageSize").getAsInt();
+			System.out.println("account=" + account + ", imageSize=" + imageSize);
 			byte[] image = mbDAO.getImage(account);
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize);// ImageUtil縮圖
-				response.setContentType("image/jpeg");
+				response.setContentType("image/peg");
 				// 只要送一張圖，就不用轉json，指定他傳送的型態，如果要用json就要用Base64
 				// // encode才能傳送
 				response.setContentLength(image.length);// 輸出圖的長度
+				System.out.println(image);
+			}
+			else{
+				System.out.println("沒收到喔~");
 			}
 			os.write(image);// 送到client端
+
 		} else if (action.equals("userLogin")) {
 			String userJson = jsonObject.get("user").getAsString();
 			MemberBean mb = gson.fromJson(userJson, MemberBean.class);// 轉為Spot物件

@@ -32,6 +32,15 @@ public class MemberBean {
 
 	public MemberBean() {
 	}
+	
+	
+
+	public MemberBean(Blob image) {
+		super();
+		this.image = image;
+	}
+
+
 
 	public MemberBean(String userId, String password) {
 		super();
