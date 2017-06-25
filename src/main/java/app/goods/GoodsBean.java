@@ -19,18 +19,19 @@ public class GoodsBean {
 	private String indId;
 	private String goodsName;
 	private int goodsType;
-	private int goodsQty;
+	private int Qty;
 	private int goodsLoc;
 	private String goodsNote;
 	private int goodsShipWay;
-	private Blob image = null;
-	private java.sql.Timestamp deadTime;
+	private Blob goodsImage = null;
+	private int deadLine;
 
 	public GoodsBean() {
+		super();
 	}
 
 	public GoodsBean(int goodsNo, int goodsStatus, Timestamp updateTime, String indId, String goodsName, int goodsType,
-			int goodsQty, int goodsLoc, String goodsNote, int goodsShipWay, Blob image, Timestamp deadTime) {
+			int qty, int goodsLoc, String goodsNote, int goodsShipWay, Blob goodsImage, int deadLine) {
 		super();
 		this.goodsNo = goodsNo;
 		this.goodsStatus = goodsStatus;
@@ -38,57 +39,40 @@ public class GoodsBean {
 		this.indId = indId;
 		this.goodsName = goodsName;
 		this.goodsType = goodsType;
-		this.goodsQty = goodsQty;
+		Qty = qty;
 		this.goodsLoc = goodsLoc;
 		this.goodsNote = goodsNote;
 		this.goodsShipWay = goodsShipWay;
-		this.image = image;
-		this.deadTime = deadTime;
+		this.goodsImage = goodsImage;
+		this.deadLine = deadLine;
 	}
 
-	public GoodsBean(int goodsStatus, Timestamp updateTime, String indId, String goodsName, int goodsType,
-			int goodsQty, int goodsLoc, String goodsNote, int goodsShipWay, Blob image, Timestamp deadTime) {
+	public GoodsBean(int goodsNo, int goodsStatus, Timestamp updateTime, String goodsName, int goodsType, int qty,
+			int goodsLoc, String goodsNote, int goodsShipWay, int deadLine) {
 		super();
+		this.goodsNo = goodsNo;
 		this.goodsStatus = goodsStatus;
 		this.updateTime = updateTime;
-		this.indId = indId;
 		this.goodsName = goodsName;
 		this.goodsType = goodsType;
-		this.goodsQty = goodsQty;
+		Qty = qty;
 		this.goodsLoc = goodsLoc;
 		this.goodsNote = goodsNote;
 		this.goodsShipWay = goodsShipWay;
-		this.image = image;
-		this.deadTime = deadTime;
+		this.deadLine = deadLine;
 	}
 	
-	public GoodsBean(int goodsNo, int goodsStatus, Timestamp updateTime, String indId, String goodsName, int goodsType,
-			int goodsQty, int goodsLoc, String goodsNote, int goodsShipWay, Timestamp deadTime) {
-		super();
-		this.goodsNo = goodsNo;
-		this.goodsStatus = goodsStatus;
-		this.updateTime = updateTime;
-		this.indId = indId;
-		this.goodsName = goodsName;
-		this.goodsType = goodsType;
-		this.goodsQty = goodsQty;
-		this.goodsLoc = goodsLoc;
-		this.goodsNote = goodsNote;
-		this.goodsShipWay = goodsShipWay;
-		this.deadTime = deadTime;
-	}
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "GoodsNo")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getGoodsNo() {
 		return goodsNo;
 	}
-
+	
 	public void setGoodsNo(int goodsNo) {
 		this.goodsNo = goodsNo;
 	}
 
+	@Column(name="goodsStatus")
 	public int getGoodsStatus() {
 		return goodsStatus;
 	}
@@ -96,15 +80,15 @@ public class GoodsBean {
 	public void setGoodsStatus(int goodsStatus) {
 		this.goodsStatus = goodsStatus;
 	}
-
+	@Column(name="updateTime")
 	public java.sql.Timestamp getUpdateTime() {
 		return updateTime;
 	}
-
+	
 	public void setUpdateTime(java.sql.Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
-
+	@Column(name="indId")
 	public String getIndId() {
 		return indId;
 	}
@@ -112,7 +96,7 @@ public class GoodsBean {
 	public void setIndId(String indId) {
 		this.indId = indId;
 	}
-
+	@Column(name="goodsName")
 	public String getGoodsName() {
 		return goodsName;
 	}
@@ -120,7 +104,7 @@ public class GoodsBean {
 	public void setGoodsName(String goodsName) {
 		this.goodsName = goodsName;
 	}
-
+	@Column(name="goodsTypes")
 	public int getGoodsType() {
 		return goodsType;
 	}
@@ -128,15 +112,16 @@ public class GoodsBean {
 	public void setGoodsType(int goodsType) {
 		this.goodsType = goodsType;
 	}
-
-	public int getGoodsQty() {
-		return goodsQty;
+	
+	@Column(name="Qty")
+	public int getQty() {
+		return Qty;
 	}
 
-	public void setGoodsQty(int goodsQty) {
-		this.goodsQty = goodsQty;
+	public void setQty(int qty) {
+		Qty = qty;
 	}
-
+	@Column(name="goodsLoc")
 	public int getGoodsLoc() {
 		return goodsLoc;
 	}
@@ -144,7 +129,7 @@ public class GoodsBean {
 	public void setGoodsLoc(int goodsLoc) {
 		this.goodsLoc = goodsLoc;
 	}
-
+	@Column(name="goodsNote")
 	public String getGoodsNote() {
 		return goodsNote;
 	}
@@ -152,7 +137,7 @@ public class GoodsBean {
 	public void setGoodsNote(String goodsNote) {
 		this.goodsNote = goodsNote;
 	}
-
+	@Column(name="goodsShipWay")
 	public int getGoodsShipWay() {
 		return goodsShipWay;
 	}
@@ -160,21 +145,25 @@ public class GoodsBean {
 	public void setGoodsShipWay(int goodsShipWay) {
 		this.goodsShipWay = goodsShipWay;
 	}
-
-	public Blob getImage() {
-		return image;
+	@Column(name="goodsImage")
+	public Blob getGoodsImage() {
+		return goodsImage;
 	}
 
-	public void setImage(Blob image) {
-		this.image = image;
+	public void setGoodsImage(Blob goodsImage) {
+		this.goodsImage = goodsImage;
+	}
+	@Column(name="deadLine")
+	public int getDeadLine() {
+		return deadLine;
 	}
 
-	public java.sql.Timestamp getDeadTime() {
-		return deadTime;
+	public void setDeadLine(int deadLine) {
+		this.deadLine = deadLine;
 	}
 
-	public void setDeadTime(java.sql.Timestamp deadTime) {
-		this.deadTime = deadTime;
-	}
+	
+	
+
 
 }
