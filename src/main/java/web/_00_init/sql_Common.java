@@ -50,7 +50,7 @@ public class sql_Common {
 
 	static String CREATE_TABLE_GOODS = "Create Table goods ( goodsno int(7) NOT NULL Auto_Increment Primary Key,"
 			+ "goodsstatus int(1),updatetime timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP, "
-			+ "indid varchar(50) NOT NULL, goodstypes int(7), goodsname varchar(10), "
+			+ "indid varchar(50) NOT NULL, goodstype int(7), goodsname varchar(10), "
 			+ "goodsloc int(7), goodsnote varchar(200), qty int(3) UNSIGNED, goodsshipway int(1), "
 			+ "deadline int(14), goodsimage MEDIUMBLOB, goodsfilename varchar(20), FOREIGN KEY(indid) REFERENCES ind (indid),"
 			+ "FOREIGN KEY(goodstypes) REFERENCES goodstype (goodstypeno), "+ "FOREIGN KEY(goodsloc) REFERENCES local (localno) " 
