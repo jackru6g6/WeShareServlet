@@ -57,7 +57,7 @@ public class MemberServlet extends HttpServlet {
 		} else if (action.equals("getImage")) {
 			String account = jsonObject.get("account").getAsString();
 			OutputStream os = response.getOutputStream();
-			account = jsonObject.get("account").getAsString();
+//			account = jsonObject.get("account").getAsString();
 			int imageSize = jsonObject.get("imageSize").getAsInt();
 			byte[] image = mbDAO.getImage(account);
 			if (image != null) {
