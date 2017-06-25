@@ -1,2 +1,21 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
 target/m2e-wtp/web-resources/META-INF/maven/tw.edu.ntut.java005/Weshare/pom.properties
+
+
