@@ -180,9 +180,9 @@ public class MemberDAO {
 			session.close();
 		}
 		System.out.println("list" + list);
-		for (MemberBean mb : list) {
+		for (Object mb : list) {
 			try {
-				blob = mb.getImage();
+				mb.toString();
 				System.out.println("blob=" + blob);
 				int blobLength = (int) blob.length();
 				image = blob.getBytes(1, blobLength);
