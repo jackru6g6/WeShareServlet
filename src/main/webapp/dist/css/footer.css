@@ -1,9 +1,25 @@
 footer {
-  background-color: #f5f5f5;
-  padding: 10px 20px;
-  margin-top: 30px; }
-
-.footerContent {
-  margin-bottom: 5px;
-  font-size: large;
-  text-align: center; }
+  padding: 0 20px; }
+  footer .footerSocial {
+    background-color: #f3fafe;
+    padding: 10px; }
+    footer .footerSocial a {
+      font-size: 60px;
+      color: #3e3e3e; }
+      footer .footerSocial a .fa-facebook-square {
+        color: #6666ff; }
+      footer .footerSocial a .fa-youtube-play {
+        color: #ff6666; }
+      footer .footerSocial a .fa-google-plus-square {
+        color: #ff3333; }
+      footer .footerSocial a .fa-instagram {
+        color: #6666ff; }
+  footer .footerContent {
+    background-color: #daf0fd;
+    padding: 20px; }
+    footer .footerContent a {
+      font-size: 18px;
+      color: #3e3e3e; }
+  footer .footerCopyright {
+    background-color: #c2e6fc;
+    padding: 10px; }
