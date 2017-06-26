@@ -79,6 +79,7 @@ public class _first_run {
 		ORG_DATA(mb2, ob2, con);
 		IND_DATA(mb3, con);
 		LOCAL_DATA(con);
+		GOODSTYPE(con);
 	}
 
 	public static void IND_DATA(MemberBean mb1, Connection con) throws SQLException {
@@ -172,6 +173,20 @@ public class _first_run {
 		}
 
 	};
+
+	public static void GOODSTYPE(Connection con) throws SQLException {
+		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_GOODSTYPE);
+		pstmt.setString(1, "乾貨食品");
+		pstmt.executeUpdate();
+		pstmt.setString(1, "服飾配件");
+		pstmt.executeUpdate();
+		pstmt.setString(1, "生活用品");
+		pstmt.executeUpdate();
+		pstmt.setString(1, "家電機器");
+		pstmt.executeUpdate();
+		pstmt.setString(1, "其他類型");
+		pstmt.executeUpdate();
+	}
 }
 
 // MYSQL
