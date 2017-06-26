@@ -19,7 +19,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class InstiutionBean {
 	private String indId;
 	private String leader;
-	private String orgType;
+	private int orgType;
 	private String registerNo;
 	private String raiseNo;
 	private String intRo;
@@ -32,7 +32,7 @@ public class InstiutionBean {
 	public InstiutionBean() {
 	}
 
-	public InstiutionBean(String indId, String leader, String orgType, String registerNo, String raiseNo, String intRo,
+	public InstiutionBean(String indId, String leader, int orgType, String registerNo, String raiseNo, String intRo,
 			Blob image, Timestamp updatetime) {
 		super();
 		this.indId = indId;
@@ -67,11 +67,11 @@ public class InstiutionBean {
 	}
 
 	@Column(name = "orgtypes")
-	public String getOrgType() {
+	public int getOrgType() {
 		return orgType;
 	}
 
-	public void setOrgType(String orgType) {
+	public void setOrgType(int orgType) {
 		this.orgType = orgType;
 	}
 

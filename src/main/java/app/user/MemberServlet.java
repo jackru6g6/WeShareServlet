@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import app.main.ImageUtil;
+import web._00_init.GlobalService;
 
 @SuppressWarnings("serial")
 @WebServlet("/UserServlet")
@@ -66,8 +67,7 @@ public class MemberServlet extends HttpServlet {
 				// // encode才能傳送
 				response.setContentLength(image.length);// 輸出圖的長度
 				System.out.println(image);
-			}
-			else{
+			} else {
 				System.out.println("沒收到喔~");
 			}
 			os.write(image);// 送到client端
@@ -78,6 +78,10 @@ public class MemberServlet extends HttpServlet {
 			int count = 0;
 			boolean check;
 			try {
+				String encrypedString = GlobalService.encryptString(mb.getPassword());
+				String MD5EndocingPassword = GlobalService.getMD5Endocing(encrypedString);
+				mb.setPassword(MD5EndocingPassword);
+				
 				check = mbDAO.checkPassword(mb);
 				System.out.println("checkPassword = " + check);
 				if (check == true) {
@@ -102,23 +106,16 @@ public class MemberServlet extends HttpServlet {
 			// List<MemberBean> allEmployees = new ArrayList<MemberBean>();
 			if (action.equals("userRegister")) {
 				try {
-					if (imageBase64.equals(new byte[0])) {
-						try {
-							File f = new File("images/user.png");
-							long size = f.length();
-							InputStream is = new FileInputStream(f);
-							byte[] ba = new byte[(int) size];
-							blob = new SerialBlob(ba);
-							System.out.println("asdsadsadsadsaddas" + imageBase64);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					} else {
-						// Blob imageBlob = new SerialBlob(image);
-						blob = new SerialBlob(image);
-						System.out.println("有給圖片");
-					}
+
+					// Blob imageBlob = new SerialBlob(image);
+					blob = new SerialBlob(image);
+					System.out.println("有給圖片");
 					// user.setImage(imageBlob);
+					
+					String encrypedString = GlobalService.encryptString(user.getPassword());
+					String MD5EndocingPassword = GlobalService.getMD5Endocing(encrypedString);
+					user.setPassword(MD5EndocingPassword);
+					
 					user.setImage(blob);
 					String name = user.getUserId();
 					check = mbDAO.isExists(name);
@@ -182,23 +179,23 @@ public class MemberServlet extends HttpServlet {
 					// System.out.println("imageBase64" + imageBase64);
 					byte[] imageIn = Base64.getMimeDecoder().decode(imageBase64In);
 					Blob blobIn = null;
-					if (imageBase64.equals(new byte[0])) {
-						try {
-							File f = new File("images/user.png");
-							long size = f.length();
-							InputStream is = new FileInputStream(f);
-							byte[] ba = new byte[(int) size];
-							blob = new SerialBlob(ba);
-							System.out.println("asdsadsadsadsaddas" + imageBase64);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					} else {
+//					if (imageBase64.equals(new byte[0])) {
+//						try {
+//							File f = new File("images/user.png");
+//							long size = f.length();
+//							InputStream is = new FileInputStream(f);
+//							byte[] ba = new byte[(int) size];
+//							blob = new SerialBlob(ba);
+//							System.out.println("asdsadsadsadsaddas" + imageBase64);
+//						} catch (Exception e) {
+//							e.printStackTrace();
+//						}
+//					} else {
 						// Blob imageBlob = new SerialBlob(image);
 						blob = new SerialBlob(image);
 						blobIn = new SerialBlob(imageIn);
 						System.out.println("有給圖片-----In");
-					}
+//					}
 					// user.setImage(imageBlob);
 					user.setImage(blob);
 					ins.setImage(blobIn);

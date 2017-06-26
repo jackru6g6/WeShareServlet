@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.sql.rowset.serial.SerialBlob;
 
+import web._00_init.GlobalService;
+
 public class UserMain {
 
 	public static void main(String[] args) throws Exception {
@@ -25,6 +27,9 @@ public class UserMain {
 		// Timestamp ts = new
 		// Timestamp(System.currentTimeMillis());//現在時間，跟下面2者一樣，選1用
 		Timestamp ts = new Timestamp(new java.util.Date().getTime());
+		
+		
+		
 
 		// User user = new User("jack2223", "12322", "22沉沉", "0922658795",
 		// "jack@gmail.com", "新北市...", blob, 2, ts);
@@ -34,22 +39,29 @@ public class UserMain {
 		// dao.close();
 		// System.out.println("n = " + n);
 
-//		MemberBean user = new MemberBean("jack06231", "123", "22沉沉", "0922658795", "jack@gmail.com", "新北市...", blob, 2, ts,
-//				"kitty");
-//
-//		MemberDAO dao = new MemberDAO();
-//		int n = dao.save(user);
-//		dao.close();
-//		System.out.println("n = " + n);
+		String encrypedString = GlobalService.encryptString("123");
+		String ppp = GlobalService.getMD5Endocing(encrypedString);
 		
-		MemberDAO mbDAO = new MemberDAO();
+		MemberBean user = new MemberBean("jack06231", ppp, "22沉沉", "0922658795", "jack@gmail.com", "新北市...", blob, 2, ts,
+				"kitty");
+//		String encrypedString = GlobalService.encryptString(user.getPassword());
+//		String ppp = GlobalService.getMD5Endocing(encrypedString);
+//		user.setPassword(ppp);
+		System.out.println("ppp= " + ppp);
+
+		MemberDAO dao = new MemberDAO();
+		int n = dao.save(user);
+		dao.close();
+		System.out.println("n = " + n);
 		
-		List<MemberBean> user = mbDAO.get("jack");
-		for (MemberBean pop : user) {
-			System.out.println("" + pop.getTal() + "" + pop.getEmail() + "" + pop.getAddress());
-		}
-		System.out.println("GOGO1");
-		mbDAO.close();
+//		MemberDAO mbDAO = new MemberDAO();
+//		
+//		List<MemberBean> user = mbDAO.get("jack");
+//		for (MemberBean pop : user) {
+//			System.out.println("" + pop.getTal() + "" + pop.getEmail() + "" + pop.getAddress());
+//		}
+//		System.out.println("GOGO1");
+//		mbDAO.close();
 	}
 
 }
