@@ -30,7 +30,7 @@ public class sql_Common {
 	static String DROP_TABLE_DEAL = "DROP TABLE IF EXISTS deal";
 	static String DROP_TABLE_GOODS = "DROP TABLE IF EXISTS goods";
 	static String DROP_TABLE_FEEDBACK = "DROP TABLE IF EXISTS feedback";
-	
+
 	static String DROP_TABLE_GOODSTYPE = "DROP TABLE IF EXISTS goodstype";
 	static String DROP_TABLE_LOCAL = "DROP TABLE IF EXISTS local";
 	static String DROP_TABLE_ORGTYPE = "DROP TABLE IF EXISTS orgtype";
@@ -45,7 +45,7 @@ public class sql_Common {
 			+ "updatetime timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP," + "intro varchar(500) NOT NULL, "
 			+ "leader varchar(500) NOT NULL, " + "orgtypes int NOT NULL, " + "registerno varchar(500), "
 			+ "raiseno varchar(500), " + "orgimage MEDIUMBLOB, " + "orgfilename varchar(20), "
-			+ "FOREIGN KEY(indid) REFERENCES ind (indid), " + "FOREIGN KEY(orgtypes) REFERENCES orgtype (orgno) " 
+			+ "FOREIGN KEY(indid) REFERENCES ind (indid), " + "FOREIGN KEY(orgtypes) REFERENCES orgtype (orgno) "
 			+ ") CHARACTER SET utf8 COLLATE utf8_general_ci";
 
 	static String CREATE_TABLE_GOODS = "Create Table goods ( goodsno int(7) NOT NULL Auto_Increment Primary Key,"
@@ -53,29 +53,26 @@ public class sql_Common {
 			+ "indid varchar(50) NOT NULL, goodstype int(7), goodsname varchar(10), "
 			+ "goodsloc int(7), goodsnote varchar(200), qty int(3) UNSIGNED, goodsshipway int(1), "
 			+ "deadline int(14), goodsimage MEDIUMBLOB, goodsfilename varchar(20), FOREIGN KEY(indid) REFERENCES ind (indid),"
-			+ "FOREIGN KEY(goodstype) REFERENCES goodstype (goodstypeno), "+ "FOREIGN KEY(goodsloc) REFERENCES local (localno) " 
+			+ "FOREIGN KEY(goodstype) REFERENCES goodstype (goodstypeno), "
+			+ "FOREIGN KEY(goodsloc) REFERENCES local (localno) " + ") CHARACTER SET utf8 COLLATE utf8_general_ci";
+
+	static String CREATE_TABLE_GOODSTYPE = "Create Table goodstype ("
+			+ "goodstypeno int(7) NOT NULL Auto_Increment Primary Key, " + "goodsname varchar(50) "
 			+ ") CHARACTER SET utf8 COLLATE utf8_general_ci";
-	
-	static String CREATE_TABLE_GOODSTYPE = "Create Table goodstype (" + "goodstypeno int(7) NOT NULL Auto_Increment Primary Key, "
-			+ "goodsname varchar(50) "
-			 + ") CHARACTER SET utf8 COLLATE utf8_general_ci";
 
 	static String CREATE_TABLE_LOCAL = "Create Table local (" + "localno int(7) NOT NULL Auto_Increment Primary Key, "
 			+ "localname varchar(50) " + ") CHARACTER SET utf8 COLLATE utf8_general_ci";
-	
+
 	static String CREATE_TABLE_ORGTYPE = "Create Table orgtype (" + "orgno int(7) NOT NULL Auto_Increment Primary Key, "
-			+ "orgname varchar(50) "
-			 + ") CHARACTER SET utf8 COLLATE utf8_general_ci";
-	
+			+ "orgname varchar(50) " + ") CHARACTER SET utf8 COLLATE utf8_general_ci";
 
 	static String CREATE_TABLE_DEAL = "Create Table deal (" + "dealno int(7) NOT NULL Auto_Increment Primary Key, "
 			+ "postdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, " + "sourceid varchar(50) NOT NULL, "
 			+ "endid varchar(50) NOT NULL, " + "dealstatus int(1), " + "endshipway varchar(5), "
 			+ "dealqty int(3) UNSIGNED, " + "shipdate int(14), " + "shipno int(20), " + "dealimage MEDIUMBLOB, "
-			+ "dealfilename varchar(20), " +"goodsname varchar(20) NOT NULL,"+"qty int(3) UNSIGNED NOT NULL,"
+			+ "dealfilename varchar(20), " + "goodsname varchar(20) NOT NULL," + "qty int(3) UNSIGNED NOT NULL,"
 			+ "goodsimage MEDIUMBLOB," + "goodsimagename varchar(10)," + "goodstype varchar(10) NOT NULL,"
-			+ "loc varchar(10) NOT NULL," + "goodsnote varchar(200),"
-			+ "FOREIGN KEY(sourceid) REFERENCES ind (indid), "
+			+ "loc varchar(10) NOT NULL," + "goodsnote varchar(200)," + "FOREIGN KEY(sourceid) REFERENCES ind (indid), "
 			+ "FOREIGN KEY(endid) REFERENCES ind (indid) " + ") CHARACTER SET utf8 COLLATE utf8_general_ci";
 
 	static String CREATE_TABLE_FEEDBACK = "Create Table feedback(" + "dealno int(7) NOT NULL, "
@@ -92,7 +89,9 @@ public class sql_Common {
 			+ "FOREIGN KEY(msgendid) REFERENCES ind (indid) " + ") CHARACTER SET utf8 COLLATE utf8_general_ci";
 
 	// -------------------------------------------------------------------------------------<INSERT>
-	static String INSERT_TABLE_IND = "INSERT INTO ind values(?,?,?,?,?,?,?,?,?,?)";
-	static String INSERT_TABLE_ORG = "INSERT INTO org values(?,?,?,?,?,?,?,?,?)";
+	static String INSERT_TABLE_IND = "INSERT INTO ind VALUE(?,?,?,?,?,?,?,?,?,?)";
+	static String INSERT_TABLE_ORG = "INSERT INTO org VALUE(?,?,?,?,?,?,?,?,?)";
+	static String INSERT_TABLE_ORGTYPE = "INSERT INTO orgtype VALUE(?,?)";
+	static String INSERT_TABLE_LOCAL = "INSERT INTO local VALUE(?,?)";
 
 }
