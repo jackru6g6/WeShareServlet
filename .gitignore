@@ -4,6 +4,10 @@
 # Log file
 *.log
 
+.classpath
+
+.project
+
 
 
 # Mobile Tools for Java (J2ME)
