@@ -81,6 +81,7 @@ public class _first_run {
 		LOCAL_DATA(con);
 		GOODSTYPE_DATA(con);
 		GOODS_DATA(con);
+		MSG_DATA(con);
 	}
 
 	public static void IND_DATA(MemberBean mb1, Connection con) throws SQLException {
@@ -221,8 +222,31 @@ public class _first_run {
 		pstmt.setString(2, "其他類型");
 		pstmt.executeUpdate();
 	}
-}
 
+	public static void MSG_DATA(Connection con) throws SQLException {
+		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_MSG);
+		pstmt.setString(1, "kitty");
+		pstmt.setString(2, "Google");
+		pstmt.setString(3, "安安你好安安我是凱蒂");
+		pstmt.setString(4, "");
+		pstmt.executeUpdate();
+		pstmt.setString(1, "Google");
+		pstmt.setString(2, "kitty");
+		pstmt.setString(3, "安安你好安安我是谷哥大人");
+		pstmt.setString(4, "");
+		pstmt.executeUpdate();
+		pstmt.setString(1, "Google");
+		pstmt.setString(2, "micky");
+		pstmt.setString(3, "安安你好我是大神");
+		pstmt.setString(4, "");
+		pstmt.executeUpdate();
+		pstmt.setString(1, "micky");
+		pstmt.setString(2, "kitty");
+		pstmt.setString(3, "安安你好安安!!我是米奇");
+		pstmt.setString(4, "");
+		pstmt.executeUpdate();
+	}
+}
 // MYSQL
 //
 // DROP DATABASE WESHARE;

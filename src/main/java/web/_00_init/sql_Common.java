@@ -95,5 +95,6 @@ public class sql_Common {
 	static String INSERT_TABLE_LOCAL = "INSERT INTO local VALUE(?,?)";
 	static String INSERT_TABLE_GOODSTYPE = "INSERT INTO goodstype VALUE(null,?)";
 	static String INSERT_TABLE_GOODS = "INSERT INTO goods VALUE(null,?,null,?,?,?,?,?,?,?,?,null,null)";
+	static String INSERT_TABLE_MSG = "INSERT INTO MSG VALUE(null,2,null,?,?,?,null,?)";
 
 }
