@@ -53,11 +53,11 @@ public class sql_Common {
 			+ "indid varchar(50) NOT NULL, goodstype int(7), goodsname varchar(10), "
 			+ "goodsloc int(7), goodsnote varchar(200), qty int(3) UNSIGNED, goodsshipway int(1), "
 			+ "deadline int(14), goodsimage MEDIUMBLOB, goodsfilename varchar(20), FOREIGN KEY(indid) REFERENCES ind (indid),"
-			+ "FOREIGN KEY(goodstypes) REFERENCES goodstype (goodstypeno), "+ "FOREIGN KEY(goodsloc) REFERENCES local (localno) " 
+			+ "FOREIGN KEY(goodstype) REFERENCES goodstype (goodstypeno), "+ "FOREIGN KEY(goodsloc) REFERENCES local (localno) " 
 			+ ") CHARACTER SET utf8 COLLATE utf8_general_ci";
 	
 	static String CREATE_TABLE_GOODSTYPE = "Create Table goodstype (" + "goodstypeno int(7) NOT NULL Auto_Increment Primary Key, "
-			+ "goodsbigtype int(1), " + "goodsname varchar(50) "
+			+ "goodsname varchar(50) "
 			 + ") CHARACTER SET utf8 COLLATE utf8_general_ci";
 
 	static String CREATE_TABLE_LOCAL = "Create Table local (" + "localno int(7) NOT NULL Auto_Increment Primary Key, "
@@ -73,7 +73,7 @@ public class sql_Common {
 			+ "endid varchar(50) NOT NULL, " + "dealstatus int(1), " + "endshipway varchar(5), "
 			+ "dealqty int(3) UNSIGNED, " + "shipdate int(14), " + "shipno int(20), " + "dealimage MEDIUMBLOB, "
 			+ "dealfilename varchar(20), " +"goodsname varchar(20) NOT NULL,"+"qty int(3) UNSIGNED NOT NULL,"
-			+ "goodsimage MEDIUMBLOB," + "goodsimagename varchar(10)," + "goodstypes varchar(10) NOT NULL,"
+			+ "goodsimage MEDIUMBLOB," + "goodsimagename varchar(10)," + "goodstype varchar(10) NOT NULL,"
 			+ "loc varchar(10) NOT NULL," + "goodsnote varchar(200),"
 			+ "FOREIGN KEY(sourceid) REFERENCES ind (indid), "
 			+ "FOREIGN KEY(endid) REFERENCES ind (indid) " + ") CHARACTER SET utf8 COLLATE utf8_general_ci";
