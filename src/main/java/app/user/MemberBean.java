@@ -40,6 +40,7 @@ public class MemberBean {
 		this.image = image;
 	}
 
+	
 
 
 	public MemberBean(String userId, String password) {
