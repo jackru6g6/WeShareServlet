@@ -130,7 +130,7 @@
 														</div>
 														<!--註冊帳號-->
 														<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-															<p>還沒有帳號？<a href="#">註冊帳號</a></p>
+															<p>還沒有帳號？<a href="../_01_register/register.jsp">註冊帳號</a></p>
 														</div>
 													</div>
 												</div>

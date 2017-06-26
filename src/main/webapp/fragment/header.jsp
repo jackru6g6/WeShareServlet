@@ -67,12 +67,12 @@
                     <li><a href="#">物資箱</a></li>
                     <li><a href="#">站內信</a></li>
                     <li class="divider"></li>
-                    <li><a href="../_02_login/logout.jsp">登出</a></li>
+                    <li><a data-toggle="modal" data-target="#logoutMsg">登出</a></li>
                 </ul>
             </li>
             <li class="afterLogin">
                 <a id="navMemberImg">
-                    <img src="../dist/img/icon_member1.png" width="40" alt="MemberImg">
+                    <img class="img-circle" src="${pageContext.servletContext.contextPath}/_00_init/getImage?id=${LoginOK.indid}&type=MEMBER" width="40" alt="MemberImg">
                     <!--Icons made by Freepik from Flaticon(http://www.freepik.com)-->
                 </a>
             </li>
@@ -88,12 +88,31 @@
             </li>
             <li>
                 <a href="https://www.facebook.com" id="navFBImg">
-                    <i class="fa fa-facebook-official" aria-hidden="true"></i>
-                    <!--<img src="../dist/img/icon_facebook.png" width="40" alt="FBImg">-->
-                    <!--Icons made by Freepik from Flaticon(http://www.freepik.com)-->
+                	<i class="fa fa-facebook-official" aria-hidden="true"></i>
                 </a>
             </li>
         </ul>
     </div>
 </nav>
+
+<!-- 登出後跳出訊息 -->
+<div id="logoutMsg" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- 標題 -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">登出WeShare</h4>
+			</div>
+			<!-- 內容(導入logout.jsp) -->
+			<div class="modal-body">
+				<jsp:include page="../web/logout.jsp" />
+			</div>
+			<!-- 關閉鈕 -->
+			<div class="modal-footer">
+				<a href="../index.jsp" type="button" class="btn btn-default" data-dismiss="modal">關閉視窗</a>
+			</div>
+		</div>      
+	</div>
+</div>
 <!-- header END -->
