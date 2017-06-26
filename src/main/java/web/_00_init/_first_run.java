@@ -79,7 +79,8 @@ public class _first_run {
 		ORG_DATA(mb2, ob2, con);
 		IND_DATA(mb3, con);
 		LOCAL_DATA(con);
-		GOODSTYPE(con);
+		GOODSTYPE_DATA(con);
+		GOODS_DATA(con);
 	}
 
 	public static void IND_DATA(MemberBean mb1, Connection con) throws SQLException {
@@ -126,26 +127,6 @@ public class _first_run {
 		con.setAutoCommit(true);
 	}
 
-	public static void ORGTYPE_DATA(Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_ORGTYPE);
-		pstmt.setInt(1, Integer.parseInt("1"));
-		pstmt.setString(2, "兒少福利");
-		pstmt.executeUpdate();
-		pstmt.setInt(1, Integer.parseInt("2"));
-		pstmt.setString(2, "偏鄉教育");
-		pstmt.executeUpdate();
-		pstmt.setInt(1, Integer.parseInt("3"));
-		pstmt.setString(2, "老人福利");
-		pstmt.executeUpdate();
-		pstmt.setInt(1, Integer.parseInt("4"));
-		pstmt.setString(2, "身障福利");
-		pstmt.executeUpdate();
-		pstmt.setInt(1, Integer.parseInt("5"));
-		pstmt.setString(2, "其他類型");
-		pstmt.executeUpdate();
-
-	};
-
 	public static void LOCAL_DATA(Connection con) throws SQLException {
 
 		try (// java 7.0 提共自動關閉的資源
@@ -174,7 +155,41 @@ public class _first_run {
 
 	};
 
-	public static void GOODSTYPE(Connection con) throws SQLException {
+	public static void GOODS_DATA(Connection con) throws SQLException {
+		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_GOODS);
+		pstmt.setInt(1, Integer.parseInt("1"));// 1募資2捐贈3以物易物
+		pstmt.setString(2, "kitty");// 需求者帳號
+		pstmt.setInt(3, Integer.parseInt("1"));// 物資類別
+		pstmt.setString(4, "克林奶粉");// 需求者帳號
+		pstmt.setInt(5, Integer.parseInt("7"));// 物資類別
+		pstmt.setString(6, "我是備註");// 備註
+		pstmt.setInt(7, Integer.parseInt("10"));// 數量
+		pstmt.setInt(8, Integer.parseInt("2"));// 1面交2宅配3都可配送方式
+		pstmt.setInt(9, Integer.parseInt("1501516800"));// 2017_08_01_00:00:00
+		pstmt.executeUpdate();
+		pstmt.setInt(1, Integer.parseInt("1"));// 1募資2捐贈3以物易物
+		pstmt.setString(2, "kitty");// 需求者帳號
+		pstmt.setInt(3, Integer.parseInt("1"));// 物資類別
+		pstmt.setString(4, "濕紙巾");// 物資名稱
+		pstmt.setInt(5, Integer.parseInt("10"));// 地區
+		pstmt.setString(6, "建議無香味、無酒精者為佳");// 備註
+		pstmt.setInt(7, Integer.parseInt("50"));// 數量
+		pstmt.setInt(8, Integer.parseInt("2"));// 1面交2宅配3都可配送方式
+		pstmt.setInt(9, Integer.parseInt("1502294400"));// 2017_08_10_00:00:00
+		pstmt.executeUpdate();
+		pstmt.setInt(1, Integer.parseInt("1"));// 1募資2捐贈3以物易物
+		pstmt.setString(2, "kitty");// 需求者帳號
+		pstmt.setInt(3, Integer.parseInt("1"));// 物資類別
+		pstmt.setString(4, "濕紙巾");// 物資名稱
+		pstmt.setInt(5, Integer.parseInt("5"));// 地區
+		pstmt.setString(6, "移工庇護中心住宿使用；辦公室使用");// 備註
+		pstmt.setInt(7, Integer.parseInt("50"));// 數量
+		pstmt.setInt(8, Integer.parseInt("2"));// 1面交2宅配3都可配送方式
+		pstmt.setInt(9, Integer.parseInt("1"));// 2017_08_10_00:00:00
+		pstmt.executeUpdate();
+	}
+
+	public static void GOODSTYPE_DATA(Connection con) throws SQLException {
 		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_GOODSTYPE);
 		pstmt.setString(1, "乾貨食品");
 		pstmt.executeUpdate();
@@ -185,6 +200,25 @@ public class _first_run {
 		pstmt.setString(1, "家電機器");
 		pstmt.executeUpdate();
 		pstmt.setString(1, "其他類型");
+		pstmt.executeUpdate();
+	}
+
+	public static void ORGTYPE_DATA(Connection con) throws SQLException {
+		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_ORGTYPE);
+		pstmt.setInt(1, Integer.parseInt("1"));
+		pstmt.setString(2, "兒少福利");
+		pstmt.executeUpdate();
+		pstmt.setInt(1, Integer.parseInt("2"));
+		pstmt.setString(2, "偏鄉教育");
+		pstmt.executeUpdate();
+		pstmt.setInt(1, Integer.parseInt("3"));
+		pstmt.setString(2, "老人福利");
+		pstmt.executeUpdate();
+		pstmt.setInt(1, Integer.parseInt("4"));
+		pstmt.setString(2, "身障福利");
+		pstmt.executeUpdate();
+		pstmt.setInt(1, Integer.parseInt("5"));
+		pstmt.setString(2, "其他類型");
 		pstmt.executeUpdate();
 	}
 }
