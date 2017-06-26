@@ -6,16 +6,16 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 
-<!-- -----------------------------------------------
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script type="text/javascript"
-	src="https://mail.google.com/mail/u/0/?logout&hl=en"></script>
+<head>
+<meta charset="utf-8">
+<jsp:include page="../fragment/refCss.jsp" />
+<jsp:include page="../fragment/refJs.jsp" />
+
+<!-- Google Login -->
 <meta name="google-signin-scope" content="profile email">
-<jsp:useBean id="abc" class="web._00_init.GlobalService"
-	scope="application" />
-<meta name="google-signin-client_id"
-	content="${abc.getGoogleClientId()}">
+<meta name="google-signin-client_id" content="${abc.getGoogleClientId()}">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type="text/javascript" src="https://mail.google.com/mail/u/0/?logout&hl=en"></script>	
 <script>
 	function onSignIn(googleUser) {
 		var profile = googleUser.getBasicProfile();
@@ -27,11 +27,8 @@
 		form.submit();
 	}
 </script>
-------------------------------------------- -->
-<head>
-<meta charset="utf-8">
-<jsp:include page="../fragment/refCss.jsp" />
-<jsp:include page="../fragment/refJs.jsp" />
+<jsp:useBean id="abc" class="web._00_init.GlobalService" scope="application" />
+
 <title>WeShare 微分享</title>
 </head>
 
@@ -78,7 +75,7 @@
 											<div class="row">
 												<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
 													<h4>
-														<button class="btn btn-lg btn-default btn-block" type="submit">
+														<button class="btn btn-lg btn-default btn-block g-signin2" data-onsuccess="onSignIn" type="submit">
 															<i class="fa fa-google" aria-hidden="true"></i>
 															<span>Google</span>
 														</button>

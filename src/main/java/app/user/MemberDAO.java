@@ -168,10 +168,13 @@ public class MemberDAO {
 		List<MemberBean> list = new ArrayList<MemberBean>();
 		Blob blob = null;
 		try {
-			String hql = "SELECT m.image FROM MemberBean m WHERE m.userId = :uid";
+			String hql = "FROM MemberBean m WHERE m.userId = :uid";
 			Query query = session.createQuery(hql);
 			query.setParameter("uid", id);
 			list = query.getResultList();
+			for (MemberBean mb : list) {
+				System.out.println(id + "--->" + mb.getClass().getName());
+			}
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null)
@@ -179,15 +182,21 @@ public class MemberDAO {
 		} finally {
 			session.close();
 		}
-		System.out.println("list" + list);
-		for (Object mb : list) {
-			try {
-				mb.toString();
-				System.out.println("blob=" + blob);
-				int blobLength = (int) blob.length();
-				image = blob.getBytes(1, blobLength);
-				System.out.println("image=" + image);
 
+		System.out.println("list" + list);
+		for (MemberBean mb : list) {
+			try {
+				// mb.toString();
+				// System.out.println("blob=" + blob);
+				int blobLength = 0;
+				blob = mb.getImage();
+				if (blob != null) {
+					blobLength = (int) blob.length();
+					image = blob.getBytes(1, blobLength);
+					System.out.println("image=" + image);
+				} else {
+					System.out.println("image 沒有圖片歐~");
+				}
 				// blob = list.get(0).getImage();
 				// int blobLength = (int) blob.length();
 				// image = blob.getBytes(1, blobLength);
