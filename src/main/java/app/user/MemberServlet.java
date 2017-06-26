@@ -71,11 +71,10 @@ public class MemberServlet extends HttpServlet {
 				System.out.println("沒收到喔~");
 			}
 			os.write(image);// 送到client端
-
 		} else if (action.equals("userLogin")) {
 			String userJson = jsonObject.get("user").getAsString();
 			MemberBean mb = gson.fromJson(userJson, MemberBean.class);// 轉為Spot物件
-			int count = 0;
+			String userName = null;
 			boolean check;
 			try {
 				String encrypedString = GlobalService.encryptString(mb.getPassword());
@@ -85,14 +84,15 @@ public class MemberServlet extends HttpServlet {
 				check = mbDAO.checkPassword(mb);
 				System.out.println("checkPassword = " + check);
 				if (check == true) {
-					count = 1;
+					System.out.println("2222" + mb.getUserId());
+					userName = mbDAO.getName(mb.getUserId());
 				}
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			writeText(response, String.valueOf(count));
+			
+			writeText(response, String.valueOf(userName));
 		} else if (action.equals("userRegister") || action.equals("userUpdate") || action.equals("userInRegister")) {
 			String userJson = jsonObject.get("user").getAsString();
 			MemberBean user = gson.fromJson(userJson, MemberBean.class);// 轉為Spot物件
@@ -203,6 +203,9 @@ public class MemberServlet extends HttpServlet {
 					check = mbDAO.isExists(user.getUserId());
 					System.out.println("checkRepeat = " + check);
 					if (check == false) {
+						String encrypedString = GlobalService.encryptString(user.getPassword());
+						String MD5EndocingPassword = GlobalService.getMD5Endocing(encrypedString);
+						user.setPassword(MD5EndocingPassword);
 						count = mbDAO.saveIn(user, ins);
 					} else {
 						count = -1;
@@ -213,8 +216,17 @@ public class MemberServlet extends HttpServlet {
 			}
 
 			else if (action.equals("userUpdate")) {
-
-				// count = mdDao.update(spot, image);
+				try {
+					blob = new SerialBlob(image);
+					user.setImage(blob);
+					String encrypedString = GlobalService.encryptString(user.getPassword());
+					String MD5EndocingPassword = GlobalService.getMD5Endocing(encrypedString);
+					user.setPassword(MD5EndocingPassword);
+					user.setName("123");
+					count = mbDAO.update(user);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			writeText(response, String.valueOf(count));
 		}

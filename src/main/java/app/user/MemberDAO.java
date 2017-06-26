@@ -210,6 +210,31 @@ public class MemberDAO {
 		return image;
 	}
 
+	public String getName(String id) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		List<MemberBean> list = new ArrayList<MemberBean>();
+		String name = null;
+		try {
+			String hql = "FROM MemberBean m WHERE m.userId = :uid";
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", id);
+			list = query.getResultList();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+		} finally {
+			session.close();
+		}
+
+		System.out.println("list" + list);
+		for (MemberBean mb : list) {
+			name = mb.getName();
+		}
+		return name;
+	}
+
 	public MemberBean load(String userId) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
