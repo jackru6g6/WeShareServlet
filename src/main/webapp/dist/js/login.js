@@ -10,7 +10,7 @@ $(function(){
 	
 	// 記得會員帳密
 	console.log("rememberMe = " + rememberMe);
-	console.log($("#rememberMe").prop("checked"));
+	console.log($("checked = " + "#rememberMe").prop("checked"));
 	if(rememberMe == "true") {
 		$("#rememberMe").prop("checked", true);
 	} else {
