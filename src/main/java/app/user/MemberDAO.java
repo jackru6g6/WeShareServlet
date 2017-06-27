@@ -144,7 +144,9 @@ public class MemberDAO {
 		// List<Object[]> list= new ArrayList<>();
 		List<MemberBean> list = new ArrayList<MemberBean>();
 		try {
-			String hql = "SELECT new MemberBean(m.tal,m.email,m.address,m.idType) FROM MemberBean m WHERE m.userId = :uid";
+			//String hql = "SELECT new MemberBean(m.tal,m.email,m.address,m.idType) FROM MemberBean m WHERE m.userId = :uid";
+			String hql = "SELECT new MemberBean(m.name,m.tal,m.email,m.address,m.idType) FROM MemberBean m WHERE m.userId = :uid";
+			//String hql = "SELECT new MemberBean(m.userId,m.password,m.name,m.tal,m.email,m.address,m.idType,m.createDate) FROM MemberBean m WHERE m.userId = :uid";
 			Query query = session.createQuery(hql);
 			query.setParameter("uid", userId);
 			list = query.getResultList();

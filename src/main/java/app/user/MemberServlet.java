@@ -49,8 +49,8 @@ public class MemberServlet extends HttpServlet {
 			List<MemberBean> user = mbDAO.get(account);
 			System.out.println("帳號account: " + account);
 			for (MemberBean pop : user) {
-				System.out.println("電話：" + pop.getTal() + ", Email：" + pop.getEmail() + ", 地址：" + pop.getAddress()
-						+ ", 帳號型態：" + pop.getIdType());
+				System.out.println("姓名：" + pop.getName() + ", 電話：" + pop.getTal() + ", Email：" + pop.getEmail()
+						+ ", 地址：" + pop.getAddress() + ", 帳號型態：" + pop.getIdType());
 			}
 			writeText(response, gson.toJson(user));
 		} else if (action.equals("getImage")) {
@@ -80,7 +80,7 @@ public class MemberServlet extends HttpServlet {
 				String encrypedString = GlobalService.encryptString(mb.getPassword());
 				String MD5EndocingPassword = GlobalService.getMD5Endocing(encrypedString);
 				mb.setPassword(MD5EndocingPassword);
-				
+
 				check = mbDAO.checkPassword(mb);
 				System.out.println("checkPassword = " + check);
 				if (check == true) {
@@ -91,14 +91,21 @@ public class MemberServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 			writeText(response, String.valueOf(userName));
 		} else if (action.equals("userRegister") || action.equals("userUpdate") || action.equals("userInRegister")) {
 			String userJson = jsonObject.get("user").getAsString();
 			MemberBean user = gson.fromJson(userJson, MemberBean.class);// 轉為Spot物件
 			String imageBase64 = jsonObject.get("imageBase64").getAsString();
+			System.out.println("imageBase64----------------" + imageBase64);
+			byte[] image = null;
 			// System.out.println("imageBase64" + imageBase64);
-			byte[] image = Base64.getMimeDecoder().decode(imageBase64);
+			// if (imageBase64.equals("NoImageChange")) {
+			//
+			// } else {
+			// byte[] image = Base64.getMimeDecoder().decode(imageBase64);
+			image = Base64.getMimeDecoder().decode(imageBase64);
+			// }
 			int count = 0;
 			boolean check;
 			Blob blob = null;
@@ -106,16 +113,15 @@ public class MemberServlet extends HttpServlet {
 			// List<MemberBean> allEmployees = new ArrayList<MemberBean>();
 			if (action.equals("userRegister")) {
 				try {
-
 					// Blob imageBlob = new SerialBlob(image);
 					blob = new SerialBlob(image);
 					System.out.println("有給圖片");
 					// user.setImage(imageBlob);
-					
+
 					String encrypedString = GlobalService.encryptString(user.getPassword());
 					String MD5EndocingPassword = GlobalService.getMD5Endocing(encrypedString);
 					user.setPassword(MD5EndocingPassword);
-					
+
 					user.setImage(blob);
 					String name = user.getUserId();
 					check = mbDAO.isExists(name);
@@ -131,47 +137,6 @@ public class MemberServlet extends HttpServlet {
 				}
 
 			} else if (action.equals("userInRegister")) {
-				// try {
-				// String insJson = jsonObject.get("ins").getAsString();
-				// InstiutionBean ins = gson.fromJson(insJson,
-				// InstiutionBean.class);// 轉為Spot物件
-				// String imageBase64In =
-				// jsonObject.get("imageBase64In").getAsString();
-				// //System.out.println("imageBase64" + imageBase64);
-				// byte[] imageIn =
-				// Base64.getMimeDecoder().decode(imageBase64In);
-				// Blob blobIn = null;
-				// if (imageBase64.equals(new byte[0])) {
-				// try {
-				// File f = new File("images/user.png");
-				// long size = f.length();
-				// InputStream is = new FileInputStream(f);
-				// byte[] ba = new byte[(int) size];
-				// blob = new SerialBlob(ba);
-				// System.out.println("asdsadsadsadsaddas" + imageBase64);
-				// } catch (Exception e) {
-				// e.printStackTrace();
-				// }
-				// } else {
-				// // Blob imageBlob = new SerialBlob(image);
-				// blob = new SerialBlob(image);
-				// blobIn = new SerialBlob(imageIn);
-				// System.out.println("有給圖片-----In");
-				// }
-				// // user.setImage(imageBlob);
-				// user.setImage(blob);
-				// ins.setImage(blobIn);
-				// //user.setInstiutionBean(ins);
-				// check = mbDAO.isExists(user.getUserId());
-				// System.out.println("checkRepeat = " + check);
-				// if (check == false) {
-				// count = mbDAO.save(user);
-				// } else {
-				// count = -1;
-				// }
-				// } catch (Exception e) {
-				// e.printStackTrace();
-				// }
 				try {
 					String insJson = jsonObject.get("ins").getAsString();
 					InstiutionBean ins = gson.fromJson(insJson, InstiutionBean.class);// 轉為Spot物件
@@ -179,27 +144,13 @@ public class MemberServlet extends HttpServlet {
 					// System.out.println("imageBase64" + imageBase64);
 					byte[] imageIn = Base64.getMimeDecoder().decode(imageBase64In);
 					Blob blobIn = null;
-//					if (imageBase64.equals(new byte[0])) {
-//						try {
-//							File f = new File("images/user.png");
-//							long size = f.length();
-//							InputStream is = new FileInputStream(f);
-//							byte[] ba = new byte[(int) size];
-//							blob = new SerialBlob(ba);
-//							System.out.println("asdsadsadsadsaddas" + imageBase64);
-//						} catch (Exception e) {
-//							e.printStackTrace();
-//						}
-//					} else {
-						// Blob imageBlob = new SerialBlob(image);
-						blob = new SerialBlob(image);
-						blobIn = new SerialBlob(imageIn);
-						System.out.println("有給圖片-----In");
-//					}
-					// user.setImage(imageBlob);
+
+					blob = new SerialBlob(image);
+					blobIn = new SerialBlob(imageIn);
+
 					user.setImage(blob);
 					ins.setImage(blobIn);
-					// user.setInstiutionBean(ins);
+
 					check = mbDAO.isExists(user.getUserId());
 					System.out.println("checkRepeat = " + check);
 					if (check == false) {
@@ -217,8 +168,16 @@ public class MemberServlet extends HttpServlet {
 
 			else if (action.equals("userUpdate")) {
 				try {
+					// if (image == null) {
+					//
+					// } else {
+					// blob = new SerialBlob(image);
+					// user.setImage(blob);
+					// }
+
 					blob = new SerialBlob(image);
 					user.setImage(blob);
+
 					String encrypedString = GlobalService.encryptString(user.getPassword());
 					String MD5EndocingPassword = GlobalService.getMD5Endocing(encrypedString);
 					user.setPassword(MD5EndocingPassword);
