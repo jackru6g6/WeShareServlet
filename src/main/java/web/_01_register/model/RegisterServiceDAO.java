@@ -23,6 +23,10 @@ public interface RegisterServiceDAO {
 			long size, String filename, InputStream is2,
 			long size2, String filename2) throws SQLException ;
 	
+	public int updateMemberPassword(MemberBean mb, 
+			String newpassword) throws SQLException ;
+
+	
 	public boolean idExists(String id) throws IOException;
 
 }

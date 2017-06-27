@@ -23,7 +23,7 @@ public class MemberBean {
 	private String tal;
 	private String email;
 	private String address;
-	private Blob image = null;
+	private Blob image;
 	private int idType;
 	private java.sql.Timestamp createDate;
 	private String fileName = "userPicture";
@@ -49,12 +49,28 @@ public class MemberBean {
 		this.password = password;
 	}
 
-	public MemberBean(String tal, String email, String address, int idType) {
+	public MemberBean(String name, String tal, String email, String address, int idType) {
+		this.name = name;
 		this.tal = tal;
 		this.email = email;
 		this.address = address;
 		this.idType = idType;
 	}
+
+	public MemberBean(String userId, String password, String name, String tal, String email, String address, int idType,
+			Timestamp createDate) {
+		super();
+		this.userId = userId;
+		this.password = password;
+		this.name = name;
+		this.tal = tal;
+		this.email = email;
+		this.address = address;
+		this.idType = idType;
+		this.createDate = createDate;
+	}
+
+
 
 	public MemberBean(String userId, String password, String name, String tal, String email, String address, Blob image,
 			int idType, Timestamp createDate, String fileName) {
