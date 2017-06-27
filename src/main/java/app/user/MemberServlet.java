@@ -222,7 +222,6 @@ public class MemberServlet extends HttpServlet {
 					String encrypedString = GlobalService.encryptString(user.getPassword());
 					String MD5EndocingPassword = GlobalService.getMD5Endocing(encrypedString);
 					user.setPassword(MD5EndocingPassword);
-					user.setName("123");
 					count = mbDAO.update(user);
 				} catch (Exception e) {
 					e.printStackTrace();
