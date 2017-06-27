@@ -168,13 +168,6 @@ public class MemberServlet extends HttpServlet {
 
 			else if (action.equals("userUpdate")) {
 				try {
-					// if (image == null) {
-					//
-					// } else {
-					// blob = new SerialBlob(image);
-					// user.setImage(blob);
-					// }
-
 					blob = new SerialBlob(image);
 					user.setImage(blob);
 
