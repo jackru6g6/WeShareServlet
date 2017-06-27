@@ -1,5 +1,6 @@
 package app.goods;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Timestamp;
 
@@ -12,10 +13,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "GOODS")
-public class GoodsBean {
+public class GoodsBean implements Serializable{
 	private int goodsNo;
 	private int goodsStatus;
-	private java.sql.Timestamp updateTime;
+	private Timestamp updateTime;
 	private String indId;
 	private String goodsName;
 	private int goodsType;
@@ -29,13 +30,26 @@ public class GoodsBean {
 	public GoodsBean() {
 		super();
 	}
+	
 
-	public GoodsBean(int goodsNo, int goodsStatus, Timestamp updateTime, String indId, String goodsName, int goodsType,
-			int qty, int goodsLoc, String goodsNote, int goodsShipWay, Blob goodsImage, int deadLine) {
+
+
+
+
+	public GoodsBean(Timestamp updateTime) {
 		super();
-		this.goodsNo = goodsNo;
-		this.goodsStatus = goodsStatus;
 		this.updateTime = updateTime;
+	}
+
+
+
+
+
+
+	public GoodsBean(int goodsStatus, String indId, String goodsName, int goodsType, int qty,
+			int goodsLoc, String goodsNote, int goodsShipWay, int deadLine) {
+		super();
+		this.goodsStatus = goodsStatus;
 		this.indId = indId;
 		this.goodsName = goodsName;
 		this.goodsType = goodsType;
@@ -43,25 +57,11 @@ public class GoodsBean {
 		this.goodsLoc = goodsLoc;
 		this.goodsNote = goodsNote;
 		this.goodsShipWay = goodsShipWay;
-		this.goodsImage = goodsImage;
 		this.deadLine = deadLine;
 	}
 
-	public GoodsBean(int goodsNo, int goodsStatus, Timestamp updateTime, String goodsName, int goodsType, int qty,
-			int goodsLoc, String goodsNote, int goodsShipWay, int deadLine) {
-		super();
-		this.goodsNo = goodsNo;
-		this.goodsStatus = goodsStatus;
-		this.updateTime = updateTime;
-		this.goodsName = goodsName;
-		this.goodsType = goodsType;
-		Qty = qty;
-		this.goodsLoc = goodsLoc;
-		this.goodsNote = goodsNote;
-		this.goodsShipWay = goodsShipWay;
-		this.deadLine = deadLine;
-	}
 	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getGoodsNo() {
@@ -104,7 +104,7 @@ public class GoodsBean {
 	public void setGoodsName(String goodsName) {
 		this.goodsName = goodsName;
 	}
-	@Column(name="goodsTypes")
+	@Column(name="goodstype")
 	public int getGoodsType() {
 		return goodsType;
 	}

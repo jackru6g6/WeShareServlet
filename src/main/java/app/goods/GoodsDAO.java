@@ -2,6 +2,7 @@ package app.goods;
 
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,39 +12,40 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import app.main.HibernateUtil;
+import app.user.MemberBean;
 
 public class GoodsDAO {
 	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-	public List<GoodsBean> getAll(String indId) {
-		Session session = sessionFactory.getCurrentSession();
-		Transaction tx = session.beginTransaction();
-		List<GoodsBean> list = new ArrayList<GoodsBean>();
-		try {
-			String hql = "FROM GoodsBean WHERE indId = :uid ORDER BY UpdateTime DESC";
-			Query query = session.createQuery(hql);
-			query.setParameter("uid", indId);
-			list = query.getResultList();
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null)
-				tx.rollback();
-		} finally {
-			session.close();
-		}
-		return list;
-	}
+//	public List<GoodsBean> getAll(String indId) {
+//		Session session = sessionFactory.getCurrentSession();
+//		Transaction tx = session.beginTransaction();
+//		List<GoodsBean> list = new ArrayList<GoodsBean>();
+//		try {
+//			String hql = "FROM GoodsBean WHERE indId = :uid ORDER BY UpdateTime DESC";
+//			Query query = session.createQuery(hql);
+//			query.setParameter("uid", indId);
+//			list = query.getResultList();
+//			tx.commit();
+//		} catch (Exception e) {
+//			if (tx != null)
+//				tx.rollback();
+//		} finally {
+//			session.close();
+//		}
+//		return list;
+//	}
 
-	public byte[] getImage(int id) {
+	public byte[] getImage(String indId) {
 		byte[] image = null;
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		List<GoodsBean> list = new ArrayList<GoodsBean>();
 		Blob blob = null;
 		try {
-			String hql = "FROM goods WHERE goodsNo = :gid;";
+			String hql = "FROM GoodsBean g WHERE g.indId = :iid;";
 			Query query = session.createQuery(hql);
-			query.setParameter("gid", id);
+			query.setParameter("iid", indId);
 			list = query.getResultList();
 			tx.commit();
 		} catch (Exception e) {
@@ -56,7 +58,9 @@ public class GoodsDAO {
 			try {
 				blob = gd.getGoodsImage();
 				int blobLength = (int) blob.length();
+				
 				image = blob.getBytes(1, blobLength);
+				System.out.println("image="+image);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -121,13 +125,25 @@ public class GoodsDAO {
 		return n;
 	}
 
-	public GoodsBean get(int goodsNo) {
+	public List<GoodsBean> getAll(String indId) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		GoodsBean goods = new GoodsBean();
+//		GoodsBean goods = new GoodsBean();
+		List<GoodsBean> list = new ArrayList<GoodsBean>();
 		try {
-			goods = session.get(GoodsBean.class, goodsNo);
+			String hql = "SELECT new GoodsBean(g.goodsStatus,g.indId,g.goodsName,g.goodsType,g.qty,g.goodsLoc,g.goodsNote,g.goodsShipWay,g.deadLine) FROM GoodsBean g WHERE g.indId=:uid";
+			//String hql = "SELECT new GoodsBean(g.updateTime) AS TIMESTAMP FROM GoodsBean g WHERE indId=:uid";
+			Query query = session.createQuery(hql);
+		
+			query.setParameter("uid", indId);
+			list = query.getResultList();
 			tx.commit();
+			
+			
+			for(GoodsBean gb : list){
+				System.out.println("狀態" + gb.getUpdateTime());
+			}
+			
 		} catch (Exception ex) {
 			tx.rollback();
 			ex.printStackTrace();
@@ -135,7 +151,7 @@ public class GoodsDAO {
 			if (session != null)
 				session.close();
 		}
-		return goods;
+		return list;
 	}
 
 	public GoodsBean load(int goodsNo) {

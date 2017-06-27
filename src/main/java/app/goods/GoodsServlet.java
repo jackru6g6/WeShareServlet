@@ -34,7 +34,6 @@ public class GoodsServlet extends HttpServlet {
 		BufferedReader br = request.getReader();
 		StringBuffer jsonIn = new StringBuffer();
 		String line = null;
-
 		while ((line = br.readLine()) != null) {
 			jsonIn.append(line);
 		}
@@ -42,16 +41,17 @@ public class GoodsServlet extends HttpServlet {
 		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
 		GoodsDAO gDAO = new GoodsDAO();
 		String action = jsonObject.get("action").getAsString();
-		System.out.println("action: " + action);
-
+		System.out.println("------1action: " + action);
+		String userId = jsonObject.get("user").getAsString();
+		System.out.println("userId: " + userId);
 		if (action.equals("getAll")) {
-			List<GoodsBean> goods = gDAO.getAll("jack");
+			List<GoodsBean> goods = gDAO.getAll(userId);
 			writeText(response, gson.toJson(goods));
 		} else if (action.equals("getImage")) {
 			OutputStream os = response.getOutputStream();
-			int id = jsonObject.get("goodsId").getAsInt();
+			String indid = jsonObject.get("user").getAsString();
 			int imageSize = jsonObject.get("imageSize").getAsInt();
-			byte[] image = gDAO.getImage(id);
+			byte[] image = gDAO.getImage(indid);
 
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize);
