@@ -43,9 +43,12 @@ public class GoodsServlet extends HttpServlet {
 		GoodsDAO gDAO = new GoodsDAO();
 		String action = jsonObject.get("action").getAsString();
 		System.out.println("action: " + action);
-
+		String user = jsonObject.get("user").getAsString();
+		System.out.println("user" + user);
 		if (action.equals("getAll")) {
-			List<GoodsBean> goods = gDAO.getAll("jack");
+			//String user = jsonObject.get("user").getAsString();
+			System.out.println("user" + user);
+			List<GoodsBean> goods = gDAO.getAll(user);
 			writeText(response, gson.toJson(goods));
 		} else if (action.equals("getImage")) {
 			OutputStream os = response.getOutputStream();
@@ -60,34 +63,34 @@ public class GoodsServlet extends HttpServlet {
 			}
 			os.write(image);
 		} else if (action.equals("goodsInsert")) {
-			String goodsJson = jsonObject.get("goods").getAsString();
-			GoodsBean goods = gson.fromJson(goodsJson, GoodsBean.class);
-			String imageBase64 = jsonObject.get("imageBase64").getAsString();
-			byte[] image = Base64.getMimeDecoder().decode(imageBase64);
-			int count = 0;
-			boolean check;
-			Blob blob = null;
-			try {
-				blob = new SerialBlob(image);
-				goods.setGoodsImage(blob);
-				count = gDAO.save(goods);
-
-			} catch (SerialException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			writeText(response, String.valueOf(count));
+//			String goodsJson = jsonObject.get("goods").getAsString();
+//			GoodsBean goods = gson.fromJson(goodsJson, GoodsBean.class);
+//			String imageBase64 = jsonObject.get("imageBase64").getAsString();
+//			byte[] image = Base64.getMimeDecoder().decode(imageBase64);
+//			int count = 0;
+//			boolean check;
+//			Blob blob = null;
+//			try {
+//				blob = new SerialBlob(image);
+//				goods.setGoodsImage(blob);
+//				count = gDAO.save(goods);
+//
+//			} catch (SerialException e) {
+//				e.printStackTrace();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//			writeText(response, String.valueOf(count));
 		}
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// GoodsDAOForList goodsDAO = new GoodsDaoMysqlImpl();
 
-		GoodsDAO gDAO = new GoodsDAO();
-		List<GoodsBean> gList = gDAO.getAll("jack");
-
-		writeText(response, new Gson().toJson(gList));
+//		GoodsDAO gDAO = new GoodsDAO();
+//		List<GoodsBean> gList = gDAO.getAll("jack");
+//
+//		writeText(response, new Gson().toJson(gList));
 	}
 
 	private void writeText(HttpServletResponse response, String outText) throws IOException {
