@@ -769,7 +769,67 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 			}		
 			return r;
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// 更新會員密碼
+		synchronized public int updateMemberPassword(MemberBean mb, String newpassword) throws SQLException {
+			PreparedStatement pstmt1 = null;
+			Connection conn = ds.getConnection();
+			int r = 0;
+			
+			try {
+				String sql1 = " update ind " 
+						+" set indPassword=? "
+				  		+" where indId=? " ;
+				
+				pstmt1 = conn.prepareStatement(sql1);		         
+//		          String encrypedString = GlobalService.encryptString(mb.getIndpassword());
+//				  pstmt1.setString(1, GlobalService.getMD5Endocing(encrypedString));
+				pstmt1.setString(1, newpassword);
+				pstmt1.setString(2, mb.getIndid());
+				r = pstmt1.executeUpdate();								
+							
+			} finally {
+				// 關閉相關的物件
+				if (pstmt1 != null) {
+					try {
+						pstmt1.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (Exception e) {
+						System.err.println("關閉相關物件時發生例外: " + e);
+					}
+				}
+			}
+			return r;
+		}
 	
+		
+		
+		
+		
+		
 	
 	
 	
