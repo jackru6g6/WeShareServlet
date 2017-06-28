@@ -35,7 +35,7 @@ public class GetImageFromDB extends HttpServlet {
 		ib = getImage(id, type);
 		if (ib.FileName.equals("FALSE")) {
 			System.out.println("[Image]DEF");
-			is = getServletContext().getResourceAsStream("/images/user.png");
+			is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
 		} else {
 			System.out.println("[Image]OK");
 			mimeType = getServletContext().getMimeType(ib.FileName);
