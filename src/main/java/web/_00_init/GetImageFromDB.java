@@ -34,10 +34,10 @@ public class GetImageFromDB extends HttpServlet {
 		String type = request.getParameter("type");
 		ib = getImage(id, type);
 		if (ib.FileName.equals("FALSE")) {
-			System.out.println("878787");
+			System.out.println("[Image]DEF");
 			is = getServletContext().getResourceAsStream("/images/user.png");
 		} else {
-			System.out.println("OK");
+			System.out.println("[Image]OK");
 			mimeType = getServletContext().getMimeType(ib.FileName);
 			is = ib.getIs();
 		}
@@ -52,8 +52,6 @@ public class GetImageFromDB extends HttpServlet {
 			os.write(bytes, 0, count);
 		}
 		os.close();
-		System.out.println("[get_Image]end");
-
 	}
 
 	public ImageBean getImage(String id, String type) {
@@ -61,42 +59,43 @@ public class GetImageFromDB extends HttpServlet {
 		PreparedStatement pstmt = null;
 		Connection conn = null;
 		ResultSet rs = null;
+		System.out.println("id=" + id + "  type=" + type);
 		try {
 
 			Context context = new InitialContext();
-			// 透過JNDI取得DataSource物件
 			DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/BookDataSQLver");
 			conn = ds.getConnection();
-			if (type.equals("MEMBER")) {
-				pstmt = conn.prepareStatement("SELECT indFileName, indImage from ind where indId = ?");
-				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();
+			if (!id.trim().equals("")) {
+				if (type.equals("MEMBER")) {
+					pstmt = conn.prepareStatement("SELECT count(indFileName), indImage from ind where indId = ?");
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();
 
-			} else if (type.equals("ORG")) {
-				pstmt = conn.prepareStatement("SELECT orgFileName, orgImage from org where indId = ?");
-				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();
-			} else {
-				System.out.println("type not found:" + type);
-			}
-			ib.setFileName("FALSE");
-			if (rs.next()) {
-				if (rs.getString(1) == "") {
-					ib.setFileName("FALSE");
-
+				} else if (type.equals("ORG")) {
+					pstmt = conn.prepareStatement("SELECT count(orgFileName), orgImage from org where indId = ?");
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();
 				} else {
-					ib.setFileName(rs.getString(1));
-
+					System.out.println("type not found:" + type);
 				}
-				ib.setIs(rs.getBinaryStream(2));
+				if (rs.next()) {
+					if (rs.getString(1).equals("1")) {
+						ib.setFileName("TRUE");
+						ib.setFileName(rs.getString(1));
+					} else {
+						ib.setFileName("FALSE");
+					}
+					ib.setIs(rs.getBinaryStream(2));
+				}
+			} else {
+				System.out.println("id is space");
+				ib.setFileName("FALSE");
 			}
-			 conn.close();
+			conn.close();
 			System.out.println("[SQL]Ans=" + ib.getFileName());
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 
