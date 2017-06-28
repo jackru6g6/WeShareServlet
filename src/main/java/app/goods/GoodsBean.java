@@ -33,7 +33,17 @@ public class GoodsBean implements Serializable{
 	
 
 
+	public GoodsBean(Blob goodsImage) {
+		super();
+		this.goodsImage = goodsImage;
+	}
 
+
+
+	public GoodsBean(int goodsNo) {
+		super();
+		this.goodsNo = goodsNo;
+	}
 
 
 	public GoodsBean(Timestamp updateTime) {
@@ -46,9 +56,10 @@ public class GoodsBean implements Serializable{
 
 
 
-	public GoodsBean(int goodsStatus, String indId, String goodsName, int goodsType, int qty,
+	public GoodsBean(int goodsNo,int goodsStatus, String indId, String goodsName, int goodsType, int qty,
 			int goodsLoc, String goodsNote, int goodsShipWay, int deadLine) {
 		super();
+		this.goodsNo=goodsNo;
 		this.goodsStatus = goodsStatus;
 		this.indId = indId;
 		this.goodsName = goodsName;
