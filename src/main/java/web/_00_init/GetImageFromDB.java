@@ -67,12 +67,14 @@ public class GetImageFromDB extends HttpServlet {
 			conn = ds.getConnection();
 			if (!id.trim().equals("")) {
 				if (type.equals("MEMBER")) {
-					pstmt = conn.prepareStatement("SELECT count(indFileName), indImage from ind where indId = ?");
+					pstmt = conn.prepareStatement(
+							"SELECT count(indFileName), indImage,indFileName from ind where indId = ?");
 					pstmt.setString(1, id);
 					rs = pstmt.executeQuery();
 
 				} else if (type.equals("ORG")) {
-					pstmt = conn.prepareStatement("SELECT count(orgFileName), orgImage from org where indId = ?");
+					pstmt = conn.prepareStatement(
+							"SELECT count(orgFileName),orgFileName orgImage from org where indId = ?");
 					pstmt.setString(1, id);
 					rs = pstmt.executeQuery();
 				} else {
@@ -80,19 +82,26 @@ public class GetImageFromDB extends HttpServlet {
 				}
 				if (rs.next()) {
 					if (rs.getString(1).equals("1")) {
-						ib.setFileName("TRUE");
-						ib.setFileName(rs.getString(1));
+						if (rs.getString(3).equals("")) {
+							ib.setFileName("FALSE");
+							System.out.println("[Image SQL] picture not found");
+						} else {
+							ib.setFileName("TRUE");
+							ib.setFileName(rs.getString(1));
+						}
+
 					} else {
+						System.out.println("[Image SQL]picture Is Null");
 						ib.setFileName("FALSE");
 					}
 					ib.setIs(rs.getBinaryStream(2));
 				}
 			} else {
-				System.out.println("id is space");
+				System.out.println("[Image SQL]ID Is Null");
 				ib.setFileName("FALSE");
 			}
 			conn.close();
-			System.out.println("[SQL]Ans=" + ib.getFileName());
+			System.out.println("[Image SQL]Ans=" + ib.getFileName());
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
