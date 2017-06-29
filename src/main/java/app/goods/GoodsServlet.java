@@ -41,63 +41,62 @@ public class GoodsServlet extends HttpServlet {
 		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
 		GoodsDAO gDAO = new GoodsDAO();
 		String action = jsonObject.get("action").getAsString();
-<<<<<<< HEAD
+
 		System.out.println("------1action: " + action);
-		String userId = jsonObject.get("user").getAsString();
-		System.out.println("userId: " + userId);
+		// String userId = jsonObject.get("user").getAsString();
+		// System.out.println("userId: " + userId);
 		if (action.equals("getAll")) {
+			String userId = jsonObject.get("user").getAsString();
 			List<GoodsBean> goods = gDAO.getAll(userId);
-=======
-		System.out.println("action: " + action);
-		String user = jsonObject.get("user").getAsString();
-		System.out.println("user" + user);
-		if (action.equals("getAll")) {
-			//String user = jsonObject.get("user").getAsString();
+			String user = jsonObject.get("user").getAsString();
 			System.out.println("user" + user);
-			List<GoodsBean> goods = gDAO.getAll(user);
->>>>>>> 096944a067d75816f22f20d6538a64238feb7b85
 			writeText(response, gson.toJson(goods));
+			
 		} else if (action.equals("getImage")) {
 			OutputStream os = response.getOutputStream();
-			String indid = jsonObject.get("user").getAsString();
+			int gid = jsonObject.get("gId").getAsInt();
 			int imageSize = jsonObject.get("imageSize").getAsInt();
-			byte[] image = gDAO.getImage(indid);
-
+			byte[] image = gDAO.getImage(gid);
+			System.out.println("拿圖");
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize);
 				response.setContentType("image/jpeg");
 				response.setContentLength(image.length);
+				System.out.println(image);
+			} else {
+				System.out.println("沒收到喔~");
 			}
 			os.write(image);
+
 		} else if (action.equals("goodsInsert")) {
-//			String goodsJson = jsonObject.get("goods").getAsString();
-//			GoodsBean goods = gson.fromJson(goodsJson, GoodsBean.class);
-//			String imageBase64 = jsonObject.get("imageBase64").getAsString();
-//			byte[] image = Base64.getMimeDecoder().decode(imageBase64);
-//			int count = 0;
-//			boolean check;
-//			Blob blob = null;
-//			try {
-//				blob = new SerialBlob(image);
-//				goods.setGoodsImage(blob);
-//				count = gDAO.save(goods);
-//
-//			} catch (SerialException e) {
-//				e.printStackTrace();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//			writeText(response, String.valueOf(count));
+			String goodsJson = jsonObject.get("goods").getAsString();
+			GoodsBean goods = gson.fromJson(goodsJson, GoodsBean.class);
+			String imageBase64 = jsonObject.get("imageBase64").getAsString();
+			byte[] image = Base64.getMimeDecoder().decode(imageBase64);
+			int count = 0;
+			boolean check;
+			Blob blob = null;
+			try {
+				blob = new SerialBlob(image);
+				goods.setGoodsImage(blob);
+				count = gDAO.save(goods);
+
+			} catch (SerialException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			writeText(response, String.valueOf(count));
 		}
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// GoodsDAOForList goodsDAO = new GoodsDaoMysqlImpl();
 
-//		GoodsDAO gDAO = new GoodsDAO();
-//		List<GoodsBean> gList = gDAO.getAll("jack");
-//
-//		writeText(response, new Gson().toJson(gList));
+		// GoodsDAO gDAO = new GoodsDAO();
+		// List<GoodsBean> gList = gDAO.getAll("jack");
+		//
+		// writeText(response, new Gson().toJson(gList));
 	}
 
 	private void writeText(HttpServletResponse response, String outText) throws IOException {

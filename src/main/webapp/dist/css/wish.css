@@ -1,34 +1,104 @@
 @charset "UTF-8";
 #sectionWish {
   margin-top: 30px;
-  font-size: 18px; }
-
-/* 條件區塊樣式 */
-.blockFilter {
-  margin-bottom: 25px; }
-
-/* 條件標題樣式 */
-.btFilterTitle {
-  font-size: 18px; }
-
-/* 條件選項樣式 */
-.btFilterBlock > ul {
-  padding: 5px;
-  margin: 5px; }
-  .btFilterBlock > ul > li {
-    display: inline-block;
-    width: 44%;
-    margin: 5px; }
-
-.btnFilterType {
-  background-color: #87CEFA;
-  width: 100%;
-  font-size: 16px;
-  color: #FFFFFF; }
-
-/* 搜尋鈕樣式 */
-#btKWSearch {
-  margin-bottom: 10px; }
+  font-size: 18px;
+  min-height: calc(100vh - 336px);
+  /* 左邊條件篩選區 */ }
+  #sectionWish #sectionfilter {
+    position: fixed;
+    left: 0;
+    padding-top: 10px;
+    background-color: #fff4f4;
+    overflow-y: scroll;
+    transition: left 0.4s ease-in-out;
+    z-index: 1031;
+    top: 80px;
+    height: calc(100vh - 80px);
+    /* 搜尋 */
+    /* 條件區塊樣式 */ }
+    @media screen and (min-width: 768px) {
+      #sectionWish #sectionfilter {
+        top: 160px;
+        height: calc(100vh - 160px); } }
+    @media screen and (min-width: 992px) {
+      #sectionWish #sectionfilter {
+        top: 80px;
+        height: calc(100vh - 80px); } }
+    @media screen and (min-width: 1200px) {
+      #sectionWish #sectionfilter {
+        top: 80px;
+        height: calc(100vh - 80px); } }
+    #sectionWish #sectionfilter #blockKWSearch {
+      position: relative;
+      margin: 10px 0 10px 0;
+      /* 搜尋輸入框 */
+      /* 搜尋鈕圖式 */ }
+      #sectionWish #sectionfilter #blockKWSearch #searchInput {
+        width: 150px;
+        padding: 5px 5px 5px 40px;
+        transition: .5s; }
+        #sectionWish #sectionfilter #blockKWSearch #searchInput:focus {
+          width: 100%;
+          transition: .1s; }
+      #sectionWish #sectionfilter #blockKWSearch #btKWSearch {
+        position: absolute;
+        top: 13%;
+        left: 3%;
+        cursor: pointer;
+        margin-bottom: 10px; }
+    #sectionWish #sectionfilter .blockFilter {
+      /* 條件標題樣式 */
+      /* 條件選項樣式 */
+      /* 需求者身分 */
+      /* 需求者身分 */
+      /* 需求者身分 */ }
+      #sectionWish #sectionfilter .blockFilter .btFilterTitle {
+        padding-left: 20px;
+        height: 60px;
+        font-size: 18px;
+        text-align: left;
+        border-radius: 0;
+        border-left: 15px solid; }
+        #sectionWish #sectionfilter .blockFilter .btFilterTitle:hover, #sectionWish #sectionfilter .blockFilter .btFilterTitle:focus {
+          outline-color: rgba(255, 255, 255, 0);
+          color: snow;
+          transition: .5s; }
+      #sectionWish #sectionfilter .blockFilter .btFilterBlock > ul {
+        padding: 5px 5px 5px 20px;
+        margin-bottom: 0; }
+        #sectionWish #sectionfilter .blockFilter .btFilterBlock > ul > li {
+          display: inline-block;
+          width: 44%;
+          margin: 5px;
+          /* 條件選項按鈕 */ }
+          #sectionWish #sectionfilter .blockFilter .btFilterBlock > ul > li .btnFilterType {
+            width: 100%;
+            font-size: 16px;
+            color: #f5f5f5; }
+      #sectionWish #sectionfilter .blockFilter #btBy {
+        border-color: #ffb8b8; }
+        #sectionWish #sectionfilter .blockFilter #btBy:hover, #sectionWish #sectionfilter .blockFilter #btBy:focus {
+          background-color: #ff9f9f; }
+      #sectionWish #sectionfilter .blockFilter #blockBy {
+        background-color: #ffd2d2; }
+        #sectionWish #sectionfilter .blockFilter #blockBy .btnFilterType {
+          background-color: #ff9f9f; }
+      #sectionWish #sectionfilter .blockFilter #btClass {
+        border-color: #feb36b; }
+        #sectionWish #sectionfilter .blockFilter #btClass:hover, #sectionWish #sectionfilter .blockFilter #btClass:focus {
+          background-color: #fea652; }
+      #sectionWish #sectionfilter .blockFilter #blockClass {
+        background-color: #fecd9e; }
+        #sectionWish #sectionfilter .blockFilter #blockClass .btnFilterType {
+          background-color: #fe9938; }
+      #sectionWish #sectionfilter .blockFilter #btLoc {
+        border-color: #b25cc1; }
+        #sectionWish #sectionfilter .blockFilter #btLoc:hover, #sectionWish #sectionfilter .blockFilter #btLoc:focus {
+          background-color: #a94aba; }
+      #sectionWish #sectionfilter .blockFilter #blockLoc {
+        background-color: #c381cf; }
+        #sectionWish #sectionfilter .blockFilter #blockLoc .btnFilterType {
+          background-color: #9a40aa; }
 
 /* 滑鼠移至物資 */
 .wishGoodsA {

@@ -1,14 +1,64 @@
 @charset "UTF-8";
+body {
+  background-color: #f8fbf9; }
+
+@media screen and (min-width: 1500px) {
+  #sectionLogin {
+    width: 1300px; } }
+
 /* 登入區塊 */
-#loginContent {
-  height: calc(100vh - 407px);
-  margin-top: 100px; }
+#sectionLogin {
+  min-height: calc(100vh - 306px); }
+  #sectionLogin #loginContent {
+    margin-top: 100px;
+    margin-bottom: 100px; }
+    #sectionLogin #loginContent #loginLayout {
+      margin-top: 45px;
+      padding: 20px 40px;
+      background-color: snow;
+      border-radius: 5px;
+      color: #3e3e3e;
+      border: 1px solid #d0d0d0;
+      /* 服務登入 */
+      /* 帳號登入 */ }
+      #sectionLogin #loginContent #loginLayout #loginLayoutLeft {
+        border-right: 1px solid #ddd;
+        /* Facebook登入 */
+        /* Google登入 */ }
+        #sectionLogin #loginContent #loginLayout #loginLayoutLeft #btFB {
+          background-color: #3b5998;
+          color: #d6e3ff; }
+        #sectionLogin #loginContent #loginLayout #loginLayoutLeft #btGoogle {
+          /* 限制 Google Button 寬度 */ }
+          #sectionLogin #loginContent #loginLayout #loginLayoutLeft #btGoogle > div {
+            max-width: 100%; }
+      #sectionLogin #loginContent #loginLayout #loginLayoutRight {
+        /* 錯誤訊息 */
+        /* 保持登入 */
+        /* 登入按鈕 */ }
+        #sectionLogin #loginContent #loginLayout #loginLayoutRight .loginErrorMsg {
+          color: #ff0000; }
+        #sectionLogin #loginContent #loginLayout #loginLayoutRight #keepLogin input {
+          vertical-align: text-bottom; }
+        #sectionLogin #loginContent #loginLayout #loginLayoutRight #keepLogin span {
+          padding-left: 5px; }
+        #sectionLogin #loginContent #loginLayout #loginLayoutRight #btLogin {
+          color: snow;
+          background-color: #1967bc;
+          font-size: 16px; }
 
-/* 帳號登入按鈕 */
-#btLogin {
-  color: #3e3e3e;
-  background-color: #87CEFA;
-  border-color: #609fe3; }
-
-.loginErrorMsg {
-  color: #ff0000; }
+/* 標題 */
+#leftText,
+#rightText {
+  color: #008ea3; }
+  #leftText:before,
+  #rightText:before {
+    position: relative;
+    left: -5px;
+    top: 1px;
+    content: "";
+    display: inline-block;
+    height: 12px;
+    width: 3px;
+    border-radius: 15px;
+    background: #00bbd6; }

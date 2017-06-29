@@ -35,7 +35,7 @@ public class GetImageFromDB extends HttpServlet {
 		ib = getImage(id, type);
 		if (ib.FileName.equals("FALSE")) {
 			System.out.println("[Image]DEF");
-			is = getServletContext().getResourceAsStream("/images/user.png");
+			is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
 		} else {
 			System.out.println("[Image]OK");
 			mimeType = getServletContext().getMimeType(ib.FileName);
@@ -54,7 +54,7 @@ public class GetImageFromDB extends HttpServlet {
 		os.close();
 	}
 
-	public ImageBean getImage(String id, String type) {
+	synchronized public ImageBean getImage(String id, String type) {
 		ImageBean ib = new ImageBean();
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -74,7 +74,12 @@ public class GetImageFromDB extends HttpServlet {
 
 				} else if (type.equals("ORG")) {
 					pstmt = conn.prepareStatement(
-							"SELECT count(orgFileName),orgFileName orgImage from org where indId = ?");
+							"SELECT count(orgFileName), orgImage,orgFileName from org where indId = ?");
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();
+				} else if (type.equals("MSG")) {
+					pstmt = conn.prepareStatement(
+							"SELECT count(msgFileName),msgImage,msgFileName from MSG where msgno = ?");
 					pstmt.setString(1, id);
 					rs = pstmt.executeQuery();
 				} else {
@@ -101,14 +106,16 @@ public class GetImageFromDB extends HttpServlet {
 				ib.setFileName("FALSE");
 			}
 			conn.close();
-			System.out.println("[Image SQL]Ans=" + ib.getFileName());
+
 		} catch (NamingException e) {
+			ib.setFileName("FALSE");
 			e.printStackTrace();
 		} catch (SQLException e) {
+			ib.setFileName("FALSE");
 			e.printStackTrace();
 		} finally {
-
 		}
+		// System.out.println("[Image SQL]Ans=" + ib.getFileName());
 		return ib;
 	}
 }

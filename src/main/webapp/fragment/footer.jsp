@@ -14,7 +14,7 @@
 							<a href="https://www.facebook.com"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
 						</div>
 						<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
-							<a href="https://www.youtube.com"><i class="fa fa-youtube-play" aria-hidden="true"></i></i></a>
+							<a href="https://www.youtube.com"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
 						</div>
 						<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
 							<a href="https://plus.google.com"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a>
