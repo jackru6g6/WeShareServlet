@@ -110,7 +110,7 @@
 			</div>
 			<!-- 關閉鈕 -->
 			<div class="modal-footer">
-				<a href="../index.jsp" type="button" class="btn btn-default" data-dismiss="modal">關閉視窗</a>
+				<a href="../web/login.jsp" type="button" class="btn btn-default" >關閉視窗</a>
 			</div>
 		</div>      
 	</div>
