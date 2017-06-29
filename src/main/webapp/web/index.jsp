@@ -10,7 +10,7 @@
 	<meta charset="utf-8">
 	<jsp:include page="../fragment/refCss.jsp" />
 	<jsp:include page="../fragment/refJs.jsp" />
-	<title>Test-WeShare 微分享</title>
+	<title>WeShare 微分享</title>
 </head>
 
 <body>

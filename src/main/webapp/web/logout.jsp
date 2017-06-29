@@ -5,7 +5,7 @@
 
 
 <!-- 先將使用者名稱取出 -->
-<c:set var="memberName" value="${ LoginOK.indid }" />
+<c:set var="memberName" value="${ LoginOK.indname }" />
 <!-- 移除放在session物件內的屬性物件 -->
 <c:remove var="LoginOK" scope="session" />
 

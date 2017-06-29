@@ -21,7 +21,7 @@
 		var GoogleClientId = "${abc.getGoogleClientId()}";
 		console.log("getGoogleClientId = " + GoogleClientId);
 		function onSignIn(googleUser) {
-			var redirectUrl = '/Test/web/_02_login/controller/GoogleLogin.do';
+			var redirectUrl = '/Demo/web/_02_login/controller/GoogleLogin.do';
 			var form = $('<form action="' + redirectUrl + '" method="post">'
 					+ '<input type="text" name="id_token" value="'
 					+ googleUser.getAuthResponse().id_token + '" />' + '</form>');
@@ -41,7 +41,7 @@
 	</script>
 	<jsp:useBean id="abc" class="web._00_init.GlobalService" scope="application" />
 
-	<title>Test-WeShare 微分享</title>
+	<title>WeShare 微分享</title>
 </head>
 
 <body>
