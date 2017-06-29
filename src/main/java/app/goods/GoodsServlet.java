@@ -57,7 +57,6 @@ public class GoodsServlet extends HttpServlet {
 			int gid = jsonObject.get("gId").getAsInt();
 			int imageSize = jsonObject.get("imageSize").getAsInt();
 			byte[] image = gDAO.getImage(gid);
-			System.out.println("拿圖");
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize);
 				response.setContentType("image/jpeg");
