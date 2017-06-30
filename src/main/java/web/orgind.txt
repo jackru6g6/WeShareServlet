@@ -1,0 +1,5 @@
+2|null|miaoli|123|財團法人苗栗縣私立新苗發展中心|037-430430|km.k4792@msa.hinet.net|356苗栗縣後龍鎮 東明里一鄰頂浮尾83-2號|user.png
+2|null|ecpat|123|台灣展翅協會|03-3353545|winnie@ecpat.org.tw|330桃園市桃園區復興路205號15樓-4|user.png
+2|null|animals|123|社團法人台灣動物協會|0286014196|wingyi@animalstaiwan.org|244新北市林口區 頂福里五鄰頂福20-18號|user.png
+2|null|world|123|財團法人創世社會福利基金會|0228357700|ab1958@ms.genesis.org.tw|111台北市士林區中正路420號5樓|user.png
+2|null|tz|123|社團法人真佛宗華光功德會|0424061348|lotusli.middle@msa.hinet.net|412台中市大里區 國光路二段779號6樓|user.png
