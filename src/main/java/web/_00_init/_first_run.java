@@ -161,6 +161,7 @@ public class _first_run {
 	};
 
 	public static void GOODS_DATA(Connection con) throws SQLException {
+		System.out.println("[GOODS]");
 		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_GOODS);
 		pstmt.setInt(1, Integer.parseInt("1"));// 1募資2捐贈3以物易物
 		pstmt.setString(2, "kitty");// 需求者帳號
@@ -172,6 +173,7 @@ public class _first_run {
 		pstmt.setInt(8, Integer.parseInt("2"));// 1面交2宅配3都可配送方式
 		pstmt.setInt(9, Integer.parseInt("1501516800"));// 2017_08_01_00:00:00
 		pstmt.executeUpdate();
+		GlobalService.random_time_3_5();
 		pstmt.setInt(1, Integer.parseInt("1"));// 1募資2捐贈3以物易物
 		pstmt.setString(2, "kitty");// 需求者帳號
 		pstmt.setInt(3, Integer.parseInt("1"));// 物資類別
@@ -182,6 +184,7 @@ public class _first_run {
 		pstmt.setInt(8, Integer.parseInt("2"));// 1面交2宅配3都可配送方式
 		pstmt.setInt(9, Integer.parseInt("1502294400"));// 2017_08_10_00:00:00
 		pstmt.executeUpdate();
+		GlobalService.random_time_3_5();
 		pstmt.setInt(1, Integer.parseInt("1"));// 1募資2捐贈3以物易物
 		pstmt.setString(2, "kitty");// 需求者帳號
 		pstmt.setInt(3, Integer.parseInt("1"));// 物資類別
@@ -227,23 +230,27 @@ public class _first_run {
 		pstmt.executeUpdate();
 	}
 
-	public static void MSG_DATA(Connection con) throws SQLException {
+	public static void MSG_DATA(Connection con) throws SQLException{
+		System.out.println("[MSG]");
 		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_MSG);
 		pstmt.setString(1, "kitty");
 		pstmt.setString(2, "Google");
 		pstmt.setString(3, "安安你好安安我是凱蒂");
 		pstmt.setString(4, "");
 		pstmt.executeUpdate();
+		GlobalService.random_time_3_5();
 		pstmt.setString(1, "Google");
 		pstmt.setString(2, "kitty");
 		pstmt.setString(3, "安安你好安安我是谷哥大人");
 		pstmt.setString(4, "");
 		pstmt.executeUpdate();
+		GlobalService.random_time_3_5();
 		pstmt.setString(1, "Google");
 		pstmt.setString(2, "micky");
 		pstmt.setString(3, "安安你好我是大神");
 		pstmt.setString(4, "");
 		pstmt.executeUpdate();
+		GlobalService.random_time_3_5();
 		pstmt.setString(1, "micky");
 		pstmt.setString(2, "kitty");
 		pstmt.setString(3, "安安你好安安!!我是米奇");

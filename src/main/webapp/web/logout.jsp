@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<script type="text/javascript"src="https://mail.google.com/mail/u/0/?logout&hl=en"></script>
 
 <!-- 先將使用者名稱取出 -->
 <c:set var="memberName" value="${ LoginOK.indname }" />

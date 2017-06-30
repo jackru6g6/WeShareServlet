@@ -260,27 +260,40 @@ public class GlobalService {
 		}
 		return decryptedString;
 	}
+
 	public static byte[] read_BinaryFile_To_ByteArray(String filename) {
 		File file = new File(filename);
-		if ( !file.exists()) {
-			throw new RuntimeException("[無此檔案]"+filename);	//強制跳出例外事件
-		}		
-		byte[] read_file = new byte[8192];//每讀一次的大小
+		if (!file.exists()) {
+			throw new RuntimeException("[無此檔案]" + filename); // 強制跳出例外事件
+		}
+		byte[] read_file = new byte[8192];// 每讀一次的大小
 		byte[] ByteArray = null;
-		int len = 0 ;
-		try (
-			FileInputStream fis = new FileInputStream(file);//讀入記憶體
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();//寫入資料庫				
-			){
-			
-			while ((len=fis.read(read_file))!= -1){
-				baos.write(read_file, 0, len);   // 口訣: A.O.L.
+		int len = 0;
+		try (FileInputStream fis = new FileInputStream(file); // 讀入記憶體
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();// 寫入資料庫
+		) {
+
+			while ((len = fis.read(read_file)) != -1) {
+				baos.write(read_file, 0, len); // 口訣: A.O.L.
 			}
 			ByteArray = baos.toByteArray();
 		} catch (Exception e) {
-			System.out.println("[二進位檔案轉位元陣列失敗]"+e.getMessage());
+			System.out.println("[二進位檔案轉位元陣列失敗]" + e.getMessage());
 		}
 		return ByteArray;
+	}
+
+	public static void random_time_3_5() {
+		int upperBound = 5000;
+		int lowerBound = 3000;
+		int num = (int) (Math.random() * (upperBound - lowerBound + 1)) + lowerBound;
+		System.out.println("延遲時間:"+num/1000+"."+num%1000+"秒");
+		try {
+			Thread.sleep(num);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
 // c58c619950f96f4c04da28b48b296de0
