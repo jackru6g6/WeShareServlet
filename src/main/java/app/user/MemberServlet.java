@@ -53,6 +53,16 @@ public class MemberServlet extends HttpServlet {
 						+ ", 地址：" + pop.getAddress() + ", 帳號型態：" + pop.getIdType());
 			}
 			writeText(response, gson.toJson(user));
+		} else if (action.equals("getAllOrg")) {
+			String account = jsonObject.get("account").getAsString();
+			List<InstiutionBean> org = mbDAO.getOrg(account);
+			System.out.println("帳號account: " + account);
+			for (InstiutionBean pop : org) {
+				// System.out.println("姓名：" + pop.getName() + ", 電話：" +
+				// pop.getTal() + ", Email：" + pop.getEmail()
+				// + ", 地址：" + pop.getAddress() + ", 帳號型態：" + pop.getIdType());
+			}
+			writeText(response, gson.toJson(org));
 		} else if (action.equals("getImage")) {
 			String account = jsonObject.get("account").getAsString();
 			OutputStream os = response.getOutputStream();
@@ -60,6 +70,25 @@ public class MemberServlet extends HttpServlet {
 			int imageSize = jsonObject.get("imageSize").getAsInt();
 			System.out.println("account=" + account + ", imageSize=" + imageSize);
 			byte[] image = mbDAO.getImage(account);
+			if (image != null) {
+				image = ImageUtil.shrink(image, imageSize);// ImageUtil縮圖
+				response.setContentType("image/jpeg");
+				// 只要送一張圖，就不用轉json，指定他傳送的型態，如果要用json就要用Base64
+				// // encode才能傳送
+				response.setContentLength(image.length);// 輸出圖的長度
+				System.out.println(image);
+			} else {
+				System.out.println("沒收到喔~");
+			}
+			os.write(image);// 送到client端
+
+		} else if (action.equals("getOrgImage")) {
+			String account = jsonObject.get("account").getAsString();
+			OutputStream os = response.getOutputStream();
+			// account = jsonObject.get("account").getAsString();
+			int imageSize = jsonObject.get("imageSize").getAsInt();
+			System.out.println("account=" + account + ", imageSize=" + imageSize);
+			byte[] image = mbDAO.getOrgImage(account);
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize);// ImageUtil縮圖
 				response.setContentType("image/jpeg");
@@ -93,11 +122,26 @@ public class MemberServlet extends HttpServlet {
 			}
 
 			writeText(response, String.valueOf(userName));
+		} else if (action.equals("userCheck")) {
+			String userJson = jsonObject.get("user").getAsString();
+			MemberBean user = gson.fromJson(userJson, MemberBean.class);
+			int count = 0;
+			boolean check;
+			String name = user.getUserId();
+			System.out.println("name" + name);
+			check = mbDAO.isExists(name);
+			if (check == true) {
+				count = -1;
+			} else {
+				count = 1;
+			}
+			System.out.println("count = " + count);
+			writeText(response, String.valueOf(count));
 		} else if (action.equals("userRegister") || action.equals("userUpdate") || action.equals("userInRegister")) {
 			String userJson = jsonObject.get("user").getAsString();
 			MemberBean user = gson.fromJson(userJson, MemberBean.class);// 轉為Spot物件
 			String imageBase64 = jsonObject.get("imageBase64").getAsString();
-			System.out.println("imageBase64----------------" + imageBase64);
+			// System.out.println("imageBase64----------------" + imageBase64);
 			byte[] image = null;
 			// System.out.println("imageBase64" + imageBase64);
 			// if (imageBase64.equals("NoImageChange")) {
@@ -164,9 +208,7 @@ public class MemberServlet extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-
-			else if (action.equals("userUpdate")) {
+			} else if (action.equals("userUpdate")) {
 				try {
 					blob = new SerialBlob(image);
 					user.setImage(blob);
@@ -179,6 +221,25 @@ public class MemberServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
+			writeText(response, String.valueOf(count));
+		}
+		if (action.equals("updateOrg")) {
+			String userJson = jsonObject.get("org").getAsString();
+			MemberBean user = gson.fromJson(userJson, MemberBean.class);// 轉為Spot物件
+			String imageBase64 = jsonObject.get("imageBase64Org").getAsString();
+			byte[] image = null;
+			image = Base64.getMimeDecoder().decode(imageBase64);
+			int count = 0;
+			boolean check;
+			Blob blob = null;
+			try {
+				blob = new SerialBlob(image);
+				user.setImage(blob);
+				count = mbDAO.update(user);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 			writeText(response, String.valueOf(count));
 		}
 

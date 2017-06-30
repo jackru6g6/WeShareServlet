@@ -137,6 +137,24 @@ public class MemberDAO {
 		}
 		return n;
 	}
+	
+	public int updateOrg(InstiutionBean org) {
+		int n = 0;
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			session.update(org);
+			tx.commit();
+			n = 1;
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return n;
+	}
 
 	public List<MemberBean> get(String userId) {
 		Session session = sessionFactory.openSession();
@@ -144,9 +162,41 @@ public class MemberDAO {
 		// List<Object[]> list= new ArrayList<>();
 		List<MemberBean> list = new ArrayList<MemberBean>();
 		try {
-			//String hql = "SELECT new MemberBean(m.tal,m.email,m.address,m.idType) FROM MemberBean m WHERE m.userId = :uid";
+			// String hql = "SELECT new
+			// MemberBean(m.tal,m.email,m.address,m.idType) FROM MemberBean m
+			// WHERE m.userId = :uid";
 			String hql = "SELECT new MemberBean(m.name,m.tal,m.email,m.address,m.idType) FROM MemberBean m WHERE m.userId = :uid";
-			//String hql = "SELECT new MemberBean(m.userId,m.password,m.name,m.tal,m.email,m.address,m.idType,m.createDate) FROM MemberBean m WHERE m.userId = :uid";
+			// String hql = "SELECT new
+			// MemberBean(m.userId,m.password,m.name,m.tal,m.email,m.address,m.idType,m.createDate)
+			// FROM MemberBean m WHERE m.userId = :uid";
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", userId);
+			list = query.getResultList();
+			tx.commit();
+
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return list;
+	}
+
+	public List<InstiutionBean> getOrg(String userId) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		// List<Object[]> list= new ArrayList<>();
+		List<InstiutionBean> list = new ArrayList<InstiutionBean>();
+		try {
+			// String hql = "SELECT new
+			// MemberBean(m.tal,m.email,m.address,m.idType) FROM MemberBean m
+			// WHERE m.userId = :uid";
+			String hql = "SELECT new InstiutionBean(i.indId,i.leader,i.orgType,i.registerNo,i.raiseNo,i.intRo) FROM InstiutionBean i WHERE i.indId = :uid";
+			// String hql = "SELECT new
+			// MemberBean(m.userId,m.password,m.name,m.tal,m.email,m.address,m.idType,m.createDate)
+			// FROM MemberBean m WHERE m.userId = :uid";
 			Query query = session.createQuery(hql);
 			query.setParameter("uid", userId);
 			list = query.getResultList();
@@ -186,6 +236,55 @@ public class MemberDAO {
 
 		System.out.println("list" + list);
 		for (MemberBean mb : list) {
+			try {
+				// mb.toString();
+				// System.out.println("blob=" + blob);
+				int blobLength = 0;
+				blob = mb.getImage();
+				if (blob != null) {
+					blobLength = (int) blob.length();
+					image = blob.getBytes(1, blobLength);
+					System.out.println("image=" + image);
+				} else {
+					System.out.println("image 沒有圖片歐~");
+				}
+				// blob = list.get(0).getImage();
+				// int blobLength = (int) blob.length();
+				// image = blob.getBytes(1, blobLength);
+				// System.out.println("image=" + image);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return image;
+	}
+
+	public byte[] getOrgImage(String id) {
+		byte[] image = null;
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		List<InstiutionBean> list = new ArrayList<InstiutionBean>();
+		Blob blob = null;
+		try {
+			String hql = "FROM InstiutionBean i WHERE i.indId = :uid";
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", id);
+			list = query.getResultList();
+			for (InstiutionBean mb : list) {
+				System.out.println(id + "--->" + mb.getClass().getName());
+			}
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+		} finally {
+			session.close();
+		}
+
+		System.out.println("list" + list);
+		for (InstiutionBean mb : list) {
 			try {
 				// mb.toString();
 				// System.out.println("blob=" + blob);

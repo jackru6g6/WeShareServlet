@@ -32,6 +32,16 @@ public class InstiutionBean {
 	public InstiutionBean() {
 	}
 
+	public InstiutionBean(String indId, String leader, int orgType, String registerNo, String raiseNo, String intRo) {
+		super();
+		this.indId = indId;
+		this.leader = leader;
+		this.orgType = orgType;
+		this.registerNo = registerNo;
+		this.raiseNo = raiseNo;
+		this.intRo = intRo;
+	}
+
 	public InstiutionBean(String indId, String leader, int orgType, String registerNo, String raiseNo, String intRo,
 			Blob image, Timestamp updatetime) {
 		super();

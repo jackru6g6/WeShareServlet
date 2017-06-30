@@ -28,20 +28,20 @@ public class MemberBean {
 	private java.sql.Timestamp createDate;
 	private String fileName = "userPicture";
 
-//	private InstiutionBean instiutionBean;
+	// private InstiutionBean instiutionBean;
 
 	public MemberBean() {
 	}
-	
-	
+
+	public MemberBean(String userId) {
+		super();
+		this.userId = userId;
+	}
 
 	public MemberBean(Blob image) {
 		super();
 		this.image = image;
 	}
-
-	
-
 
 	public MemberBean(String userId, String password) {
 		super();
@@ -69,8 +69,6 @@ public class MemberBean {
 		this.idType = idType;
 		this.createDate = createDate;
 	}
-
-
 
 	public MemberBean(String userId, String password, String name, String tal, String email, String address, Blob image,
 			int idType, Timestamp createDate, String fileName) {
@@ -186,14 +184,14 @@ public class MemberBean {
 	// 『到對照類別(Principal)內的school性質去找，該性質有說明兩表格關聯的資訊
 	//
 	// 注意：表格之間的關係僅一方需要有外鍵即可
-//	@OneToOne(mappedBy = "MemberBean") // ...
-//	public InstiutionBean getInstiutionBean() {
-//		return instiutionBean;
-//	}
-//
-//	public void setInstiutionBean(InstiutionBean instiutionBean) {
-//		this.instiutionBean = instiutionBean;
-//	}
+	// @OneToOne(mappedBy = "MemberBean") // ...
+	// public InstiutionBean getInstiutionBean() {
+	// return instiutionBean;
+	// }
+	//
+	// public void setInstiutionBean(InstiutionBean instiutionBean) {
+	// this.instiutionBean = instiutionBean;
+	// }
 	// public String toString(){
 	// return "校長: " + name + ", 服務學校:" + school.getSchoolName() +
 	// ", 地址:" + school.getAddress();
