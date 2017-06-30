@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.sql.rowset.serial.SerialBlob;
+
 import web._01_register.model.MemberBean;
 import web._01_register.model.OrgBean;
 
@@ -68,12 +70,14 @@ public class _first_run {
 
 	public static void CreateData(Connection con) throws SQLException {
 		MemberBean mb1 = new MemberBean(1, null, "kitty", "123", "凱蒂", "0229625270", "kitty@gmail.com", "新北市板橋區中正路100號",
-				null, null);
+				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\kitty.jpg")),"kitty.jpg");
 		MemberBean mb2 = new MemberBean(2, null, "Google", "123", "谷哥大神", "0229625270", "Google@gmail.com",
-				"台北市大安區xxx巷xxxx號", null, null);
-		OrgBean ob2 = new OrgBean(mb2.getIndid(), null, "我是社福簡介", "社福負責人", 1, "立案核准", "勸募許可", null, null);
-		MemberBean mb3 = new MemberBean(1, null, "micky", "123", "米奇", "0228825252", "micky@gmail.com", "米奇的家", null,
-				null);
+				"台北市大安區xxx巷xxxx號", new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\Google.jpg")),"Google.jpg");
+		
+		OrgBean ob2 = new OrgBean(mb2.getIndid(), null, "我是社福簡介", "社福負責人", 1, "立案核准", "勸募許可", new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\Googleorg.jpg")),"Googleorg.jpg");
+		
+		
+		MemberBean mb3 = new MemberBean(1, null, "micky", "123", "米奇", "0228825252", "micky@gmail.com", "米奇的家", new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\micky.png")),"micky.png");
 		ORGTYPE_DATA(con);
 		IND_DATA(mb1, con);
 		ORG_DATA(mb2, ob2, con);

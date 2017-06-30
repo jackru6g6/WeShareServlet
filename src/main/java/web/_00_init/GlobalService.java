@@ -1,5 +1,6 @@
 package web._00_init;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -258,6 +259,28 @@ public class GlobalService {
 			e.printStackTrace();
 		}
 		return decryptedString;
+	}
+	public static byte[] read_BinaryFile_To_ByteArray(String filename) {
+		File file = new File(filename);
+		if ( !file.exists()) {
+			throw new RuntimeException("[無此檔案]"+filename);	//強制跳出例外事件
+		}		
+		byte[] read_file = new byte[8192];//每讀一次的大小
+		byte[] ByteArray = null;
+		int len = 0 ;
+		try (
+			FileInputStream fis = new FileInputStream(file);//讀入記憶體
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();//寫入資料庫				
+			){
+			
+			while ((len=fis.read(read_file))!= -1){
+				baos.write(read_file, 0, len);   // 口訣: A.O.L.
+			}
+			ByteArray = baos.toByteArray();
+		} catch (Exception e) {
+			System.out.println("[二進位檔案轉位元陣列失敗]"+e.getMessage());
+		}
+		return ByteArray;
 	}
 }
 // c58c619950f96f4c04da28b48b296de0
