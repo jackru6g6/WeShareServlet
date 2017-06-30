@@ -19,7 +19,7 @@
 <!-- 	<script type="text/javascript" src="https://mail.google.com/mail/u/0/?logout&hl=en"></script> -->
 	<script>
 		var GoogleClientId = "${abc.getGoogleClientId()}";
-		console.log("getGoogleClientId = " + GoogleClientId);
+// 		console.log("getGoogleClientId = " + GoogleClientId);
 		function onSignIn(googleUser) {
 			var redirectUrl = '/Demo/web/_02_login/controller/GoogleLogin.do';
 			var form = $('<form action="' + redirectUrl + '" method="post">'
@@ -35,7 +35,8 @@
 			  'width': 297,
 			  'height': 46,
 			  'longtitle': true,
-			  'theme': 'white'
+			  'theme': 'white',
+			  'onsuccess': onSignIn
 			});
 	    }
 	</script>
