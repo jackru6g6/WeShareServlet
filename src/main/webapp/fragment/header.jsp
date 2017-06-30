@@ -67,13 +67,13 @@
                     <li><a href="#">物資箱</a></li>
                     <li><a href="#">站內信</a></li>
                     <li class="divider"></li>
-                    <li><a data-toggle="modal" data-target="#logoutMsg">登出</a></li>
+                    <li><a href="logout.jsp">登出</a></li>
                 </ul>
             </li>
             <li class="afterLogin">
-                <a id="navMemberImg">
-                    <img class="img-circle" src="${pageContext.servletContext.contextPath}/_00_init/getImage?id=${LoginOK.indid}&type=MEMBER" width="40" alt="MemberImg">
-                    <!--Icons made by Freepik from Flaticon(http://www.freepik.com)-->
+                <a>
+                    <img id="navMemberImg" class="img-circle" src="${pageContext.servletContext.contextPath}/_00_init/getImage?id=${LoginOK.indid}&type=MEMBER" width="40">
+                    <!-- <img id="navMemberImg" class="img-circle" width="40"> -->
                 </a>
             </li>
             <li class="dropdown">
@@ -94,25 +94,4 @@
         </ul>
     </div>
 </nav>
-
-<!-- 登出後跳出訊息 -->
-<div id="logoutMsg" class="modal fade" role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<!-- 標題 -->
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">登出WeShare</h4>
-			</div>
-			<!-- 內容(導入logout.jsp) -->
-			<div class="modal-body">
-				<jsp:include page="../web/logout.jsp" />
-			</div>
-			<!-- 關閉鈕 -->
-			<div class="modal-footer">
-				<a href="../web/login.jsp" type="button" class="btn btn-default" >關閉視窗</a>
-			</div>
-		</div>      
-	</div>
-</div>
 <!-- header END -->

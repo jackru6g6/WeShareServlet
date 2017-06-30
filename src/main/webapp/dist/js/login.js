@@ -6,6 +6,7 @@ $(function(){
 	} else {
 		$(".beforeLogin").css("display", "none");
 		$(".afterLogin").css("display", "block");
+//		$("#navMemberImg").prop("src", "_00_init/getImage?id=" + indid + "&type=MEMBER");
 	}
 	
 	// 記得會員帳密

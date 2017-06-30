@@ -4,9 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript"src="https://mail.google.com/mail/u/0/?logout&hl=en"></script>
 
-<!-- 先將使用者名稱取出 -->
-<c:set var="memberName" value="${ LoginOK.indname }" />
 <!-- 移除放在session物件內的屬性物件 -->
 <c:remove var="LoginOK" scope="session" />
 
-<h4>${ memberName } 您已經登出</h4>
+<%
+  session.invalidate();
+%>
+
+<jsp:forward page="index.jsp"/>
