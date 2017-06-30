@@ -15,7 +15,7 @@
 	<!-- Google Login -->
 	<meta name="google-signin-scope" content="profile email">
 	<meta name="google-signin-client_id" content="${abc.getGoogleClientId()}">
-	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async></script>
 <!-- 	<script type="text/javascript" src="https://mail.google.com/mail/u/0/?logout&hl=en"></script> -->
 	<script>
 		var GoogleClientId = "${abc.getGoogleClientId()}";
