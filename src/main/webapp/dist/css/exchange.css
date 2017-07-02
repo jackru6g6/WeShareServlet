@@ -1,16 +1,16 @@
 @charset "UTF-8";
-#sectionWish {
+#sectionExchange {
   padding-top: 30px;
   font-size: 18px;
   min-height: calc(100vh - 336px);
-  background-color: rgba(255, 151, 151, 0.12);
+  background-color: #eff1d8;
   /* 左邊條件篩選區 */
   /* 左邊條件篩選區的收和設定 */
   /* 右邊物資區 */ }
-  #sectionWish #sectionFilter {
+  #sectionExchange #sectionFilter {
     position: fixed;
     padding-top: 10px;
-    background-color: #fff4f4;
+    background-color: #e9ead5;
     transition: left 0.4s ease-in-out;
     /* Bootstrap3 fix z-index: 1030; */
     z-index: 1031;
@@ -22,119 +22,119 @@
     /* md */
     /* lg */ }
     @media screen and (min-width: 768px) {
-      #sectionWish #sectionFilter {
+      #sectionExchange #sectionFilter {
         top: 160px;
         left: -41.66666667%;
         height: calc(100vh - 160px); } }
     @media screen and (min-width: 992px) {
-      #sectionWish #sectionFilter {
+      #sectionExchange #sectionFilter {
         top: 80px;
         left: -33.33333333%;
         height: calc(100vh - 80px); } }
     @media screen and (min-width: 1200px) {
-      #sectionWish #sectionFilter {
+      #sectionExchange #sectionFilter {
         top: 80px;
         left: -25%;
         height: calc(100vh - 80px); } }
-    #sectionWish #sectionFilter #sectionFilterContent {
+    #sectionExchange #sectionFilter #sectionFilterContent {
       position: relative;
       /* 捲軸 */
       /* 搜尋 */
       /* 條件區塊樣式 */
       /* 收和按鈕 */ }
-      #sectionWish #sectionFilter #sectionFilterContent #contentScroll {
+      #sectionExchange #sectionFilter #sectionFilterContent #contentScroll {
         overflow-y: scroll;
         height: calc(100vh - 90px); }
         @media screen and (min-width: 768px) and (max-width: 1023px) {
-          #sectionWish #sectionFilter #sectionFilterContent #contentScroll {
+          #sectionExchange #sectionFilter #sectionFilterContent #contentScroll {
             height: calc(100vh - 170px); } }
-      #sectionWish #sectionFilter #sectionFilterContent #blockKWSearch {
+      #sectionExchange #sectionFilter #sectionFilterContent #blockKWSearch {
         position: relative;
         margin: 10px 0 10px 0;
         /* 搜尋輸入框 */
         /* 搜尋鈕圖式 */ }
-        #sectionWish #sectionFilter #sectionFilterContent #blockKWSearch #searchInput {
+        #sectionExchange #sectionFilter #sectionFilterContent #blockKWSearch #searchInput {
           width: 150px;
           padding: 5px 5px 5px 40px;
           transition: .5s; }
-          #sectionWish #sectionFilter #sectionFilterContent #blockKWSearch #searchInput:focus {
+          #sectionExchange #sectionFilter #sectionFilterContent #blockKWSearch #searchInput:focus {
             width: 100%;
             transition: .1s; }
-        #sectionWish #sectionFilter #sectionFilterContent #blockKWSearch #btKWSearch {
+        #sectionExchange #sectionFilter #sectionFilterContent #blockKWSearch #btKWSearch {
           position: absolute;
           top: 13%;
           left: 3%;
           cursor: pointer;
           margin-bottom: 10px; }
-      #sectionWish #sectionFilter #sectionFilterContent .blockFilter {
+      #sectionExchange #sectionFilter #sectionFilterContent .blockFilter {
         /* 條件標題樣式 */
         /* 條件選項樣式 */
         /* 需求者身份標題及選項顏色 */
         /* 物資類別標題及選項顏色 */
         /* 物資需求地標題及選項顏色 */ }
-        #sectionWish #sectionFilter #sectionFilterContent .blockFilter .btFilterTitle {
+        #sectionExchange #sectionFilter #sectionFilterContent .blockFilter .btFilterTitle {
           padding-left: 20px;
           height: 60px;
           font-size: 18px;
           text-align: left;
           border-radius: 0;
           border-left: 15px solid; }
-          #sectionWish #sectionFilter #sectionFilterContent .blockFilter .btFilterTitle:hover, #sectionWish #sectionFilter #sectionFilterContent .blockFilter .btFilterTitle:focus {
+          #sectionExchange #sectionFilter #sectionFilterContent .blockFilter .btFilterTitle:hover, #sectionExchange #sectionFilter #sectionFilterContent .blockFilter .btFilterTitle:focus {
             outline-color: rgba(255, 255, 255, 0);
             color: snow;
             transition: .5s; }
-        #sectionWish #sectionFilter #sectionFilterContent .blockFilter .btFilterBlock > ul {
+        #sectionExchange #sectionFilter #sectionFilterContent .blockFilter .btFilterBlock > ul {
           padding: 5px 5px 5px 20px;
           margin-bottom: 0; }
-          #sectionWish #sectionFilter #sectionFilterContent .blockFilter .btFilterBlock > ul > li {
+          #sectionExchange #sectionFilter #sectionFilterContent .blockFilter .btFilterBlock > ul > li {
             display: inline-block;
             width: 44%;
             margin: 5px;
             /* 條件選項按鈕 */ }
-            #sectionWish #sectionFilter #sectionFilterContent .blockFilter .btFilterBlock > ul > li .btnFilterType {
+            #sectionExchange #sectionFilter #sectionFilterContent .blockFilter .btFilterBlock > ul > li .btnFilterType {
               width: 100%;
               font-size: 16px;
               color: #f5f5f5; }
-        #sectionWish #sectionFilter #sectionFilterContent .blockFilter #btBy {
+        #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #btBy {
           border-color: #ffb8b8; }
-          #sectionWish #sectionFilter #sectionFilterContent .blockFilter #btBy:hover, #sectionWish #sectionFilter #sectionFilterContent .blockFilter #btBy:focus {
+          #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #btBy:hover, #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #btBy:focus {
             background-color: #ff9f9f; }
-        #sectionWish #sectionFilter #sectionFilterContent .blockFilter #blockBy {
+        #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #blockBy {
           background-color: #ffd2d2; }
-          #sectionWish #sectionFilter #sectionFilterContent .blockFilter #blockBy .btnFilterType {
+          #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #blockBy .btnFilterType {
             background-color: #ff9f9f; }
-        #sectionWish #sectionFilter #sectionFilterContent .blockFilter #btClass {
+        #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #btClass {
           border-color: #feb36b; }
-          #sectionWish #sectionFilter #sectionFilterContent .blockFilter #btClass:hover, #sectionWish #sectionFilter #sectionFilterContent .blockFilter #btClass:focus {
+          #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #btClass:hover, #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #btClass:focus {
             background-color: #fea652; }
-        #sectionWish #sectionFilter #sectionFilterContent .blockFilter #blockClass {
+        #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #blockClass {
           background-color: #fecd9e; }
-          #sectionWish #sectionFilter #sectionFilterContent .blockFilter #blockClass .btnFilterType {
+          #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #blockClass .btnFilterType {
             background-color: #fe9938; }
-        #sectionWish #sectionFilter #sectionFilterContent .blockFilter #btLoc {
+        #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #btLoc {
           border-color: #b25cc1; }
-          #sectionWish #sectionFilter #sectionFilterContent .blockFilter #btLoc:hover, #sectionWish #sectionFilter #sectionFilterContent .blockFilter #btLoc:focus {
+          #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #btLoc:hover, #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #btLoc:focus {
             background-color: #a94aba; }
-        #sectionWish #sectionFilter #sectionFilterContent .blockFilter #blockLoc {
+        #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #blockLoc {
           background-color: #c381cf; }
-          #sectionWish #sectionFilter #sectionFilterContent .blockFilter #blockLoc .btnFilterType {
+          #sectionExchange #sectionFilter #sectionFilterContent .blockFilter #blockLoc .btnFilterType {
             background-color: #9a40aa; }
-      #sectionWish #sectionFilter #sectionFilterContent #slideMenuTrigger {
+      #sectionExchange #sectionFilter #sectionFilterContent #slideMenuTrigger {
         position: absolute;
         top: 0;
         right: -75px;
         width: 60px;
         height: 60px;
         font-size: 30px;
-        background-color: #fff4f4;
-        color: #ff9797; }
-  #sectionWish #sectionFilter.active {
+        background-color: #e9ead5;
+        color: #01B468; }
+  #sectionExchange #sectionFilter.active {
     left: 0; }
-  #sectionWish #sectionGoods {
+  #sectionExchange #sectionGoods {
     padding-left: 50px;
     padding-right: 50px;
     /* 物資區塊樣式 */ }
-    #sectionWish #sectionGoods .wishGoods {
+    #sectionExchange #sectionGoods .exchangeGoods {
       background-color: #f8f7f7;
       border-radius: 5px;
       border: 1px solid rgba(0, 0, 0, 0.11);
@@ -142,33 +142,33 @@
       /* 滑鼠移至物資 */
       /* 物資圖片樣式 */
       /* 物資文字區塊 */ }
-      #sectionWish #sectionGoods .wishGoods .wishGoodsA {
+      #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsA {
         position: relative;
         display: block;
         border-radius: 5px;
         overflow: hidden; }
-      #sectionWish #sectionGoods .wishGoods .wishGoodsA:hover .wishGoodsOverlay {
+      #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsA:hover .exchangeGoodsOverlay {
         background-color: rgba(255, 255, 255, 0.9);
         transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1); }
-        #sectionWish #sectionGoods .wishGoods .wishGoodsA:hover .wishGoodsOverlay .wishGoodsOverlayText {
+        #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsA:hover .exchangeGoodsOverlay .exchangeGoodsOverlayText {
           top: 40%;
           transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1); }
           @media screen and (min-width: 768px) and (max-width: 991px) {
-            #sectionWish #sectionGoods .wishGoods .wishGoodsA:hover .wishGoodsOverlay .wishGoodsOverlayText {
+            #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsA:hover .exchangeGoodsOverlay .exchangeGoodsOverlayText {
               top: 25%; } }
-          #sectionWish #sectionGoods .wishGoods .wishGoodsA:hover .wishGoodsOverlay .wishGoodsOverlayText .wishGoodsDesc {
+          #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsA:hover .exchangeGoodsOverlay .exchangeGoodsOverlayText .exchangeGoodsDesc {
             margin-top: 30px; }
-      #sectionWish #sectionGoods .wishGoods .wishGoodsImgLayout {
+      #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsImgLayout {
         position: relative;
         overflow: hidden;
         padding-bottom: 100%; }
-        #sectionWish #sectionGoods .wishGoods .wishGoodsImgLayout .wishGoodsImg {
+        #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsImgLayout .exchangeGoodsImg {
           position: absolute;
           width: 100%;
           top: 50%;
           left: 50%;
           transform: translateX(-50%) translateY(-50%); }
-      #sectionWish #sectionGoods .wishGoods .wishGoodsOverlay {
+      #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsOverlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -178,7 +178,7 @@
         opacity: 1;
         border-radius: 5px;
         transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1); }
-      #sectionWish #sectionGoods .wishGoods .wishGoodsOverlayText {
+      #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsOverlayText {
         position: absolute;
         top: 75%;
         left: 0;
@@ -191,16 +191,16 @@
         /* 需求物資發佈者 */
         /* 需求物資描述 */
         /* 滑鼠移至需求物資描述 */ }
-        #sectionWish #sectionGoods .wishGoods .wishGoodsOverlayText .wishGoodsContent {
+        #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsOverlayText .exchangeGoodsContent {
           letter-spacing: 2px;
           margin-top: 5px; }
-        #sectionWish #sectionGoods .wishGoods .wishGoodsOverlayText .wishGoodsName {
+        #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsOverlayText .exchangeGoodsName {
           font-size: 22px;
           padding-left: 10px; }
-        #sectionWish #sectionGoods .wishGoods .wishGoodsOverlayText .wishGoodsBy {
+        #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsOverlayText .exchangeGoodsBy {
           font-size: 18px;
           padding-left: 10px; }
-        #sectionWish #sectionGoods .wishGoods .wishGoodsOverlayText .wishGoodsDesc {
+        #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsOverlayText .exchangeGoodsDesc {
           font-size: 18px;
           margin-top: 100px;
           padding: 10px;
@@ -208,7 +208,7 @@
           border: 2px solid #337ab7;
           color: #337ab7;
           transition: 1s; }
-        #sectionWish #sectionGoods .wishGoods .wishGoodsOverlayText .wishGoodsDesc:hover {
+        #sectionExchange #sectionGoods .exchangeGoods .exchangeGoodsOverlayText .exchangeGoodsDesc:hover {
           box-shadow: inset 0 0 0 2em #337ab7;
           color: #ffffff;
           transition: 1s; }

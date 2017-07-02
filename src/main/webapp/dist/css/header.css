@@ -4,6 +4,11 @@
   font-family: yen;
   src: url(../font/cwTeXYen-zhonly.ttf); }
 
+/* 加入Google font字型(Oxygen) */
+@font-face {
+  font-family: Oxygen;
+  src: url(../font/Oxygen-Regular.ttf); }
+
 /* 連結不出現底線&出現手的符號 */
 a:hover,
 a:focus {
@@ -13,9 +18,9 @@ a:focus {
 /* 內容跟頂端的距離及網站字體 */
 body {
   padding-top: 80px;
-  font-family: yen, serif; }
+  font-family: yen, Oxygen, serif; }
 
-@media screen and (min-width: 768px) and (max-width: 984px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
   body {
     padding-top: 155px; } }
 

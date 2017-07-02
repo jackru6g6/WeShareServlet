@@ -13,20 +13,7 @@
 	<title>WeShare 微分享</title>
 </head>
 
-<body>
-
-<!-- 
-	<a href="<c:url value='/_01_register/register.jsp'  />">註冊</a>
-	<c:if test="${empty LoginOK}">
-		<a href="<c:url value='/_02_login/login.jsp'  />">登入</a>
-	</c:if>
-	<c:if test="${!empty LoginOK}">
-		<a href="<c:url value='/_02_login/logout.jsp'  />">登出</a>
-	</c:if>
-	會員資料管理:
-	<a href='/Demo/FindMemberServlet?pk=${ LoginOK.indid }'>${ LoginOK.indname }</a>
- -->
- 
+<body> 
 	<header>
 		<jsp:include page="../fragment/header.jsp" />
 	</header>
@@ -99,7 +86,7 @@
 					<div class="wishItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_1.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>
@@ -118,7 +105,7 @@
 					<div class="wishItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_2.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>
@@ -137,7 +124,7 @@
 					<div class="wishItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_3.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>
@@ -156,7 +143,7 @@
 					<div class="wishItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_4.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>
@@ -202,7 +189,7 @@
 					<div class="giveItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_5.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>
@@ -221,7 +208,7 @@
 					<div class="giveItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_6.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>
@@ -240,7 +227,7 @@
 					<div class="giveItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_7.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>
@@ -259,7 +246,7 @@
 					<div class="giveItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_8.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>
@@ -305,7 +292,7 @@
 					<div class="exchangeItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_9.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>
@@ -324,7 +311,7 @@
 					<div class="exchangeItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_10.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>
@@ -343,7 +330,7 @@
 					<div class="exchangeItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_11.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>
@@ -362,7 +349,7 @@
 					<div class="exchangeItem">
 						<div>
 							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/WeShare_logo.png">
+								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_12.png">
 								<div class="itemOverlay">
 									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
 								</div>

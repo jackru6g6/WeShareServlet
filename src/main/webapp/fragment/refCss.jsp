@@ -25,6 +25,5 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/footer.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/index.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/login.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/wish.css">
 
 <!-- 引進外部資源頁面 END-->
