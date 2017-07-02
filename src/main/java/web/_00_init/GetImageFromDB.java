@@ -32,15 +32,21 @@ public class GetImageFromDB extends HttpServlet {
 		String mimeType = "text/jpg";
 		String id = request.getParameter("id");
 		String type = request.getParameter("type");
-		ib = getImage(id, type);
-		if (ib.FileName.equals("FALSE")) {
-			System.out.println("[Image]DEF");
-			is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
+		if (!id.equals("")) {
+			ib = getImage(id, type);
+			if (ib.FileName.equals("FALSE")) {
+				System.out.println("[Image]DEF");
+				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
+			} else {
+				System.out.println("[Image]OK");
+				mimeType = getServletContext().getMimeType(ib.FileName);
+				is = ib.getIs();
+			}
 		} else {
-			System.out.println("[Image]OK");
-			mimeType = getServletContext().getMimeType(ib.FileName);
-			is = ib.getIs();
+			System.out.println("[Image]DEF id=null");
+			is = getServletContext().getResourceAsStream("/dist/img/null.png");
 		}
+
 		response.setContentType(mimeType);
 
 		// 設定輸出資料的型態
