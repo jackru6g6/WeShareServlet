@@ -6,11 +6,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 
 import javax.sql.rowset.serial.SerialBlob;
 
@@ -100,6 +102,7 @@ public class _first_run {
 		GOODSTYPE_DATA(con);
 		org_data(con);
 		goods_data(con);
+		DEAL_DATA(con);
 		MSG_DATA(con);
 	}
 
@@ -352,6 +355,35 @@ public class _first_run {
 					pstmt.setString(5, sa[0]);
 					pstmt.setString(6, sa[1]);
 					pstmt.executeUpdate();
+					GlobalService.random_time_1_2();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void DEAL_DATA(Connection con) throws SQLException {
+		System.out.println("[DEAL]");
+		try (// java 7.0 提共自動關閉的資源
+				BufferedReader bf = new BufferedReader(
+						new InputStreamReader(new FileInputStream("src//main//java//web//deal.txt"), "UTF8"));) {
+			String Read_line = "";
+
+			while ((Read_line = bf.readLine()) != null) {
+				String[] sa = Read_line.split("\\|");
+
+				try {
+					CallableStatement cs = con.prepareCall(sql_Common.CALL_FUNCTION_INSERT_DEAL);
+					cs.registerOutParameter(1, Types.VARCHAR);
+					cs.setInt(2, Integer.parseInt(sa[0]));
+					cs.setString(3, sa[1]);
+					cs.setInt(4, Integer.parseInt(sa[2]));
+					cs.setInt(5, Integer.parseInt(sa[3]));
+					cs.executeUpdate();
 					GlobalService.random_time_1_2();
 				} catch (Exception e) {
 					e.printStackTrace();

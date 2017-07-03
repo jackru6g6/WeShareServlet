@@ -1,0 +1,8 @@
+1|kitty|10|1
+22|micky|20|1
+15|micky|3|2
+27|kitty|10|1
+44|kitty|5|2
+17|google|3|1
+12|micky|18|2
+11|kitty|20|2
