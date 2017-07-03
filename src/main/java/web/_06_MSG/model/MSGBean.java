@@ -12,7 +12,7 @@ public class MSGBean {
 	String MSGTEXT;
 	Blob MSGIMAGE;
 	String MSGFILENAME;
-
+	int ROOMNO;
 	public MSGBean() {
 		// TODO Auto-generated constructor stub
 	}
@@ -28,7 +28,7 @@ public class MSGBean {
 	}
 
 	public MSGBean(int mSGNO, int mSGSTATUS, Timestamp pOSTDATE, String mSGSOURCEID, String mSGENDID, String mSGTEXT,
-			Blob mSGIMAGE, String mSGFILENAME) {
+			Blob mSGIMAGE, String mSGFILENAME, int rOOMNO) {
 		super();
 		MSGNO = mSGNO;
 		MSGSTATUS = mSGSTATUS;
@@ -38,6 +38,7 @@ public class MSGBean {
 		MSGTEXT = mSGTEXT;
 		MSGIMAGE = mSGIMAGE;
 		MSGFILENAME = mSGFILENAME;
+		ROOMNO = rOOMNO;
 	}
 
 	public int getMSGNO() {
@@ -103,4 +104,14 @@ public class MSGBean {
 	public void setMSGFILENAME(String mSGFILENAME) {
 		MSGFILENAME = mSGFILENAME;
 	}
+
+	public int getROOMNO() {
+		return ROOMNO;
+	}
+
+	public void setROOMNO(int rOOMNO) {
+		ROOMNO = rOOMNO;
+	}
+
+
 }

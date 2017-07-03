@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import web._00_init.GlobalService;
+import web._01_register.model.MemberBean;
 import web._02_login.model.GoogleLoginBean;
 import web._06_MSG.model.MSGBean;
 import web._06_MSG.model.MSGDAO;
@@ -45,19 +46,29 @@ public class AddNewMSGServlet extends HttpServlet {
 
 	public void do_First(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String INDID = "kitty";
-		// Cookie[] cookies = request.getCookies();
-		// if (cookies != null) {
-		// for (int i = 0; i < cookies.length; i++) {
-		// Cookie cookie = cookies[i];
-		// if (cookie.getName().equals("user"))
-		// INDID = URLDecoder.decode(cookie.getValue(), "UTF-8");
-		// }
-		// }
-		System.out.println("[add new msg]cookie INDID=" + INDID);
+		String INDID = "";
+		HttpSession session = request.getSession(false);
+		// 紀錄目前請求的RequestURI,以便使用者登入成功後能夠回到原本的畫面
+		String requestURI = request.getRequestURI();
+		// System.out.println("requestURI=" + requestURI);
+		// 如果session物件不存在
+		if (session == null || session.isNew()) {
+			// 請使用者登入
+			response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
+			return;
+		}
+		session.setAttribute("requestURI", requestURI);
+		// 此時session物件存在，讀取session物件內的LoginOK
+		// 以檢查使用者是否登入。
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		if (mb == null) {
+			response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
+			return;
+		}
+		INDID = mb.getIndid();
+		System.out.println("session INDID=" + INDID);
 
 		String contextPath = request.getContextPath();
-		HttpSession session = request.getSession();
 		GoogleLoginBean GLB = (GoogleLoginBean) session.getAttribute("FINDGLB");
 		Map<String, String> errorMsg = new HashMap<String, String>();
 		// 準備存放註冊成功之訊息的Map物件

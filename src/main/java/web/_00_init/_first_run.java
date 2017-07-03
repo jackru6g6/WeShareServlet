@@ -48,12 +48,15 @@ public class _first_run {
 		stmt.executeUpdate(sql_Common.DROP_TABLE_LOCAL);
 
 		stmt.executeUpdate(sql_Common.DROP_TABLE_MSG);
+		stmt.executeUpdate(sql_Common.DROP_TABLE_MSG_ROOM);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_FEEDBACK);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_DEAL);
 
 		stmt.executeUpdate(sql_Common.DROP_TABLE_ORG);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_ORGTYPE);
 		stmt.executeUpdate(sql_Common.DROP_TABLE_IND);
+		stmt.executeUpdate(sql_Common.DROP_FUNCTION_INSERT_DEAL);
+		stmt.executeUpdate(sql_Common.DROP_FUNCTION_CHECK_ROOMNO);
 	}
 
 	public static void CreateTable(Statement stmt) throws SQLException {
@@ -66,159 +69,165 @@ public class _first_run {
 		stmt.executeUpdate(sql_Common.CREATE_TABLE_GOODS);
 		stmt.executeUpdate(sql_Common.CREATE_TABLE_DEAL);
 		stmt.executeUpdate(sql_Common.CREATE_TABLE_FEEDBACK);
+		stmt.executeUpdate(sql_Common.CREATE_TABLE_MSG_ROOM);
 		stmt.executeUpdate(sql_Common.CREATE_TABLE_MSG);
+		stmt.executeUpdate(sql_Common.CREATE_FUNCTION_INSERT_DEAL);
+		stmt.executeUpdate(sql_Common.CREATE_FUNCTION_CHECK_ROOMNO);
 
 	}
 
 	public static void CreateData(Connection con) throws SQLException {
 		MemberBean mb1 = new MemberBean(1, null, "kitty", "123", "凱蒂", "0229625270", "kitty@gmail.com", "新北市板橋區中正路100號",
-				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\kitty.jpg")),"kitty.jpg");
+				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\kitty.jpg")),
+				"kitty.jpg");
 		MemberBean mb2 = new MemberBean(2, null, "Google", "123", "谷哥大神", "0229625270", "Google@gmail.com",
-				"台北市大安區xxx巷xxxx號", new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\Google.jpg")),"Google.jpg");
-		
-		OrgBean ob2 = new OrgBean(mb2.getIndid(), null, "我是社福簡介", "社福負責人", 1, "立案核准", "勸募許可", new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\Googleorg.jpg")),"Googleorg.jpg");
-		
-		
-		MemberBean mb3 = new MemberBean(1, null, "micky", "123", "米奇", "0228825252", "micky@gmail.com", "米奇的家", new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\micky.png")),"micky.png");
+				"台北市大安區xxx巷xxxx號",
+				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\Google.jpg")),
+				"Google.jpg");
+
+		OrgBean ob2 = new OrgBean(mb2.getIndid(), null, "我是社福簡介", "社福負責人", 1, "立案核准", "勸募許可",
+				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\Googleorg.jpg")),
+				"Googleorg.jpg");
+
+		MemberBean mb3 = new MemberBean(1, null, "micky", "123", "米奇", "0228825252", "micky@gmail.com", "米奇的家",
+				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\micky.png")),
+				"micky.png");
 		ORGTYPE_DATA(con);
 		IND_DATA(mb1, con);
 		ORG_DATA(mb2, ob2, con);
 		IND_DATA(mb3, con);
 		LOCAL_DATA(con);
 		GOODSTYPE_DATA(con);
-		GOODS_DATA(con);
+		// GOODS_DATA(con);
 		MSG_DATA(con);
 		org_data(con);
 		goods_data(con);
 	}
-	
+
 	public static void org_data(Connection con) throws SQLException {
 		try {
-				String line1="";
-				String sql1 = "insert into ind " +
-		  		" (usertype,postdate,indid,indpassword,indname,indphone,indemail,indaddress,indimage,indfilename) " +
-		  		" values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				con.setAutoCommit(false);
-				PreparedStatement pstmt1 = con.prepareStatement(sql1);	            
-				BufferedReader br = new BufferedReader(
-	        		  new InputStreamReader(new FileInputStream("src//main//java//web//orgind.txt"), "UTF8"));     
-				while ( (line1 = br.readLine() ) != null){
-	        	  if (line1.startsWith("\uFEFF")){
-	        		  line1 = line1.substring(1);
-	        	  }	        	  
-		          String[] token = line1.split("\\|");
-				  pstmt1.setInt(1, Integer.parseInt(token[0]));
-	          	  java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-		          pstmt1.setTimestamp(2, now);
-		          pstmt1.setString(3, token[2].trim());
-				  pstmt1.setString(4, GlobalService.getMD5Endocing(GlobalService.encryptString(token[3].trim())));
-				  pstmt1.setString(5, token[4].trim());
-				  pstmt1.setString(6, token[5].trim());
-				  pstmt1.setString(7, token[6].trim());
-				  pstmt1.setString(8, token[7].trim());
-	        	  File aFile = new File("src\\main\\webapp\\images\\org\\" + token[8].trim());
-	        	  long size = aFile.length();
-	        	  InputStream is = new FileInputStream(aFile);
-	        	  pstmt1.setBlob(9, is, size);
-	    	  	  String fileName = aFile.getName();
-	    	  	  fileName = GlobalService.adjustFileName(fileName, GlobalService.IMAGE_FILENAME_LENGTH);
-	    	  	  pstmt1.setString(10, fileName);  
-	              int r = pstmt1.executeUpdate();
+			String line1 = "";
+			String sql1 = "insert into ind "
+					+ " (usertype,postdate,indid,indpassword,indname,indphone,indemail,indaddress,indimage,indfilename) "
+					+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			con.setAutoCommit(false);
+			PreparedStatement pstmt1 = con.prepareStatement(sql1);
+			BufferedReader br = new BufferedReader(
+					new InputStreamReader(new FileInputStream("src//main//java//web//orgind.txt"), "UTF8"));
+			while ((line1 = br.readLine()) != null) {
+				if (line1.startsWith("\uFEFF")) {
+					line1 = line1.substring(1);
 				}
+				String[] token = line1.split("\\|");
+				pstmt1.setInt(1, Integer.parseInt(token[0]));
+				java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+				pstmt1.setTimestamp(2, now);
+				pstmt1.setString(3, token[2].trim());
+				pstmt1.setString(4, GlobalService.getMD5Endocing(GlobalService.encryptString(token[3].trim())));
+				pstmt1.setString(5, token[4].trim());
+				pstmt1.setString(6, token[5].trim());
+				pstmt1.setString(7, token[6].trim());
+				pstmt1.setString(8, token[7].trim());
+				File aFile = new File("src\\main\\webapp\\images\\org\\" + token[8].trim());
+				long size = aFile.length();
+				InputStream is = new FileInputStream(aFile);
+				pstmt1.setBlob(9, is, size);
+				String fileName = aFile.getName();
+				fileName = GlobalService.adjustFileName(fileName, GlobalService.IMAGE_FILENAME_LENGTH);
+				pstmt1.setString(10, fileName);
+				int r = pstmt1.executeUpdate();
+			}
 
-				String line2="";
-				String sql2 = "insert into org " +
-		  		" (indid,updatetime,intro,leader,orgtypes,registerno,raiseno,orgimage,orgfilename) " +
-		  		" values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				PreparedStatement pstmt2 = con.prepareStatement(sql2);
+			String line2 = "";
+			String sql2 = "insert into org "
+					+ " (indid,updatetime,intro,leader,orgtypes,registerno,raiseno,orgimage,orgfilename) "
+					+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement pstmt2 = con.prepareStatement(sql2);
 
-				BufferedReader br2 = new BufferedReader(
-	        		  new InputStreamReader(new FileInputStream("src//main//java//web//org.txt"), "UTF8"));     
-				while ( (line2 = br2.readLine() ) != null){
-	        	  if (line2.startsWith("\uFEFF")){
-	        		  line2 = line2.substring(1);
-	        	  }	        	  
-		          String[] token = line2.split("\\|");
-		          pstmt2.setString(1, token[0].trim());
-	          	  java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-		          pstmt2.setTimestamp(2, now);
-		          pstmt2.setString(3, token[2].trim());
-		          pstmt2.setString(4, token[3].trim());
-		          pstmt2.setInt(5, Integer.parseInt(token[4]));
-		          pstmt2.setString(6, token[5].trim());
-		          pstmt2.setString(7, token[6].trim());
-
-	        	  File aFile = new File("src\\main\\webapp\\images\\org\\" + token[7].trim());
-	        	  long size = aFile.length();
-	        	  InputStream is = new FileInputStream(aFile);
-	        	  pstmt2.setBlob(8, is, size);
-	    	  	  String fileName = aFile.getName();
-	    	  	  fileName = GlobalService.adjustFileName(fileName, GlobalService.IMAGE_FILENAME_LENGTH);
-	    	  	  pstmt2.setString(9, fileName);  
-	              int r = pstmt2.executeUpdate();
+			BufferedReader br2 = new BufferedReader(
+					new InputStreamReader(new FileInputStream("src//main//java//web//org.txt"), "UTF8"));
+			while ((line2 = br2.readLine()) != null) {
+				if (line2.startsWith("\uFEFF")) {
+					line2 = line2.substring(1);
 				}
-				con.setAutoCommit(true);
-//	            System.out.println("新增一筆ord紀錄是否成功=" + r);	          
-	      } catch(SQLException e) {
-	          System.err.println("新建ind_org表格時發生SQL例外: " + e.getMessage());
-	          e.printStackTrace();
-	      } catch(IOException e) {
-	          System.err.println("新建ind_org表格時發生IO例外: " + e.getMessage());
-	      } 
+				String[] token = line2.split("\\|");
+				pstmt2.setString(1, token[0].trim());
+				java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+				pstmt2.setTimestamp(2, now);
+				pstmt2.setString(3, token[2].trim());
+				pstmt2.setString(4, token[3].trim());
+				pstmt2.setInt(5, Integer.parseInt(token[4]));
+				pstmt2.setString(6, token[5].trim());
+				pstmt2.setString(7, token[6].trim());
+
+				File aFile = new File("src\\main\\webapp\\images\\org\\" + token[7].trim());
+				long size = aFile.length();
+				InputStream is = new FileInputStream(aFile);
+				pstmt2.setBlob(8, is, size);
+				String fileName = aFile.getName();
+				fileName = GlobalService.adjustFileName(fileName, GlobalService.IMAGE_FILENAME_LENGTH);
+				pstmt2.setString(9, fileName);
+				int r = pstmt2.executeUpdate();
+			}
+			con.setAutoCommit(true);
+			// System.out.println("新增一筆ord紀錄是否成功=" + r);
+		} catch (SQLException e) {
+			System.err.println("新建ind_org表格時發生SQL例外: " + e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.err.println("新建ind_org表格時發生IO例外: " + e.getMessage());
+		}
 	}
 
-	
 	public static void goods_data(Connection con) throws SQLException {
 		try {
-			  String line="";
-	          String sql = "insert into goods " +
-		  		" (goodsno,  goodsstatus,  updatetime, indid, goodstype, goodsname, goodsloc, goodsnote, qty, goodsshipway, deadline,goodsimage,goodsfilename) " +
-		  		" values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	          PreparedStatement pstmt = con.prepareStatement(sql);
-	            
-	          BufferedReader br = new BufferedReader(
-	        		  new InputStreamReader(new FileInputStream("src//main//java//web//goods.txt"), "UTF8"));     
-	          while ( (line = br.readLine() ) != null){
-	        	  // 去除 UTF8_BOM
-	        	  if (line.startsWith("\uFEFF")){
-	        		  line = line.substring(1);
-	        	  }	        	  
-		          String[] token = line.split("\\|");
-				  pstmt.setInt(1, Integer.parseInt(token[0]));
-				  pstmt.setInt(2, Integer.parseInt(token[1]));
-	          	  java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-		          pstmt.setTimestamp(3, now);
-				  pstmt.setString(4, token[3].trim());
-				  pstmt.setInt(5, Integer.parseInt(token[4]));
-				  pstmt.setString(6, token[5].trim());
-				  pstmt.setInt(7, Integer.parseInt(token[6]));
-				  pstmt.setString(8, token[7].trim());
-				  pstmt.setInt(9, Integer.parseInt(token[8]));
-				  pstmt.setInt(10, Integer.parseInt(token[9]));
-				  pstmt.setLong(11, Long.parseLong(token[10]));
-	        	  // 讀取圖片檔
-	        	  File aFile = new File("src\\main\\webapp\\images\\goods\\" + token[11].trim());
-	        	  long size = aFile.length();
-	        	  InputStream is = new FileInputStream(aFile);
-	        	  pstmt.setBlob(12, is, size);
-				  // 設定fileName欄位
-	    	  	  String fileName = aFile.getName();
-	    	  	  fileName = GlobalService.adjustFileName(fileName, GlobalService.IMAGE_FILENAME_LENGTH);
-	    	  	  pstmt.setString(13, fileName);    	 
-	
-	              int r = pstmt.executeUpdate();
-//	              System.out.println("新增一筆goods紀錄是否成功=" + r);
-	          }
-//	          System.out.println("goods資料新增成功") ;
-	      } catch(SQLException e) {
-	          System.err.println("新建goods表格時發生SQL例外: " + e.getMessage());
-	          e.printStackTrace();
-	      } catch(IOException e) {
-	          System.err.println("新建goods表格時發生IO例外: " + e.getMessage());
-	      } 
+			String line = "";
+			String sql = "insert into goods "
+					+ " (goodsno,  goodsstatus,  updatetime, indid, goodstype, goodsname, goodsloc, goodsnote, qty, goodsshipway, deadline,goodsimage,goodsfilename) "
+					+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+
+			BufferedReader br = new BufferedReader(
+					new InputStreamReader(new FileInputStream("src//main//java//web//goods.txt"), "UTF8"));
+			while ((line = br.readLine()) != null) {
+				// 去除 UTF8_BOM
+				if (line.startsWith("\uFEFF")) {
+					line = line.substring(1);
+				}
+				String[] token = line.split("\\|");
+				pstmt.setInt(1, Integer.parseInt(token[0]));
+				pstmt.setInt(2, Integer.parseInt(token[1]));
+				java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+				pstmt.setTimestamp(3, now);
+				pstmt.setString(4, token[3].trim());
+				pstmt.setInt(5, Integer.parseInt(token[4]));
+				pstmt.setString(6, token[5].trim());
+				pstmt.setInt(7, Integer.parseInt(token[6]));
+				pstmt.setString(8, token[7].trim());
+				pstmt.setInt(9, Integer.parseInt(token[8]));
+				pstmt.setInt(10, Integer.parseInt(token[9]));
+				pstmt.setLong(11, Long.parseLong(token[10]));
+				// 讀取圖片檔
+				File aFile = new File("src\\main\\webapp\\images\\goods\\" + token[11].trim());
+				long size = aFile.length();
+				InputStream is = new FileInputStream(aFile);
+				pstmt.setBlob(12, is, size);
+				// 設定fileName欄位
+				String fileName = aFile.getName();
+				fileName = GlobalService.adjustFileName(fileName, GlobalService.IMAGE_FILENAME_LENGTH);
+				pstmt.setString(13, fileName);
+
+				int r = pstmt.executeUpdate();
+				// System.out.println("新增一筆goods紀錄是否成功=" + r);
+			}
+			// System.out.println("goods資料新增成功") ;
+		} catch (SQLException e) {
+			System.err.println("新建goods表格時發生SQL例外: " + e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.err.println("新建goods表格時發生IO例外: " + e.getMessage());
+		}
 	}
-	
-	
 
 	public static void IND_DATA(MemberBean mb1, Connection con) throws SQLException {
 
@@ -362,31 +371,39 @@ public class _first_run {
 		pstmt.executeUpdate();
 	}
 
-	public static void MSG_DATA(Connection con) throws SQLException{
+	public static void MSG_DATA(Connection con) throws SQLException {
 		System.out.println("[MSG]");
 		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_MSG);
 		pstmt.setString(1, "kitty");
 		pstmt.setString(2, "Google");
 		pstmt.setString(3, "安安你好安安我是凱蒂");
 		pstmt.setString(4, "");
+		pstmt.setString(5, "kitty");
+		pstmt.setString(6, "Google");
 		pstmt.executeUpdate();
 		GlobalService.random_time_3_5();
 		pstmt.setString(1, "Google");
 		pstmt.setString(2, "kitty");
 		pstmt.setString(3, "安安你好安安我是谷哥大人");
 		pstmt.setString(4, "");
+		pstmt.setString(5, "Google");
+		pstmt.setString(6, "kitty");
 		pstmt.executeUpdate();
 		GlobalService.random_time_3_5();
 		pstmt.setString(1, "Google");
 		pstmt.setString(2, "micky");
 		pstmt.setString(3, "安安你好我是大神");
 		pstmt.setString(4, "");
+		pstmt.setString(5, "Google");
+		pstmt.setString(6, "micky");
 		pstmt.executeUpdate();
 		GlobalService.random_time_3_5();
 		pstmt.setString(1, "micky");
 		pstmt.setString(2, "kitty");
 		pstmt.setString(3, "安安你好安安!!我是米奇");
 		pstmt.setString(4, "");
+		pstmt.setString(5, "micky");
+		pstmt.setString(6, "kitty");
 		pstmt.executeUpdate();
 	}
 }

@@ -33,12 +33,15 @@ public class MSGDAO {
 	public String Insert_MSG(MSGBean msgb, InputStream image, long imagesize) {
 		String ans = "FALSE";
 		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con.prepareStatement("INSERT INTO MSG VALUE(null,'2',null,?,?,?,?,?)");) {
+				PreparedStatement pstmt = con
+						.prepareStatement("INSERT INTO MSG VALUE(null,'2',null,?,?,?,?,?,check_roomNo(?,?))");) {
 			pstmt.setString(1, msgb.getMSGSOURCEID());
 			pstmt.setString(2, msgb.getMSGENDID());
 			pstmt.setString(3, msgb.getMSGTEXT());
 			pstmt.setBinaryStream(4, image, imagesize);
 			pstmt.setString(5, msgb.getMSGFILENAME());
+			pstmt.setString(6, msgb.getMSGSOURCEID());
+			pstmt.setString(7, msgb.getMSGENDID());
 			pstmt.executeUpdate();
 			ans = "TRUE";
 		} catch (Exception e) {
@@ -66,6 +69,7 @@ public class MSGDAO {
 				msgb.setMSGTEXT(rs.getString(6));
 				msgb.setMSGIMAGE(rs.getBlob(7));
 				msgb.setMSGFILENAME(rs.getString(8));
+				msgb.setROOMNO(rs.getInt(9));
 				coll.add(msgb);
 			}
 			rs.close();
