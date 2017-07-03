@@ -21,6 +21,215 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 		ds = (DataSource) ctx.lookup(GlobalService.JNDI_DB_NAME);
 	}	
 	
+	
+	public List<GoodsBean> getGoods() throws SQLException{
+		List<GoodsBean> list = new ArrayList<>();
+		Connection con = ds.getConnection();
+		try {
+			String sql = "Select * from goods ";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();			
+			while (rs.next()) {
+				GoodsBean bean = new GoodsBean();
+				bean.setGoodsno(rs.getInt(1));
+				bean.setGoodsstatus(rs.getInt(2));
+				bean.setUpdatetime(rs.getTimestamp(3));
+				bean.setIndid(rs.getString(4));
+				bean.setGoodstype(rs.getInt(5));
+				bean.setGoodsname(rs.getString(6));
+				bean.setGoodsloc(rs.getInt(7));
+				bean.setGoodsnote(rs.getString(8));
+				bean.setQty(rs.getInt(9));
+				bean.setGoodsshipway(rs.getInt(10));
+				bean.setDeadline(rs.getLong(11));
+				bean.setGoodsimage(rs.getBlob(12));
+				bean.setGoodsfilename(rs.getString(13));
+				list.add(bean);
+			}
+		} finally {
+			con.close();
+		}
+		return list;
+		
+	}
+	
+	public List<GoodsBean> getGoodsByGoodsStatus(String goodsstatus)throws SQLException{
+		List<GoodsBean> list = new ArrayList<>();
+		Connection con = ds.getConnection();
+		try {
+			String sql = "Select * from goods "
+					+ " where goodsstatus = ?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, goodsstatus);
+			ResultSet rs = stmt.executeQuery();			
+			while (rs.next()) {
+				// 建立一個新的GoodsBean物件
+				GoodsBean bean = new GoodsBean();
+				// 將此紀錄內的資料放入GoodsBean物件
+				bean.setGoodsno(rs.getInt(1));
+				bean.setGoodsstatus(rs.getInt(2));
+				bean.setUpdatetime(rs.getTimestamp(3));
+				bean.setIndid(rs.getString(4));
+				bean.setGoodstype(rs.getInt(5));
+				bean.setGoodsname(rs.getString(6));
+				bean.setGoodsloc(rs.getInt(7));
+				bean.setGoodsnote(rs.getString(8));
+				bean.setQty(rs.getInt(9));
+				bean.setGoodsshipway(rs.getInt(10));
+				bean.setDeadline(rs.getLong(11));
+				bean.setGoodsimage(rs.getBlob(12));
+				bean.setGoodsfilename(rs.getString(13));
+				// 最後將GoodsBean物件放入大的容器內
+				list.add(bean);
+			}
+		} finally {
+			con.close();
+		}
+		return list;
+		
+	}
+	
+	public List<GoodsBean> getGoodsByKeyword(String keyword) throws SQLException{
+		List<GoodsBean> list = new ArrayList<>();
+		Connection con = ds.getConnection();
+		try {
+			String sql = "Select * from goods "
+					+ " where goodsname like ?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, "%" + keyword + "%");
+			ResultSet rs = stmt.executeQuery();			
+			while (rs.next()) {
+				GoodsBean bean = new GoodsBean();
+				bean.setGoodsno(rs.getInt(1));
+				bean.setGoodsstatus(rs.getInt(2));
+				bean.setUpdatetime(rs.getTimestamp(3));
+				bean.setIndid(rs.getString(4));
+				bean.setGoodstype(rs.getInt(5));
+				bean.setGoodsname(rs.getString(6));
+				bean.setGoodsloc(rs.getInt(7));
+				bean.setGoodsnote(rs.getString(8));
+				bean.setQty(rs.getInt(9));
+				bean.setGoodsshipway(rs.getInt(10));
+				bean.setDeadline(rs.getLong(11));
+				bean.setGoodsimage(rs.getBlob(12));
+				bean.setGoodsfilename(rs.getString(13));
+				list.add(bean);
+			}
+		} finally {
+			con.close();
+		}
+		return list;
+		
+	}
+	
+	public List<GoodsBean> getGoodsByGoodsLoc(String goodsloc) throws SQLException{
+		List<GoodsBean> list = new ArrayList<>();
+		Connection con = ds.getConnection();
+		try {
+			String sql = "Select * from goods "
+					+ " where goodsloc = ?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, goodsloc);
+			ResultSet rs = stmt.executeQuery();			
+			while (rs.next()) {
+				GoodsBean bean = new GoodsBean();
+				bean.setGoodsno(rs.getInt(1));
+				bean.setGoodsstatus(rs.getInt(2));
+				bean.setUpdatetime(rs.getTimestamp(3));
+				bean.setIndid(rs.getString(4));
+				bean.setGoodstype(rs.getInt(5));
+				bean.setGoodsname(rs.getString(6));
+				bean.setGoodsloc(rs.getInt(7));
+				bean.setGoodsnote(rs.getString(8));
+				bean.setQty(rs.getInt(9));
+				bean.setGoodsshipway(rs.getInt(10));
+				bean.setDeadline(rs.getLong(11));
+				bean.setGoodsimage(rs.getBlob(12));
+				bean.setGoodsfilename(rs.getString(13));
+				list.add(bean);
+			}
+		} finally {
+			con.close();
+		}
+		return list;
+		
+	}
+	
+	
+	public List<GoodsBean> getGoodsByGoodsType(String goodstype) throws SQLException{
+		List<GoodsBean> list = new ArrayList<>();
+		Connection con = ds.getConnection();
+		try {
+			String sql = "Select * from goods "
+					+ " where goodstype = ?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, goodstype);
+			ResultSet rs = stmt.executeQuery();			
+			while (rs.next()) {
+				GoodsBean bean = new GoodsBean();
+				bean.setGoodsno(rs.getInt(1));
+				bean.setGoodsstatus(rs.getInt(2));
+				bean.setUpdatetime(rs.getTimestamp(3));
+				bean.setIndid(rs.getString(4));
+				bean.setGoodstype(rs.getInt(5));
+				bean.setGoodsname(rs.getString(6));
+				bean.setGoodsloc(rs.getInt(7));
+				bean.setGoodsnote(rs.getString(8));
+				bean.setQty(rs.getInt(9));
+				bean.setGoodsshipway(rs.getInt(10));
+				bean.setDeadline(rs.getLong(11));
+				bean.setGoodsimage(rs.getBlob(12));
+				bean.setGoodsfilename(rs.getString(13));
+				list.add(bean);
+			}
+		} finally {
+			con.close();
+		}
+		return list;
+	}
+	
+	
+	public List<GoodsBean> getGoodsByUserType(int usertype) throws SQLException{
+		List<GoodsBean> list = new ArrayList<>();
+		Connection con = ds.getConnection();
+		try {
+			String sql = "Select g.goodsno, g.goodsstatus,g.updatetime,"
+					+ "g.indid,g.goodstype,g.goodsname,g.goodsloc,g.goodsnote,"
+					+ "g.qty,g.goodsshipway,g.deadline,g.goodsimage,g.goodsfilename"
+					+ " from goods g join ind i "
+					+ " where g.indid = i.indid and i.usertype = ?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, usertype);
+			ResultSet rs = stmt.executeQuery();			
+			while (rs.next()) {
+				GoodsBean bean = new GoodsBean();
+				bean.setGoodsno(rs.getInt(1));
+				bean.setGoodsstatus(rs.getInt(2));
+				bean.setUpdatetime(rs.getTimestamp(3));
+				bean.setIndid(rs.getString(4));
+				bean.setGoodstype(rs.getInt(5));
+				bean.setGoodsname(rs.getString(6));
+				bean.setGoodsloc(rs.getInt(7));
+				bean.setGoodsnote(rs.getString(8));
+				bean.setQty(rs.getInt(9));
+				bean.setGoodsshipway(rs.getInt(10));
+				bean.setDeadline(rs.getLong(11));
+				bean.setGoodsimage(rs.getBlob(12));
+				bean.setGoodsfilename(rs.getString(13));
+				list.add(bean);
+			}
+		} finally {
+			con.close();
+		}
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
 	//利用會員帳號(indid) + 截止日之前 ==> 找到該會員現存的所有物資箱紀錄
 	public List<GoodsBean> getGoodsByIndId(String indid,long now) throws SQLException {
 		List<GoodsBean> list = new ArrayList<>();
