@@ -98,10 +98,9 @@ public class _first_run {
 		IND_DATA(mb3, con);
 		LOCAL_DATA(con);
 		GOODSTYPE_DATA(con);
-		// GOODS_DATA(con);
-		MSG_DATA(con);
 		org_data(con);
 		goods_data(con);
+		MSG_DATA(con);
 	}
 
 	public static void org_data(Connection con) throws SQLException {
@@ -301,43 +300,6 @@ public class _first_run {
 
 	};
 
-	public static void GOODS_DATA(Connection con) throws SQLException {
-		System.out.println("[GOODS]");
-		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_GOODS);
-		pstmt.setInt(1, Integer.parseInt("1"));// 1募資2捐贈3以物易物
-		pstmt.setString(2, "kitty");// 需求者帳號
-		pstmt.setInt(3, Integer.parseInt("1"));// 物資類別
-		pstmt.setString(4, "克林奶粉");// 需求者帳號
-		pstmt.setInt(5, Integer.parseInt("7"));// 物資類別
-		pstmt.setString(6, "我是備註");// 備註
-		pstmt.setInt(7, Integer.parseInt("10"));// 數量
-		pstmt.setInt(8, Integer.parseInt("2"));// 1面交2宅配3都可配送方式
-		pstmt.setInt(9, Integer.parseInt("1501516800"));// 2017_08_01_00:00:00
-		pstmt.executeUpdate();
-		GlobalService.random_time_3_5();
-		pstmt.setInt(1, Integer.parseInt("1"));// 1募資2捐贈3以物易物
-		pstmt.setString(2, "kitty");// 需求者帳號
-		pstmt.setInt(3, Integer.parseInt("1"));// 物資類別
-		pstmt.setString(4, "濕紙巾");// 物資名稱
-		pstmt.setInt(5, Integer.parseInt("10"));// 地區
-		pstmt.setString(6, "建議無香味、無酒精者為佳");// 備註
-		pstmt.setInt(7, Integer.parseInt("50"));// 數量
-		pstmt.setInt(8, Integer.parseInt("2"));// 1面交2宅配3都可配送方式
-		pstmt.setInt(9, Integer.parseInt("1502294400"));// 2017_08_10_00:00:00
-		pstmt.executeUpdate();
-		GlobalService.random_time_3_5();
-		pstmt.setInt(1, Integer.parseInt("1"));// 1募資2捐贈3以物易物
-		pstmt.setString(2, "kitty");// 需求者帳號
-		pstmt.setInt(3, Integer.parseInt("1"));// 物資類別
-		pstmt.setString(4, "濕紙巾");// 物資名稱
-		pstmt.setInt(5, Integer.parseInt("5"));// 地區
-		pstmt.setString(6, "移工庇護中心住宿使用；辦公室使用");// 備註
-		pstmt.setInt(7, Integer.parseInt("50"));// 數量
-		pstmt.setInt(8, Integer.parseInt("2"));// 1面交2宅配3都可配送方式
-		pstmt.setInt(9, Integer.parseInt("1"));// 2017_08_10_00:00:00
-		pstmt.executeUpdate();
-	}
-
 	public static void GOODSTYPE_DATA(Connection con) throws SQLException {
 		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_GOODSTYPE);
 		pstmt.setString(1, "乾貨食品");
@@ -373,38 +335,32 @@ public class _first_run {
 
 	public static void MSG_DATA(Connection con) throws SQLException {
 		System.out.println("[MSG]");
-		PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_MSG);
-		pstmt.setString(1, "kitty");
-		pstmt.setString(2, "Google");
-		pstmt.setString(3, "安安你好安安我是凱蒂");
-		pstmt.setString(4, "");
-		pstmt.setString(5, "kitty");
-		pstmt.setString(6, "Google");
-		pstmt.executeUpdate();
-		GlobalService.random_time_3_5();
-		pstmt.setString(1, "Google");
-		pstmt.setString(2, "kitty");
-		pstmt.setString(3, "安安你好安安我是谷哥大人");
-		pstmt.setString(4, "");
-		pstmt.setString(5, "Google");
-		pstmt.setString(6, "kitty");
-		pstmt.executeUpdate();
-		GlobalService.random_time_3_5();
-		pstmt.setString(1, "Google");
-		pstmt.setString(2, "micky");
-		pstmt.setString(3, "安安你好我是大神");
-		pstmt.setString(4, "");
-		pstmt.setString(5, "Google");
-		pstmt.setString(6, "micky");
-		pstmt.executeUpdate();
-		GlobalService.random_time_3_5();
-		pstmt.setString(1, "micky");
-		pstmt.setString(2, "kitty");
-		pstmt.setString(3, "安安你好安安!!我是米奇");
-		pstmt.setString(4, "");
-		pstmt.setString(5, "micky");
-		pstmt.setString(6, "kitty");
-		pstmt.executeUpdate();
+		try (// java 7.0 提共自動關閉的資源
+				BufferedReader bf = new BufferedReader(
+						new InputStreamReader(new FileInputStream("src//main//java//web//msg.txt"), "UTF8"));) {
+			String Read_line = "";
+
+			while ((Read_line = bf.readLine()) != null) {
+				String[] sa = Read_line.split("\\|");
+
+				try {
+					PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_MSG);
+					pstmt.setString(1, sa[0]);
+					pstmt.setString(2, sa[1]);
+					pstmt.setString(3, sa[2]);
+					pstmt.setString(4, "");
+					pstmt.setString(5, sa[0]);
+					pstmt.setString(6, sa[1]);
+					pstmt.executeUpdate();
+					GlobalService.random_time_1_2();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
 // MYSQL

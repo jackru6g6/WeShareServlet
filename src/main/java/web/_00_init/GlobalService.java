@@ -174,7 +174,7 @@ public class GlobalService {
 					part.write("part_" + name);
 					value = req.getParameter(name);
 				}
-				System.out.printf("%-15s %-15s %8d  %-20s \n", name, contentType, size, value);
+//				System.out.printf("%-15s %-15s %8d  %-20s \n", name, contentType, size, value);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -283,9 +283,9 @@ public class GlobalService {
 		return ByteArray;
 	}
 
-	public static void random_time_3_5() {
-		int upperBound = 5000;
-		int lowerBound = 3000;
+	public static void random_time_1_2() {
+		int upperBound = 2000;
+		int lowerBound = 1000;
 		int num = (int) (Math.random() * (upperBound - lowerBound + 1)) + lowerBound;
 		System.out.println("延遲時間:"+num/1000+"."+num%1000+"秒");
 		try {
