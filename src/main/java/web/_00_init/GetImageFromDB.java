@@ -88,6 +88,13 @@ public class GetImageFromDB extends HttpServlet {
 							"SELECT count(msgFileName),msgImage,msgFileName from MSG where msgno = ?");
 					pstmt.setString(1, id);
 					rs = pstmt.executeQuery();
+					
+				} else if (type.equals("GOODS")) {
+					pstmt = conn.prepareStatement(
+							"SELECT count(goodsFileName),goodsImage,goodsFileName from goods where goodsno = ?");
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();	
+					
 				} else {
 					System.out.println("type not found:" + type);
 				}
