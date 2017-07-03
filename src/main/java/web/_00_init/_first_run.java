@@ -383,6 +383,7 @@ public class _first_run {
 					cs.setString(3, sa[1]);
 					cs.setInt(4, Integer.parseInt(sa[2]));
 					cs.setInt(5, Integer.parseInt(sa[3]));
+					cs.setString(6,sa[4]);
 					cs.executeUpdate();
 					GlobalService.random_time_1_2();
 				} catch (Exception e) {
