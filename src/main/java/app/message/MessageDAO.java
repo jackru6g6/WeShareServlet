@@ -2,6 +2,7 @@ package app.message;
 
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import app.main.HibernateUtil;
+import app.user.MemberBean;
 
 public class MessageDAO {
 	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -71,6 +73,30 @@ public class MessageDAO {
 	// }
 	// return n;
 	// }
+	public int getMaxNo() {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		List<MessageBean> list = new ArrayList<MessageBean>();
+		int i = 0;
+		try {
+			String hql = "FROM MessageBean m ORDER BY m.postDate";
+			Query query = session.createQuery(hql);
+			list = query.getResultList();
+			for (MessageBean pop : list) {
+				i = pop.getMsgNo();
+				System.out.println("++i" + i);
+			}
+			tx.commit();
+
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return i;
+	}
 
 	public List<MessageBean> get(String userId) {
 		Session session = sessionFactory.openSession();
@@ -78,16 +104,20 @@ public class MessageDAO {
 		// List<Object[]> list= new ArrayList<>();
 		List<MessageBean> list = new ArrayList<MessageBean>();
 		try {
+			// String hql = "FROM MessageBean m WHERE m.msgSource = :uid OR
+			// m.msgEndId = :aid";
 			// String hql = "SELECT new
-			// MemberBean(m.tal,m.email,m.address,m.idType) FROM MemberBean m
-			// WHERE m.userId = :uid";
+			// MessageBean(m.msgNo,m.msgStatus,m.postDate,m.msgEndId,m.msgText)
+			// FROM MessageBean m WHERE m.msgSourceId = :uid OR m.msgEndId =
+			// :aid";
 			// String hql = "SELECT new
-			// MessageBean(m.name,m.tal,m.email,m.address,m.idType) FROM
-			// MemberBean m WHERE m.userId = :uid";
-			String hql = "FROM MessageBean m WHERE m.msgSource = :uid OR m.msgEndId = :aid";
-			// String hql = "SELECT new
-			// MemberBean(m.userId,m.password,m.name,m.tal,m.email,m.address,m.idType,m.createDate)
-			// FROM MemberBean m WHERE m.userId = :uid";
+			// MessageBean(m.msgNo,m.msgStatus,m.msgSourceId,m.msgEndId,m.msgText)
+			// FROM MessageBean m WHERE m.msgSourceId = :uid OR m.msgEndId =
+			// :aid";
+			// String hql = "SELECT m.postDate FROM MessageBean m WHERE
+			// m.msgSource = :uid OR m.msgEndId = :aid";
+			String hql = "SELECT new MessageBean(m.msgNo,m.msgStatus,m.msgSourceId,m.msgEndId,m.msgText,m.roomNo) FROM MessageBean m WHERE m.msgSourceId = :uid OR m.msgEndId = :aid GROUP BY m.roomNo ORDER BY MIN(m.postDate)";
+
 			Query query = session.createQuery(hql);
 			query.setParameter("uid", userId);
 			query.setParameter("aid", userId);
@@ -101,6 +131,48 @@ public class MessageDAO {
 			if (session != null)
 				session.close();
 		}
+		// List<MessageBean> list2;
+		// for(MessageBean test : list){
+		// list2.add(test);
+		// }
+		return list;
+	}
+
+	public List<MessageBean> getOne(String userId, String talkTo) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		// List<Object[]> list= new ArrayList<>();
+		List<MessageBean> list = new ArrayList<MessageBean>();
+		try {
+			// String hql = "FROM MessageBean m WHERE m.msgSource = :uid OR
+			// m.msgEndId = :aid";
+			// String hql = "SELECT new
+			// MessageBean(m.msgNo,m.msgStatus,m.postDate,m.msgEndId,m.msgText)
+			// FROM MessageBean m WHERE m.msgSourceId = :uid OR m.msgEndId =
+			// :aid";
+			String hql = "SELECT new MessageBean(m.msgNo,m.msgStatus,m.msgSourceId,m.msgEndId,m.msgText,m.roomNo) FROM MessageBean m WHERE (m.msgSourceId = :uid AND m.msgEndId = :aid) OR (m.msgSourceId = :sid AND m.msgEndId = :zid)";
+			// String hql = "SELECT m.postDate FROM MessageBean m WHERE
+			// m.msgSource = :uid OR m.msgEndId = :aid";
+
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", userId);
+			query.setParameter("aid", talkTo);
+			query.setParameter("sid", talkTo);
+			query.setParameter("zid", userId);
+			list = query.getResultList();
+			tx.commit();
+
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		// List<MessageBean> list2;
+		// for(MessageBean test : list){
+		// list2.add(test);
+		// }
 		return list;
 	}
 

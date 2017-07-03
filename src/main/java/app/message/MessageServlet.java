@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import app.main.ImageUtil;
+import app.user.MemberBean;
 import web._00_init.GlobalService;
 
 @SuppressWarnings("serial")
@@ -49,8 +50,19 @@ public class MessageServlet extends HttpServlet {
 			List<MessageBean> msg = mgDAO.get(account);
 			System.out.println("帳號account: " + account);
 			for (MessageBean pop : msg) {
-				System.out.println("MsgSource：" + pop.getMsgSource() + ", MsgEndId：" + pop.getMsgEndId() + ", MsgText："
-						+ pop.getMsgText());
+				System.out.println("MsgSource：" + pop.getMsgSourceId() + ", MsgEndId：" + pop.getMsgEndId()
+						+ ", MsgText：" + pop.getMsgText() + ", roomNo：" + pop.getRoomNo());
+			}
+			writeText(response, gson.toJson(msg));
+		}
+		if (action.equals("getOne")) {
+			String account = jsonObject.get("account").getAsString();
+			String talkTo = jsonObject.get("talkTo").getAsString();
+			List<MessageBean> msg = mgDAO.getOne(account, talkTo);
+			System.out.println("帳號account: " + account);
+			for (MessageBean pop : msg) {
+				System.out.println("MsgSource：" + pop.getMsgSourceId() + ", MsgEndId：" + pop.getMsgEndId()
+						+ ", MsgText：" + pop.getMsgText() + ", roomNo：" + pop.getRoomNo());
 			}
 			writeText(response, gson.toJson(msg));
 		} else if (action.equals("getImage")) {
@@ -71,7 +83,26 @@ public class MessageServlet extends HttpServlet {
 				System.out.println("沒收到喔~");
 			}
 			os.write(image);// 送到client端
+		} else if (action.equals("sendMsg")) {
+			String msgJson = jsonObject.get("msg").getAsString();
+			MessageBean msg = gson.fromJson(msgJson, MessageBean.class);
+			int count = 0;
+			try {
+				// Blob imageBlob = new SerialBlob(image);
+				// blob = new SerialBlob(image);
+				// System.out.println("有給圖片");
+				// user.setImage(imageBlob);
 
+				// user.setImage(blob);
+				//String name = msg.getMsgSourceId();
+				int i = mgDAO.getMaxNo();
+				msg.setMsgNo(i+1);
+				count = mgDAO.save(msg);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			writeText(response, String.valueOf(count));
 		}
 
 	}
