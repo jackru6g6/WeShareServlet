@@ -25,6 +25,7 @@
 		<mapping class="app.user.MemberBean" />
 		<mapping class="app.user.InstiutionBean" />
 		<mapping class="app.goods.GoodsBean" />
+		<mapping class="app.message.MessageBean" />
 		
 
 	</session-factory>

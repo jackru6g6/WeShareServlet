@@ -92,6 +92,7 @@ public class MemberServlet extends HttpServlet {
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize);// ImageUtil縮圖
 				response.setContentType("image/jpeg");
+				response.setContentType("image/png");
 				// 只要送一張圖，就不用轉json，指定他傳送的型態，如果要用json就要用Base64
 				// // encode才能傳送
 				response.setContentLength(image.length);// 輸出圖的長度
@@ -113,7 +114,7 @@ public class MemberServlet extends HttpServlet {
 				check = mbDAO.checkPassword(mb);
 				System.out.println("checkPassword = " + check);
 				if (check == true) {
-					System.out.println("2222" + mb.getUserId());
+					System.out.println("Login" + mb.getUserId());
 					userName = mbDAO.getName(mb.getUserId());
 				}
 
@@ -225,7 +226,7 @@ public class MemberServlet extends HttpServlet {
 		}
 		if (action.equals("updateOrg")) {
 			String userJson = jsonObject.get("org").getAsString();
-			MemberBean user = gson.fromJson(userJson, MemberBean.class);// 轉為Spot物件
+			InstiutionBean org = gson.fromJson(userJson, InstiutionBean.class);// 轉為Spot物件
 			String imageBase64 = jsonObject.get("imageBase64Org").getAsString();
 			byte[] image = null;
 			image = Base64.getMimeDecoder().decode(imageBase64);
@@ -234,8 +235,8 @@ public class MemberServlet extends HttpServlet {
 			Blob blob = null;
 			try {
 				blob = new SerialBlob(image);
-				user.setImage(blob);
-				count = mbDAO.update(user);
+				org.setImage(blob);
+				count = mbDAO.updateOrg(org);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
