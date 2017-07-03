@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import org.springframework.web.context.WebApplicationContext;
-//import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.google.gson.Gson;
 
@@ -25,8 +23,8 @@ import web._01_register.model.OrgBean;
 import web._04_productMaintain.model.GoodsBean;
 import web._04_productMaintain.model.GoodsServiceDAO;
 import web._04_productMaintain.model.GoodsServiceDAO_JDBC;
-import web._08_query.model.OrgServiceDAO;
-import web._08_query.model.OrgServiceDAO_JDBC;
+//import web._08_query.model.OrgServiceDAO;
+//import web._08_query.model.OrgServiceDAO_JDBC;
 
 
 @WebServlet("/_08_query/Query.do")
@@ -35,7 +33,7 @@ public class QueryServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GoodsServiceDAO gs ;	
-		OrgServiceDAO os;
+//		OrgServiceDAO os;
 		String type =request.getParameter("type");
 		String value =request.getParameter("value");
 		
