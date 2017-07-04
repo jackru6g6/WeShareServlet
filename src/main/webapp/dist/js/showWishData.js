@@ -18,7 +18,7 @@ function showData(responseData, javaRoot) {
 								</div>
 
 								<div class="wishGoodsBy wishGoodsContent">
-									<span>By <span class="month">${responseData[i].indid}</span></span>
+									<span>By <span class="month">${responseData[i].indname_TEMP}</span></span>
 								</div>
 
 								<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">

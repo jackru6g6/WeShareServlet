@@ -9,6 +9,7 @@
 <head>
 	<meta charset="utf-8">
 	<jsp:include page="../fragment/refCss.jsp" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/index.css">
 	<jsp:include page="../fragment/refJs.jsp" />
 	<title>WeShare 微分享</title>
 </head>
@@ -43,7 +44,7 @@
 							</div>
 							<!--第三張圖-->
 							<div class="item">
-								<img class="center-block img-responsive carouselImg" src="../dist/img/carousel3.png" alt="Third slide">
+								<img class="center-block img-responsive carouselImg" src="../dist/img/carousel3.jpg" alt="Third slide">
 							</div>
 						</div>
 						<!--幻燈片左箭頭-->
@@ -82,82 +83,27 @@
 
 			<!--許願池物資清單-->
 			<div id="wishContent" class="row">
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="wishItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_1.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="wishItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_2.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="wishItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_3.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="wishItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_4.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
+			
+<!-- 				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"> -->
+<!-- 					<div class="wishItem"> -->
+<!-- 						<div> -->
+<!-- 							<a href="#" class="itemA"> -->
+<!-- 								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_1.png"> -->
+<!-- 								<div class="itemOverlay"> -->
+<!-- 									<p>Labore aliqua aliqua ex ametulpa Lorem cillum magna ea cupidatat ea.</p> -->
+<!-- 								</div> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div> -->
+<!-- 						<div class="itemBy itemContent"> -->
+<!-- 							<a href="#"> -->
+<!-- 								<h6>By <span>Matter</span></h6> -->
+<!-- 								<h5><span>June 21, 2017</span></h5> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
 			</div>
 
 			<!--送愛心標題-->
@@ -185,82 +131,27 @@
 
 			<!--送愛心物資清單-->
 			<div id="giveContent" class="row">
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="giveItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_5.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="giveItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_6.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="giveItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_7.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="giveItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_8.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
+			
+<!-- 				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"> -->
+<!-- 					<div class="giveItem"> -->
+<!-- 						<div> -->
+<!-- 							<a href="#" class="itemA"> -->
+<!-- 								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_5.png"> -->
+<!-- 								<div class="itemOverlay"> -->
+<!-- 									<p>Labore aliqua aliqua ex ametulpa Lorem cillum magna ea cupidatat ea.</p> -->
+<!-- 								</div> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div> -->
+<!-- 						<div class="itemBy itemContent"> -->
+<!-- 							<a href="#"> -->
+<!-- 								<h6>By <span>Matter</span></h6> -->
+<!-- 								<h5><span>June 21, 2017</span></h5> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
 			</div>
 
 			<!--以物易物標題-->
@@ -288,82 +179,27 @@
 
 			<!--以物易物物資清單-->
 			<div id="exchangeContent" class="row">
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="exchangeItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_9.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="exchangeItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_10.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="exchangeItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_11.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-					<div class="exchangeItem">
-						<div>
-							<a href="#" class="itemA">
-								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_12.png">
-								<div class="itemOverlay">
-									<p>Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.Labore aliqua ex amet mollit mollit culpa Lorem cillum magna ea cupidatat ea.</p>
-								</div>
-							</a>
-						</div>
-						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div>
-						<div class="itemBy itemContent">
-							<a href="#">
-								<h6>By <span>Matter</span> Of Mind from France</h6>
-								<h5>June 21, 2017 in <span>Nominees</span></h5>
-							</a>
-						</div>
-					</div>
-				</div>
+			
+<!-- 				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"> -->
+<!-- 					<div class="exchangeItem"> -->
+<!-- 						<div> -->
+<!-- 							<a href="#" class="itemA"> -->
+<!-- 								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_9.png"> -->
+<!-- 								<div class="itemOverlay"> -->
+<!-- 									<p>Labore aliqua aliqua ex ametulpa Lorem cillum magna ea cupidatat ea.</p> -->
+<!-- 								</div> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div> -->
+<!-- 						<div class="itemBy itemContent"> -->
+<!-- 							<a href="#"> -->
+<!-- 								<h6>By <span>Matter</span></h6> -->
+<!-- 								<h5><span>June 21, 2017</span></h5> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+				
 			</div>
 		</div>
 	</section>
@@ -371,6 +207,59 @@
 	<footer>
 		<jsp:include page="../fragment/footer.jsp" />
 	</footer>
+	
+	
+	<script src="${pageContext.request.contextPath}/dist/js/showIndexData.js"></script>
+	<script type="text/javascript">
+		var javaRoot = "${pageContext.servletContext.contextPath}";
+		var xhrWish = new XMLHttpRequest();
+		var xhrGive = new XMLHttpRequest();
+		var xhrExchange = new XMLHttpRequest();
+		var servletPath = javaRoot + '/_08_query/Query.do?type=goodsstatus&value=';
+		var responseWishData;
+		var responseGiveData;
+		var responseExchangeData;
+		
+		window.onload = function(){
+			xhrWish.open('GET', servletPath + '1', true);
+			xhrWish.send();
+			xhrWish.onreadystatechange = function(){
+				if(xhrWish.status == 200 && xhrWish.readyState == 4){
+					responseWishData = JSON.parse(xhrWish.responseText);
+					console.log("-------------------");
+					console.log("首頁許願池符合的資料筆數:" + responseWishData.length);
+					console.log("-------------------");
+					showWishData(responseWishData, javaRoot);
+				}
+			}
+			
+			xhrGive.open('GET', servletPath + '2', true);
+			xhrGive.send();
+			xhrGive.onreadystatechange = function(){
+				if(xhrGive.status == 200 && xhrGive.readyState == 4){
+					responseGiveData = JSON.parse(xhrGive.responseText);
+					console.log("-------------------");
+					console.log("首頁送愛心符合的資料筆數:" + responseGiveData.length);
+					console.log("-------------------");
+					showGiveData(responseGiveData, javaRoot);
+				}
+			}
+			
+			xhrExchange.open('GET', servletPath + '3', true);
+			xhrExchange.send();
+			xhrExchange.onreadystatechange = function(){
+				if(xhrExchange.status == 200 && xhrExchange.readyState == 4){
+					responseExchangeData = JSON.parse(xhrExchange.responseText);
+					console.log("-------------------");
+					console.log("首頁以物易物符合的資料筆數:" + responseExchangeData.length);
+					console.log("-------------------");
+					showExchangeData(responseExchangeData, javaRoot);
+				}
+			}
+		};
+	</script>
+	
+	
 </body>
 
 </html>

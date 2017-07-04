@@ -23,7 +23,5 @@
 <!-- 個人化 -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/header.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/footer.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/index.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/login.css">
 
 <!-- 引進外部資源頁面 END-->

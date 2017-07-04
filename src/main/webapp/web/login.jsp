@@ -9,6 +9,7 @@
 <head>
 	<meta charset="utf-8">
 	<jsp:include page="../fragment/refCss.jsp" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/login.css">
 	<jsp:include page="../fragment/refJs.jsp" />
 	
 	<!-- 自訂CSS -->

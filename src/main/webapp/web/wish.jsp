@@ -9,7 +9,7 @@
 <head>
 	<meta charset="utf-8">
 	<jsp:include page="../fragment/refCss.jsp" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/wish.css?t=1">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/wish.css">
 	<jsp:include page="../fragment/refJs.jsp" />
 	<title>WeShare 微分享</title>
 </head>
@@ -47,15 +47,15 @@
 												<li>
 													<button class="btn btnFilterType">
 														<span>社福團體</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="usertype">
+														<input class="findVal" type="hidden" value="2">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>個人</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="usertype">
+														<input class="findVal" type="hidden" value="1">
 													</button>
 												</li>
 											</ul>
@@ -74,37 +74,37 @@
 											<ul type="none">
 												<li>
 													<button class="btn btnFilterType">
-														<span>家電產品</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>生活用品</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<span>乾貨食品</span>
+														<input class="findCol" type="hidden" value="goodstype">
+														<input class="findVal" type="hidden" value="1">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>服飾配件</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodstype">
+														<input class="findVal" type="hidden" value="2">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
-														<span>食品</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<span>生活用品</span>
+														<input class="findCol" type="hidden" value="goodstype">
+														<input class="findVal" type="hidden" value="3">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
-														<span>其他</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<span>家電機器</span>
+														<input class="findCol" type="hidden" value="goodstype">
+														<input class="findVal" type="hidden" value="4">
+													</button>
+												</li>
+												<li>
+													<button class="btn btnFilterType">
+														<span>其他類型</span>
+														<input class="findCol" type="hidden" value="goodstype">
+														<input class="findVal" type="hidden" value="5">
 													</button>
 												</li>
 											</ul>
@@ -124,113 +124,113 @@
 												<li>
 													<button class="btn btnFilterType">
 														<span>基隆市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="3">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>臺北市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="7">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>新北市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="4">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>桃園市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="2">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>新竹市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="5">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>新竹縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="6">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>苗栗縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="1">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>臺中市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="13">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>南投縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="8">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>彰化縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="12">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>雲林縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="9">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>嘉義市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="10">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>嘉義縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="11">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>臺南市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="16">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>高雄市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="15">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>屏東縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="14">
 													</button>
 												</li>
 											</ul>
@@ -291,16 +291,19 @@
 	</footer>
 	
 	
-	<script src="${pageContext.request.contextPath}/dist/js/showData.js"></script>
+	<script src="${pageContext.request.contextPath}/dist/js/showWishData.js"></script>
 	<script type="text/javascript">
-		window.onload = function(){
-			var javaRoot = "${pageContext.servletContext.contextPath}";
-			var xhr = new XMLHttpRequest();			
-			xhr.open('GET', javaRoot + '/_08_query/Query.do?type=goodsstatus&value=1', true);
+		var javaRoot = "${pageContext.servletContext.contextPath}";
+		var xhr = new XMLHttpRequest();
+		var servletPath = javaRoot + '/_08_query/Query.do?type=goodsstatus&value=1';
+		var responseData;
+		
+		window.onload = function(){					
+			xhr.open('GET', servletPath, true);
 			xhr.send();
 			xhr.onreadystatechange = function(){
 				if(xhr.status == 200 && xhr.readyState == 4){
-					var responseData = JSON.parse(xhr.responseText);
+					responseData = JSON.parse(xhr.responseText);
 					console.log("-------------------");
 					console.log("符合的資料筆數:" + responseData.length);
 					console.log("-------------------");
@@ -308,7 +311,46 @@
 				}
 			}
 		}
+		
+		$('#btKWSearch').click(function(){
+			var keyWord = $('#searchInput').val();
+			console.log("keyWord = " + keyWord);
+			servletPath += '&type=&value=' + keyWord;
+			console.log("servletPath = " + servletPath);
+			xhr.open('GET', servletPath, true);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					responseData = JSON.parse(xhr.responseText);
+					console.log("-------------------");
+					console.log("篩選後符合的資料筆數:" + responseData.length);
+					console.log("-------------------");
+// 					showData(responseData, javaRoot);
+				}
+			}
+		});
+		
+		$('.btnFilterType').click(function(){
+			var col = $(this).find('.findCol').val();
+			var val = $(this).find('.findVal').val();
+			console.log("findCol = " + col + ", findVal = " + val);
+			servletPath += '&type=' + col + '&value=' + val;
+			console.log("servletPath = " + servletPath);
+			xhr.open('GET', servletPath, true);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					responseData = JSON.parse(xhr.responseText);
+					console.log("-------------------");
+					console.log("篩選後符合的資料筆數:" + responseData.length);
+					console.log("-------------------");
+// 					showData(responseData, javaRoot);
+				}
+			}
+			
+		});
 	</script>
+	
 	
 </body>
 

@@ -47,15 +47,15 @@
 												<li>
 													<button class="btn btnFilterType">
 														<span>社福團體</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="usertype">
+														<input class="findVal" type="hidden" value="2">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>個人</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="usertype">
+														<input class="findVal" type="hidden" value="1">
 													</button>
 												</li>
 											</ul>
@@ -74,37 +74,37 @@
 											<ul type="none">
 												<li>
 													<button class="btn btnFilterType">
-														<span>家電產品</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>生活用品</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<span>乾貨食品</span>
+														<input class="findCol" type="hidden" value="goodstype">
+														<input class="findVal" type="hidden" value="1">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>服飾配件</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodstype">
+														<input class="findVal" type="hidden" value="2">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
-														<span>食品</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<span>生活用品</span>
+														<input class="findCol" type="hidden" value="goodstype">
+														<input class="findVal" type="hidden" value="3">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
-														<span>其他</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<span>家電機器</span>
+														<input class="findCol" type="hidden" value="goodstype">
+														<input class="findVal" type="hidden" value="4">
+													</button>
+												</li>
+												<li>
+													<button class="btn btnFilterType">
+														<span>其他類型</span>
+														<input class="findCol" type="hidden" value="goodstype">
+														<input class="findVal" type="hidden" value="5">
 													</button>
 												</li>
 											</ul>
@@ -124,151 +124,115 @@
 												<li>
 													<button class="btn btnFilterType">
 														<span>基隆市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="3">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>臺北市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="7">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>新北市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="4">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>桃園市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="2">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>新竹市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="5">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>新竹縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="6">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>苗栗縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="1">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>臺中市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="13">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>南投縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="8">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>彰化縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="12">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>雲林縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="9">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>嘉義市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="10">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>嘉義縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="11">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>臺南市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="16">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>高雄市</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="15">
 													</button>
 												</li>
 												<li>
 													<button class="btn btnFilterType">
 														<span>屏東縣</span>
-														<input class="findCol" type="hidden" value="server">
-														<input class="findVal" type="hidden" value="server">
+														<input class="findCol" type="hidden" value="goodsloc">
+														<input class="findVal" type="hidden" value="14">
 													</button>
 												</li>
-												<!--<li>
-													<button class="btn btnFilterType">
-														<span>臺東縣</span>
-														<input type="hidden" value="server">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>花蓮縣</span>
-														<input type="hidden" value="server">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>宜蘭縣</span>
-														<input type="hidden" value="server">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>澎湖縣</span>
-														<input type="hidden" value="server">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>金門縣</span>
-														<input type="hidden" value="server">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>連江縣</span>
-														<input type="hidden" value="server">
-													</button>
-												</li>-->
 											</ul>
 										</div>
 									</div>
@@ -284,269 +248,38 @@
 						<!-- 右邊需求物資列 -->
 						<div id="sectionGoods" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-							<!-- 右邊需求物資第一列 -->
-							<div id="divExchangeGoods1" class="row">
+							<!-- 右邊需求物資 -->
+							<div id="divExchangeGoods" class="row">
 								<!-- 右邊需求物資第一列第一項 -->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="exchangeGoods">
-										<a href="#" class="exchangeGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="exchangeGoodsImgLayout">
-												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_31.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="exchangeGoodsOverlay">
-												<div class="exchangeGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="exchangeGoodsName exchangeGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="exchangeGoodsBy exchangeGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第一列第二項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="exchangeGoods">
-										<a href="#" class="exchangeGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="exchangeGoodsImgLayout">
-												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_32.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="exchangeGoodsOverlay">
-												<div class="exchangeGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="exchangeGoodsName exchangeGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="exchangeGoodsBy exchangeGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第一列第三項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="exchangeGoods">
-										<a href="#" class="exchangeGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="exchangeGoodsImgLayout">
-												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_33.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="exchangeGoodsOverlay">
-												<div class="exchangeGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="exchangeGoodsName exchangeGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="exchangeGoodsBy exchangeGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
+<!-- 								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"> -->
+<!-- 									<div class="exchangeGoods"> -->
+<!-- 										<a href="#" class="exchangeGoodsA"> -->
+<!-- 											需求物資圖片 -->
+<!-- 											<div class="exchangeGoodsImgLayout"> -->
+<!-- 												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_31.png"> -->
+<!-- 											</div> -->
+<!-- 											需求物資文字敘述 -->
+<!-- 											<div class="exchangeGoodsOverlay"> -->
+<!-- 												<div class="exchangeGoodsOverlayText"> -->
+<!-- 													需求物資名稱 -->
+<!-- 													<div class="exchangeGoodsName exchangeGoodsContent"> -->
+<!-- 														<span>Lepa Vida</span> -->
+<!-- 													</div> -->
+<!-- 													需求物資發佈者 -->
+<!-- 													<div class="exchangeGoodsBy exchangeGoodsContent"> -->
+<!-- 														<span>By <span class="month">Matter</span> Of Mind from France</span> -->
+<!-- 													</div> -->
+<!-- 													需求物資描述 -->
+<!-- 													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1"> -->
+<!-- 														<span>詳細資訊</span> -->
+<!-- 													</div> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 										</a> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 							</div>
 
-							<!-- 右邊需求物資第二列 -->
-							<div id="divExchangeGoods1" class="row">
-								<!-- 右邊需求物資第二列第一項 -->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="exchangeGoods">
-										<a href="#" class="exchangeGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="exchangeGoodsImgLayout">
-												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_34.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="exchangeGoodsOverlay">
-												<div class="exchangeGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="exchangeGoodsName exchangeGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="exchangeGoodsBy exchangeGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第二列第二項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="exchangeGoods">
-										<a href="#" class="exchangeGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="exchangeGoodsImgLayout">
-												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_35.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="exchangeGoodsOverlay">
-												<div class="exchangeGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="exchangeGoodsName exchangeGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="exchangeGoodsBy exchangeGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第二列第三項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="exchangeGoods">
-										<a href="#" class="exchangeGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="exchangeGoodsImgLayout">
-												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_36.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="exchangeGoodsOverlay">
-												<div class="exchangeGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="exchangeGoodsName exchangeGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="exchangeGoodsBy exchangeGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-
-							<!-- 右邊需求物資第三列 -->
-							<div id="divExchangeGoods1" class="row">
-								<!-- 右邊需求物資第三列第一項 -->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="exchangeGoods">
-										<a href="#" class="exchangeGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="exchangeGoodsImgLayout">
-												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_37.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="exchangeGoodsOverlay">
-												<div class="exchangeGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="exchangeGoodsName exchangeGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="exchangeGoodsBy exchangeGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第三列第二項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="exchangeGoods">
-										<a href="#" class="exchangeGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="exchangeGoodsImgLayout">
-												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_38.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="exchangeGoodsOverlay">
-												<div class="exchangeGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="exchangeGoodsName exchangeGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="exchangeGoodsBy exchangeGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第三列第三項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="exchangeGoods">
-										<a href="#" class="exchangeGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="exchangeGoodsImgLayout">
-												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_39.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="exchangeGoodsOverlay">
-												<div class="exchangeGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="exchangeGoodsName exchangeGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="exchangeGoodsBy exchangeGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -557,6 +290,69 @@
 	<footer>
 		<jsp:include page="../fragment/footer.jsp" />
 	</footer>
+	
+	
+	<script src="${pageContext.request.contextPath}/dist/js/showExchangeData.js"></script>
+	<script type="text/javascript">
+		var javaRoot = "${pageContext.servletContext.contextPath}";
+		var xhr = new XMLHttpRequest();
+		var servletPath = javaRoot + '/_08_query/Query.do?type=goodsstatus&value=3';
+		var responseData;
+		
+		window.onload = function(){					
+			xhr.open('GET', servletPath, true);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					responseData = JSON.parse(xhr.responseText);
+					console.log("-------------------");
+					console.log("符合的資料筆數:" + responseData.length);
+					console.log("-------------------");
+					showData(responseData, javaRoot);
+				}
+			}
+		}
+		
+		$('#btKWSearch').click(function(){
+			var keyWord = $('#searchInput').val();
+			console.log("keyWord = " + keyWord);
+			servletPath += '&type=&value=' + keyWord;
+			console.log("servletPath = " + servletPath);
+			xhr.open('GET', servletPath, true);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					responseData = JSON.parse(xhr.responseText);
+					console.log("-------------------");
+					console.log("篩選後符合的資料筆數:" + responseData.length);
+					console.log("-------------------");
+// 					showData(responseData, javaRoot);
+				}
+			}
+		});
+		
+		$('.btnFilterType').click(function(){
+			var col = $(this).find('.findCol').val();
+			var val = $(this).find('.findVal').val();
+			console.log("findCol = " + col + ", findVal = " + val);
+			servletPath += '&type=' + col + '&value=' + val;
+			console.log("servletPath = " + servletPath);
+			xhr.open('GET', servletPath, true);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					responseData = JSON.parse(xhr.responseText);
+					console.log("-------------------");
+					console.log("篩選後符合的資料筆數:" + responseData.length);
+					console.log("-------------------");
+// 					showData(responseData, javaRoot);
+				}
+			}
+			
+		});
+	</script>
+	
+	
 </body>
 
 </html>
