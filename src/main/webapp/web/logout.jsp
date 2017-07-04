@@ -7,18 +7,20 @@
 <html lang="zh-Hant">
 <head>
 	<meta charset="utf-8">
+	<meta http-equiv="refresh" content="1; url=${pageContext.servletContext.contextPath}/index.jsp" />
 	<script type="text/javascript" src="https://mail.google.com/mail/u/0/?logout&hl=en"></script>
+
 </head>
 
 <body>
 	<!-- 移除放在session物件內的屬性物件 -->
 	<c:remove var="LoginOK" scope="session" />
-	
+	網頁重新導向中....
 	<%
 	  session.invalidate();
 	%>
 	
-	<jsp:forward page="index.jsp"/>
+<%-- 	<jsp:forward page="index.jsp"/> --%>
 </body>
 </html>
 
