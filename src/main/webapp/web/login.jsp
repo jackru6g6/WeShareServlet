@@ -10,7 +10,9 @@
 	<meta charset="utf-8">
 	<jsp:include page="../fragment/refCss.jsp" />
 	<jsp:include page="../fragment/refJs.jsp" />
-
+	
+	<!-- 自訂CSS -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/register.css">
 
 	<!-- Google Login -->
 	<meta name="google-signin-scope" content="profile email">
@@ -141,8 +143,21 @@
 																<h5><a href="#">忘記密碼？</a></h5>
 															</div>
 															<!--註冊帳號-->
-															<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-																<h5>還沒有帳號？<a href="../_01_register/register.jsp">註冊帳號</a></h5>
+															<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">																															
+																
+																<h5>還沒有帳號？
+																	<a data-toggle="modal" data-target="#register_modal">註冊帳號</a>
+																	<!-- 按下 [註冊帳號] 跳出會員註冊頁面 -->
+																	<div class="modal fade" id="register_modal" role="dialog">
+																		<jsp:include page="register.jsp" />													
+																	</div>
+																
+																</h5>
+																	
+																
+																	
+																
+																
 															</div>
 														</div>
 													</div>

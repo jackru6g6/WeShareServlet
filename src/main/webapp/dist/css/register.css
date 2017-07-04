@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/* 滑鼠移至 [註冊帳號]，游標變成手的樣式*/
+#hover_register:hover{
+    cursor: pointer;
+}
+
+/* 註冊視窗header */
+#modal_header{
+    background-color: #87CEFA;
+    font: black bold;
+}
+    /* 滑鼠移至關閉符號(X)變紅色 */
+    #modal_header_close:hover{
+        color: red;
+    }
+
+/* 註冊視窗body */
+/* 表格標籤底色 */
+#form_label_span{
+    background-color: #87CEFA;
+    border-radius: 3px;
+    padding: 8px;
+}
+
+/*社福團體需要多填的表格*/
+.form_org{
+    display: none;
+}
+
+/* 預覽圖片 */
+#show_img{
+    max-width: 300px;
+	margin: 10px auto;
+}
+
+/* 註冊視窗footer */
+#modal_foorer{
+    text-align: left;
+}
+    #check_privacy{
+        display: block;
+        float: left;
+        margin: 3px 0px 3px 10%;
+    }
+
+    #register_button{
+        width: 100%;
+        background-color: #87CEFA;
+		margin: 20px auto;
+    }
