@@ -22,6 +22,7 @@ import com.google.gson.JsonObject;
 
 import app.main.ImageUtil;
 import app.user.MemberBean;
+import web._00_init.GlobalService;
 
 @SuppressWarnings("serial")
 @WebServlet("/GoodsServlet")
@@ -45,13 +46,28 @@ public class GoodsServlet extends HttpServlet {
 		System.out.println("------1action: " + action);
 		// String userId = jsonObject.get("user").getAsString();
 		// System.out.println("userId: " + userId);
+		
+		//取物資資料(資料庫)
 		if (action.equals("getAll")) {
 			String userId = jsonObject.get("user").getAsString();
 			List<GoodsBean> goods = gDAO.getAll(userId);
 			String user = jsonObject.get("user").getAsString();
 			System.out.println("user" + user);
 			writeText(response, gson.toJson(goods));
-			
+		}else if (action.equals("getSelfWish")) {
+			String userId = jsonObject.get("user").getAsString();
+			List<GoodsBean> goods = gDAO.getSelfWish(userId);
+			String user = jsonObject.get("user").getAsString();
+			System.out.println("user" + user);
+			writeText(response, gson.toJson(goods));
+		}else if (action.equals("getSelfGive")) {
+			String userId = jsonObject.get("user").getAsString();
+			List<GoodsBean> goods = gDAO.getSelfWish(userId);
+			String user = jsonObject.get("user").getAsString();
+			System.out.println("user" + user);
+			writeText(response, gson.toJson(goods));	
+	
+			//取圖
 		} else if (action.equals("getImage")) {
 			OutputStream os = response.getOutputStream();
 			int gid = jsonObject.get("gId").getAsInt();
@@ -60,6 +76,7 @@ public class GoodsServlet extends HttpServlet {
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize);
 				response.setContentType("image/jpeg");
+				response.setContentType("image/png");
 				response.setContentLength(image.length);
 				System.out.println(image);
 			} else {
@@ -67,6 +84,7 @@ public class GoodsServlet extends HttpServlet {
 			}
 			os.write(image);
 
+			//新增
 		} else if (action.equals("goodsInsert")) {
 			String goodsJson = jsonObject.get("goods").getAsString();
 			GoodsBean goods = gson.fromJson(goodsJson, GoodsBean.class);
@@ -85,6 +103,34 @@ public class GoodsServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			writeText(response, String.valueOf(count));
+		
+			//修改
+		} else if (action.equals("goodsUpdate")) {
+			String goodJson = jsonObject.get("goods").getAsString();
+			GoodsBean good = gson.fromJson(goodJson, GoodsBean.class);// 轉為Spot物件
+			String imageBase64 = jsonObject.get("imageBase64").getAsString();
+			byte[] image = null;
+			image = Base64.getMimeDecoder().decode(imageBase64);
+			int count = 0;
+			boolean check;
+			Blob blob = null;
+			byte[] imagea = new byte[0];
+			try {
+				blob = new SerialBlob(image);
+				good.setGoodsImage(blob);
+				count = gDAO.update(good);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			writeText(response, String.valueOf(count));
+			
+		//刪除
+		} else if (action.equals("goodsDelete")) {
+			String goodJson = jsonObject.get("goods").getAsString();
+			GoodsBean good = gson.fromJson(goodJson, GoodsBean.class);
+			System.out.println(good.getGoodsNo());
+			int count = gDAO.delete(good.getGoodsNo());
 			writeText(response, String.valueOf(count));
 		}
 	}
