@@ -15,7 +15,7 @@
 
         <!-- Logo -->
         <a href="index.jsp" id="navLogo" class="navbar-brand">
-            <img src="../dist/img/WeShare_logo.png" width="60" alt="WeShare">
+            <img src="/Demo/dist/img/WeShare_logo.png" width="60" alt="WeShare">
         </a>
     </div>
 
@@ -62,12 +62,12 @@
                     <span></span>
                 </a>
                 <ul id="navMemberSub" class="dropdown-menu">
-                    <li><a href="/Demo/web/test/_05_deal/addDEAL.jsp">個人檔案</a></li>
+                    <li><a href="/Demo/web/_03_updateMember/controller/FindMemberServlet">個人檔案</a></li>
                     <li><a href="#">評價</a></li>
                     <li><a href="#">物資箱</a></li>
                     <li><a href="#">站內信</a></li>
                     <li class="divider"></li>
-                    <li><a href="logout.jsp">登出</a></li>
+                    <li><a href="/Demo/web/logout.jsp">登出</a></li>
                 </ul>
             </li>
             <li class="afterLogin">

@@ -22,7 +22,8 @@ import web._01_register.model.RegisterServiceDAO_JDBC;
 import web._04_productMaintain.model.GoodsBean;
 import web._04_productMaintain.model.GoodsServiceDAO_JDBC;
 
-@WebServlet("/FindGoodsServlet")
+//@WebServlet("/FindGoodsServlet")
+@WebServlet("/web/_04_productMaintain/controller/FindGoodsServlet")
 public class FindGoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,7 +51,7 @@ public class FindGoodsServlet extends HttpServlet {
 			e.printStackTrace();
 		}
             
-		RequestDispatcher rd = request.getRequestDispatcher("/_04_productMaintain/GoodsUpdate.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/web/test/_04_productMaintain/GoodsUpdate.jsp");
 		rd.forward(request, response);
 		
 		

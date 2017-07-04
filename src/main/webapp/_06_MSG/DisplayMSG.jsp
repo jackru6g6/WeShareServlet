@@ -20,11 +20,8 @@ function readMSG(n) {
 }
 </script>
 <body>
+<jsp:include page="/top.jsp" />
 	<h1>訊息查詢</h1>
-	<a href="<c:url value='/web/_06_MSG/controller/FindMSGByKey.do' />">訊息查詢
-	</a>
-	<a href="<c:url value='/_06_MSG/AddNewMSG.jsp' />"> 新增訊息 </a>
-
 	<c:if test="${!empty MSG_DATA}">
 		<table border='1'>
 			<tr height='18' bgColor="${rowColor}">

@@ -9,4 +9,8 @@
 	<a href="<c:url value='/web/_06_MSG/controller/FindMSGByKey.do' />">訊息查詢</a>
 	<a href="<c:url value='/web/test/_06_MSG/AddNewMSG.jsp' />"> 新增訊息 </a>
 	
+    <a href="<c:url value='/web/_03_updateMember/controller/FindMemberServlet'/>">個人資料</a>
+	<a href="<c:url value='/web/test/_04_productMaintain/GoodsInsert.jsp' />">新增物資 </a>
+	<a href="<c:url value='/web/_04_productMaintain/controller/DisplayPageProducts' />">物資箱</a>
+	
 </table>

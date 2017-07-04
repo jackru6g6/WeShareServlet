@@ -29,7 +29,8 @@ import web._01_register.model.RegisterServiceDAO_JDBC;
 fileSizeThreshold = 5*1024 * 1024, 
 maxFileSize = 1024 * 1024 * 500, 
 maxRequestSize = 1024 * 1024 * 500 * 5)
-@WebServlet("/updateMember.do")
+//@WebServlet("/updateMember.do")
+@WebServlet("/web/_03_updateMember/controller/updateMember.do")
 public class UpdateMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -205,7 +206,7 @@ public class UpdateMemberServlet extends HttpServlet {
 					// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
 					
 					
-					RequestDispatcher rd = request.getRequestDispatcher("/_03_updateMember/updateMember.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
 					rd.forward(request, response);
 					return;
 				}
@@ -226,7 +227,7 @@ public class UpdateMemberServlet extends HttpServlet {
 							int n = rs.updateMember(mem, is, sizeInBytes, indFileName);
 							if ( n == 1) {
 								msgOK.put("InsertOK","<Font color='red'>新增成功，請開始使用本系統</Font>");
-								response.sendRedirect("index.jsp");
+								response.sendRedirect("FindMemberServlet");
 								return;
 							} else {
 								errorMsg.put("errorIDDup","新增此筆資料有誤(RegisterServlet)");
@@ -241,7 +242,7 @@ public class UpdateMemberServlet extends HttpServlet {
 							int n = rs.updateOrg(mem,ob,is,sizeInBytes,indFileName,is2,sizeInBytes2,orgFileName);
 							if ( n == 1) {
 								msgOK.put("InsertOK","<Font color='red'>新增成功，請開始使用本系統</Font>");
-								response.sendRedirect("index.jsp");
+								response.sendRedirect("FindMemberServlet");
 								return;
 							} else {
 								errorMsg.put("errorIDDup","新增此筆資料有誤(RegisterServlet)");
@@ -254,14 +255,14 @@ public class UpdateMemberServlet extends HttpServlet {
 				// 5.依照 Business Logic 運算結果來挑選適當的畫面
 				if (!errorMsg.isEmpty()) {
 					// 導向原來輸入資料的畫面，這次會顯示錯誤訊息	
-					RequestDispatcher rd = request.getRequestDispatcher("/_03_updateMember/updateMember.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
 					rd.forward(request, response);
 					return;
 				}		
 			} catch (Exception e) {
 				e.printStackTrace();
 				errorMsg.put("errorIDDup", e.getMessage());
-				RequestDispatcher rd = request.getRequestDispatcher("/_03_updateMember/updateMember.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
 				rd.forward(request, response);
 			}		
 

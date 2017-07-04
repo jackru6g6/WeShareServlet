@@ -10,11 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/top.jsp" />
 	<h1>新增訊息</h1>
-	<a href="<c:url value='/web/_06_MSG/controller/FindMSGByKey.do' />">訊息查詢
-	</a>
-	<a href="<c:url value='/_06_MSG/AddNewMSG.jsp' />"> 新增訊息 </a>
-
 	<form ENCTYPE="multipart/form-data" method="POST"
 		action="<c:url value='/web/_06_MSG/controller/AddNewMSG.do' />">
 		<table border="1" bordercolor="#f00">
