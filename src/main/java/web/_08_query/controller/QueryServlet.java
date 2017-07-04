@@ -23,8 +23,7 @@ import web._01_register.model.OrgBean;
 import web._04_productMaintain.model.GoodsBean;
 import web._04_productMaintain.model.GoodsServiceDAO;
 import web._04_productMaintain.model.GoodsServiceDAO_JDBC;
-//import web._08_query.model.OrgServiceDAO;
-//import web._08_query.model.OrgServiceDAO_JDBC;
+
 
 
 @WebServlet("/_08_query/Query.do")
@@ -106,7 +105,6 @@ public class QueryServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 			
 		}else if(type.equalsIgnoreCase("goodstype")){
 			try {
@@ -173,6 +171,7 @@ public class QueryServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
 		}else if(type.equalsIgnoreCase("keyword")){
 			try {
 				gs = new GoodsServiceDAO_JDBC();
@@ -205,6 +204,7 @@ public class QueryServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
 		}else if(type.equalsIgnoreCase("goodsstatus")){
 			try {
 				gs = new GoodsServiceDAO_JDBC();
