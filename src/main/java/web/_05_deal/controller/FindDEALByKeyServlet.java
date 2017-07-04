@@ -1,6 +1,9 @@
 package web._05_deal.controller;
 
 import java.io.IOException;
+import java.util.Collection;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import web._01_register.model.MemberBean;
+import web._05_deal.model.DEALBean;
+import web._05_deal.model.DealDAO;
 
-@WebServlet("/web/_05_DEAL/controller/FindDEALByKey.do")
+@WebServlet("/web/_05_deal/controller/FindDEALByKey.do")
 public class FindDEALByKeyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +43,9 @@ public class FindDEALByKeyServlet extends HttpServlet {
 		// 如果session物件不存在
 		if (session == null || session.isNew()) {
 			// 請使用者登入
-			response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
+			 response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
+
+//			response.sendRedirect(response.encodeRedirectURL("/web/test/Demo/_02_login/login.jsp"));
 			return;
 		}
 		session.setAttribute("requestURI", requestURI);
@@ -46,11 +53,33 @@ public class FindDEALByKeyServlet extends HttpServlet {
 		// 以檢查使用者是否登入。
 		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
 		if (mb == null) {
-			response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
+			 response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
+//			response.sendRedirect(response.encodeRedirectURL("/web/test/Demo/_02_login/login.jsp"));
+
 			return;
 		}
 		INDID = mb.getIndid();
 		System.out.println("session INDID=" + INDID);
+		Collection<DEALBean> collEND = new DealDAO().FindByENDKey_DEAL(INDID);
+		System.out.println(INDID + "一共有" + collEND.size() + "的交易訂單(買家)");
+		Collection<DEALBean> collSOURCE = new DealDAO().FindBySOURCEKey_DEAL(INDID);
+		System.out.println(INDID + "一共有" + collSOURCE.size() + "的交易訂單(賣家)");
+		if (collEND.size() != 0) {
+			request.setAttribute("DEALEND_DATA", collEND);
+		} else {
+			request.setAttribute("DEALEND_DATA", null);
+		}
+		if (collSOURCE.size() != 0) {
+			request.setAttribute("DEALSOURCE_DATA", collSOURCE);
+		} else {
+			request.setAttribute("DEALSOURCE_DATA", null);
+		}
+		// RequestDispatcher rd =
+		// request.getRequestDispatcher("/_05_deal/DisplayDeal.jsp");
+
+		RequestDispatcher rd = request.getRequestDispatcher("/web/test/_05_deal/DisplayDeal.jsp");
+		rd.forward(request, response);
+		return;
 	}
 
 }

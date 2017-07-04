@@ -55,7 +55,7 @@ public class MSGDAO {
 		Collection<MSGBean> coll = new ArrayList<MSGBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con
-						.prepareStatement("select * from msg where msgsourceid = ? or msgendid=?");) {
+						.prepareStatement("select * from msg where msgsourceid = ? or msgendid=? ORDER BY postdate DESC");) {
 			pstmt.setString(1, INDID);
 			pstmt.setString(2, INDID);
 			ResultSet rs = pstmt.executeQuery();

@@ -62,7 +62,7 @@
                     <span></span>
                 </a>
                 <ul id="navMemberSub" class="dropdown-menu">
-                    <li><a href="#">個人檔案</a></li>
+                    <li><a href="/Demo/web/test/_05_deal/addDEAL.jsp">個人檔案</a></li>
                     <li><a href="#">評價</a></li>
                     <li><a href="#">物資箱</a></li>
                     <li><a href="#">站內信</a></li>
