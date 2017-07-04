@@ -23,7 +23,7 @@
 		<div id="sectionSlider" class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<div id="carousel-id" class="carousel slide" data-ride="carousel" data-interval="4000" data-wrap="false" data-keyboard="true"
+					<div id="carousel-id" class="carousel slide" data-ride="carousel" data-interval="4000" data-wrap="true" data-keyboard="true"
 					    data-pause="hover">
 						<!--幻燈片圓點-->
 						<ol class="carousel-indicators">
@@ -35,15 +35,15 @@
 						<div class="carousel-inner">
 							<!--第一張圖-->
 							<div class="item active">
-								<img class="center-block img-responsive carouselImg" data-src="holder.js/1500x700?theme=sky&auto=yes" alt="First slide">
+								<img class="center-block img-responsive carouselImg" src="../dist/img/carousel1.png" alt="First slide">
 							</div>
 							<!--第二張圖-->
 							<div class="item">
-								<img class="center-block img-responsive carouselImg" data-src="holder.js/1500x700?theme=vine&auto=yes" alt="Second slide">
+								<img class="center-block img-responsive carouselImg" src="../dist/img/carousel2.png" alt="Second slide">
 							</div>
 							<!--第三張圖-->
 							<div class="item">
-								<img class="center-block img-responsive carouselImg" data-src="holder.js/1500x700?theme=lava&auto=yes" alt="Third slide">
+								<img class="center-block img-responsive carouselImg" src="../dist/img/carousel3.png" alt="Third slide">
 							</div>
 						</div>
 						<!--幻燈片左箭頭-->

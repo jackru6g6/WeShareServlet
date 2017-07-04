@@ -248,268 +248,36 @@
 						<!-- 右邊需求物資列 -->
 						<div id="sectionGoods" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-							<!-- 右邊需求物資第一列 -->
-							<div id="divWishGoods1" class="row">
-								<!-- 右邊需求物資第一列第一項 -->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="wishGoods">
-										<a href="#" class="wishGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="wishGoodsImgLayout">
-												<img class="img-responsive wishGoodsImg" src="../dist/img/300x300/20170627_13.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="wishGoodsOverlay">
-												<div class="wishGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="wishGoodsName wishGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="wishGoodsBy wishGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第一列第二項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="wishGoods">
-										<a href="#" class="wishGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="wishGoodsImgLayout">
-												<img class="img-responsive wishGoodsImg" src="../dist/img/300x300/20170627_14.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="wishGoodsOverlay">
-												<div class="wishGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="wishGoodsName wishGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="wishGoodsBy wishGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第一列第三項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="wishGoods">
-										<a href="#" class="wishGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="wishGoodsImgLayout">
-												<img class="img-responsive wishGoodsImg" src="../dist/img/300x300/20170627_15.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="wishGoodsOverlay">
-												<div class="wishGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="wishGoodsName wishGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="wishGoodsBy wishGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-
-							<!-- 右邊需求物資第二列 -->
-							<div id="divWishGoods1" class="row">
-								<!-- 右邊需求物資第二列第一項 -->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="wishGoods">
-										<a href="#" class="wishGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="wishGoodsImgLayout">
-												<img class="img-responsive wishGoodsImg" src="../dist/img/300x300/20170627_16.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="wishGoodsOverlay">
-												<div class="wishGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="wishGoodsName wishGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="wishGoodsBy wishGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第二列第二項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="wishGoods">
-										<a href="#" class="wishGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="wishGoodsImgLayout">
-												<img class="img-responsive wishGoodsImg" src="../dist/img/300x300/20170627_17.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="wishGoodsOverlay">
-												<div class="wishGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="wishGoodsName wishGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="wishGoodsBy wishGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第二列第三項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="wishGoods">
-										<a href="#" class="wishGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="wishGoodsImgLayout">
-												<img class="img-responsive wishGoodsImg" src="../dist/img/300x300/20170627_18.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="wishGoodsOverlay">
-												<div class="wishGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="wishGoodsName wishGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="wishGoodsBy wishGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-
-							<!-- 右邊需求物資第三列 -->
-							<div id="divWishGoods1" class="row">
-								<!-- 右邊需求物資第三列第一項 -->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="wishGoods">
-										<a href="#" class="wishGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="wishGoodsImgLayout">
-												<img class="img-responsive wishGoodsImg" src="../dist/img/300x300/20170627_19.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="wishGoodsOverlay">
-												<div class="wishGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="wishGoodsName wishGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="wishGoodsBy wishGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第三列第二項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="wishGoods">
-										<a href="#" class="wishGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="wishGoodsImgLayout">
-												<img class="img-responsive wishGoodsImg" src="../dist/img/300x300/20170627_20.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="wishGoodsOverlay">
-												<div class="wishGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="wishGoodsName wishGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="wishGoodsBy wishGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-								<!--右邊物資第三列第三項-->
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-									<div class="wishGoods">
-										<a href="#" class="wishGoodsA">
-											<!-- 需求物資圖片 -->
-											<div class="wishGoodsImgLayout">
-												<img class="img-responsive wishGoodsImg" src="../dist/img/300x300/20170627_21.png">
-											</div>
-											<!-- 需求物資文字敘述 -->
-											<div class="wishGoodsOverlay">
-												<div class="wishGoodsOverlayText">
-													<!-- 需求物資名稱 -->
-													<div class="wishGoodsName wishGoodsContent">
-														<span>Lepa Vida</span>
-													</div>
-													<!-- 需求物資發佈者 -->
-													<div class="wishGoodsBy wishGoodsContent">
-														<span>By <span class="month">Matter</span> Of Mind from France</span>
-													</div>
-													<!-- 需求物資描述 -->
-													<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
-														<span>詳細資訊</span>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
+							<!-- 右邊需求物資 -->
+							<div id="divWishGoods" class="row">
+								<!-- 右邊需求物資第一項 -->
+<!-- 								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"> -->
+<!-- 									<div class="wishGoods"> -->
+<!-- 										<a href="#" class="wishGoodsA"> -->
+<!-- 											需求物資圖片 -->
+<!-- 											<div class="wishGoodsImgLayout"> -->
+<!-- 												<img class="img-responsive wishGoodsImg" src="../dist/img/300x300/20170627_13.png"> -->
+<!-- 											</div> -->
+<!-- 											需求物資文字敘述 -->
+<!-- 											<div class="wishGoodsOverlay"> -->
+<!-- 												<div class="wishGoodsOverlayText"> -->
+<!-- 													需求物資名稱 -->
+<!-- 													<div class="wishGoodsName wishGoodsContent"> -->
+<!-- 														<span>Lepa Vida</span> -->
+<!-- 													</div> -->
+<!-- 													需求物資發佈者 -->
+<!-- 													<div class="wishGoodsBy wishGoodsContent"> -->
+<!-- 														<span>By <span class="month">Matter</span> Of Mind from France</span> -->
+<!-- 													</div> -->
+<!-- 													需求物資描述 -->
+<!-- 													<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1"> -->
+<!-- 														<span>詳細資訊</span> -->
+<!-- 													</div> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 										</a> -->
+<!-- 									</div> -->
+<!-- 								</div>								 -->
 							</div>
 						</div>
 					</div>
@@ -521,6 +289,27 @@
 	<footer>
 		<jsp:include page="../fragment/footer.jsp" />
 	</footer>
+	
+	
+	<script src="${pageContext.request.contextPath}/dist/js/showData.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var javaRoot = "${pageContext.servletContext.contextPath}";
+			var xhr = new XMLHttpRequest();			
+			xhr.open('GET', javaRoot + '/_08_query/Query.do?type=goodsstatus&value=1', true);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					var responseData = JSON.parse(xhr.responseText);
+					console.log("-------------------");
+					console.log("符合的資料筆數:" + responseData.length);
+					console.log("-------------------");
+					showData(responseData, javaRoot);
+				}
+			}
+		}
+	</script>
+	
 </body>
 
 </html>
