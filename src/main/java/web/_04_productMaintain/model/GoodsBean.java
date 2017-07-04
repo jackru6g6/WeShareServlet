@@ -21,6 +21,10 @@ public class GoodsBean implements Serializable {
 	Blob goodsimage;	
 	String goodsfilename;
 	
+	String indname_TEMP;
+	String goodsname_TEMP;
+	String localname_TEMP;
+	
 	public GoodsBean() {
 	}
 	
@@ -144,7 +148,30 @@ public class GoodsBean implements Serializable {
 		this.deadlinestring = deadlinestring;
 	}
 	
-	
+	public String getIndname_TEMP() {
+		return indname_TEMP;
+	}
+
+	public void setIndname_TEMP(String indname_TEMP) {
+		this.indname_TEMP = indname_TEMP;
+	}
+
+	public String getGoodsname_TEMP() {
+		return goodsname_TEMP;
+	}
+
+	public void setGoodsname_TEMP(String goodsname_TEMP) {
+		this.goodsname_TEMP = goodsname_TEMP;
+	}
+
+	public String getLocalname_TEMP() {
+		return localname_TEMP;
+	}
+
+	public void setLocalname_TEMP(String localname_TEMP) {
+		this.localname_TEMP = localname_TEMP;
+	}
+
 	
 	
 	
