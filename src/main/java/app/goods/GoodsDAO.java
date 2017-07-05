@@ -234,6 +234,29 @@ public class GoodsDAO {
 		return list;
 	}
 	
+	public List<GoodsBean> getHome(int status) {// jack
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		// GoodsBean goods = new GoodsBean();
+		List<GoodsBean> list = new ArrayList<GoodsBean>();
+		try {
+			String hql = "SELECT new GoodsBean(g.goodsNo,g.goodsStatus,g.indId,g.goodsName,g.goodsType,g.qty,g.goodsLoc,g.goodsNote,g.goodsShipWay,g.deadLine) FROM GoodsBean g WHERE g.goodsStatus=:uid";
+			// String hql = "SELECT new GoodsBean(g.updateTime) AS TIMESTAMP
+			// FROM GoodsBean g WHERE indId=:uid";
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", status);
+			list = query.getResultList();
+			tx.commit();
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return list;
+	}
+	
 	public GoodsBean load(int goodsNo) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();

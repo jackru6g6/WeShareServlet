@@ -138,6 +138,12 @@ public class GoodsServlet extends HttpServlet {
 			System.out.println(good.getGoodsNo());
 			int count = gDAO.delete(good.getGoodsNo());
 			writeText(response, String.valueOf(count));
+		}else if (action.equals("getHome")) {// jack
+			String status = jsonObject.get("status").getAsString();
+			int i = Integer.parseInt(status);
+			System.out.println("status：" + status + ", i：" + i);
+			List<GoodsBean> goods = gDAO.getHome(i);
+			writeText(response, gson.toJson(goods));
 		}
 	}
 
