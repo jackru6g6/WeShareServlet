@@ -26,6 +26,11 @@ public class GoodsBean implements Serializable{
 	private int goodsShipWay;
 	private Blob goodsImage = null;
 	private long deadLine;
+	private String goodsfilename;
+
+
+
+
 
 	public GoodsBean() {
 		super();
@@ -57,7 +62,7 @@ public class GoodsBean implements Serializable{
 
 
 	public GoodsBean(int goodsNo,int goodsStatus, String indId, String goodsName, int goodsType, int qty,
-			int goodsLoc, String goodsNote, int goodsShipWay, long deadLine) {
+			int goodsLoc, String goodsNote, int goodsShipWay, long deadLine,String goodsfilename) {
 		super();
 		this.goodsNo=goodsNo;
 		this.goodsStatus = goodsStatus;
@@ -69,6 +74,7 @@ public class GoodsBean implements Serializable{
 		this.goodsNote = goodsNote;
 		this.goodsShipWay = goodsShipWay;
 		this.deadLine = deadLine;
+		this.goodsfilename=goodsfilename;
 	}
 
 	
@@ -171,6 +177,15 @@ public class GoodsBean implements Serializable{
 
 	public void setDeadLine(long deadLine) {
 		this.deadLine = deadLine;
+	}
+	
+	@Column(name="goodsfilename")
+	public String getGoodsfilename() {
+		return goodsfilename;
+	}
+
+	public void setGoodsfilename(String goodsfilename) {
+		this.goodsfilename = goodsfilename;
 	}
 
 	

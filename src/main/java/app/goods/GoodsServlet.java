@@ -62,7 +62,13 @@ public class GoodsServlet extends HttpServlet {
 			writeText(response, gson.toJson(goods));
 		}else if (action.equals("getSelfGive")) {
 			String userId = jsonObject.get("user").getAsString();
-			List<GoodsBean> goods = gDAO.getSelfWish(userId);
+			List<GoodsBean> goods = gDAO.getSelfGive(userId);
+			String user = jsonObject.get("user").getAsString();
+			System.out.println("user" + user);
+			writeText(response, gson.toJson(goods));	
+		}else if (action.equals("getSelfChange")) {
+			String userId = jsonObject.get("user").getAsString();
+			List<GoodsBean> goods = gDAO.getSelfChange(userId);
 			String user = jsonObject.get("user").getAsString();
 			System.out.println("user" + user);
 			writeText(response, gson.toJson(goods));	
