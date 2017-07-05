@@ -20,17 +20,18 @@ public interface GoodsServiceDAO {
 	
 	public int deleteGoods(int goodsno) throws SQLException;
 	
-	public List<GoodsBean> getGoodsByUserType(int usertype) throws SQLException;
-	
-	public List<GoodsBean> getGoodsByGoodsType(String goodstype) throws SQLException;
-	
-	public List<GoodsBean> getGoodsByGoodsLoc(String goodsloc) throws SQLException;
-	
-	public List<GoodsBean> getGoodsByKeyword(String keyword) throws SQLException;
-	
 	public List<GoodsBean> getGoodsByGoodsStatus(String goodsstatus)throws SQLException;
 	
-	public List<GoodsBean> getGoods() throws SQLException;
+	public List<GoodsBean> getGoods(String goodsstatusValue) throws SQLException;
+	
+	public List<GoodsBean> getGoodsByUserType(String goodsstatusValue,int usertype) throws SQLException;
+	
+	public List<GoodsBean> getGoodsByGoodsType(String goodsstatusValue,String goodstype) throws SQLException;
+	
+	public List<GoodsBean> getGoodsByGoodsLoc(String goodsstatusValue,String goodsloc) throws SQLException;
+	
+	public List<GoodsBean> getGoodsByKeyword(String goodsstatusValue,String keyword) throws SQLException;
+	
 
 
 }

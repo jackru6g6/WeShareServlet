@@ -22,7 +22,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 	}	
 	
 	//取得所有物資資料
-	public List<GoodsBean> getGoods() throws SQLException{
+	public List<GoodsBean> getGoods(String goodsstatusValue) throws SQLException{
 		List<GoodsBean> list = new ArrayList<>();
 		Connection con = ds.getConnection();
 		try {
@@ -31,8 +31,10 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ "g.goodsimage,g.goodsfilename,i.indname,gt.goodsname,l.localname"
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
-					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno";
+					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
+					+ " Where g.goodsstatus = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, goodsstatusValue);
 			ResultSet rs = stmt.executeQuery();			
 			while (rs.next()) {
 				GoodsBean bean = new GoodsBean();
@@ -53,7 +55,6 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 				bean.setGoodsname_TEMP(rs.getString(15));
 				bean.setLocalname_TEMP(rs.getString(16));
 				list.add(bean);
-		
 			}
 		} finally {
 			con.close();
@@ -109,7 +110,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 	}
 	
 	//透過關鍵字搜尋物資資料
-	public List<GoodsBean> getGoodsByKeyword(String keyword) throws SQLException{
+	public List<GoodsBean> getGoodsByKeyword(String goodsstatusValue,String keyword) throws SQLException{
 		List<GoodsBean> list = new ArrayList<>();
 		Connection con = ds.getConnection();
 		try {
@@ -119,10 +120,11 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.goodsname like ?";
+					+ " WHERE g.goodsname like ? and g.goodsstatus = ?";
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, "%" + keyword + "%");
+			stmt.setString(2, goodsstatusValue);
 			ResultSet rs = stmt.executeQuery();			
 			while (rs.next()) {
 				GoodsBean bean = new GoodsBean();
@@ -143,7 +145,6 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 				bean.setGoodsname_TEMP(rs.getString(15));
 				bean.setLocalname_TEMP(rs.getString(16));
 				list.add(bean);
-
 			}
 		} finally {
 			con.close();
@@ -153,7 +154,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 	}
 	
 	//透過需求地區搜尋物資資料
-	public List<GoodsBean> getGoodsByGoodsLoc(String goodsloc) throws SQLException{
+	public List<GoodsBean> getGoodsByGoodsLoc(String goodsstatusValue,String goodsloc) throws SQLException{
 		List<GoodsBean> list = new ArrayList<>();
 		Connection con = ds.getConnection();
 		try {
@@ -163,10 +164,11 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.goodsloc = ?";
+					+ " WHERE g.goodsloc = ? and g.goodsstatus = ?";
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, goodsloc);
+			stmt.setString(2, goodsstatusValue);
 			ResultSet rs = stmt.executeQuery();			
 			while (rs.next()) {
 				GoodsBean bean = new GoodsBean();
@@ -187,7 +189,6 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 				bean.setGoodsname_TEMP(rs.getString(15));
 				bean.setLocalname_TEMP(rs.getString(16));
 				list.add(bean);
-
 			}
 		} finally {
 			con.close();
@@ -197,7 +198,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 	}
 	
 	//透過物品類別搜尋物資資料
-	public List<GoodsBean> getGoodsByGoodsType(String goodstype) throws SQLException{
+	public List<GoodsBean> getGoodsByGoodsType(String goodsstatusValue,String goodstype) throws SQLException{
 		List<GoodsBean> list = new ArrayList<>();
 		Connection con = ds.getConnection();
 		try {
@@ -207,10 +208,11 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.goodstype = ?";
+					+ " WHERE g.goodstype = ? and g.goodsstatus = ?";
 
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, goodstype);
+			stmt.setString(2, goodsstatusValue);
 			ResultSet rs = stmt.executeQuery();			
 			while (rs.next()) {
 				GoodsBean bean = new GoodsBean();
@@ -231,7 +233,6 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 				bean.setGoodsname_TEMP(rs.getString(15));
 				bean.setLocalname_TEMP(rs.getString(16));
 				list.add(bean);
-
 			}
 		} finally {
 			con.close();
@@ -240,7 +241,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 	}
 	
 	//透過帳號型態搜尋物資資料
-	public List<GoodsBean> getGoodsByUserType(int usertype) throws SQLException{
+	public List<GoodsBean> getGoodsByUserType(String goodsstatusValue,int usertype) throws SQLException{
 		List<GoodsBean> list = new ArrayList<>();
 		Connection con = ds.getConnection();
 		try {
@@ -250,10 +251,11 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.indid = i.indid and i.usertype = ?";
+					+ " WHERE g.indid = i.indid and i.usertype = ? and g.goodsstatus = ?";
 
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, usertype);
+			stmt.setString(2, goodsstatusValue);
 			ResultSet rs = stmt.executeQuery();			
 			while (rs.next()) {
 				GoodsBean bean = new GoodsBean();
@@ -274,7 +276,6 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 				bean.setGoodsname_TEMP(rs.getString(15));
 				bean.setLocalname_TEMP(rs.getString(16));
 				list.add(bean);
-
 			}
 		} finally {
 			con.close();
