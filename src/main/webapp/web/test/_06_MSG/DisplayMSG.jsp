@@ -20,6 +20,12 @@ function readMSG(n) {
 		document.forms[0].method="POST";
 		document.forms[0].submit();
 }
+function loadMSG(n) {
+	
+	document.forms[0].action="<c:url value='/web/_06_MSG/controller/FindMSGByRoomNo.do?key=" + n +"' />" ;
+	document.forms[0].method="POST";
+	document.forms[0].submit();
+}
 </script>
 <body>
 	<header>
@@ -28,47 +34,49 @@ function readMSG(n) {
 
 	<section>
 		<jsp:include page="../top.jsp" />
-		<h1>訊息查詢</h1>
-		<c:if test="${!empty MSG_DATA}">
+		<h1>訊息查詢 ${fn:toLowerCase(LoginOK.indid)}</h1>
+
+		<c:if test="${!empty MSGROOM_DATA}">
 			<table border='1'>
 				<tr height='18' bgColor="${rowColor}">
-					<td>訊息編號</td>
-					<td>訊息狀態</td>
-					<td>訊息時間</td>
-					<td>發信者</td>
-					<td>收信者</td>
-					<td>訊息內容</td>
-					<td>圖片</td>
-					<td>圖片檔名</td>
-					<td>按鈕</td>
+					<td>聊天室名稱</td>
+					<td>訊息/圖片</td>
+					<td>時間</td>
+					<td>查看</td>
 				</tr>
-				<c:forEach varStatus="stVar" var="MSG" items="${MSG_DATA}">
+				<c:forEach varStatus="stVar" var="MSG" items="${MSGROOM_DATA}">
 					<!-- 用兩種顏色交替使用作為顯示商品資料的背景底色 -->
 					<c:set var="rowColor" value="#DEFADE" />
 					<c:if test="${ stVar.count % 2 == 0 }">
 						<c:set var="rowColor" value="#FFEBFF" />
 					</c:if>
 					<tr height='18' bgColor="${rowColor}">
-						<td>${MSG.MSGNO}</td>
-						<td>${MSG.MSGSTATUS}</td>
-						<td>${MSG.POSTDATE}</td>
-						<td>${MSG.MSGSOURCEID}</td>
-						<td>${MSG.MSGENDID}</td>
-						<td>${MSG.MSGTEXT}</td>
-						<td><img height='40px' width='30px'
-							src='${pageContext.servletContext.contextPath}/_00_init/getImage?id=${MSG.MSGNO}&type=MSG' />
+						<td><c:if test="${MSG.MSGENDID == fn:toLowerCase(LoginOK.indid)}">${MSG.MSGSOURCEID}</c:if>
+							<c:if test="${MSG.MSGENDID != fn:toLowerCase(LoginOK.indid)}">${MSG.MSGENDID}</c:if>
 						</td>
-						<td>${MSG.MSGFILENAME}</td>
-						<c:if test="${MSG.MSGSTATUS==2}">
-							<td><Input type="button" name="read" value="已讀"
-								onClick="readMSG(${MSG.MSGNO})"></td>
-						</c:if>
+						<td>${MSG.MSGTEXT}<c:if test="${!empty MSG.MSGFILENAME}">
+								<img height='40px' width='30px'
+									src='${pageContext.servletContext.contextPath}/_00_init/getImage?id=${MSG.MSGNO}&type=MSG' />
+							</c:if>
+						</td>
+						<td>${MSG.POSTDATE}</td>
+						<td><c:choose>
+								<c:when
+									test="${(MSG.MSGSTATUS == 2) && (MSG.MSGENDID == fn:toLowerCase(LoginOK.indid))}">
+									<Input type="button" name="read" value="已讀"
+										onClick="readMSG(${MSG.ROOMNO})">
+								</c:when>
+								<c:otherwise>
+									<Input type="button" name="read" value="查看"
+										onClick="loadMSG(${MSG.ROOMNO})">
+								</c:otherwise>
+							</c:choose></td>
 					</tr>
 
 				</c:forEach>
 			</table>
 		</c:if>
-		<c:if test="${empty MSG_DATA}">
+		<c:if test="${empty MSGROOM_DATA}">
 			<h1>你沒有訊息</h1>
 		</c:if>
 

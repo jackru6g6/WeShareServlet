@@ -1,13 +1,11 @@
 package web._06_MSG.controller;
 
 import java.io.IOException;
-import java.net.URLDecoder;
 import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,11 +15,11 @@ import web._01_register.model.MemberBean;
 import web._06_MSG.model.MSGBean;
 import web._06_MSG.model.MSGDAO;
 
-@WebServlet("/web/_06_MSG/controller/FindMSGByKey.do")
-public class FindMSGByKeyServlet extends HttpServlet {
+@WebServlet("/web/_06_MSG/controller/FindMSGByRoomNo.do")
+public class FindMSGByRoomNoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public FindMSGByKeyServlet() {
+	public FindMSGByRoomNoServlet() {
 		super();
 	}
 
@@ -58,18 +56,19 @@ public class FindMSGByKeyServlet extends HttpServlet {
 		}
 		INDID = mb.getIndid();
 		System.out.println("session INDID=" + INDID);
+		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
+		String key = request.getParameter("key");
+		System.out.println("KEY=" + key);
 
-		Collection<MSGBean> coll = new MSGDAO().FindMSGByKey(INDID);
+		Collection<MSGBean> coll = new MSGDAO().FindMSGByRoomNoKey(key);
 		System.out.println(INDID + "一共有" + coll.size() + "筆訊息");
+		request.setAttribute("ROOMKEY", key);
 		if (coll.size() != 0) {
-			request.setAttribute("MSGROOM_DATA", coll);
+			request.setAttribute("ROOMNO_DATA", coll);
 		} else {
-			request.setAttribute("MSGROOM_DATA", null);
+			request.setAttribute("ROOMNO_DATA", null);
 		}
-		// RequestDispatcher rd =
-		// request.getRequestDispatcher("/_06_MSG/DisplayMSG.jsp");
-
-		RequestDispatcher rd = request.getRequestDispatcher("/web/test/_06_MSG/DisplayMSG.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/web/test/_06_MSG/RoomMSG.jsp");
 		rd.forward(request, response);
 		return;
 	};

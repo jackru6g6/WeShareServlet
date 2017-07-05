@@ -46,7 +46,10 @@ public class AddNewMSGServlet extends HttpServlet {
 
 	public void do_First(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
 		String INDID = "";
+		String key = request.getParameter("key");
+		String MSGENDID = request.getParameter("to");
 		HttpSession session = request.getSession(false);
 		// 紀錄目前請求的RequestURI,以便使用者登入成功後能夠回到原本的畫面
 		String requestURI = request.getRequestURI();
@@ -69,7 +72,6 @@ public class AddNewMSGServlet extends HttpServlet {
 		System.out.println("session INDID=" + INDID);
 
 		String contextPath = request.getContextPath();
-		GoogleLoginBean GLB = (GoogleLoginBean) session.getAttribute("FINDGLB");
 		Map<String, String> errorMsg = new HashMap<String, String>();
 		// 準備存放註冊成功之訊息的Map物件
 		Map<String, String> msgOK = new HashMap<String, String>();
@@ -77,7 +79,6 @@ public class AddNewMSGServlet extends HttpServlet {
 		request.setAttribute("MsgMap", errorMsg); // 顯示錯誤訊息
 		request.setAttribute("RM", RM); // 記錄CHECKBOX按鈕
 		session.setAttribute("MsgOK", msgOK); // 顯示正常訊息
-		String MSGENDID = null;
 		String MSGTEXT = null;
 		String String = null;
 		String FileName = "";
@@ -94,9 +95,6 @@ public class AddNewMSGServlet extends HttpServlet {
 				String value = request.getParameter(fldName);// 取得值
 				// 1. 讀取使用者輸入資料
 				if (p.getContentType() == null) {
-					if (fldName.equalsIgnoreCase("MSGENDID")) {
-						MSGENDID = value;
-					}
 					if (fldName.equalsIgnoreCase("MSGTEXT")) {
 						MSGTEXT = value;
 					}
@@ -115,6 +113,7 @@ public class AddNewMSGServlet extends HttpServlet {
 		} else {
 			errorMsg.put("errTitle", "此表單不是上傳檔案的表單");
 		}
+		System.out.println("MSGENDID=" + MSGENDID+"	MSGTEXT="+MSGTEXT+" key="+key);
 		if (MSGENDID == null || MSGENDID.trim().length() == 0) {
 			errorMsg.put("errorMSGENDID", "帳號欄必須輸入");
 		}
@@ -126,7 +125,7 @@ public class AddNewMSGServlet extends HttpServlet {
 		}
 		if (!errorMsg.isEmpty()) {
 			// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
-			RequestDispatcher rd = request.getRequestDispatcher("/_06_MSG/AddNewMSG.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/web/test/_06_MSG/RoomMSG.jsp");
 			rd.forward(request, response);
 			return;
 		} else {
@@ -140,11 +139,11 @@ public class AddNewMSGServlet extends HttpServlet {
 
 		if (!errorMsg.isEmpty()) {
 			// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
-			RequestDispatcher rd = request.getRequestDispatcher("/_06_MSG/AddNewMSG.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/web/test/_06_MSG/RoomMSG.jsp");
 			rd.forward(request, response);
 			return;
 		}
-		response.sendRedirect("FindMSGByKey.do");
+		response.sendRedirect("FindMSGByRoomNo.do?key="+key);
 		return;
 	}
 
