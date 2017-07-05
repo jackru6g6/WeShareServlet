@@ -4,7 +4,7 @@ function showData(responseData, javaRoot) {
 		resultData = 		
 			`<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 				<div class="wishGoods">
-					<a href="#" class="wishGoodsA">
+					<a href="wishGoods.jsp" class="wishGoodsA">
 
 						<div class="wishGoodsImgLayout">
 							<img class="img-responsive wishGoodsImg" src="${javaRoot}/_00_init/getImage?id=${responseData[i].goodsno}&type=GOODS">

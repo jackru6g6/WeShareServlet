@@ -1,0 +1,65 @@
+@charset "UTF-8";
+#sectionWTrans {
+  padding: 30px 45px;
+  min-height: calc(100vh - 306px);
+  font-size: 20px;
+  /* 標題 */
+  /*  物資圖片 */
+  /* 右邊物資資訊 */ }
+  #sectionWTrans #wTransTitle {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px; }
+  #sectionWTrans #wTransImgLayout {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+    margin: auto;
+    box-shadow: 0px 0px 20px 10px #e6e6e6; }
+    #sectionWTrans #wTransImgLayout #wTransImg {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%); }
+  #sectionWTrans #wTransInfo {
+    color: #3e3e3e;
+    padding-left: 30px;
+    margin-bottom: 20px;
+    /* 欄位 */
+    /* 值 */
+    /* 取消&確定按鈕 */ }
+    #sectionWTrans #wTransInfo .wTransCol {
+      padding-left: 10px;
+      font-size: 22px; }
+    #sectionWTrans #wTransInfo .wTransVal {
+      margin-bottom: 20px;
+      padding-left: 10px;
+      text-indent: 2em;
+      border-bottom: 1px solid #bdbdbd; }
+      #sectionWTrans #wTransInfo .wTransVal textarea {
+        resize: none; }
+    #sectionWTrans #wTransInfo #blockWTransOption {
+      margin-top: 10px;
+      margin-bottom: 20px; }
+      #sectionWTrans #wTransInfo #blockWTransOption > ul {
+        margin: 0px;
+        padding: 10px; }
+        #sectionWTrans #wTransInfo #blockWTransOption > ul > li {
+          display: inline-block; }
+          #sectionWTrans #wTransInfo #blockWTransOption > ul > li .wTransOption {
+            border-radius: 0px;
+            width: 100%;
+            font-size: 20px;
+            background-color: #ffffff;
+            color: #ff9797;
+            border-color: #ff9797;
+            transition: 0.3s; }
+            #sectionWTrans #wTransInfo #blockWTransOption > ul > li .wTransOption:hover {
+              animation: spread 1s; }
+
+@keyframes spread {
+  0% {
+    box-shadow: 0px 0px 0px 0px #ff9797; }
+  100% {
+    box-shadow: 0px 0px 20px 30px #ffffff; } }

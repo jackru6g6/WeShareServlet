@@ -9,7 +9,7 @@
 <head>
 	<meta charset="utf-8">
 	<jsp:include page="../fragment/refCss.jsp" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/wish.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/wish.css?t=1">
 	<jsp:include page="../fragment/refJs.jsp" />
 	<title>WeShare 微分享</title>
 </head>

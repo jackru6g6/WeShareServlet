@@ -1,7 +1,7 @@
 function showWishData(responseWishData, javaRoot) {
 	for (var i = 0; i < 4; i++) {
 		var resultWishData =
-			`<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+			`<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 				<div class="wishItem">
 					<div>
 						<a href="#" class="itemA">
@@ -14,7 +14,7 @@ function showWishData(responseWishData, javaRoot) {
 					<div class="itemName itemContent"><a href="#">${responseWishData[i].goodsname}</a></div>
 					<div class="itemBy itemContent">
 						<a href="#">
-							<h6>By <span>${responseWishData[i].indname_TEMP}</span></h6>
+							<span>By <span>${responseWishData[i].indname_TEMP}</span></span>
 							<h5><span>${responseWishData[i].updatetime}</span></h5>
 						</a>
 					</div>
@@ -27,7 +27,7 @@ function showWishData(responseWishData, javaRoot) {
 function showGiveData(responseGiveData, javaRoot) {
 	for (var i = 0; i < 4; i++) {
 		var resultGiveData =
-			`<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+			`<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 				<div class="giveItem">
 					<div>
 						<a href="#" class="itemA">
@@ -40,7 +40,7 @@ function showGiveData(responseGiveData, javaRoot) {
 					<div class="itemName itemContent"><a href="#">${responseGiveData[i].goodsname}</a></div>
 					<div class="itemBy itemContent">
 						<a href="#">
-							<h6>By <span>${responseGiveData[i].indname_TEMP}</span></h6>
+							<span>By <span>${responseGiveData[i].indname_TEMP}</span></span>
 							<h5><span>${responseGiveData[i].updatetime}</span></h5>
 						</a>
 					</div>
@@ -54,7 +54,7 @@ function showGiveData(responseGiveData, javaRoot) {
 function showExchangeData(responseExchangeData, javaRoot) {
 	for (var i = 0; i < 4; i++) {
 		var resultExchangeData =
-			`<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+			`<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 				<div class="exchangeItem">
 					<div>
 						<a href="#" class="itemA">
@@ -67,7 +67,7 @@ function showExchangeData(responseExchangeData, javaRoot) {
 					<div class="itemName itemContent"><a href="#">${responseExchangeData[i].goodsname}</a></div>
 					<div class="itemBy itemContent">
 						<a href="#">
-							<h6>By <span>${responseExchangeData[i].indname_TEMP}</span></h6>
+							<span>By <span>${responseExchangeData[i].indname_TEMP}</span></span>
 							<h5><span>${responseExchangeData[i].updatetime}</span></h5>
 						</a>
 					</div>

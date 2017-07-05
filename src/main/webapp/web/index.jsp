@@ -9,7 +9,7 @@
 <head>
 	<meta charset="utf-8">
 	<jsp:include page="../fragment/refCss.jsp" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/index.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/index.css?t=3">
 	<jsp:include page="../fragment/refJs.jsp" />
 	<title>WeShare 微分享</title>
 </head>
@@ -209,7 +209,7 @@
 	</footer>
 	
 	
-	<script src="${pageContext.request.contextPath}/dist/js/showIndexData.js"></script>
+	<script src="${pageContext.request.contextPath}/dist/js/showIndexData.js?t=2"></script>
 	<script type="text/javascript">
 		var javaRoot = "${pageContext.servletContext.contextPath}";
 		var xhrWish = new XMLHttpRequest();

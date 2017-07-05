@@ -54,6 +54,7 @@
         /* 搜尋輸入框 */
         /* 搜尋鈕圖式 */ }
         #sectionGive #sectionFilter #sectionFilterContent #blockKWSearch #searchInput {
+          font-size: 18px;
           width: 150px;
           padding: 5px 5px 5px 40px;
           transition: .5s; }
@@ -93,7 +94,7 @@
             /* 條件選項按鈕 */ }
             #sectionGive #sectionFilter #sectionFilterContent .blockFilter .btFilterBlock > ul > li .btnFilterType {
               width: 100%;
-              font-size: 16px;
+              font-size: 18px;
               color: #f5f5f5; }
         #sectionGive #sectionFilter #sectionFilterContent .blockFilter #btBy {
           border-color: #ffb8b8; }
@@ -112,13 +113,13 @@
           #sectionGive #sectionFilter #sectionFilterContent .blockFilter #blockClass .btnFilterType {
             background-color: #fe9938; }
         #sectionGive #sectionFilter #sectionFilterContent .blockFilter #btLoc {
-          border-color: #b25cc1; }
+          border-color: #b668c3; }
           #sectionGive #sectionFilter #sectionFilterContent .blockFilter #btLoc:hover, #sectionGive #sectionFilter #sectionFilterContent .blockFilter #btLoc:focus {
-            background-color: #a94aba; }
+            background-color: #dd8eea; }
         #sectionGive #sectionFilter #sectionFilterContent .blockFilter #blockLoc {
           background-color: #c381cf; }
           #sectionGive #sectionFilter #sectionFilterContent .blockFilter #blockLoc .btnFilterType {
-            background-color: #9a40aa; }
+            background-color: #ac4dbd; }
       #sectionGive #sectionFilter #sectionFilterContent #slideMenuTrigger {
         position: absolute;
         top: 0;
