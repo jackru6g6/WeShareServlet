@@ -131,6 +131,10 @@ body {
       .exchangeItem .itemBy a>span>span {
         font-size: 20px;
         color: #01B468; }
+      .wishItem .itemBy a h5,
+      .giveItem .itemBy a h5,
+      .exchangeItem .itemBy a h5 {
+        text-align:right; }
       .wishItem .itemBy a h5 span,
       .giveItem .itemBy a h5 span,
       .exchangeItem .itemBy a h5 span {

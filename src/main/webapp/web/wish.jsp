@@ -295,9 +295,10 @@
 	<script type="text/javascript">
 		var javaRoot = "${pageContext.servletContext.contextPath}";
 		var xhr = new XMLHttpRequest();
-		var servletPath = javaRoot + '/_08_query/Query.do?type=goodsstatus&value=1';
+		var servletPath = javaRoot + '/_08_query/Query.do?goodsstatus=1';
 		var responseData;
 		
+		// 頁面載入時
 		window.onload = function(){					
 			xhr.open('GET', servletPath, true);
 			xhr.send();
@@ -312,10 +313,20 @@
 			}
 		}
 		
+		// 關鍵字查詢
+		$('#searchInput').keydown(function(e){
+			if(e.keyCode == 13){
+				keyWordSearch();
+			}
+		});
 		$('#btKWSearch').click(function(){
+			keyWordSearch();
+		});
+		function keyWordSearch(){
+			servletPath = javaRoot + '/_08_query/Query.do?goodsstatus=1';
 			var keyWord = $('#searchInput').val();
 			console.log("keyWord = " + keyWord);
-			servletPath += '&type=&value=' + keyWord;
+			servletPath += '&type=keyword&value=' + keyWord;
 			console.log("servletPath = " + servletPath);
 			xhr.open('GET', servletPath, true);
 			xhr.send();
@@ -325,14 +336,16 @@
 					console.log("-------------------");
 					console.log("篩選後符合的資料筆數:" + responseData.length);
 					console.log("-------------------");
-// 					showData(responseData, javaRoot);
+					showData(responseData, javaRoot);
 				}
 			}
-		});
+		}
 		
+		// 身份、類別、地點查詢
 		$('.btnFilterType').click(function(){
+			servletPath = javaRoot + '/_08_query/Query.do?goodsstatus=1';
 			var col = $(this).find('.findCol').val();
-			var val = $(this).find('.findVal').val();
+			var val = $(this).find('.findVal').val();			
 			console.log("findCol = " + col + ", findVal = " + val);
 			servletPath += '&type=' + col + '&value=' + val;
 			console.log("servletPath = " + servletPath);
@@ -344,7 +357,7 @@
 					console.log("-------------------");
 					console.log("篩選後符合的資料筆數:" + responseData.length);
 					console.log("-------------------");
-// 					showData(responseData, javaRoot);
+					showData(responseData, javaRoot);
 				}
 			}
 			

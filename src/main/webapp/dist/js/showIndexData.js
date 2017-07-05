@@ -1,5 +1,10 @@
 function showWishData(responseWishData, javaRoot) {
 	for (var i = 0; i < 4; i++) {
+		var deadlineString = `${responseWishData[i].deadlinestring}`;
+		var deadlineSplit = deadlineString.split('-');
+		var dateNow = new Date();
+		var dateDeadline = new Date(deadlineSplit[0], deadlineSplit[1], deadlineSplit[2]);
+		var daysLeft = Math.floor((dateDeadline - dateNow) / (1000 * 60 * 60 * 24));
 		var resultWishData =
 			`<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 				<div class="wishItem">
@@ -15,17 +20,22 @@ function showWishData(responseWishData, javaRoot) {
 					<div class="itemBy itemContent">
 						<a href="#">
 							<span>By <span>${responseWishData[i].indname_TEMP}</span></span>
-							<h5><span>${responseWishData[i].updatetime}</span></h5>
+							<h5>還剩 <span>` + daysLeft + `</span> 天</h5>
 						</a>
 					</div>
 				</div>
 			</div>`;
-		$('#wishContent').append(resultWishData);
+		$('#wishContent').append(resultWishData);		
 	}
 }
 
 function showGiveData(responseGiveData, javaRoot) {
 	for (var i = 0; i < 4; i++) {
+		var deadlineString = `${responseGiveData[i].deadlinestring}`;
+		var deadlineSplit = deadlineString.split('-');
+		var dateNow = new Date();
+		var dateDeadline = new Date(deadlineSplit[0], deadlineSplit[1], deadlineSplit[2]);
+		var daysLeft = Math.floor((dateDeadline - dateNow) / (1000 * 60 * 60 * 24));
 		var resultGiveData =
 			`<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 				<div class="giveItem">
@@ -41,7 +51,7 @@ function showGiveData(responseGiveData, javaRoot) {
 					<div class="itemBy itemContent">
 						<a href="#">
 							<span>By <span>${responseGiveData[i].indname_TEMP}</span></span>
-							<h5><span>${responseGiveData[i].updatetime}</span></h5>
+							<h5>還剩 <span>` + daysLeft + `</span> 天</h5>
 						</a>
 					</div>
 				</div>
@@ -53,6 +63,11 @@ function showGiveData(responseGiveData, javaRoot) {
 
 function showExchangeData(responseExchangeData, javaRoot) {
 	for (var i = 0; i < 4; i++) {
+		var deadlineString = `${responseExchangeData[i].deadlinestring}`;
+		var deadlineSplit = deadlineString.split('-');
+		var dateNow = new Date();
+		var dateDeadline = new Date(deadlineSplit[0], deadlineSplit[1], deadlineSplit[2]);
+		var daysLeft = Math.floor((dateDeadline - dateNow) / (1000 * 60 * 60 * 24));
 		var resultExchangeData =
 			`<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 				<div class="exchangeItem">
@@ -68,7 +83,7 @@ function showExchangeData(responseExchangeData, javaRoot) {
 					<div class="itemBy itemContent">
 						<a href="#">
 							<span>By <span>${responseExchangeData[i].indname_TEMP}</span></span>
-							<h5><span>${responseExchangeData[i].updatetime}</span></h5>
+							<h5>還剩 <span>` + daysLeft + `</span> 天</h5>
 						</a>
 					</div>
 				</div>

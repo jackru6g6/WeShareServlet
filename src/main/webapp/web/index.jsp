@@ -9,7 +9,7 @@
 <head>
 	<meta charset="utf-8">
 	<jsp:include page="../fragment/refCss.jsp" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/index.css?t=3">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/index.css">
 	<jsp:include page="../fragment/refJs.jsp" />
 	<title>WeShare 微分享</title>
 </head>
@@ -36,7 +36,7 @@
 						<div class="carousel-inner">
 							<!--第一張圖-->
 							<div class="item active">
-								<img class="center-block img-responsive carouselImg" src="../dist/img/carousel1.png" alt="First slide">
+								<img class="center-block img-responsive carouselImg" src="../dist/img/carousel1.jpg" alt="First slide">
 							</div>
 							<!--第二張圖-->
 							<div class="item">
@@ -209,13 +209,13 @@
 	</footer>
 	
 	
-	<script src="${pageContext.request.contextPath}/dist/js/showIndexData.js?t=2"></script>
+	<script src="${pageContext.request.contextPath}/dist/js/showIndexData.js"></script>
 	<script type="text/javascript">
 		var javaRoot = "${pageContext.servletContext.contextPath}";
 		var xhrWish = new XMLHttpRequest();
 		var xhrGive = new XMLHttpRequest();
 		var xhrExchange = new XMLHttpRequest();
-		var servletPath = javaRoot + '/_08_query/Query.do?type=goodsstatus&value=';
+		var servletPath = javaRoot + '/_08_query/Query.do?goodsstatus=';
 		var responseWishData;
 		var responseGiveData;
 		var responseExchangeData;

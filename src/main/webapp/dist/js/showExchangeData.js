@@ -1,5 +1,13 @@
 function showData(responseData, javaRoot) {
+	$('#divExchangeGoods').empty();
 	var resultData;
+	if(responseData.length == 0){
+		resultData = 
+		`<div style="font-size:24px; color:#ff0000; text-align:center; margin-top:30px;">
+			找不到物資唷~請重新查詢！
+		</div>`;
+		$('#divExchangeGoods').append(resultData);		
+	}
 	for (var i = 0; i < responseData.length; i++) {
 		resultData =
 			`<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -29,7 +37,6 @@ function showData(responseData, javaRoot) {
 					</a>
 				</div>
 			</div>`;
-
 		$('#divExchangeGoods').append(resultData);
 	}
 }
