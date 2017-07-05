@@ -54,10 +54,36 @@ public class MSGDAO {
 	public Collection<MSGBean> FindMSGByKey(String INDID) {
 		Collection<MSGBean> coll = new ArrayList<MSGBean>();
 		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con
-						.prepareStatement("select * from msg where msgsourceid = ? or msgendid=? ORDER BY postdate DESC");) {
+				PreparedStatement pstmt = con.prepareStatement(
+						"SELECT * from msg where msgsourceid =? or msgendid=? GROUP BY ROOMNO DESC ORDER BY postdate DESC");) {
 			pstmt.setString(1, INDID);
 			pstmt.setString(2, INDID);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				MSGBean msgb = new MSGBean();
+				msgb.setMSGNO(rs.getInt(1));
+				msgb.setMSGSTATUS(rs.getInt(2));
+				msgb.setPOSTDATE(rs.getTimestamp(3));
+				msgb.setMSGSOURCEID(rs.getString(4));
+				msgb.setMSGENDID(rs.getString(5));
+				msgb.setMSGTEXT(rs.getString(6));
+				msgb.setMSGIMAGE(rs.getBlob(7));
+				msgb.setMSGFILENAME(rs.getString(8));
+				msgb.setROOMNO(rs.getInt(9));
+				coll.add(msgb);
+			}
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return coll;
+	}
+
+	public Collection<MSGBean> FindMSGByRoomNoKey(String INDID) {
+		Collection<MSGBean> coll = new ArrayList<MSGBean>();
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con.prepareStatement("SELECT * from msg where ROOMNO=? ORDER BY postdate ");) {
+			pstmt.setString(1, INDID);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				MSGBean msgb = new MSGBean();
@@ -82,7 +108,7 @@ public class MSGDAO {
 	public String READ_MSG(String key) {
 		String ans = "FALSE";
 		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con.prepareStatement("UPDATE MSG SET MSGSTATUS=1 WHERE MSGNO = ?");) {
+				PreparedStatement pstmt = con.prepareStatement("UPDATE MSG SET MSGSTATUS=1 WHERE ROOMNO = ?");) {
 			pstmt.setString(1, key);
 			pstmt.executeUpdate();
 			ans = "TRUE";
@@ -92,4 +118,35 @@ public class MSGDAO {
 		}
 		return ans;
 	}
+
+	// public String GET_ROOMMATE_BY_ROOMNO(String ROOMNO, String INDID) {
+	// String ans = "FALSE";
+	// String BUFFER1 = null;
+	// String BUFFER2 = null;
+	// try (Connection con = ds.getConnection();
+	// PreparedStatement pstmt = con.prepareStatement("SELECT * FROM MSG_ROOM
+	// WHERE ROOMNO=?");) {
+	// pstmt.setString(1, ROOMNO);
+	// ResultSet rs = pstmt.executeQuery();
+	// while (rs.next()) {
+	// BUFFER1 = rs.getString(1);
+	// BUFFER2 = rs.getString(2);
+	// }
+	// rs.close();
+	//
+	// if (!BUFFER1.equals(null) || !BUFFER2.equals(null)) {
+	// if (BUFFER1.equals(INDID)) {
+	// ans = BUFFER2;
+	// } else {
+	// ans = BUFFER1;
+	// }
+	// } else {
+	// ans = "FALSE";
+	// }
+	// } catch (Exception e) {
+	// ans = "FALSE";
+	// e.printStackTrace();
+	// }
+	// return ans;
+	// }
 }

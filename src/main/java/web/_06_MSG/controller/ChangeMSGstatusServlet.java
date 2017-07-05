@@ -38,7 +38,7 @@ public class ChangeMSGstatusServlet extends HttpServlet {
 		String Ans = new MSGDAO().READ_MSG(key);
 		System.out.println("Ans=" + Ans);
 
-		response.sendRedirect("FindMSGByKey.do");
+		response.sendRedirect("FindMSGByRoomNo.do?key="+key);
 		return;
 	}
 
