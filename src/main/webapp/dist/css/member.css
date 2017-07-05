@@ -1,0 +1,305 @@
+/* 會員專區CSS */
+
+/* 左側導覽列 ================================================================ */
+/* 左側導覽列title */
+#member_menu_title{
+    text-align: center;
+}
+
+/* 左側導覽列會員圖片 */
+#member_menu_img{
+    align-content: center;
+    width: 100%;
+}
+
+/* 左側導覽列選項按鈕 */
+#member_menu_button{
+    height: 30px;
+	margin: 10px auto;
+	padding: 0px;
+    font: 18px bold;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #87CEFA;
+    cursor: pointer; /*滑鼠指到時變成手指樣式*/
+    transition: 0.3s; /*過渡時間*/
+}
+
+    /*滑鼠滑過按鈕時變化*/
+    #member_menu_button:hover{
+        background-color: #FFFFFF;
+        color:#87CEFA;
+        font: larger bolder;  /*字體放大*/
+        
+        /*按鈕放大*/
+        /*-webkit-transform: scale(1); 
+        -moz-transform: scale(1);
+        -o-transform: scale(1);*/
+    }
+
+    /*正在使用該按鈕頁面時,按鈕樣式改變*/
+    #member_menu_button.active{
+        background-color: #FFFFFF;
+        color: #87CEFA;
+        font: larger bolder;
+    }
+
+
+/* 頁面內容 ================================================================ */
+.member_content{
+    display: none;
+}
+
+    /* 頁面內容title*/
+    #member_content_title{
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    /*頁面內容分隔線*/
+    #member_content_hr{
+        width: 90%;
+        size: 10px;
+        color: #87CEFA;
+        align: center;
+        margin-bottom: 20px; 
+    }
+
+
+    /* 會員首頁 ------------------------------------------------------ */
+    #member_home{
+        display: block;
+    }
+
+	
+    /* 修改會員資料 ------------------------------------------------------ */
+	
+		/* 表格標籤底色 */
+		#form_label_span{
+			background-color: #87CEFA;
+			border-radius: 3px;
+			padding: 8px;
+		}
+	
+		/* 預覽圖片 */
+		#show_img{
+			max-width: 300px;
+		}
+
+    /* 修改會員資料頁面送出按鈕 */
+    #member_update_button{
+        background-color: #87CEFA;
+		margin: 10px auto;
+    }
+
+
+    /* 我的物資車 ------------------------------------------------------ */
+
+    /* 新增物資按鈕 */
+    #goods_insert_button{
+        background-color: #87CEFA;
+    }
+
+        /*新增物資視窗*/
+        /*新增物資視窗_header */
+        #goods_insert_modal_header{
+            background-color: #87CEFA;
+        }
+            /* 滑鼠移至關閉(X)時，變成紅色*/
+            #goods_insert_modal_header_close:hover{
+                color: red;
+            }
+
+        /*新增物資視窗_body*/
+			/* 新增物資表單label */
+			#goods_insert_form_label_span{
+				background-color: #87CEFA;
+				border-radius: 3px;
+				padding: 8px;
+			}
+			
+				/* 新增物資表單_需求地區_選項分隔底色*/
+				#goods_loc_disabled_option{
+					background-color: #87CEFA;
+				}
+
+                /*預覽照片*/
+                #member_goods_show_img{
+                    max-width: 300px;
+                }
+
+        /*新增物資視窗_footer*/
+            /* 新增按鈕*/
+            #goods_insert_button{
+                background-color: #87CEFA;
+				margin: 10px auto;
+            }
+    
+	/* 我的物資車排序&查詢 */
+	#goods_show{
+		margin: 10px auto;
+	}
+	
+		/* 物資排序底色 */
+		#goods_show_priority_button{
+			background-color: #87CEFA;
+			/* margin: 0px auto; */
+		}
+	
+		/*物資查詢按鈕*/
+		#goods_show_search_button{
+			background-color: #87CEFA;
+		}
+		
+			/* 查詢符號 */
+			#goods_show_search_button_glyphicon{
+				margin-right: 10px;
+			}
+		
+		
+	/* 我的物資車內容 */
+	/* 物資車內容 */
+	#goods_show_list{
+		margin: 20px auto;
+	}
+	
+		/* 物資車項目_title */
+		#goods_show_list_title{
+			text-align: center;
+		}
+	
+	/* 物資車項目_隱藏修改&刪除div */
+	/* #goods_show_list_update&delete{
+		display: none;
+	} */
+	
+		/* #goods_show_list_update&delete:hover{
+			display: block;
+			background-color: rgba(135, 206, 250, 0.3);
+		} */
+		/* 物資車項目_update */
+		#goods_show_list_update{
+			display: inline-flex;
+			 flex-direction:column;
+			justify-content: space-around;
+		}
+		
+		/* 物資車項目_delete */
+		#goods_show_list_delet{
+			display: inline-flex;
+			 flex-direction:column;
+			justify-content: space-around;
+		}
+	
+	/* 我的站內信 ------------------------------------------------------ */
+	
+	/* 新增站內信按鈕 */
+	#message_insert_button{
+		background-color: #87CEFA;
+	}
+	
+		/*撰寫站內信視窗*/
+        /*撰寫站內信_header */
+        #message_insert_modal_header{
+            background-color: #87CEFA;
+        }
+            /* 滑鼠移至關閉(X)時，變成紅色*/
+            #message_insert_modal_header_close:hover{
+                color: red;
+            }
+
+        /*撰寫站內信_body*/
+			/* 撰寫站內信表單label */
+			#message_insert_form_label_span{
+				background-color: #87CEFA;
+				border-radius: 3px;
+				padding: 8px;
+			}
+
+                /*預覽照片*/
+                #message_insert_show_img{
+                    max-width: 300px;
+                }
+
+        /*撰寫站內信視窗_footer*/
+            /* 發送按鈕*/
+            #message_insert_button{
+                background-color: #87CEFA;
+				margin: 10px auto;
+            }
+			
+		/* 我的站內信排序&查詢 */
+		#message_show{
+			margin: 10px auto;
+		}
+		
+			/*站內信查詢按鈕*/
+			#message_show_search_button{
+				background-color: #87CEFA;
+			}
+			
+				/* 查詢符號 */
+				#message_show_search_button_glyphicon{
+					margin-right: 10px;
+				}
+				
+			/* 站內信排序底色 */
+			#message_show_priority_button{
+				background-color: #87CEFA;
+				/* margin: 0px auto; */
+			}
+		
+		/* 我的站內信內容表格 */		
+		#message_show_table_thead{
+			background-color: #87CEFA;
+			text-align: center;
+		}
+			/* 我的站內信內容表格 tr高度 */
+			#message_show_table tr{
+				height: 30px;
+			}
+			
+				/* 我的站內信內容表格_td */
+				#message_show_table_td_no{
+					widrh: 10%;
+				}
+				
+				#message_show_table_td_content{
+					widrh: 70%;
+				}
+				
+				#message_show_table_td_remark{
+					widrh: 20%;
+				}
+				
+				
+				
+	/* 我的評價 ------------------------------------------------------ */	
+				
+		/* 我的評價排序&查詢 */
+		#feedback_show{
+			margin: 10px auto;
+		}
+		
+			/*我的評價查詢按鈕*/
+			#feedback_show_search_button{
+				background-color: #87CEFA;
+			}
+			
+				/* 查詢符號 */
+				#message_show_search_button_glyphicon{
+					margin-right: 10px;
+				}
+				
+			/* 我的評價排序底色 */
+			#feedback_show_priority_button{
+				background-color: #87CEFA;
+				/* margin: 0px auto; */
+			}
+		
+		/* 我的評價內容表格 */		
+		#feedback_show_table_thead{
+			background-color: #87CEFA;
+			text-align: center;
+		}
+		

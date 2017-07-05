@@ -233,13 +233,15 @@
 								</label>
 								<!-- 上傳及預覽檔案 -->
 								<div class="col-sm-9">
-										
+									
+									<!-- 上傳檔案 -->		
 									<div class="row">
 										<div class="col-sm-12">
 											<input type="file" name="file1" id="upload_img" accept="image/jpeg, image/png">
 										</div>
 									</div>
-										
+									
+									<!-- 預覽上傳檔案 -->		
 									<div class="row">
 										<div class="col-sm-12" id="preview_img">
 											
