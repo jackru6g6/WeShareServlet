@@ -21,7 +21,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 		ds = (DataSource) ctx.lookup(GlobalService.JNDI_DB_NAME);
 	}	
 	
-	//取得所有物資資料
+	//透過需求類別取得該類別所有物資資料
 	public List<GoodsBean> getGoods(String goodsstatusValue) throws SQLException{
 		List<GoodsBean> list = new ArrayList<>();
 		Connection con = ds.getConnection();
@@ -32,7 +32,9 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " Where g.goodsstatus = ?";
+					+ " Where g.goodsstatus = ?"
+					+ " ORDER BY g.updatetime DESC;";
+			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, goodsstatusValue);
 			ResultSet rs = stmt.executeQuery();			
@@ -74,7 +76,9 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE goodsstatus = ?";
+					+ " WHERE goodsstatus = ?"
+					+ " ORDER BY g.updatetime DESC;";
+			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, goodsstatus);
 			ResultSet rs = stmt.executeQuery();			
@@ -120,11 +124,15 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.goodsname like ? and g.goodsstatus = ?";
+					+ " WHERE g.goodsname like ? OR g.goodsnote LIKE ? OR i.indname LIKE ? "
+					+ " and g.goodsstatus = ? "
+					+ " ORDER BY g.updatetime DESC;";
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, "%" + keyword + "%");
-			stmt.setString(2, goodsstatusValue);
+			stmt.setString(2, "%" + keyword + "%");
+			stmt.setString(3, "%" + keyword + "%");
+			stmt.setString(4, goodsstatusValue);
 			ResultSet rs = stmt.executeQuery();			
 			while (rs.next()) {
 				GoodsBean bean = new GoodsBean();
@@ -164,7 +172,8 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.goodsloc = ? and g.goodsstatus = ?";
+					+ " WHERE g.goodsloc = ? and g.goodsstatus = ?"
+					+ " ORDER BY g.updatetime DESC;";
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, goodsloc);
@@ -208,7 +217,8 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.goodstype = ? and g.goodsstatus = ?";
+					+ " WHERE g.goodstype = ? and g.goodsstatus = ?"
+					+ " ORDER BY g.updatetime DESC;";			
 
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, goodstype);
@@ -251,7 +261,8 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.indid = i.indid and i.usertype = ? and g.goodsstatus = ?";
+					+ " WHERE g.indid = i.indid and i.usertype = ? and g.goodsstatus = ?"
+					+ " ORDER BY g.updatetime DESC;";
 
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, usertype);
