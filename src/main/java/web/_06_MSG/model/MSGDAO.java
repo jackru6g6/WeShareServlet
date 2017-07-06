@@ -55,7 +55,7 @@ public class MSGDAO {
 		Collection<MSGBean> coll = new ArrayList<MSGBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						"SELECT * from msg where msgsourceid =? or msgendid=? GROUP BY ROOMNO DESC ORDER BY postdate DESC");) {
+						"SELECT * FROM msg WHERE MSGNO IN(SELECT LASTMSGNO FROM MSG_ROOM where INDID1=? or INDID2=?)");) {
 			pstmt.setString(1, INDID);
 			pstmt.setString(2, INDID);
 			ResultSet rs = pstmt.executeQuery();
