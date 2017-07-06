@@ -16,7 +16,7 @@ import web._04_productMaintain.model.GoodsBean;
 import web._04_productMaintain.model.GoodsServiceDAO;
 import web._04_productMaintain.model.GoodsServiceDAO_JDBC;
 
-@WebServlet("/GoodsUpdate.do")
+@WebServlet("/web/_04_productMaintain/controller/GoodsUpdate.do")
 @MultipartConfig(location = "", fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 500, maxRequestSize = 1024 * 1024 * 500 * 5)
 public class GoodsUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,6 +28,8 @@ public class GoodsUpdateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Map<String, String> errorMsgs = new HashMap<String, String>();
 		Map<String, String> successMsgs = new HashMap<String, String>();
+		String pk = request.getParameter("pk");
+		System.out.println("pk="+pk);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		request.setAttribute("ErrMsg", errorMsgs);
@@ -224,7 +226,7 @@ public class GoodsUpdateServlet extends HttpServlet {
 			
 			// 如果有錯誤==> 導向原來輸入資料的畫面，這次會顯示錯誤訊息
 			if (!errorMsgs.isEmpty()) {
-			   RequestDispatcher rd = request.getRequestDispatcher("GoodsUpdate.jsp");
+			   RequestDispatcher rd = request.getRequestDispatcher("FindGoodsServlet?pk="+pk);
 			   rd.forward(request, response);
 			   return;
 			} 
@@ -237,7 +239,7 @@ public class GoodsUpdateServlet extends HttpServlet {
 			int n = gs.updateGoods(gb, is, sizeInBytes, goodsfilename);
 			if ( n == 1) {
 				successMsgs.put("InsertOK","<Font color='red'>新增成功，請開始使用本系統</Font>");
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("FindGoodsServlet");
 				return;
 			} else {
 				errorMsgs.put("errorIDDup","新增此筆資料有誤(RegisterServlet)");
@@ -248,7 +250,7 @@ public class GoodsUpdateServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMsgs.put("errDBMessage", e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("GoodsUpdate.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("FindGoodsServlet?pk="+pk);
 			rd.forward(request, response);
 		}
 	}

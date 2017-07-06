@@ -20,7 +20,6 @@ function readMSG(n) {
 }
 </script>
 <body>
-<jsp:include page="/top.jsp" />
 	<h1>訊息查詢</h1>
 	<c:if test="${!empty MSG_DATA}">
 		<table border='1'>

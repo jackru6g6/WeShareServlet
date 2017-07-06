@@ -17,6 +17,17 @@
 	function setFocus(fld) {
 		document.getElementById(fld).focus();
 	}
+	function onhelp() {
+		document.getElementById("t1").value = "3";
+		document.getElementById("t2").value = "2";
+		document.getElementById("t3").value = "置物櫃";
+		document.getElementById("t4").value = "1";
+		document.getElementById("t5").value = "目前使用不到，希望將愛心傳播出去。";
+		document.getElementById("t6").value = "3";
+		document.getElementById("t7").value = "2";
+		document.getElementById("t8").value = "20170831";
+
+	}
 </script>
 <body>
 	<header>
@@ -30,12 +41,13 @@
 				<div id="afterBookInsert">
 					<font color='red' size='-1'>${successMsg.success}${ErrMsg.Exception}</font><br />
 				</div>
-				<div id="backToBookMaintainList">
-					<a href="${pageContext.request.contextPath}/index.jsp">回首頁</a>
-				</div>
+				<!-- 				<div id="backToBookMaintainList"> -->
+				<%-- 					<a href="${pageContext.request.contextPath}/index.jsp">回首頁</a> --%>
+				<!-- 				</div> -->
 				<!-- 上傳檔案時<form>標籤的 enctype屬性必須是 "multipart/form-data" -->
 				<!-- 而且method屬性必須是 "post" -->
-				<form id="form1" name="form1" method="post" action="GoodsInsert.do"
+				<form id="form1" name="form1" method="post"
+					action="/Demo/web/_04_productMaintain/controller/GoodsInsert.do"
 					enctype="multipart/form-data">
 
 
@@ -55,7 +67,10 @@
 									</TR>
 									<TR height='20'>
 										<TD align='center'><FONT color='#8000FA' size='+2'
-											style="font-weight: 900;"> 新增物資箱 </FONT></TD>
+											style="font-weight: 900;"> 新增物資箱 </FONT>
+											<div id="help" onclick="onhelp()">
+												<p>小幫手</p>
+											</div></TD>
 									</TR>
 									<TR height='5'>
 										<TD align='center'>&nbsp;</TD>
@@ -67,43 +82,43 @@
 						<tr height='36'>
 							<td width="100" align="right" class="title_font">需求類別</td>
 							<td colspan="3"><input name="goodsstatus" class='InputClass'
-								type="text" id="title" value="${param.goodsstatus}" size="50" />
-								<font color='red' size='-1'> ${ErrMsg.errgoodsstatus} </font></td>
+								type="text" id="t1" value="${param.goodsstatus}" size="50" /> <font
+								color='red' size='-1'> ${ErrMsg.errgoodsstatus} </font></td>
 						</tr>
 						<tr height='36'>
 							<td width="45" align="right" class="title_font">物品類別</td>
 							<td colspan="3"><input name="goodstype" class='InputClass'
-								type="text" id="title" value="${param.goodstype}" size="50" />
-								<font color='red' size='-1'> ${ErrMsg.errgoodstype} </font></td>
+								type="text" id="t2" value="${param.goodstype}" size="50" /> <font
+								color='red' size='-1'> ${ErrMsg.errgoodstype} </font></td>
 						</tr>
 						<tr height='36'>
 							<td width="45" align="right" class="title_font">需求名稱</td>
 							<td colspan="3"><input name="goodsname" class='InputClass'
-								type="text" id="title" value="${param.goodsname}" size="50" />
-								<font color='red' size='-1'> ${ErrMsg.errgoodsname} </font></td>
+								type="text" id="t3" value="${param.goodsname}" size="50" /> <font
+								color='red' size='-1'> ${ErrMsg.errgoodsname} </font></td>
 						</tr>
 						<tr height='36'>
 							<td width="45" align="right" class="title_font">需求地區</td>
 							<td colspan="3"><input name="goodsloc" class='InputClass'
-								type="text" id="title" value="${param.goodsloc}" size="50" /> <font
+								type="text" id="t4" value="${param.goodsloc}" size="50" /> <font
 								color='red' size='-1'> ${ErrMsg.errgoodsloc} </font></td>
 						</tr>
 						<tr height='36'>
 							<td width="45" align="right" class="title_font">需求說明</td>
 							<td colspan="3"><input name="goodsnote" class='InputClass'
-								type="text" id="title" value="${param.goodsnote}" size="50" />
-								<font color='red' size='-1'> ${ErrMsg.errgoodsnote} </font></td>
+								type="text" id="t5" value="${param.goodsnote}" size="50" /> <font
+								color='red' size='-1'> ${ErrMsg.errgoodsnote} </font></td>
 						</tr>
 						<tr height='36'>
 							<td width="45" align="right" class="title_font">需求數量</td>
 							<td colspan="3"><input name="qty" class='InputClass'
-								type="text" id="title" value="${param.qty}" size="50" /> <font
+								type="text" id="t6" value="${param.qty}" size="50" /> <font
 								color='red' size='-1'> ${ErrMsg.errqty} </font></td>
 						</tr>
 						<tr height='36'>
 							<td width="45" align="right" class="title_font">需求方式</td>
 							<td colspan="3"><input name="goodsshipway"
-								class='InputClass' type="text" id="title"
+								class='InputClass' type="text" id="t7"
 								value="${param.goodsshipway}" size="50" /> <font color='red'
 								size='-1'> ${ErrMsg.errgoodsshipway} </font></td>
 						</tr>
@@ -111,7 +126,7 @@
 							<td width="45" align="right" class="title_font">截止時間<br>(yyyy-MM-dd)
 							</td>
 							<td colspan="3"><input name="deadline" class='InputClass'
-								type="text" id="title" value="${param.deadline}" size="50" /> <font
+								type="text" id="t8" value="${param.deadline}" size="50" /> <font
 								color='red' size='-1'> ${ErrMsg.errdeadline} </font></td>
 
 						</tr>
@@ -134,7 +149,6 @@
 		<p>&nbsp;</p>
 		<c:remove var="ErrMsg" scope='session' />
 	</section>
-
 	<footer>
 		<jsp:include page="../../../fragment/footer.jsp" />
 	</footer>

@@ -74,7 +74,7 @@ public class sql_Common {
 	static String CREATE_TABLE_DEAL = "Create Table deal (" + "dealno int(7) NOT NULL Auto_Increment Primary Key, "
 			+ "postdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, " + "sourceid varchar(50) NOT NULL, "
 			+ "endid varchar(50) NOT NULL, " + "dealstatus int(1), " + "endshipway INT(7), "
-			+ "dealqty int(3) UNSIGNED, " + "shipdate timestamp ON UPDATE CURRENT_TIMESTAMP, " + "shipno int(20),"
+			+ "dealqty int(3) UNSIGNED, " + "shipdate timestamp ON UPDATE CURRENT_TIMESTAMP, " + "shipno varchar(20),"
 			+ "DEALNOTE VARCHAR(200), " + "dealimage MEDIUMBLOB, " + "dealfilename varchar(20), "
 			+ "goodsname varchar(20) NOT NULL," + "goodsimage MEDIUMBLOB," + "goodsimagename varchar(50),"
 			+ "goodstype varchar(10) NOT NULL," + "loc INT NOT NULL," + "goodsnote varchar(200),"
@@ -117,7 +117,7 @@ public class sql_Common {
 			+ "USER_INDID,0,USER_ENDSHIPWAY,USER_QTY,NULL,NULL,USER_DEALNO,NULL,NULL,function_goodsname,"
 			+ "function_goodsimage,CONCAT(USER_goodsno,CONCAT('_',UNIX_TIMESTAMP(NOW()))),function_goodstypes,"
 			+ "function_goodsloc,function_goodsnote);"
-			+ "UPDATE goods SET qty=(qty-USER_QTY) WHERE GOODSNO=USER_goodsno;SET result = 'OK';ELSE SET result = 'FLASE';"
+			+ "UPDATE goods SET qty=(qty-USER_QTY) WHERE GOODSNO=USER_goodsno;SET result = 'TRUE';ELSE SET result = 'FLASE';"
 			+ "END IF;RETURN result;END;";
 
 	static String CREATE_FUNCTION_CHECK_ROOMNO = "CREATE FUNCTION check_roomNo(function_indid1 varchar(50),function_indid2 varchar(50))RETURNS int(7) BEGIN "

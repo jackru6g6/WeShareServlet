@@ -27,7 +27,6 @@
 	}
 </script>
 <body>
-<jsp:include page="/top.jsp" />
 	<h1>訂單查詢${ LoginOK.indid }</h1>
 	<c:if test="${!empty DEALEND_DATA}">
 		<h3>訂單(接受者)</h3>

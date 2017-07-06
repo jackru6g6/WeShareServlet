@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/top.jsp" />
 	<h1>新增訊息</h1>
 	<form ENCTYPE="multipart/form-data" method="POST"
 		action="<c:url value='/web/_06_MSG/controller/AddNewMSG.do' />">

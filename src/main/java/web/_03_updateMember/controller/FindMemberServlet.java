@@ -81,9 +81,9 @@ public class FindMemberServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/web/member_update.jsp");
+//		RequestDispatcher rd = request.getRequestDispatcher("/web/member_update.jsp");
 		
-//		RequestDispatcher rd = request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
 
 		// RequestDispatcher rd =
 		// request.getRequestDispatcher("/_03_updateMember/updateMember.jsp");

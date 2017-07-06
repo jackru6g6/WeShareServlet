@@ -12,7 +12,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/top.jsp" />
 	<h1>新增訂單${ LoginOK.indid }</h1>
 	<form ENCTYPE="multipart/form-data" method="POST"
 		action="<c:url value='/web/_05_deal/controller/InsertDEAL.do' />">

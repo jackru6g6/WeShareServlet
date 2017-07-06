@@ -64,7 +64,7 @@
                 <ul id="navMemberSub" class="dropdown-menu">
 <!--                     <li><a href="/Demo/web/_03_updateMember/controller/FindMemberServlet">個人檔案</a></li> -->
                     <li>
-                    	<a href="${pageContext.request.contextPath}/web/test/_03_updateMember/updateMember.jsp">
+                    	<a href="${pageContext.request.contextPath}/web/_03_updateMember/controller/FindMemberServlet">
                     		(後端功能測試)
                     	</a>
                     </li>                

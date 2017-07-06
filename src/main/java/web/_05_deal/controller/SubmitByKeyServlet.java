@@ -55,8 +55,9 @@ public class SubmitByKeyServlet extends HttpServlet {
 		System.out.println("session INDID=" + INDID);
 
 		String key = request.getParameter("key");
-		String shipno = request.getParameter("shipno");
-		String Ans = new DealDAO().OK_DEAL(key, INDID,shipno);
+		String shipno = " ";
+		shipno = request.getParameter("shipno");
+		String Ans = new DealDAO().OK_DEAL(key, INDID, shipno);
 		System.out.println("Ans=" + Ans);
 
 		response.sendRedirect("FindDEALByKey.do");
