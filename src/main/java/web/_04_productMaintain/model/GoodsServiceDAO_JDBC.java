@@ -124,7 +124,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.goodsname like ? OR g.goodsnote LIKE ? OR i.indname LIKE ? "
+					+ " WHERE (g.goodsname like ? OR g.goodsnote LIKE ? OR i.indname LIKE ?) "
 					+ " and g.goodsstatus = ? "
 					+ " ORDER BY g.updatetime DESC;";
 			
