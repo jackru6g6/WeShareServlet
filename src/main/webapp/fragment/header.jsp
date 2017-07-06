@@ -14,7 +14,7 @@
         </button>
 
         <!-- Logo -->
-        <a href="index.jsp" id="navLogo" class="navbar-brand">
+        <a href="/Demo/web/index.jsp" id="navLogo" class="navbar-brand">
             <img src="/Demo/dist/img/WeShare_logo.png" width="60" alt="WeShare">
         </a>
     </div>
