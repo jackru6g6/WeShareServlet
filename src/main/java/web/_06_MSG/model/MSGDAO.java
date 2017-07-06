@@ -71,7 +71,7 @@ public class MSGDAO {
 				msgb.setMSGSOURCEID(rs.getString(4));
 				msgb.setMSGENDID(rs.getString(5));
 				msgb.setMSGTEXT(rs.getString(6));
-				msgb.setMSGIMAGE(rs.getBlob(7));
+//				msgb.setMSGIMAGE(rs.getBlob(7));
 				msgb.setMSGFILENAME(rs.getString(8));
 				msgb.setROOMNO(rs.getInt(9));
 				coll.add(msgb);
@@ -97,7 +97,7 @@ public class MSGDAO {
 				msgb.setMSGSOURCEID(rs.getString(4));
 				msgb.setMSGENDID(rs.getString(5));
 				msgb.setMSGTEXT(rs.getString(6));
-				msgb.setMSGIMAGE(rs.getBlob(7));
+//				msgb.setMSGIMAGE(rs.getBlob(7));
 				msgb.setMSGFILENAME(rs.getString(8));
 				msgb.setROOMNO(rs.getInt(9));
 				coll.add(msgb);

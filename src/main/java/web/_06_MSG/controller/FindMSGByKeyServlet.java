@@ -1,6 +1,7 @@
 package web._06_MSG.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.util.Collection;
 
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import web._01_register.model.MemberBean;
 import web._06_MSG.model.MSGBean;
@@ -38,6 +41,7 @@ public class FindMSGByKeyServlet extends HttpServlet {
 	public void do_First(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String INDID = "";
+		String type = "1";
 		HttpSession session = request.getSession(false);
 		// 紀錄目前請求的RequestURI,以便使用者登入成功後能夠回到原本的畫面
 		String requestURI = request.getRequestURI();
@@ -61,17 +65,25 @@ public class FindMSGByKeyServlet extends HttpServlet {
 
 		Collection<MSGBean> coll = new MSGDAO().FindMSGByKey(INDID);
 		System.out.println(INDID + "一共有" + coll.size() + "筆訊息");
-		if (coll.size() != 0) {
-			request.setAttribute("MSGROOM_DATA", coll);
+		Gson gson = new Gson();
+		String msg_json = gson.toJson(coll);
+		System.out.println(msg_json);
+		if (type.equals("1")) {
+			if (coll.size() != 0) {
+				request.setAttribute("MSGROOM_DATA", coll);
+			} else {
+				request.setAttribute("MSGROOM_DATA", null);
+			}
+			RequestDispatcher rd = request.getRequestDispatcher("/web/test/_06_MSG/DisplayMSG.jsp");
+			rd.forward(request, response);
+			return;
 		} else {
-			request.setAttribute("MSGROOM_DATA", null);
+			response.setContentType("application/json; charset=UTF8");
+			try (PrintWriter out = response.getWriter();) {
+				out.print(msg_json);
+			}
 		}
-		// RequestDispatcher rd =
-		// request.getRequestDispatcher("/_06_MSG/DisplayMSG.jsp");
 
-		RequestDispatcher rd = request.getRequestDispatcher("/web/test/_06_MSG/DisplayMSG.jsp");
-		rd.forward(request, response);
-		return;
 	};
 
 }
