@@ -1,6 +1,7 @@
 package web._03_updateMember.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
+import web._01_register.model.Main_FOR_JSON_Bean;
 import web._01_register.model.MemberBean;
 import web._01_register.model.OrgBean;
 import web._01_register.model.RegisterServiceDAO;
@@ -28,6 +32,7 @@ public class FindMemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
+		String type = request.getParameter("type");
 		String INDID = "";
 		HttpSession session = request.getSession(false);
 		// 紀錄目前請求的RequestURI,以便使用者登入成功後能夠回到原本的畫面
@@ -54,7 +59,8 @@ public class FindMemberServlet extends HttpServlet {
 		INDID = mb.getIndid();
 		System.out.println("session INDID=" + INDID);
 		String pk = INDID;
-
+		Main_FOR_JSON_Bean mfjb = new Main_FOR_JSON_Bean();
+		Gson gson = new Gson();
 		try {
 			RegisterServiceDAO rs = new RegisterServiceDAO_JDBC();
 			List<Object> obj = rs.populateMember(pk);
@@ -72,23 +78,49 @@ public class FindMemberServlet extends HttpServlet {
 				}
 			}
 			if (mb1 != null) {
+				mfjb.setUsertype(mb1.getUsertype());
+				mfjb.setPostdate(mb1.getPostdate());
+				mfjb.setIndid(mb1.getIndid());
+				mfjb.setIndname(mb1.getIndname());
+				mfjb.setIndphone(mb1.getIndphone());
+				mfjb.setIndemail(mb1.getIndemail());
+				mfjb.setIndaddress(mb1.getIndaddress());
+				mfjb.setIndfilename(mb1.getIndfilename());
+
 				request.setAttribute("ind", mb1);
 			}
 			if (ob != null) {
 				request.setAttribute("org", ob);
+				mfjb.setUpdatetime(ob.getUpdatetime());
+				mfjb.setIntro(ob.getIntro());
+				mfjb.setLeader(ob.getLeader());
+				mfjb.setOrgtypes(ob.getOrgtypes());
+				mfjb.setRegisterno(ob.getRegisterno());
+				mfjb.setRaiseno(ob.getRaiseno());
+				mfjb.setOrgfilename(ob.getOrgfilename());
+
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		RequestDispatcher rd = request.getRequestDispatcher("/web/member_update.jsp");
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
+		String mfjb_json = gson.toJson(mfjb);
+		if (type == null) {
+			RequestDispatcher rd = request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
+			rd.forward(request, response);
+		} else if (type.equals("Json")) {
+			response.setContentType("application/json; charset=UTF8");
+			try {
+				PrintWriter out = response.getWriter();
+				System.out.println("mfjb_json=" + mfjb_json);
+				out.write(mfjb_json);
+				out.flush();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
 
-		// RequestDispatcher rd =
-		// request.getRequestDispatcher("/_03_updateMember/updateMember.jsp");
-		rd.forward(request, response);
-
+		}
 		return;
 	}
 }

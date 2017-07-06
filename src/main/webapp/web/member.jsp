@@ -233,5 +233,65 @@
 	</footer>
 
 </body>
+<script type="text/javascript">
+	var javaRoot = "${pageContext.servletContext.contextPath}";
+	var xhr = new XMLHttpRequest();
+	var servletPath = javaRoot
+			+ '/web/_03_updateMember/controller/FindMemberServlet?type=Json';
+	var responseData;
 
+	// 頁面載入時
+	window.onload = function() {
+		var changemember = document.getElementById("changemember");
+		var showmember = document.getElementById("showmember");
+		xhr.open('GET', servletPath, true);
+		xhr.send();
+		xhr.onreadystatechange = function() {
+			$('ShowMember').empty();
+			if (xhr.status == 200 && xhr.readyState == 4) {
+				responseData = JSON.parse(xhr.responseText);
+				var changememberdata = "<table border='1'>";
+				changememberdata += "我是修改頁面"+
+					"<tr>" + "<td>帳號類別</td><td>" + responseData.usertype + "</td></tr>"+
+					"<tr>" + "<td>時間</td><td>" + responseData.postdate + "</td></tr>"+
+					"<tr>" + "<td>帳號</td><td>" + responseData.indid + "</td></tr>"+
+					"<tr>" + "<td>名稱</td><td>" + responseData.indname + "</td></tr>"+
+					"<tr>" + "<td>郵件</td><td>" + responseData.indemail + "</td></tr>"+
+					"<tr>" + "<td>地址</td><td>" + responseData.indaddress + "</td></tr>"+
+					"<tr>" + "<td>圖片名稱</td><td>" + responseData.indfilename + "</td></tr>"+
+					"<tr>" + "<td>ORG時間</td><td>" + responseData.updatetime + "</td></tr>"+
+					"<tr>" + "<td>ORG簡介</td><td>" + responseData.intro + "</td></tr>"+
+					"<tr>" + "<td>ORG負責人</td><td>" + responseData.leader + "</td></tr>"+
+					"<tr>" + "<td>ORG類別</td><td>" + responseData.orgtypes + "</td></tr>"+
+					"<tr>" + "<td>ORG立案核准</td><td>" + responseData.registerno + "</td></tr>"+
+					"<tr>" + "<td>ORG勸募許可</td><td>" + responseData.raiseno + "</td></tr>"+
+					"<tr>" + "<td>ORG圖片名稱</td><td>" + responseData.orgfilename + "</td></tr>"+
+					"</table>";	changemember.innerHTML = changememberdata;
+
+
+
+					var showmemberdata = "<table border='1'>";
+					showmemberdata += "我是個人頁面"+
+						"<tr>" + "<td>帳號類別</td><td>" + responseData.usertype + "</td></tr>"+
+						"<tr>" + "<td>時間</td><td>" + responseData.postdate + "</td></tr>"+
+						"<tr>" + "<td>帳號</td><td>" + responseData.indid + "</td></tr>"+
+						"<tr>" + "<td>名稱</td><td>" + responseData.indname + "</td></tr>"+
+						"<tr>" + "<td>郵件</td><td>" + responseData.indemail + "</td></tr>"+
+						"<tr>" + "<td>地址</td><td>" + responseData.indaddress + "</td></tr>"+
+						"<tr>" + "<td>圖片名稱</td><td>" + responseData.indfilename + "</td></tr>"+
+						"<tr>" + "<td>ORG時間</td><td>" + responseData.updatetime + "</td></tr>"+
+						"<tr>" + "<td>ORG簡介</td><td>" + responseData.intro + "</td></tr>"+
+						"<tr>" + "<td>ORG負責人</td><td>" + responseData.leader + "</td></tr>"+
+						"<tr>" + "<td>ORG類別</td><td>" + responseData.orgtypes + "</td></tr>"+
+						"<tr>" + "<td>ORG立案核准</td><td>" + responseData.registerno + "</td></tr>"+
+						"<tr>" + "<td>ORG勸募許可</td><td>" + responseData.raiseno + "</td></tr>"+
+						"<tr>" + "<td>ORG圖片名稱</td><td>" + responseData.orgfilename + "</td></tr>"+
+						"</table>";	showmember.innerHTML = showmemberdata;
+						
+
+			}
+		}
+		
+	}
+</script>
 </html>
