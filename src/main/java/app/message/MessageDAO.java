@@ -84,7 +84,7 @@ public class MessageDAO {
 			list = query.getResultList();
 			for (MessageBean pop : list) {
 				i = pop.getMsgNo();
-				System.out.println("++i" + i);
+				//System.out.println("++i" + i);
 			}
 			tx.commit();
 
