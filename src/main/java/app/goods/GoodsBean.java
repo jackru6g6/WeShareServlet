@@ -79,6 +79,23 @@ public class GoodsBean implements Serializable{
 
 	
 
+	public GoodsBean(int goodsNo, int goodsStatus, String indId, String goodsName, int goodsType, int qty, int goodsLoc,
+			String goodsNote, int goodsShipWay, long deadLine) {
+		super();
+		this.goodsNo = goodsNo;
+		this.goodsStatus = goodsStatus;
+		this.indId = indId;
+		this.goodsName = goodsName;
+		this.goodsType = goodsType;
+		Qty = qty;
+		this.goodsLoc = goodsLoc;
+		this.goodsNote = goodsNote;
+		this.goodsShipWay = goodsShipWay;
+		this.deadLine = deadLine;
+	}
+
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getGoodsNo() {
