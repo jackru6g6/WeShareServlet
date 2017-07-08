@@ -196,11 +196,15 @@
           letter-spacing: 2px;
           margin-top: 5px; }
         #sectionGive #sectionGoods .giveGoods .giveGoodsOverlayText .giveGoodsName {
+          color: #888888;
           font-size: 22px;
           padding-left: 10px; }
         #sectionGive #sectionGoods .giveGoods .giveGoodsOverlayText .giveGoodsBy {
+          color: #543939;
           font-size: 18px;
           padding-left: 10px; }
+        #sectionGive #sectionGoods .giveGoods .giveGoodsOverlayText .giveGoodsBy .giveGoodsByAuthor {
+          color: #01B468; }
         #sectionGive #sectionGoods .giveGoods .giveGoodsOverlayText .giveGoodsDesc {
           font-size: 18px;
           margin-top: 100px;

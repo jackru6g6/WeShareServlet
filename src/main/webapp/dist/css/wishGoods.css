@@ -5,14 +5,28 @@
   font-size: 20px;
   /*  物資圖片 */
   /* 捐贈&詢問按鈕 */
-  /* 中間物資資訊 */
-  /* 右邊詳細說明及簡介 */ }
+  /* 物資資訊 */
+  /* 詳細說明及簡介 */ }
   #sectionWGoods #wGoodsImgLayout {
     position: relative;
-    overflow: hidden;
     padding-bottom: 100%;
-    margin: auto;
-    box-shadow: 0px 0px 20px 10px #e6e6e6; }
+    margin: 0 auto 40px;
+    animation-delay: .1s; }
+    #sectionWGoods #wGoodsImgLayout::before, #sectionWGoods #wGoodsImgLayout::after {
+      z-index: -1;
+      position: absolute;
+      content: '';
+      bottom: 10px;
+      left: 10px;
+      width: 50%;
+      top: 80%;
+      max-width: 100%;
+      background: #8d8c8c;
+      box-shadow: 0 15px 10px #8d8c8c; }
+    #sectionWGoods #wGoodsImgLayout::before {
+      transform: rotate(-5deg); }
+    #sectionWGoods #wGoodsImgLayout::after {
+      transform: rotate(5deg); }
     #sectionWGoods #wGoodsImgLayout #wGoodsImg {
       position: absolute;
       width: 100%;
@@ -21,30 +35,32 @@
       transform: translateX(-50%) translateY(-50%); }
   #sectionWGoods #blockWGoodsOption {
     margin-top: 20px;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    animation-delay: .2s; }
     #sectionWGoods #blockWGoodsOption > ul {
       margin: 0px;
       padding: 20px; }
       #sectionWGoods #blockWGoodsOption > ul > li {
         display: inline-block; }
+        #sectionWGoods #blockWGoodsOption > ul > li:first-child {
+          margin-bottom: 20px; }
         #sectionWGoods #blockWGoodsOption > ul > li .wGoodsOption {
           border-radius: 6px;
           width: 100%;
           font-size: 20px;
-          background-color: #ff9797;
+          background-color: #fe5c5c;
           color: #ffffff;
           transition: 0.3s; }
           #sectionWGoods #blockWGoodsOption > ul > li .wGoodsOption:hover {
             background-color: white;
-            color: #ff9797;
+            color: #fe5c5c;
             border-color: #ff9797;
             box-shadow: 0px 15px 15px -10px #ff9797;
             transform: translateY(-8px);
             transition: 0.3s; }
   #sectionWGoods #wGoodsInfo {
     color: #3e3e3e;
-    padding-left: 30px;
-    margin-bottom: 20px;
+    animation-delay: .3s;
     /* 欄位 */
     /* 值 */ }
     #sectionWGoods #wGoodsInfo .wGoodsCol {
@@ -58,6 +74,7 @@
   #sectionWGoods #wGoodsOtherInfo {
     color: #3e3e3e;
     margin-bottom: 20px;
+    animation-delay: .4s;
     /* 項目 */
     /* 內容 */ }
     #sectionWGoods #wGoodsOtherInfo #wGoodsOtherInfoTabs li > a {
