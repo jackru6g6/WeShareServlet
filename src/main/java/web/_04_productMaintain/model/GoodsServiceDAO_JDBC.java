@@ -116,7 +116,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " Where g.goodsstatus = ?"
+					+ " Where g.goodsstatus = ? AND g.qty > 0 "
 					+ " ORDER BY g.updatetime DESC;";
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -160,7 +160,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE goodsstatus = ?"
+					+ " WHERE goodsstatus = ? AND g.qty > 0 "
 					+ " ORDER BY g.updatetime DESC;";
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -209,7 +209,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
 					+ " WHERE (g.goodsname like ? OR g.goodsnote LIKE ? OR i.indname LIKE ?) "
-					+ " and g.goodsstatus = ? "
+					+ " and g.goodsstatus = ? AND g.qty > 0 "
 					+ " ORDER BY g.updatetime DESC;";
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -256,7 +256,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.goodsloc = ? and g.goodsstatus = ?"
+					+ " WHERE g.goodsloc = ? and g.goodsstatus = ? AND g.qty > 0 "
 					+ " ORDER BY g.updatetime DESC;";
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -301,7 +301,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.goodstype = ? and g.goodsstatus = ?"
+					+ " WHERE g.goodstype = ? and g.goodsstatus = ? AND g.qty > 0 "
 					+ " ORDER BY g.updatetime DESC;";			
 
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -345,7 +345,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO,Serializable {
 					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
 					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
 					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
-					+ " WHERE g.indid = i.indid and i.usertype = ? and g.goodsstatus = ?"
+					+ " WHERE g.indid = i.indid and i.usertype = ? and g.goodsstatus = ? AND g.qty > 0 "
 					+ " ORDER BY g.updatetime DESC;";
 
 			PreparedStatement stmt = con.prepareStatement(sql);
