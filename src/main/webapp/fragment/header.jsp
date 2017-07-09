@@ -14,8 +14,8 @@
         </button>
 
         <!-- Logo -->
-        <a href="index.jsp" id="navLogo" class="navbar-brand">
-            <img src="/Demo/dist/img/WeShare_logo.png" width="60" alt="WeShare">
+        <a href="${pageContext.request.contextPath}/index.jsp" id="navLogo" class="navbar-brand">
+            <img src="${pageContext.request.contextPath}/dist/img/WeShare_logo.png" width="60" alt="WeShare">
         </a>
     </div>
 
@@ -99,7 +99,7 @@
                     	</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="/Demo/web/logout.jsp">登出</a></li>
+                    <li><a href="${pageContext.request.contextPath}/web/logout.jsp">登出</a></li>
                 </ul>
             </li>
             <li class="afterLogin">

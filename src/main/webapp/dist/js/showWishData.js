@@ -6,13 +6,14 @@ function showData(responseData, javaRoot) {
 		`<div style="font-size:24px; color:#ff0000; text-align:center; margin-top:30px;">
 			找不到物資唷~請重新查詢！
 		</div>`;
-		$('#divWishGoods').append(resultData);		
+		$('#divWishGoods').append(resultData);
+		return;
 	}
 	for (var i = 0; i < responseData.length; i++) {
 		resultData = 		
 			`<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 				<div class="wishGoods">
-					<a href="wishGoods.jsp" class="wishGoodsA">
+					<a href="wishGoods.jsp?goodsno=${responseData[i].goodsno}" class="wishGoodsA">
 
 						<div class="wishGoodsImgLayout">
 							<img class="img-responsive wishGoodsImg" src="${javaRoot}/_00_init/getImage?id=${responseData[i].goodsno}&type=GOODS">
@@ -26,7 +27,7 @@ function showData(responseData, javaRoot) {
 								</div>
 
 								<div class="wishGoodsBy wishGoodsContent">
-									<span>By <span class="month">${responseData[i].indname_TEMP}</span></span>
+									<span>By <span class="wishGoodsByAuthor">${responseData[i].indname_TEMP}</span></span>
 								</div>
 
 								<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">

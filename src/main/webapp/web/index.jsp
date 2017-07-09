@@ -64,7 +64,7 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 							<div class="text-left">
-								<a href="wish.html" class="titleLeft">
+								<a href="wish.jsp" class="titleLeft">
 									<i class="fa fa-tencent-weibo" aria-hidden="true"></i>
 									<span class="titleLeftText">許願池</span>
 								</a>
@@ -72,9 +72,9 @@
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 							<div class="text-right">
-								<a href="#" class="titleRight">最新刊登</a>
+								<a id="wishLatest" class="titleRight">最新刊登</a>
 								<span class="titleRight">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
-								<a href="#" class="titleRight">即將結束</a>
+								<a id="wishEnd" class="titleRight">即將結束</a>
 							</div>
 						</div>
 					</div>
@@ -112,7 +112,7 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 							<div class="text-left">
-								<a href="give.html" class="titleLeft">
+								<a href="give.jsp" class="titleLeft">
 									<i class="fa fa-heart" aria-hidden="true"></i>
 									<span class="titleLeftText">送愛心</span>
 								</a>
@@ -120,9 +120,9 @@
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 							<div class="text-right">
-								<a href="#" class="titleRight">最新刊登</a>
+								<a id="giveLatest" class="titleRight">最新刊登</a>
 								<span class="titleRight">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
-								<a href="#" class="titleRight">即將結束</a>
+								<a id="giveEnd" class="titleRight">即將結束</a>
 							</div>
 						</div>
 					</div>
@@ -160,7 +160,7 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 							<div class="text-left">
-								<a href="exchange.html" class="titleLeft">
+								<a href="exchange.jsp" class="titleLeft">
 									<i class="fa fa-heart" aria-hidden="true"></i>
 									<span class="titleLeftText">以物易物</span>
 								</a>
@@ -168,9 +168,9 @@
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 							<div class="text-right">
-								<a href="#" class="titleRight">最新刊登</a>
+								<a id="exchangeLatest" class="titleRight">最新刊登</a>
 								<span class="titleRight">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
-								<a href="#" class="titleRight">即將結束</a>
+								<a id="exchangeEnd" class="titleRight">即將結束</a>
 							</div>
 						</div>
 					</div>
@@ -220,6 +220,7 @@
 		var responseGiveData;
 		var responseExchangeData;
 		
+		// 頁面載入時
 		window.onload = function(){
 			xhrWish.open('GET', servletPath + '1', true);
 			xhrWish.send();
@@ -229,7 +230,7 @@
 					console.log("-------------------");
 					console.log("首頁許願池符合的資料筆數:" + responseWishData.length);
 					console.log("-------------------");
-					showWishData(responseWishData, javaRoot);
+					showWishData(responseWishData, javaRoot, "updatetime", "desc");
 				}
 			}
 			
@@ -241,7 +242,7 @@
 					console.log("-------------------");
 					console.log("首頁送愛心符合的資料筆數:" + responseGiveData.length);
 					console.log("-------------------");
-					showGiveData(responseGiveData, javaRoot);
+					showGiveData(responseGiveData, javaRoot, "updatetime", "desc");
 				}
 			}
 			
@@ -253,10 +254,46 @@
 					console.log("-------------------");
 					console.log("首頁以物易物符合的資料筆數:" + responseExchangeData.length);
 					console.log("-------------------");
-					showExchangeData(responseExchangeData, javaRoot);
+					showExchangeData(responseExchangeData, javaRoot, "updatetime", "desc");
 				}
 			}
 		};
+		
+		// 點許願池最新刊登
+		$("#wishLatest").click(function(){
+			$('#wishContent').empty();
+			showWishData(responseWishData, javaRoot, "updatetime", "desc");
+		});
+		
+		// 點許願池即將結束
+		$("#wishEnd").click(function(){
+			$('#wishContent').empty();
+			showWishData(responseWishData, javaRoot, "deadlinestring", "asce");
+		});
+		
+		// 點送愛心最新刊登
+		$("#giveLatest").click(function(){
+			$('#giveContent').empty();
+			showGiveData(responseGiveData, javaRoot, "updatetime", "desc");
+		});
+		
+		// 點送愛心即將結束
+		$("#giveEnd").click(function(){
+			$('#giveContent').empty();
+			showGiveData(responseGiveData, javaRoot, "deadlinestring", "asce");
+		});
+		
+		// 點以物易物最新刊登
+		$("#exchangeLatest").click(function(){
+			$('#exchangeContent').empty();
+			showExchangeData(responseExchangeData, javaRoot, "updatetime", "desc");
+		});
+		
+		// 點以物易物即將結束
+		$("#exchangeEnd").click(function(){
+			$('#exchangeContent').empty();
+			showExchangeData(responseExchangeData, javaRoot, "deadlinestring", "asce");
+		});
 	</script>
 	
 	
