@@ -75,6 +75,7 @@ public class MessageServlet extends HttpServlet {
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize);// ImageUtil縮圖
 				response.setContentType("image/jpeg");
+				response.setContentType("image/png");
 				// 只要送一張圖，就不用轉json，指定他傳送的型態，如果要用json就要用Base64
 				// // encode才能傳送
 				response.setContentLength(image.length);// 輸出圖的長度

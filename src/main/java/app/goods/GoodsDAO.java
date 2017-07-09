@@ -132,17 +132,32 @@ public class GoodsDAO {
 		return n;
 	}
 
+	public GoodsBean getGoodsBean(int goodsNo) {
+		GoodsBean goods = null;
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			goods = (GoodsBean) session.get(GoodsBean.class, goodsNo);
+			tx.commit();
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return goods;
+	}
+
 	public List<GoodsBean> getAll(String indId) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		// GoodsBean goods = new GoodsBean();
 		List<GoodsBean> list = new ArrayList<GoodsBean>();
 		try {
-			String hql = "SELECT new GoodsBean(g.goodsNo,g.goodsStatus,g.indId,g.goodsName,g.goodsType,g.qty,g.goodsLoc,g.goodsNote,g.goodsShipWay,g.deadLine,g.goodsfilename) FROM GoodsBean g WHERE g.indId=:uid";
+			String hql = "FROM GoodsBean g WHERE g.goodsNo = :uid";
 			// String hql = "SELECT new GoodsBean(g.updateTime) AS TIMESTAMP
 			// FROM GoodsBean g WHERE indId=:uid";
 			Query query = session.createQuery(hql);
-
 			query.setParameter("uid", indId);
 			list = query.getResultList();
 			tx.commit();
@@ -153,6 +168,9 @@ public class GoodsDAO {
 		} finally {
 			if (session != null)
 				session.close();
+		}
+		for (GoodsBean pop : list) {
+			System.out.println("goNo--------" + pop.getGoodsNo());
 		}
 		return list;
 	}
@@ -231,7 +249,37 @@ public class GoodsDAO {
 		}
 		return list;
 	}
+<<<<<<< HEAD
+	
+	
+	
+	public List<GoodsBean> getQuery(String goodsqry) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		// GoodsBean goods = new GoodsBean();
+		List<GoodsBean> list = new ArrayList<GoodsBean>();
+		try {
+			String hql = "SELECT new GoodsBean(g.goodsNo,g.goodsStatus,g.indId,g.goodsName,g.goodsType,g.qty,g.goodsLoc,g.goodsNote,g.goodsShipWay,g.deadLine,g.goodsfilename) FROM GoodsBean g "+goodsqry;
+			// String hql = "SELECT new GoodsBean(g.updateTime) AS TIMESTAMP
+			// FROM GoodsBean g WHERE indId=:uid";
+			Query query = session.createQuery(hql);
+			list = query.getResultList();
+			tx.commit();
 
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return list;
+	}
+	
+	
+=======
+
+>>>>>>> e9a4ba0d1b8107e12a42b9d05bba4625c42f64c5
 	public List<GoodsBean> getHome(int status) {// jack
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();

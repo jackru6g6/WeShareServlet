@@ -20,6 +20,7 @@ public class DealBean {
 	private int dealStatus;
 	private int endShipWay;
 	private String shipNo;
+	private String dealNote;
 	private java.sql.Timestamp shipDate;
 
 	private String goodsName;
@@ -36,7 +37,7 @@ public class DealBean {
 
 	public DealBean(int dealNo, Timestamp postDate, String sourceId, String endId, int dealStatus, int endShipWay,
 			String shipNo, Timestamp shipDate, String goodsName, int dealQty, Blob goodsImage, String goodsImageName,
-			int goodstype, int goodsLoc, String goodsNote) {
+			int goodstype, int goodsLoc, String goodsNote, String dealNote) {
 		super();
 		this.dealNo = dealNo;
 		this.postDate = postDate;
@@ -53,10 +54,11 @@ public class DealBean {
 		this.goodstype = goodstype;
 		this.goodsLoc = goodsLoc;
 		this.goodsNote = goodsNote;
+		this.dealNote = dealNote;
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	// @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "dealNo")
 	public int getDealNo() {
 		return dealNo;
@@ -174,7 +176,7 @@ public class DealBean {
 		this.goodstype = goodstype;
 	}
 
-	@Column(name = "goodsLoc")
+	@Column(name = "Loc")
 	public int getGoodsLoc() {
 		return goodsLoc;
 	}
@@ -190,6 +192,15 @@ public class DealBean {
 
 	public void setGoodsNote(String goodsNote) {
 		this.goodsNote = goodsNote;
+	}
+
+	@Column(name = "dealNote")
+	public String getDealNote() {
+		return dealNote;
+	}
+
+	public void setDealNote(String dealNote) {
+		this.dealNote = dealNote;
 	}
 
 }
