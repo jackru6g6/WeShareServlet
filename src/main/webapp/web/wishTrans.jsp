@@ -9,14 +9,35 @@
 <head>
 	<meta charset="utf-8">
 	<jsp:include page="../fragment/refCss.jsp" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/wishTrans.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/wishTrans.css?t=2">
 	<!-- Animate CSS-->
 	<link rel="stylesheet" type="text/css" href="../dist/bower_components/animate.css/animate.min.css">
 	<jsp:include page="../fragment/refJs.jsp" />
 	<title>WeShare 微分享</title>
 </head>
 
-<body> 
+<body>
+	<!-- 確定送出 -->
+	<div id="transMsg" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- 標題 -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">交易資訊</h4>
+				</div>
+				<!-- 內容 -->
+				<div class="modal-body">
+					<div>資料已送出，詳細資訊請至會員專區瀏覽</div>
+				</div>
+				<!-- 關閉鈕 -->
+				<div class="modal-footer">
+					<a href="javascript:history.back()" type="button" class="btn btn-default">關閉視窗</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<header>
 		<jsp:include page="../fragment/header.jsp" />
 	</header>
@@ -56,7 +77,7 @@
 <!-- 												</select> -->
 <!-- 											</li> -->
 <!-- 											<li>留言訊息 -->
-<!-- 												<textarea class="form-control" rows="5" required="required"></textarea> -->
+<!-- 												<textarea class="form-control" rows="5" maxlength="200" placeholder="留言最多200字"></textarea> -->
 <!-- 											</li> -->
 <!-- 										</ul> -->
 <!-- 									</div> -->
@@ -71,29 +92,9 @@
 									<a href="javascript:history.back()" class="btn btn-default wTransOption">取消捐贈</a>
 								</li>
 								<li class="col-xs-5 col-sm-5 col-md-5 col-lg-4  col-lg-push-3">
-									<a data-toggle="modal" data-target="#TransMsg" class="btn btn-default wTransOption">確定送出</a>
+									<a data-toggle="modal" data-target="#transMsg" class="btn btn-default wTransOption">確定送出</a>
 								</li>
 							</ul>
-						</div>
-						<!-- 留言詢問 -->
-						<div id="TransMsg" class="modal fade" role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<!-- 標題 -->
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">交易資訊</h4>
-									</div>
-									<!-- 內容 -->
-									<div class="modal-body">
-										<div>資料已送出，詳細資訊請至會員專區瀏覽</div>
-									</div>
-									<!-- 關閉鈕 -->
-									<div class="modal-footer">
-										<a href="javascript:history.back()" type="button" class="btn btn-default">關閉視窗</a>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>

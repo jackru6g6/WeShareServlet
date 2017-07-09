@@ -40,6 +40,8 @@
           display: inline-block;
           vertical-align: top;
           font-size: 20px; }
+        #sectionWTrans #wTransBlock #wTransInfo li textarea {
+          resize: none; }
   #sectionWTrans #blockWTransOption {
     margin-top: 30px;
     margin-bottom: 20px; }

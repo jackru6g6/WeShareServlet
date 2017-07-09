@@ -54,7 +54,7 @@
 <!-- 										</div> -->
 <!-- 										內容 -->
 <!-- 										<div class="modal-body"> -->
-<!-- 											<textarea class="form-control" rows="5" required="required"></textarea> -->
+<!-- 											<textarea class="form-control" rows="5" required="required" maxlength="200" placeholder="留言最多200字" style="resize : none;"></textarea> -->
 <!-- 										</div> -->
 <!-- 										關閉鈕 -->
 <!-- 										<div class="modal-footer"> -->

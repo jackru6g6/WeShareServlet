@@ -37,7 +37,7 @@ function showData(data, path) {
 								</select>
 							</li>
 							<li>留言訊息
-								<textarea class="form-control" rows="5" required="required"></textarea>
+								<textarea class="form-control" rows="5" maxlength="200" placeholder="留言最多200字"></textarea>
 							</li>
 						</ul>
 					</div>

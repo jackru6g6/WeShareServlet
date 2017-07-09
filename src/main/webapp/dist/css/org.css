@@ -5,9 +5,8 @@
   padding-top: 30px;
   /* 篩選器 */
   /* 社福團體簡介 */ }
-  #sectionOrg div {
-    backface-visibility: hidden; }
   #sectionOrg #sectionOrgFilter {
+    margin-bottom: 30px;
     /* 關鍵字搜尋 */
     /* 社福團體類型搜尋 */
     /* 社福團體所在地搜尋 */ }
@@ -18,8 +17,7 @@
       /* 搜尋鈕圖式 */ }
       #sectionOrg #sectionOrgFilter #blockKWSearch #searchInput {
         font-size: 18px;
-        padding: 5px 5px 5px 40px;
-        transition: .5s; }
+        padding: 5px 5px 5px 40px; }
       #sectionOrg #sectionOrgFilter #blockKWSearch #btKWSearch {
         position: absolute;
         top: 13%;
@@ -37,15 +35,14 @@
         font-size: 18px;
         padding: 5px 5px 5px 10px; }
   #sectionOrg #sectionOrgAbout {
-    margin-top: 30px;
     /* 社福團體簡介第一筆 */ }
-    #sectionOrg #sectionOrgAbout #rowOrg {
-      width: 1150px;
+    #sectionOrg #sectionOrgAbout .rowOrg {
+      width: 1130px;
       height: 600px;
-      perspective: 1600px;
+      perspective: 2000px;
       /* 上層翻轉列 */
       /* 下層固定列 */ }
-      #sectionOrg #sectionOrgAbout #rowOrg #rowUpper {
+      #sectionOrg #sectionOrgAbout .rowOrg .rowUpper {
         position: relative;
         width: 550px;
         height: 550px;
@@ -56,7 +53,7 @@
         animation: flip1 0.5s ease-in-out forwards;
         /* 圖片 */
         /* 地圖 */ }
-        #sectionOrg #sectionOrgAbout #rowOrg #rowUpper.rotate180 {
+        #sectionOrg #sectionOrgAbout .rowOrg .rowUpper.rotate180 {
           transform: rotateY(180deg);
           animation: flip2 0.5s ease-in-out forwards; }
 
@@ -83,7 +80,7 @@
   100% {
     left: 550px;
     transform: rotateY(540deg) translateX(0) scale(1); } }
-        #sectionOrg #sectionOrgAbout #rowOrg #rowUpper .blockUpper {
+        #sectionOrg #sectionOrgAbout .rowOrg .rowUpper .blockUpper {
           position: absolute;
           top: 0px;
           left: 0px;
@@ -92,76 +89,80 @@
           display: inline-block;
           text-align: center;
           vertical-align: top; }
-        #sectionOrg #sectionOrgAbout #rowOrg #rowUpper #orgImgLayout {
-          position: relative;
+        #sectionOrg #sectionOrgAbout .rowOrg .rowUpper .orgImgLayout {
+          position: absolute;
           overflow: hidden;
-          padding-bottom: 100%; }
-          #sectionOrg #sectionOrgAbout #rowOrg #rowUpper #orgImgLayout #orgImg {
+          padding-bottom: 100%;
+          backface-visibility: hidden; }
+          #sectionOrg #sectionOrgAbout .rowOrg .rowUpper .orgImgLayout .orgImg {
             position: absolute;
             width: 100%;
             top: 50%;
             left: 50%;
-            transform: translateX(-50%) translateY(-50%); }
-        #sectionOrg #sectionOrgAbout #rowOrg #rowUpper #orgMap {
+            transform: translateX(-50%) translateY(-50%);
+            backface-visibility: hidden; }
+        #sectionOrg #sectionOrgAbout .rowOrg .rowUpper .orgMap {
           transform: rotateY(180deg);
           background-color: #eeeeee;
           width: 550px;
           height: 550px;
           max-width: 100%;
-          padding-bottom: 100%; }
-      #sectionOrg #sectionOrgAbout #rowOrg #rowLower {
+          padding-bottom: 100%;
+          backface-visibility: hidden; }
+      #sectionOrg #sectionOrgAbout .rowOrg .rowLower {
         position: absolute;
         top: 0;
         left: 0;
         z-index: 1;
         /* 聯絡資訊 */
         /* 簡介 */ }
-        #sectionOrg #sectionOrgAbout #rowOrg #rowLower .blockLower {
+        #sectionOrg #sectionOrgAbout .rowOrg .rowLower .blockLower {
           width: 550px;
           height: 550px;
           display: inline-block;
           text-align: center;
           vertical-align: top; }
-        #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgContact {
-          /* 查看募集物資 */ }
-          #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgContact #orgContactList {
+        #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgContact {
+          /* 查看募集物資連結 */ }
+          #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgContact .orgContactList {
             margin-top: 60px; }
-            #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgContact #orgContactList li {
+            #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgContact .orgContactList li {
               color: #666666;
               letter-spacing: 2px;
               padding: 10px; }
-              #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgContact #orgContactList li i {
+              #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgContact .orgContactList li i {
                 color: #ffc107;
                 width: 20px;
                 text-align: center;
                 margin-right: 10px; }
-          #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgContact #orgGoods {
+          #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgContact .orgGoods {
             font-size: 25px;
             margin: 30px;
-            width: 80%;
             border-color: #ff3333;
-            color: #ff3333; }
-            #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgContact #orgGoods:hover {
-              box-shadow: inset 20em 0 0 0 #ff3333;
+            color: #ff3333;
+            letter-spacing: 2px; }
+            #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgContact .orgGoods:hover {
+              box-shadow: inset 180px 0 0 0 #ff3333;
               color: #ffffff;
-              transition: 1s; }
-        #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgInfo {
+              transition: 1s;
+              background-color: #ffffff; }
+        #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo {
           color: #666666;
           letter-spacing: 2px;
           margin-left: -4px; }
-          #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgInfo #orgInfoList {
+          #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo .orgInfoList {
             margin-top: 60px;
             /* 社福團體名稱 */ }
-            #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgInfo #orgInfoList #orgName {
+            #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo .orgInfoList .orgName {
               text-align: center;
               font-size: 30px;
               margin-top: 10px;
               margin-bottom: 10px; }
-            #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgInfo #orgInfoList ul {
+            #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo .orgInfoList ul {
               padding: 0px; }
-              #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgInfo #orgInfoList ul li {
+              #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo .orgInfoList ul li {
                 padding: 10px; }
-                #sectionOrg #sectionOrgAbout #rowOrg #rowLower #orgInfo #orgInfoList ul li i {
+                #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo .orgInfoList ul li i {
                   color: #ff6666;
                   width: 20px;
                   text-align: center;

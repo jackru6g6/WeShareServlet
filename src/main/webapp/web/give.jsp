@@ -299,17 +299,22 @@
 		var servletPath = javaRoot + '/_08_query/Query.do?goodsstatus=2';
 		var responseData;
 		
-		// 頁面載入時
-		window.onload = function(){					
-			xhr.open('GET', servletPath, true);
-			xhr.send();
-			xhr.onreadystatechange = function(){
-				if(xhr.status == 200 && xhr.readyState == 4){
-					responseData = JSON.parse(xhr.responseText);
-					console.log("-------------------");
-					console.log("符合的資料筆數:" + responseData.length);
-					console.log("-------------------");
-					showData(responseData, javaRoot);
+		// 頁面載入時判斷網址後方是否有值，有的話執行"關鍵字搜尋"，沒有的話取所有送愛心物資的資料
+		if( location.search !== ""){
+			var searchString = location.search.slice(1);
+			keyWordSearch(searchString);
+		} else {
+			window.onload = function(){					
+				xhr.open('GET', servletPath, true);
+				xhr.send();
+				xhr.onreadystatechange = function(){
+					if(xhr.status == 200 && xhr.readyState == 4){
+						responseData = JSON.parse(xhr.responseText);
+						console.log("-------------------");
+						console.log("符合的資料筆數:" + responseData.length);
+						console.log("-------------------");
+						showData(responseData, javaRoot);
+					}
 				}
 			}
 		}
@@ -323,9 +328,14 @@
 		$('#btKWSearch').click(function(){
 			keyWordSearch();
 		});
-		function keyWordSearch(){
+		function keyWordSearch(e){
 			servletPath = javaRoot + '/_08_query/Query.do?goodsstatus=2';
-			var keyWord = $('#searchInput').val();
+			var keyWord;
+			if (e !== ""){
+				keyWord = e;
+			} else {
+				keyWord = $('#searchInput').val();
+			}
 			console.log("keyWord = " + keyWord);
 			servletPath += '&type=keyword&value=' + keyWord;
 			console.log("servletPath = " + servletPath);
@@ -361,7 +371,6 @@
 					showData(responseData, javaRoot);
 				}
 			}
-			
 		});
 	</script>
 	

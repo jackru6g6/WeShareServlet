@@ -65,23 +65,23 @@
 			<!-- 社福團體簡介 -->
 			<div id="sectionOrgAbout" class="container">
 				<!-- 社福團體簡介第一筆 -->
-				<div id="rowOrg">
+				<div class="rowOrg">
 					<!-- 上層翻轉列 -->
-					<div id="rowUpper">
+					<div class="rowUpper">
 						<!-- 上左_圖片 -->
-						<div id="orgImgLayout" class="blockUpper">
-							<img id="orgImg" class="img-responsive" src="../dist/img/300x300/20170627_120.png">
+						<div class="orgImgLayout blockUpper">
+							<img class="img-responsive orgImg" src="../dist/img/300x300/20170627_47.png">
 						</div>
 						<!-- 上右_地圖 -->
-						<div id="orgMap" class="blockUpper">
+						<div class="orgMap blockUpper">
 						</div>
 					</div>
 
 					<!-- 下層固定列 -->
-					<div id="rowLower">
+					<div class="rowLower">
 						<!-- 底左_聯絡資訊 -->
-						<div id="orgContact" class="blockLower">
-							<div id="orgContactList">
+						<div class="orgContact blockLower">
+							<div class="orgContactList">
 								<ul type="none">
 									<li><i class="fa fa-phone" aria-hidden="true"></i>
 										<span>03-3353545</span>
@@ -93,17 +93,17 @@
 										<span>330桃園市桃園區復興路205號15樓-4</span>
 									</li>
 									<li><i class="fa fa-globe" aria-hidden="true"></i>
-										<a href="http://www.ecpat.org.tw">http://www.ecpat.org.tw</a>
+										<a href="http://www.ecpat.org.tw" target="_blank">http://www.ecpat.org.tw</a>
 									</li>
 								</ul>
-								<button id="orgGoods" type="button" class="btn btn-default">查看募集物資</button>
+								<a href="wish.jsp" type="button" class="orgGoods btn btn-default">查看募集物資</a>
 							</div>
 						</div>
 
 						<!-- 底右_放簡介 -->
-						<div id="orgInfo" class="blockLower">
-							<div id="orgInfoList">
-								<div id="orgName">台灣展翅協會</div>
+						<div class="orgInfo blockLower">
+							<div class="orgInfoList">
+								<div class="orgName">台灣展翅協會</div>
 								<ul type="none">
 									<li><i class="fa fa-heart" aria-hidden="true"></i>社福類別：
 										<span>兒少福利</span>
@@ -127,7 +127,7 @@
 				</div>
 			</div>
 		</div>
-	</section>	
+	</section>
 
 	<footer>
 		<jsp:include page="../fragment/footer.jsp" />
@@ -161,38 +161,39 @@
 <!-- 		}; -->
 <!-- 	</script> -->
 		
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm5pII1q2w0d3GQLjGIdrCKFHB_WL6qvc&callback=orgMap" async defer></script>
-		<script>
-			function orgMap() {
-				var area = document.getElementById('orgMap');
-				var geocoder= new google.maps.Geocoder();
-				var orgAddress = "10608 台北市忠孝東路三段一號";
-				console.log("orgAddress = " + orgAddress);
-				geocoder.geocode({'address':orgAddress}, function(results, status){
-					if(status == google.maps.GeocoderStatus.OK){
-						var orgPosition = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-						var map = new google.maps.Map(area, {
-							zoom: 14,
-							center: orgPosition,
-							mapTypeId: google.maps.MapTypeId.ROADMAP
-						});
-			
-						var marker = new google.maps.Marker({
-							position: orgPosition,
-							map: map,
-							icon: '../dist/img/WeShare_icon.png',
-							title: '台北科技大學' //滑鼠游標移至position時顯示的文字
-						});
-					}
-				});
-			}
-		</script>
-	
-		<script>
-			$("#rowOrg").click(function () {
-				$('#rowUpper').toggleClass('rotate180');
+	<!-- Google Maps Api -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm5pII1q2w0d3GQLjGIdrCKFHB_WL6qvc&callback=orgMap" async defer></script>
+	<script>
+		function orgMap() {
+			var area = document.querySelector('.orgMap');
+			var geocoder= new google.maps.Geocoder();
+			var orgAddress = "330桃園市桃園區復興路205號";
+			console.log("orgAddress = " + orgAddress);
+			geocoder.geocode({'address':orgAddress}, function(results, status){
+				if(status == google.maps.GeocoderStatus.OK){
+					var orgPosition = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+					var map = new google.maps.Map(area, {
+						zoom: 15,
+						center: orgPosition,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+					});
+		
+					var marker = new google.maps.Marker({
+						position: orgPosition,
+						map: map,
+						icon: '../dist/img/WeShare_icon_s.png',
+						title: '台灣展翅協會' //滑鼠游標移至position時顯示的文字
+					});
+				}
 			});
-		</script>
+		}
+	</script>
+
+	<script>
+		$(".rowLower").click(function () {
+			$('.rowUpper').toggleClass('rotate180');
+		});
+	</script>
 	
 </body>
 

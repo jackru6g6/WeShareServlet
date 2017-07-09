@@ -13,7 +13,7 @@ function showData(responseData, javaRoot) {
 		resultData =
 			`<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 				<div class="giveGoods">
-					<a href="#" class="giveGoodsA">
+					<a href="giveGoods.jsp?goodsno=${responseData[i].goodsno}" class="giveGoodsA">
 
 						<div class="giveGoodsImgLayout">
 							<img class="img-responsive giveGoodsImg" src="${javaRoot}/_00_init/getImage?id=${responseData[i].goodsno}&type=GOODS">

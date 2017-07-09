@@ -24,16 +24,16 @@ function showWishData(data, path, colName, way) {
 			`<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 				<div class="wishItem">
 					<div>
-						<a href="#" class="itemA">
+						<a href="wishGoods.jsp?goodsno=${responseWishData[i].goodsno}" class="itemA">
 							<img class="img-responsive itemImg" src="${javaRoot}/_00_init/getImage?id=${responseWishData[i].goodsno}&type=GOODS">
 							<div class="itemOverlay">
 								<p>${responseWishData[i].goodsnote}</p>
 							</div>
 						</a>
 					</div>
-					<div class="itemName itemContent"><a href="#">${responseWishData[i].goodsname}</a></div>
+					<div class="itemName itemContent"><a href="wishGoods.jsp?goodsno=${responseWishData[i].goodsno}">${responseWishData[i].goodsname}</a></div>
 					<div class="itemBy itemContent">
-						<a href="#">
+						<a href="wish.jsp?${responseWishData[i].indname_TEMP}">
 							<span>By <span>${responseWishData[i].indname_TEMP}</span></span>
 							<h5>還剩 <span>` + daysLeft + `</span> 天</h5>
 						</a>
@@ -57,16 +57,16 @@ function showGiveData(data, path, colName, way) {
 			`<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 				<div class="giveItem">
 					<div>
-						<a href="#" class="itemA">
+						<a href="giveGoods.jsp?goodsno=${responseGiveData[i].goodsno}" class="itemA">
 							<img class="img-responsive itemImg" src="${javaRoot}/_00_init/getImage?id=${responseGiveData[i].goodsno}&type=GOODS">
 							<div class="itemOverlay">
 								<p>${responseGiveData[i].goodsnote}</p>
 							</div>
 						</a>
 					</div>
-					<div class="itemName itemContent"><a href="#">${responseGiveData[i].goodsname}</a></div>
+					<div class="itemName itemContent"><a href="giveGoods.jsp?goodsno=${responseGiveData[i].goodsno}">${responseGiveData[i].goodsname}</a></div>
 					<div class="itemBy itemContent">
-						<a href="#">
+						<a href="give.jsp?${responseGiveData[i].indname_TEMP}">
 							<span>By <span>${responseGiveData[i].indname_TEMP}</span></span>
 							<h5>還剩 <span>` + daysLeft + `</span> 天</h5>
 						</a>
@@ -91,16 +91,16 @@ function showExchangeData(data, path, colName, way) {
 			`<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 				<div class="exchangeItem">
 					<div>
-						<a href="#" class="itemA">
+						<a href="exchangeGoods.jsp?goodsno=${responseExchangeData[i].goodsno}" class="itemA">
 							<img class="img-responsive itemImg" src="${javaRoot}/_00_init/getImage?id=${responseExchangeData[i].goodsno}&type=GOODS">
 							<div class="itemOverlay">
 								<p>${responseExchangeData[i].goodsnote}</p>
 							</div>
 						</a>
 					</div>
-					<div class="itemName itemContent"><a href="#">${responseExchangeData[i].goodsname}</a></div>
+					<div class="itemName itemContent"><a href="exchangeGoods.jsp?goodsno=${responseExchangeData[i].goodsno}">${responseExchangeData[i].goodsname}</a></div>
 					<div class="itemBy itemContent">
-						<a href="#">
+						<a href="exchange.jsp?${responseExchangeData[i].indname_TEMP}">
 							<span>By <span>${responseExchangeData[i].indname_TEMP}</span></span>
 							<h5>還剩 <span>` + daysLeft + `</span> 天</h5>
 						</a>
