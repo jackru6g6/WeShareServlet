@@ -49,7 +49,7 @@ public class sql_Common {
 	static String CREATE_TABLE_ORG = "Create Table org (" + "indid varchar(50) NOT NULL, "
 			+ "updatetime timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP," + "intro varchar(500) NOT NULL, "
 			+ "leader varchar(500) NOT NULL, " + "orgtypes int NOT NULL, " + "registerno varchar(500), "
-			+ "raiseno varchar(500), " + "orgimage MEDIUMBLOB, " + "orgfilename varchar(20), "
+			+ "raiseno varchar(500), " + "website varchar(500), " + "orgimage MEDIUMBLOB, " + "orgfilename varchar(20), "
 			+ "FOREIGN KEY(indid) REFERENCES ind (indid), " + "FOREIGN KEY(orgtypes) REFERENCES orgtype (orgno) "
 			+ ") CHARACTER SET utf8 COLLATE utf8_general_ci";
 
@@ -136,7 +136,7 @@ public class sql_Common {
 			+ "UPDATE MSG_ROOM SET LASTMSGNO=LAST_INSERT_ID() WHERE ROOMNO = check_roomNo(USER_MSGSOURCEID,USER_MSGENDID);END;";
 	// -------------------------------------------------------------------------------------<INSERT>
 	static String INSERT_TABLE_IND = "INSERT INTO ind VALUE(?,?,?,?,?,?,?,?,?,?)";
-	static String INSERT_TABLE_ORG = "INSERT INTO org VALUE(?,?,?,?,?,?,?,?,?)";
+	static String INSERT_TABLE_ORG = "INSERT INTO org VALUE(?,?,?,?,?,?,?,?,?,?)";
 	static String INSERT_TABLE_ORGTYPE = "INSERT INTO orgtype VALUE(?,?)";
 	static String INSERT_TABLE_LOCAL = "INSERT INTO local VALUE(?,?)";
 	static String INSERT_TABLE_GOODSTYPE = "INSERT INTO goodstype VALUE(null,?)";

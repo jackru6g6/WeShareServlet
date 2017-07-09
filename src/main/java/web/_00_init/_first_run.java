@@ -91,7 +91,7 @@ public class _first_run {
 				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\Google.jpg")),
 				"Google.jpg");
 
-		OrgBean ob2 = new OrgBean(mb2.getIndid(), null, "我是社福簡介", "社福負責人", 1, "立案核准", "勸募許可",
+		OrgBean ob2 = new OrgBean(mb2.getIndid(), null, "我是社福簡介", "社福負責人", 1, "立案核准", "勸募許可", "http://abc.com",
 				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\Googleorg.jpg")),
 				"Googleorg.jpg");
 
@@ -146,8 +146,8 @@ public class _first_run {
 
 			String line2 = "";
 			String sql2 = "insert into org "
-					+ " (indid,updatetime,intro,leader,orgtypes,registerno,raiseno,orgimage,orgfilename) "
-					+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ " (indid,updatetime,intro,leader,orgtypes,registerno,raiseno,website,orgimage,orgfilename) "
+					+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pstmt2 = con.prepareStatement(sql2);
 
 			BufferedReader br2 = new BufferedReader(
@@ -165,14 +165,15 @@ public class _first_run {
 				pstmt2.setInt(5, Integer.parseInt(token[4]));
 				pstmt2.setString(6, token[5].trim());
 				pstmt2.setString(7, token[6].trim());
+				pstmt2.setString(8, token[7].trim());
 
-				File aFile = new File("src\\main\\webapp\\images\\org\\" + token[7].trim());
+				File aFile = new File("src\\main\\webapp\\images\\org\\" + token[8].trim());
 				long size = aFile.length();
 				InputStream is = new FileInputStream(aFile);
-				pstmt2.setBlob(8, is, size);
+				pstmt2.setBlob(9, is, size);
 				String fileName = aFile.getName();
 				fileName = GlobalService.adjustFileName(fileName, GlobalService.IMAGE_FILENAME_LENGTH);
-				pstmt2.setString(9, fileName);
+				pstmt2.setString(10, fileName);
 				int r = pstmt2.executeUpdate();
 			}
 			con.setAutoCommit(true);
@@ -273,8 +274,9 @@ public class _first_run {
 		pstmt2.setInt(5, ob2.getOrgtypes());
 		pstmt2.setString(6, ob2.getRegisterno());
 		pstmt2.setString(7, ob2.getRaiseno());
-		pstmt2.setBlob(8, mb2.getIndimage());
-		pstmt2.setString(9, ob2.getOrgfilename());
+		pstmt2.setString(8, ob2.getWebsite());
+		pstmt2.setBlob(9, mb2.getIndimage());
+		pstmt2.setString(10, ob2.getOrgfilename());
 		pstmt2.executeUpdate();
 		con.setAutoCommit(true);
 	}

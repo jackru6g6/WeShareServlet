@@ -12,14 +12,47 @@ public class OrgBean implements Serializable {
 	String leader;
 	int orgtypes;
 	String registerno;
-	String raiseno;
+	String raiseno;	
+	String website;
 	Blob orgimage;	
 	String orgfilename;
 
+	String orgname_TEMP;
 	
 	
 	
-	
+	public OrgBean(String indid, Timestamp updatetime, String intro, String leader, int orgtypes, String registerno,
+			String raiseno, String website, Blob orgimage, String orgfilename) {
+		super();
+		this.indid = indid;
+		this.updatetime = updatetime;
+		this.intro = intro;
+		this.leader = leader;
+		this.orgtypes = orgtypes;
+		this.registerno = registerno;
+		this.raiseno = raiseno;
+		this.website = website;
+		this.orgimage = orgimage;
+		this.orgfilename = orgfilename;
+	}
+
+
+	public OrgBean(String indid, Timestamp updatetime, String intro, String leader, int orgtypes, String registerno,
+			String raiseno, Blob orgimage, String orgfilename, String orgname_TEMP) {
+		super();
+		this.indid = indid;
+		this.updatetime = updatetime;
+		this.intro = intro;
+		this.leader = leader;
+		this.orgtypes = orgtypes;
+		this.registerno = registerno;
+		this.raiseno = raiseno;
+		this.orgimage = orgimage;
+		this.orgfilename = orgfilename;
+		this.orgname_TEMP = orgname_TEMP;
+	}
+
+
 	public OrgBean(String indid, String intro, String leader, int orgtypes, String registerno, String raiseno) {
 		super();
 		this.indid = indid;
@@ -145,7 +178,28 @@ public class OrgBean implements Serializable {
 	}
 
 	
+
+	public String getOrgname_TEMP() {
+		return orgname_TEMP;
+	}
+
+
+	public void setOrgname_TEMP(String orgname_TEMP) {
+		this.orgname_TEMP = orgname_TEMP;
+	}
+
 	
+	public String getWebsite() {
+		return website;
+	}
+
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+
+
 	
 
 
