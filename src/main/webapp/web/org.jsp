@@ -161,22 +161,29 @@
 <!-- 		}; -->
 <!-- 	</script> -->
 		
-		<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm5pII1q2w0d3GQLjGIdrCKFHB_WL6qvc&callback=orgMap" async defer></script>-->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm5pII1q2w0d3GQLjGIdrCKFHB_WL6qvc&callback=orgMap" async defer></script>
 		<script>
 			function orgMap() {
 				var area = document.getElementById('orgMap');
-				var myPosition = new google.maps.LatLng(25.0440668, 121.5333166); //地點寫死
-				var map = new google.maps.Map(area, {
-					zoom: 14,
-					center: myPosition,
-					mapTypeId: google.maps.MapTypeId.ROADMAP
-				});
-	
-				var marker = new google.maps.Marker({
-					position: myPosition,
-					map: map,
-					icon: '../dist/img/WeShare_icon_s.png',
-					title: '北科大光華館二樓219教室' //滑鼠游標移至position時顯示的文字
+				var geocoder= new google.maps.Geocoder();
+				var orgAddress = "10608 台北市忠孝東路三段一號";
+				console.log("orgAddress = " + orgAddress);
+				geocoder.geocode({'address':orgAddress}, function(results, status){
+					if(status == google.maps.GeocoderStatus.OK){
+						var orgPosition = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+						var map = new google.maps.Map(area, {
+							zoom: 14,
+							center: orgPosition,
+							mapTypeId: google.maps.MapTypeId.ROADMAP
+						});
+			
+						var marker = new google.maps.Marker({
+							position: orgPosition,
+							map: map,
+							icon: '../dist/img/WeShare_icon.png',
+							title: '台北科技大學' //滑鼠游標移至position時顯示的文字
+						});
+					}
 				});
 			}
 		</script>

@@ -34,13 +34,12 @@
         margin-bottom: 20px; }
         #sectionWTrans #wTransBlock #wTransInfo li span {
           margin-left: 20px; }
-          #sectionWTrans #wTransBlock #wTransInfo li span input,
-          #sectionWTrans #wTransBlock #wTransInfo li span select,
-          #sectionWTrans #wTransBlock #wTransInfo li span textarea {
-            width: 60%;
-            display: inline-block;
-            vertical-align: top;
-            font-size: 20px; }
+        #sectionWTrans #wTransBlock #wTransInfo li input,
+        #sectionWTrans #wTransBlock #wTransInfo li select,
+        #sectionWTrans #wTransBlock #wTransInfo li textarea {
+          display: inline-block;
+          vertical-align: top;
+          font-size: 20px; }
   #sectionWTrans #blockWTransOption {
     margin-top: 30px;
     margin-bottom: 20px; }

@@ -33,7 +33,7 @@ function showData(data, path) {
 							<li>寄送方式
 								<select name="server" id="wValDel" class="form-control" required="required">
 									<option value="server">郵寄</option>
-									<option value="server">親送</option>
+									<option value="server">面交</option>
 								</select>
 							</li>
 							<li>留言訊息
