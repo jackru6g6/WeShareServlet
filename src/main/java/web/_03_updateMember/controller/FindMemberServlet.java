@@ -33,6 +33,7 @@ public class FindMemberServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
 		String type = request.getParameter("type");
+		System.out.println("type="+type);
 		String INDID = "";
 		HttpSession session = request.getSession(false);
 		// 紀錄目前請求的RequestURI,以便使用者登入成功後能夠回到原本的畫面
@@ -100,26 +101,15 @@ public class FindMemberServlet extends HttpServlet {
 				mfjb.setOrgfilename(ob.getOrgfilename());
 
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		String mfjb_json = gson.toJson(mfjb);
 		if (type == null) {
-			RequestDispatcher rd = request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/web/member_update.jsp");
 			rd.forward(request, response);
-		} else if (type.equals("Json")) {
-			response.setContentType("application/json; charset=UTF8");
-			try {
-				PrintWriter out = response.getWriter();
-				System.out.println("mfjb_json=" + mfjb_json);
-				out.write(mfjb_json);
-				out.flush();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else {
-
+			System.out.println("[type]="+type);
 		}
 		return;
 	}

@@ -82,19 +82,19 @@
                     </li>
                     
                     <li>
-                    	<a href="${pageContext.request.contextPath}/web/member.jsp">
+                    	<a href="${pageContext.request.contextPath}/web/member_goods.jsp">
                     		我的物資箱
                     	</a>
                     </li>
                     
                     <li>
-                    	<a href="${pageContext.request.contextPath}/web/member.jsp">
+                    	<a href="${pageContext.request.contextPath}/web/member_msg.jsp">
                     		我的站內信
                     	</a>
                     </li>
                     
                     <li>
-                    	<a href="${pageContext.request.contextPath}/web/member.jsp">
+                    	<a href="${pageContext.request.contextPath}/web/member_feedback.jsp">
                     		 評價與紀錄
                     	</a>
                     </li>

@@ -47,7 +47,7 @@
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 									<h3 id="member_content_title">
-										<b>個人檔案</b>
+										<b>我的物資箱</b>
 									</h3>
 									<hr id="member_content_hr">
 								</div>
@@ -55,7 +55,7 @@
 
 							<!-- 個人檔案內容 -->
 							<div class="row">
-								<jsp:include page="/web/member/showdata.jsp"></jsp:include>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
 							</div>
 
 						</div>
