@@ -25,7 +25,7 @@
 		document.getElementById("t5").value = "目前使用不到，希望將愛心傳播出去。";
 		document.getElementById("t6").value = "3";
 		document.getElementById("t7").value = "2";
-		document.getElementById("t8").value = "20170831";
+		document.getElementById("t8").value = "2017-08-31";
 
 	}
 </script>

@@ -16,7 +16,8 @@ function setFocus()
 
 function confirmDelete() {
 	if (confirm("確定刪除此項物資資料(物資編號:${bean.goodsno})?") ) {
-		document.forms[0].action="GoodsDelete.do?pk=${bean.goodsno}" ;
+// 		document.forms[0].action="GoodsDelete.do?pk=${bean.goodsno}" ;
+		document.forms[0].action="GoodsDelete.do" ;
 		document.forms[0].method="POST";
 		document.forms[0].submit();
 	} else {
@@ -24,7 +25,8 @@ function confirmDelete() {
 }
 
 function updateGoods() {
- document.forms[0].action="GoodsUpdate.do?pk=${bean.goodsno}" ;
+//  document.forms[0].action="GoodsUpdate.do?pk=${bean.goodsno}" ;
+ document.forms[0].action="GoodsUpdate.do" ;
 	document.forms[0].method="POST";
 	document.forms[0].submit();
 }
@@ -38,7 +40,8 @@ function updateGoods() {
 <center>
 
 
-<div><a href="<c:url value='DisplayPageProducts?pk=${ LoginOK.indid }'  />">查詢物資箱</a></div>
+<%-- <div><a href="<c:url value='DisplayPageProducts?pk=${ LoginOK.indid }'  />">查詢物資箱</a></div> --%>
+<div><a href="<c:url value='/web/_04_productMaintain/controller/DisplayPageProducts'  />">查詢物資箱</a></div>
 
 
 <form  id="form1" name="form1" method="post" 
@@ -46,7 +49,7 @@ function updateGoods() {
        
 
     <input type="hidden" name="indid"     value="${LoginOK.indid}" >
-    <input type="hidden" name="goodsno" value="${bean.goodsno}" >
+    <input type="hidden" name="goodsno" value="${bean.goodsno}${param.goodsno}" >
     <input type="hidden" name="updatetime" value="" >     
     <input type="hidden" name="usertype"   value="${LoginOK.usertype}" >       
   
@@ -156,7 +159,12 @@ cellpadding="2" cellspacing="2" bordercolorlight="#FFFFFF" bordercolordark="#330
         <td width="45" align="right" class="title_font">圖片</td>
         
         <td>
+<c:if test="${! empty bean.goodsno }">        
 <img height='40px' width='30px' src='${pageContext.servletContext.contextPath}/_00_init/getImage?id=${bean.goodsno}&type=GOODS'  />
+</c:if>
+<c:if test="${ empty bean.goodsno }">
+<img height='40px' width='30px' src='${pageContext.servletContext.contextPath}/_00_init/getImage?id=${param.goodsno}&type=GOODS'  />
+</c:if>        
         </td>
         
         <td colspan="3">

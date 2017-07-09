@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,8 @@ import web._04_productMaintain.model.GoodsServiceDAO;
 import web._04_productMaintain.model.GoodsServiceDAO_JDBC;
 
 
-@WebServlet("/GoodsDelete.do")
+@WebServlet("/web/_04_productMaintain/controller/GoodsDelete.do")
+@MultipartConfig(location = "", fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 500, maxRequestSize = 1024 * 1024 * 500 * 5)
 public class GoodsDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,7 +31,7 @@ public class GoodsDeleteServlet extends HttpServlet {
         	HttpSession session = request.getSession();
         	MemberBean mb = (MemberBean)session.getAttribute("LoginOK");
         	
-        	String goodsno0 = request.getParameter("pk");
+        	String goodsno0 = request.getParameter("goodsno");
         	int goodsno = Integer.parseInt(goodsno0);
         	GoodsServiceDAO gs = new GoodsServiceDAO_JDBC();        	
 			int n = gs.deleteGoods(goodsno);
@@ -39,7 +41,8 @@ public class GoodsDeleteServlet extends HttpServlet {
 			} else {
 				session.setAttribute("GoodsDeleteMsg", "物資編號(" + goodsno + ")刪除失敗");
 			}
-			response.sendRedirect("DisplayPageProducts?pk="+mb.getIndid());
+
+			response.sendRedirect("DisplayPageProducts");
 			return;
 			
 		} catch (NamingException e) {
