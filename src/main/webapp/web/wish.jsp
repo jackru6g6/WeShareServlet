@@ -9,7 +9,7 @@
 <head>
 	<meta charset="utf-8">
 	<jsp:include page="../fragment/refCss.jsp" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/wish.css?t=1">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/wish.css">
 	<jsp:include page="../fragment/refJs.jsp" />
 	<title>WeShare 微分享</title>
 </head>
@@ -267,7 +267,7 @@
 <!-- 													</div> -->
 <!-- 													需求物資發佈者 -->
 <!-- 													<div class="wishGoodsBy wishGoodsContent"> -->
-<!-- 														<span>By <span class="month">Matter</span> Of Mind from France</span> -->
+<!-- 														<span>By <span class="wishGoodsByAuthor">Matter</span> Of Mind from France</span> -->
 <!-- 													</div> -->
 <!-- 													需求物資描述 -->
 <!-- 													<div class="wishGoodsDesc wishGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1"> -->

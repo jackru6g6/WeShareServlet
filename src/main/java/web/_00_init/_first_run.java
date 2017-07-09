@@ -59,6 +59,9 @@ public class _first_run {
 		stmt.executeUpdate(sql_Common.DROP_TABLE_IND);
 		stmt.executeUpdate(sql_Common.DROP_FUNCTION_INSERT_DEAL);
 		stmt.executeUpdate(sql_Common.DROP_FUNCTION_CHECK_ROOMNO);
+		stmt.executeUpdate(sql_Common.DROP_FUNCTION_INSERT_MSG);
+		stmt.executeUpdate(sql_Common.DROP_PROCEDURE_INSERT_MSG);
+
 	}
 
 	public static void CreateTable(Statement stmt) throws SQLException {
@@ -75,7 +78,8 @@ public class _first_run {
 		stmt.executeUpdate(sql_Common.CREATE_TABLE_MSG);
 		stmt.executeUpdate(sql_Common.CREATE_FUNCTION_INSERT_DEAL);
 		stmt.executeUpdate(sql_Common.CREATE_FUNCTION_CHECK_ROOMNO);
-
+		stmt.executeUpdate(sql_Common.CREATE_FUNCTION_INSERT_MSG);
+		stmt.executeUpdate(sql_Common.CREATE_PROCEDURE_INSERT_MSG);
 	}
 
 	public static void CreateData(Connection con) throws SQLException {
@@ -347,14 +351,14 @@ public class _first_run {
 				String[] sa = Read_line.split("\\|");
 
 				try {
-					PreparedStatement pstmt = con.prepareStatement(sql_Common.INSERT_TABLE_MSG);
-					pstmt.setString(1, sa[0]);
-					pstmt.setString(2, sa[1]);
-					pstmt.setString(3, sa[2]);
-					pstmt.setString(4, "");
-					pstmt.setString(5, sa[0]);
-					pstmt.setString(6, sa[1]);
-					pstmt.executeUpdate();
+					CallableStatement cs = con.prepareCall(sql_Common.CALL_FUNCTION_INSERT_MSG);
+					cs.registerOutParameter(1, Types.VARCHAR);
+					cs.setString(2, sa[0]);
+					cs.setString(3, sa[1]);
+					cs.setString(4, sa[2]);
+					cs.setString(5, null);
+					cs.setString(6, null);
+					cs.executeUpdate();
 					GlobalService.random_time_1_2();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -383,7 +387,7 @@ public class _first_run {
 					cs.setString(3, sa[1]);
 					cs.setInt(4, Integer.parseInt(sa[2]));
 					cs.setInt(5, Integer.parseInt(sa[3]));
-					cs.setString(6,sa[4]);
+					cs.setString(6, sa[4]);
 					cs.executeUpdate();
 					GlobalService.random_time_1_2();
 				} catch (Exception e) {

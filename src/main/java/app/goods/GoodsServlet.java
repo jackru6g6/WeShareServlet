@@ -144,6 +144,12 @@ public class GoodsServlet extends HttpServlet {
 			System.out.println("status：" + status + ", i：" + i);
 			List<GoodsBean> goods = gDAO.getHome(i);
 			writeText(response, gson.toJson(goods));
+		}else if (action.equals("getLocal")) {// jack
+			String localNo = jsonObject.get("localNo").getAsString();
+			int i = Integer.parseInt(localNo);
+			System.out.println("localNo：" + localNo);
+			List<LocalBean> local = gDAO.getLocal(i);
+			writeText(response, gson.toJson(local));
 		}
 	}
 

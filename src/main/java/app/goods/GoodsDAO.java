@@ -157,7 +157,6 @@ public class GoodsDAO {
 		return list;
 	}
 
-	
 	public List<GoodsBean> getSelfWish(String indId) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -182,7 +181,7 @@ public class GoodsDAO {
 		}
 		return list;
 	}
-	
+
 	public List<GoodsBean> getSelfGive(String indId) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -207,8 +206,7 @@ public class GoodsDAO {
 		}
 		return list;
 	}
-	
-	
+
 	public List<GoodsBean> getSelfChange(String indId) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -233,6 +231,7 @@ public class GoodsDAO {
 		}
 		return list;
 	}
+<<<<<<< HEAD
 	
 	
 	
@@ -260,6 +259,9 @@ public class GoodsDAO {
 	}
 	
 	
+=======
+
+>>>>>>> e9a4ba0d1b8107e12a42b9d05bba4625c42f64c5
 	public List<GoodsBean> getHome(int status) {// jack
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -282,7 +284,7 @@ public class GoodsDAO {
 		}
 		return list;
 	}
-	
+
 	public GoodsBean load(int goodsNo) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -298,6 +300,25 @@ public class GoodsDAO {
 				session.close();
 		}
 		return goods;
+	}
+
+	public List<LocalBean> getLocal(int localNo) {
+		List<LocalBean> list = new ArrayList<LocalBean>();
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			String hql = "From LocalBean where localNo = :localNo";
+			Query query = session.createQuery(hql);
+			query.setParameter("localNo", localNo);
+			list = query.getResultList();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+		} finally {
+			session.close();
+		}
+		return list;
 	}
 
 	public void close() {

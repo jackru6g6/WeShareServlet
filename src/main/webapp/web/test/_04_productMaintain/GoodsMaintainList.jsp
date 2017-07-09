@@ -29,9 +29,9 @@
 			<center>${ BookDeleteMsg }<br>
 				<c:remove var="BookDeleteMsg" />
 
-				<div>
-					<a href="<c:url value='index.jsp' /> ">回首頁</a>
-				</div>
+<!-- 				<div> -->
+<%-- 					<a href="<c:url value='index.jsp' /> ">回首頁</a> --%>
+<!-- 				</div> -->
 
 				<table border='2' width="690">
 

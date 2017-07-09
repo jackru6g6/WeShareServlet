@@ -51,7 +51,7 @@
 				</div>
 
 
-				<form id="form1" name="form1" method="post" action="GoodsUpdate.do"
+				<form id="form1" name="form1" method="post" action="/web/_04_productMaintain/controller/GoodsUpdate.do"
 					enctype="multipart/form-data">
 
 

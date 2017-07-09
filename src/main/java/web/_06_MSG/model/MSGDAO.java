@@ -1,9 +1,11 @@
 package web._06_MSG.model;
 
 import java.io.InputStream;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -33,20 +35,22 @@ public class MSGDAO {
 	public String Insert_MSG(MSGBean msgb, InputStream image, long imagesize) {
 		String ans = "FALSE";
 		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con
-						.prepareStatement("INSERT INTO MSG VALUE(null,'2',null,?,?,?,?,?,check_roomNo(?,?))");) {
-			pstmt.setString(1, msgb.getMSGSOURCEID());
-			pstmt.setString(2, msgb.getMSGENDID());
-			pstmt.setString(3, msgb.getMSGTEXT());
-			pstmt.setBinaryStream(4, image, imagesize);
-			pstmt.setString(5, msgb.getMSGFILENAME());
-			pstmt.setString(6, msgb.getMSGSOURCEID());
-			pstmt.setString(7, msgb.getMSGENDID());
-			pstmt.executeUpdate();
+				CallableStatement cs = con.prepareCall("{? =CALL insert_MSG(?,?,?,?,?)}");
+				) {
+
+			System.out.println("filename"+msgb.getMSGFILENAME());
+			
+			cs.registerOutParameter(1, Types.VARCHAR);
+			cs.setString(2, msgb.getMSGSOURCEID());
+			cs.setString(3, msgb.getMSGENDID());
+			cs.setString(4, msgb.getMSGTEXT());
+			cs.setBinaryStream(5, image, imagesize);
+			cs.setString(6, msgb.getMSGFILENAME());
+			cs.executeUpdate();
 			ans = "TRUE";
 		} catch (Exception e) {
 			ans = "FALSE";
-			// e.printStackTrace();
+			 e.printStackTrace();
 		}
 		return ans;
 	}
@@ -55,7 +59,7 @@ public class MSGDAO {
 		Collection<MSGBean> coll = new ArrayList<MSGBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						"SELECT * from msg where msgsourceid =? or msgendid=? GROUP BY ROOMNO DESC ORDER BY postdate DESC");) {
+						"SELECT * FROM msg WHERE MSGNO IN(SELECT LASTMSGNO FROM MSG_ROOM where INDID1=? or INDID2=?)");) {
 			pstmt.setString(1, INDID);
 			pstmt.setString(2, INDID);
 			ResultSet rs = pstmt.executeQuery();
@@ -67,7 +71,7 @@ public class MSGDAO {
 				msgb.setMSGSOURCEID(rs.getString(4));
 				msgb.setMSGENDID(rs.getString(5));
 				msgb.setMSGTEXT(rs.getString(6));
-				msgb.setMSGIMAGE(rs.getBlob(7));
+//				msgb.setMSGIMAGE(rs.getBlob(7));
 				msgb.setMSGFILENAME(rs.getString(8));
 				msgb.setROOMNO(rs.getInt(9));
 				coll.add(msgb);
@@ -93,7 +97,7 @@ public class MSGDAO {
 				msgb.setMSGSOURCEID(rs.getString(4));
 				msgb.setMSGENDID(rs.getString(5));
 				msgb.setMSGTEXT(rs.getString(6));
-				msgb.setMSGIMAGE(rs.getBlob(7));
+//				msgb.setMSGIMAGE(rs.getBlob(7));
 				msgb.setMSGFILENAME(rs.getString(8));
 				msgb.setROOMNO(rs.getInt(9));
 				coll.add(msgb);

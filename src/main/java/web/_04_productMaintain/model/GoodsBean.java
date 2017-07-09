@@ -25,6 +25,7 @@ public class GoodsBean implements Serializable {
 	String goodsname_TEMP;
 	String localname_TEMP;
 	String updatetime_TEMP;
+	String intro_TEMP;
 
 
 	public GoodsBean() {
@@ -182,7 +183,15 @@ public class GoodsBean implements Serializable {
 		this.updatetime_TEMP = updatetime_TEMP;
 	}
 	
-	
+
+	public String getIntro_TEMP() {
+		return intro_TEMP;
+	}
+
+	public void setIntro_TEMP(String intro_TEMP) {
+		this.intro_TEMP = intro_TEMP;
+	}
+
 	
 	
 

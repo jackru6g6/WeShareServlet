@@ -6,7 +6,8 @@ function showData(responseData, javaRoot) {
 		`<div style="font-size:24px; color:#ff0000; text-align:center; margin-top:30px;">
 			找不到物資唷~請重新查詢！
 		</div>`;
-		$('#divGiveGoods').append(resultData);		
+		$('#divGiveGoods').append(resultData);
+		return;
 	}
 	for (var i = 0; i < responseData.length; i++) {
 		resultData =
@@ -26,7 +27,7 @@ function showData(responseData, javaRoot) {
 								</div>
 
 								<div class="giveGoodsBy giveGoodsContent">
-									<span>By <span class="month">${responseData[i].indname_TEMP}</span></span>
+									<span>By <span class="giveGoodsByAuthor">${responseData[i].indname_TEMP}</span></span>
 								</div>
 
 								<div class="giveGoodsDesc giveGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">

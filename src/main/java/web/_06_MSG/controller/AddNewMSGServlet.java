@@ -81,7 +81,7 @@ public class AddNewMSGServlet extends HttpServlet {
 		session.setAttribute("MsgOK", msgOK); // 顯示正常訊息
 		String MSGTEXT = null;
 		String String = null;
-		String FileName = "";
+		String FileName = null;
 
 		long sizeInBytes = 0;
 		InputStream is = null;

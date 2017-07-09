@@ -25,8 +25,9 @@
 		<mapping class="app.user.MemberBean" />
 		<mapping class="app.user.InstiutionBean" />
 		<mapping class="app.goods.GoodsBean" />
+		<mapping class="app.goods.LocalBean" />
 		<mapping class="app.message.MessageBean" />
-		
+		<mapping class="app.deal.DealBean" />
 
 	</session-factory>
 </hibernate-configuration>

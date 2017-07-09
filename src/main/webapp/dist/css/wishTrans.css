@@ -4,62 +4,64 @@
   min-height: calc(100vh - 306px);
   font-size: 20px;
   /* 標題 */
-  /*  物資圖片 */
-  /* 右邊物資資訊 */ }
+  /* 取消&確定按鈕 */ }
   #sectionWTrans #wTransTitle {
     text-align: center;
     font-size: 26px;
-    margin-bottom: 20px; }
-  #sectionWTrans #wTransImgLayout {
-    position: relative;
-    overflow: hidden;
-    padding-bottom: 100%;
-    margin: auto;
-    box-shadow: 0px 0px 20px 10px #e6e6e6; }
-    #sectionWTrans #wTransImgLayout #wTransImg {
-      position: absolute;
-      width: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%); }
-  #sectionWTrans #wTransInfo {
-    color: #3e3e3e;
-    padding-left: 30px;
-    margin-bottom: 20px;
-    /* 欄位 */
-    /* 值 */
-    /* 取消&確定按鈕 */ }
-    #sectionWTrans #wTransInfo .wTransCol {
-      padding-left: 10px;
-      font-size: 22px; }
-    #sectionWTrans #wTransInfo .wTransVal {
-      margin-bottom: 20px;
-      padding-left: 10px;
-      text-indent: 2em;
-      border-bottom: 1px solid #bdbdbd; }
-      #sectionWTrans #wTransInfo .wTransVal textarea {
-        resize: none; }
-    #sectionWTrans #wTransInfo #blockWTransOption {
-      margin-top: 10px;
+    margin-bottom: 30px; }
+  #sectionWTrans #wTransBlock {
+    box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.25);
+    font-size: 24px;
+    /*  左邊物資圖片 */
+    /* 右邊物資資訊 */ }
+    #sectionWTrans #wTransBlock #wTransImgLayout {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 100%;
+      margin: auto; }
+      #sectionWTrans #wTransBlock #wTransImgLayout #wTransImg {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%); }
+    #sectionWTrans #wTransBlock #wTransInfo {
+      margin-top: 40px;
+      color: #3e3e3e;
+      padding-left: 30px;
       margin-bottom: 20px; }
-      #sectionWTrans #wTransInfo #blockWTransOption > ul {
-        margin: 0px;
-        padding: 10px; }
-        #sectionWTrans #wTransInfo #blockWTransOption > ul > li {
-          display: inline-block; }
-          #sectionWTrans #wTransInfo #blockWTransOption > ul > li .wTransOption {
-            border-radius: 0px;
-            width: 100%;
-            font-size: 20px;
-            background-color: #ffffff;
-            color: #ff9797;
-            border-color: #ff9797;
-            transition: 0.3s; }
-            #sectionWTrans #wTransInfo #blockWTransOption > ul > li .wTransOption:hover {
-              animation: spread 1s; }
+      #sectionWTrans #wTransBlock #wTransInfo li {
+        margin-bottom: 20px; }
+        #sectionWTrans #wTransBlock #wTransInfo li span {
+          margin-left: 20px; }
+          #sectionWTrans #wTransBlock #wTransInfo li span input,
+          #sectionWTrans #wTransBlock #wTransInfo li span select,
+          #sectionWTrans #wTransBlock #wTransInfo li span textarea {
+            width: 60%;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 20px; }
+  #sectionWTrans #blockWTransOption {
+    margin-top: 30px;
+    margin-bottom: 20px; }
+    #sectionWTrans #blockWTransOption > ul {
+      margin: 0px;
+      padding: 10px; }
+      #sectionWTrans #blockWTransOption > ul > li {
+        display: inline-block; }
+        #sectionWTrans #blockWTransOption > ul > li .wTransOption {
+          border-radius: 0px;
+          width: 100%;
+          font-size: 20px;
+          background-color: #ffffff;
+          color: #ff9797;
+          border-color: #ff9797;
+          transition: 0.3s; }
+          #sectionWTrans #blockWTransOption > ul > li .wTransOption:hover {
+            animation: spread 1s; }
 
 @keyframes spread {
   0% {
     box-shadow: 0px 0px 0px 0px #ff9797; }
   100% {
-    box-shadow: 0px 0px 20px 30px #ffffff; } }
+    box-shadow: 0px 0px 20px 10px #ffffff; } }

@@ -267,7 +267,7 @@
 <!-- 													</div> -->
 <!-- 													需求物資發佈者 -->
 <!-- 													<div class="giveGoodsBy giveGoodsContent"> -->
-<!-- 														<span>By <span class="month">Matter</span> Of Mind from France</span> -->
+<!-- 														<span>By <span class="giveGoodsByAuthor">Matter</span> Of Mind from France</span> -->
 <!-- 													</div> -->
 <!-- 													需求物資描述 -->
 <!-- 													<div class="giveGoodsDesc giveGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1"> -->

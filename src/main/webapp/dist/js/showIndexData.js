@@ -1,4 +1,19 @@
-function showWishData(responseWishData, javaRoot) {
+function sortJSON(data, colName, way) {
+	return data.sort(function(a, b){
+		var x = a[colName];
+		var y = b[colName];
+		if (way == "asce"){
+			return ( (x < y) ? -1 : ( (x > y) ? 1 : 0) );
+		}
+		if (way == "desc"){
+			return ( (x > y) ? -1 : ( (x < y) ? 1 : 0) );
+		}	
+	});
+}
+
+function showWishData(data, path, colName, way) {
+	sortJSON(data, colName, way);
+	var javaRoot = path;
 	for (var i = 0; i < 4; i++) {
 		var deadlineString = `${responseWishData[i].deadlinestring}`;
 		var deadlineSplit = deadlineString.split('-');
@@ -29,7 +44,9 @@ function showWishData(responseWishData, javaRoot) {
 	}
 }
 
-function showGiveData(responseGiveData, javaRoot) {
+function showGiveData(data, path, colName, way) {
+	sortJSON(data, colName, way);
+	var javaRoot = path;
 	for (var i = 0; i < 4; i++) {
 		var deadlineString = `${responseGiveData[i].deadlinestring}`;
 		var deadlineSplit = deadlineString.split('-');
@@ -61,7 +78,9 @@ function showGiveData(responseGiveData, javaRoot) {
 	}
 }
 
-function showExchangeData(responseExchangeData, javaRoot) {
+function showExchangeData(data, path, colName, way) {
+	sortJSON(data, colName, way);
+	var javaRoot = path;
 	for (var i = 0; i < 4; i++) {
 		var deadlineString = `${responseExchangeData[i].deadlinestring}`;
 		var deadlineSplit = deadlineString.split('-');

@@ -14,8 +14,8 @@
         </button>
 
         <!-- Logo -->
-        <a href="index.jsp" id="navLogo" class="navbar-brand">
-            <img src="/Demo/dist/img/WeShare_logo.png" width="60" alt="WeShare">
+        <a href="${pageContext.request.contextPath}/index.jsp" id="navLogo" class="navbar-brand">
+            <img src="${pageContext.request.contextPath}/dist/img/WeShare_logo.png" width="60" alt="WeShare">
         </a>
     </div>
 
@@ -23,25 +23,25 @@
         <!-- 左選單 -->
         <ul id="navMenuLeft" class="nav navbar-nav">
             <li>
-                <a href="wish.jsp" id="navWish">
+                <a href="${pageContext.request.contextPath}/web/wish.jsp" id="navWish">
                     <span>許願池</span>
                     <span></span>
                 </a>
             </li>
             <li>
-                <a href="give.jsp" id="navGive">
+                <a href="${pageContext.request.contextPath}/web/give.jsp" id="navGive">
                     <span>送愛心</span>
                     <span></span>
                 </a>
             </li>
             <li>
-                <a href="exchange.jsp" id="navExchange">
+                <a href="${pageContext.request.contextPath}/web/exchange.jsp" id="navExchange">
                     <span>以物易物</span>
                     <span></span>
                 </a>
             </li>
             <li>
-                <a href="org.jsp" id="navGroup">
+                <a href="${pageContext.request.contextPath}/web/org.jsp" id="navGroup">
                     <span>社福團體</span>
                     <span></span>
                 </a>
@@ -63,7 +63,11 @@
                 </a>
                 <ul id="navMemberSub" class="dropdown-menu">
 <!--                     <li><a href="/Demo/web/_03_updateMember/controller/FindMemberServlet">個人檔案</a></li> -->
-                    
+                    <li>
+                    	<a href="${pageContext.request.contextPath}/web/_03_updateMember/controller/FindMemberServlet">
+                    		(後端功能測試)
+                    	</a>
+                    </li>                
                     <li>
                     	<a href="${pageContext.request.contextPath}/web/member.jsp">
                     		會員專區
@@ -95,7 +99,7 @@
                     	</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="/Demo/web/logout.jsp">登出</a></li>
+                    <li><a href="${pageContext.request.contextPath}/web/logout.jsp">登出</a></li>
                 </ul>
             </li>
             <li class="afterLogin">

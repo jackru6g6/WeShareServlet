@@ -88,7 +88,8 @@ public class MessageBean {
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "msgNo")
 	public int getMsgNo() {
 		return msgNo;
 	}

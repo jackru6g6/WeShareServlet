@@ -267,7 +267,7 @@
 <!-- 													</div> -->
 <!-- 													需求物資發佈者 -->
 <!-- 													<div class="exchangeGoodsBy exchangeGoodsContent"> -->
-<!-- 														<span>By <span class="month">Matter</span> Of Mind from France</span> -->
+<!-- 														<span>By <span class="exchangeGoodsByAuthor">Matter</span> Of Mind from France</span> -->
 <!-- 													</div> -->
 <!-- 													需求物資描述 -->
 <!-- 													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1"> -->
@@ -292,7 +292,7 @@
 	</footer>
 	
 	
-	<script src="${pageContext.request.contextPath}/dist/js/showExchangeData.js?t=1"></script>
+	<script src="${pageContext.request.contextPath}/dist/js/showExchangeData.js"></script>
 	<script type="text/javascript">
 		var javaRoot = "${pageContext.servletContext.contextPath}";
 		var xhr = new XMLHttpRequest();

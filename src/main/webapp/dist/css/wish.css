@@ -196,11 +196,15 @@
           letter-spacing: 2px;
           margin-top: 5px; }
         #sectionWish #sectionGoods .wishGoods .wishGoodsOverlayText .wishGoodsName {
+          color: #888888;
           font-size: 22px;
           padding-left: 10px; }
         #sectionWish #sectionGoods .wishGoods .wishGoodsOverlayText .wishGoodsBy {
+          color: #543939;
           font-size: 18px;
           padding-left: 10px; }
+        #sectionWish #sectionGoods .wishGoods .wishGoodsOverlayText .wishGoodsBy .wishGoodsByAuthor {
+          color: #01B468; }
         #sectionWish #sectionGoods .wishGoods .wishGoodsOverlayText .wishGoodsDesc {
           font-size: 18px;
           margin-top: 100px;

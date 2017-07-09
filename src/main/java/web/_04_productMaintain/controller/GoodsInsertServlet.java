@@ -25,7 +25,7 @@ import web._04_productMaintain.model.GoodsBean;
 import web._04_productMaintain.model.GoodsServiceDAO;
 import web._04_productMaintain.model.GoodsServiceDAO_JDBC;
 
-@WebServlet("/_04_productMaintain/GoodsInsert.do")
+@WebServlet("/web/_04_productMaintain/controller/GoodsInsert.do")
 @MultipartConfig(location = "", fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 500, maxRequestSize = 1024 * 1024 * 500 * 5)
 public class GoodsInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,7 +39,6 @@ public class GoodsInsertServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		request.setAttribute("ErrMsg", errorMsgs);
 		session.setAttribute("successMsg", successMsgs);
-		
 		try {
 			String goodsno0 = "";
 			String goodsstatus0 = ""; 
@@ -232,7 +231,7 @@ public class GoodsInsertServlet extends HttpServlet {
 			// 如果有錯誤==> 導向原來輸入資料的畫面，這次會顯示錯誤訊息
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher rd = request
-						.getRequestDispatcher("GoodsInsert.jsp");
+						.getRequestDispatcher("/web/test/_04_productMaintain/GoodsInsert.jsp");
 				rd.forward(request, response);
 				return;
 			}
@@ -247,15 +246,16 @@ public class GoodsInsertServlet extends HttpServlet {
 			int n = gs.insertGoods(gb, is, sizeInBytes, goodsfilename);
 			if ( n == 1) {
 				successMsgs.put("InsertOK","<Font color='red'>新增成功，請開始使用本系統</Font>");
-				response.sendRedirect("../index.jsp");
+				System.out.println("資料新增成功1");
+				response.sendRedirect("DisplayPageProducts");
 				return;
 			} else {
 				errorMsgs.put("errorIDDup","新增此筆資料有誤(RegisterServlet)");
 			}			
 			
 			successMsgs.put("success", "資料新增成功");
-			
-			response.sendRedirect(response.encodeRedirectURL("GoodsInsert.jsp"));
+			System.out.println("資料新增成功2");
+			response.sendRedirect(response.encodeRedirectURL("/web/test/_04_productMaintain/GoodsInsert.jsp"));
 			return;
 			
 			// 5.依照 Business Logic 運算結果來挑選適當的畫面	
@@ -263,7 +263,7 @@ public class GoodsInsertServlet extends HttpServlet {
 			e.printStackTrace();
 			errorMsgs.put("Exception", e.getMessage());
 			RequestDispatcher rd = request
-					.getRequestDispatcher("GoodsInsert.jsp");
+					.getRequestDispatcher("/web/test/_04_productMaintain/GoodsInsert.jsp");
 			rd.forward(request, response);
 		}
 	}
