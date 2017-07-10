@@ -8,7 +8,6 @@ function showData(data, path) {
 		</div>`;
 		$('#sectionWGoods').append(resultData);		
 	}
-	console.log(data[0].goodsname);	
 	resultData =
 		`<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

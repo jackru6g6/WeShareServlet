@@ -1,0 +1,92 @@
+@charset "UTF-8";
+#sectionEGoods {
+  padding: 30px 45px;
+  min-height: calc(100vh - 306px);
+  font-size: 20px;
+  /*  物資圖片 */
+  /* 捐贈&詢問按鈕 */
+  /* 物資資訊 */
+  /* 詳細說明及簡介 */ }
+  #sectionEGoods #eGoodsImgLayout {
+    position: relative;
+    padding-bottom: 100%;
+    margin: 0 auto 40px;
+    animation-delay: .1s; }
+    #sectionEGoods #eGoodsImgLayout::before, #sectionEGoods #eGoodsImgLayout::after {
+      z-index: -1;
+      position: absolute;
+      content: '';
+      bottom: 10px;
+      width: 50%;
+      top: 80%;
+      max-width: 100%;
+      background: #8d8c8c;
+      box-shadow: 0 15px 10px #8d8c8c; }
+    #sectionEGoods #eGoodsImgLayout::before {
+      left: 10px;
+      transform: rotate(-5deg); }
+    #sectionEGoods #eGoodsImgLayout::after {
+      right: 10px;
+      transform: rotate(5deg); }
+    #sectionEGoods #eGoodsImgLayout #eGoodsImg {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%); }
+  #sectionEGoods #blockEGoodsOption {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    animation-delay: .2s; }
+    #sectionEGoods #blockEGoodsOption > ul {
+      margin: 0px;
+      padding: 20px; }
+      #sectionEGoods #blockEGoodsOption > ul > li {
+        display: inline-block; }
+        #sectionEGoods #blockEGoodsOption > ul > li:first-child {
+          margin-bottom: 20px; }
+        #sectionEGoods #blockEGoodsOption > ul > li .eGoodsOption {
+          border-radius: 6px;
+          width: 100%;
+          font-size: 20px;
+          background-color: #4caf50;
+          color: #ffffff;
+          transition: 0.3s; }
+          #sectionEGoods #blockEGoodsOption > ul > li .eGoodsOption:hover {
+            background-color: white;
+            color: #09610d;
+            border-color: #74b677;
+            box-shadow: 0px 15px 15px -10px #4caf50;
+            transform: translateY(-8px);
+            transition: 0.3s; }
+  #sectionEGoods #eGoodsInfo {
+    color: #3e3e3e;
+    animation-delay: .3s;
+    /* 欄位 */
+    /* 值 */ }
+    #sectionEGoods #eGoodsInfo .eGoodsCol {
+      padding-left: 10px;
+      font-size: 22px; }
+    #sectionEGoods #eGoodsInfo .eGoodsVal {
+      margin-bottom: 20px;
+      padding-left: 10px;
+      text-indent: 2em;
+      border-bottom: 1px solid #bdbdbd;
+      letter-spacing: 2px; }
+  #sectionEGoods #eGoodsOtherInfo {
+    color: #3e3e3e;
+    margin-bottom: 20px;
+    animation-delay: .4s;
+    letter-spacing: 2px;
+    /* 項目 */
+    /* 內容 */ }
+    #sectionEGoods #eGoodsOtherInfo #eGoodsOtherInfoTabs li > a {
+      color: #3e3e3e;
+      border-top-width: 5px; }
+    #sectionEGoods #eGoodsOtherInfo #eGoodsOtherInfoTabs li.active a {
+      border-top: 5px solid #4caf50; }
+    #sectionEGoods #eGoodsOtherInfo #eGoodsOtherInfoContent {
+      border: 1px solid #e0e0e0;
+      border-top: 0;
+      text-indent: 2em;
+      padding: 10px; }

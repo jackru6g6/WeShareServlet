@@ -6,34 +6,35 @@ function showData(data, path) {
 		`<div style="font-size:24px; color:#ff0000; text-align:center; margin-top:30px;">
 			找不到物資唷~請重新查詢！
 		</div>`;
-		$('#wTransBlock').html(resultData);
-		$('#blockWTransOption').empty();
+		$('#eTransBlock').html(resultData);
+		$('#blockETransOption').empty();
 	}
 	resultData =
 		`<div class="col-xs-12 col-sm-6 col-md-5 col-lg-6">
-			<div id="wTransImgLayout">
-				<img id="wTransImg" class="img-responsive" src="${javaRoot}/_00_init/getImage?id=${responseData[0].goodsno}&type=GOODS">
+			
+			<div id="eTransImgLayout">
+				<img id="eTransImg" class="img-responsive" src="${javaRoot}/_00_init/getImage?id=${responseData[0].goodsno}&type=GOODS">
 			</div>
 		</div>
-
+		
 		<div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-			<div id="wTransInfo" class="row">
+			<div id="eTransInfo" class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<div class="row wTransInfoRow">
+					<div class="row eTransInfoRow">
 						<ul type="none">
-							<li>捐贈物品
+							<li>交換物品
 								<span>${data[0].goodsname}</span>
 							</li>
-							<li>捐贈對象
+							<li>交換對象
 								<span>${data[0].indname_TEMP}</span>
 							</li>
-							<li>捐贈數量
+							<li>交換數量
 								<input type="number" class="form-control" value="1" min="1" max="${data[0].qty}" step="1" required="required">
 							</li>
-							<li>寄送方式
-								<select name="server" id="ship" class="form-control" required="required">
-									<option value="server">郵寄</option>
-									<option value="server">面交</option>
+							<li>交換方式
+								<select name="" id="ship" class="form-control" required="required">
+									<option value="">郵寄</option>
+									<option value="">面交</option>
 								</select>
 							</li>
 							<li>留言訊息
@@ -44,5 +45,6 @@ function showData(data, path) {
 				</div>
 			</div>
 		</div>`;
-	$('#wTransBlock').prepend(resultData);
+
+	$('#eTransBlock').prepend(resultData);
 }

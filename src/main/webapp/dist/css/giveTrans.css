@@ -1,0 +1,68 @@
+@charset "UTF-8";
+#sectionGTrans {
+  padding: 30px 45px;
+  min-height: calc(100vh - 306px);
+  font-size: 20px;
+  /* 標題 */
+  /* 取消&確定按鈕 */ }
+  #sectionGTrans #gTransTitle {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 30px; }
+  #sectionGTrans #gTransBlock {
+    box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.25);
+    font-size: 24px;
+    /*  左邊物資圖片 */
+    /* 右邊物資資訊 */ }
+    #sectionGTrans #gTransBlock #gTransImgLayout {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 100%;
+      margin: auto; }
+      #sectionGTrans #gTransBlock #gTransImgLayout #gTransImg {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%); }
+    #sectionGTrans #gTransBlock #gTransInfo {
+      margin-top: 40px;
+      color: #3e3e3e;
+      padding-left: 30px;
+      margin-bottom: 20px; }
+      #sectionGTrans #gTransBlock #gTransInfo li {
+        margin-bottom: 20px; }
+        #sectionGTrans #gTransBlock #gTransInfo li span {
+          margin-left: 20px; }
+        #sectionGTrans #gTransBlock #gTransInfo li input,
+        #sectionGTrans #gTransBlock #gTransInfo li select,
+        #sectionGTrans #gTransBlock #gTransInfo li textarea {
+          display: inline-block;
+          vertical-align: top;
+          font-size: 20px; }
+        #sectionGTrans #gTransBlock #gTransInfo li textarea {
+          resize: none; }
+  #sectionGTrans #blockGTransOption {
+    margin-top: 30px;
+    margin-bottom: 20px; }
+    #sectionGTrans #blockGTransOption > ul {
+      margin: 0px;
+      padding: 10px; }
+      #sectionGTrans #blockGTransOption > ul > li {
+        display: inline-block; }
+        #sectionGTrans #blockGTransOption > ul > li .gTransOption {
+          border-radius: 0px;
+          width: 100%;
+          font-size: 20px;
+          background-color: #ffffff;
+          color: #e06f39;
+          border-color: #e06f39;
+          transition: 0.3s; }
+          #sectionGTrans #blockGTransOption > ul > li .gTransOption:hover {
+            animation: spread 1s; }
+
+@keyframes spread {
+  0% {
+    box-shadow: 0px 0px 0px 0px #e06f39; }
+  100% {
+    box-shadow: 0px 0px 20px 10px #ffffff; } }

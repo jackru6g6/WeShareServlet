@@ -9,7 +9,7 @@
 <head>
 	<meta charset="utf-8">
 	<jsp:include page="../fragment/refCss.jsp" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/wishTrans.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/exchangeTrans.css">
 	<!-- Animate CSS-->
 	<link rel="stylesheet" type="text/css" href="../dist/bower_components/animate.css/animate.min.css">
 	<jsp:include page="../fragment/refJs.jsp" />
@@ -43,37 +43,37 @@
 	</header>
 	
 	<section>
-		<div id="sectionWTrans" class="container">
+		<div id="sectionETrans" class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<div id="wTransBlock" class="row animated zoomIn">
+					<div id="eTransBlock" class="row animated zoomIn">
 <!-- 						左邊物資圖片 -->
 <!-- 						<div class="col-xs-12 col-sm-6 col-md-5 col-lg-6"> -->
 <!-- 							物資圖片 -->
-<!-- 							<div id="wTransImgLayout"> -->
-<!-- 								<img id="wTransImg" class="img-responsive" src="../dist/img/300x300/20170627_66.png"> -->
+<!-- 							<div id="eTransImgLayout"> -->
+<!-- 								<img id="eTransImg" class="img-responsive" src="../dist/img/300x300/20170627_49.png"> -->
 <!-- 							</div> -->
 <!-- 						</div> -->
 
 <!-- 						右邊物資資訊 -->
 <!-- 						<div class="col-xs-12 col-sm-6 col-md-5 col-lg-5"> -->
-<!-- 							<div id="wTransInfo" class="row"> -->
+<!-- 							<div id="eTransInfo" class="row"> -->
 <!-- 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> -->
-<!-- 									<div class="row wTransInfoRow"> -->
+<!-- 									<div class="row eTransInfoRow"> -->
 <!-- 										<ul type="none"> -->
-<!-- 											<li>捐贈物品 -->
+<!-- 											<li>交換物品 -->
 <!-- 												<span>繪本、青少年文學、休閒類書籍</span> -->
 <!-- 											</li> -->
-<!-- 											<li>捐贈對象 -->
+<!-- 											<li>交換對象 -->
 <!-- 												<span>愛閱社</span> -->
 <!-- 											</li> -->
-<!-- 											<li>捐贈數量 -->
-<!-- 												<input type="number" class="form-control" value="1" min="1" max="server" step="1" required="required"> -->
+<!-- 											<li>交換數量 -->
+<!-- 												<input type="number" class="form-control" value="1" min="1" max="10" step="1" required="required"> -->
 <!-- 											</li> -->
-<!-- 											<li>寄送方式 -->
-<!-- 												<select name="server" id="ship" class="form-control" required="required"> -->
-<!-- 													<option value="server">郵寄</option> -->
-<!-- 													<option value="server">面交</option> -->
+<!-- 											<li>交換方式 -->
+<!-- 												<select name="" id="ship" class="form-control" required="required"> -->
+<!-- 													<option value="">郵寄</option> -->
+<!-- 													<option value="">面交</option> -->
 <!-- 												</select> -->
 <!-- 											</li> -->
 <!-- 											<li>留言訊息 -->
@@ -86,13 +86,13 @@
 <!-- 						</div> -->
 
 						<!-- 取消&確定按鈕 -->
-						<div id="blockWTransOption" class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+						<div id="blockETransOption" class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
 							<ul type="none" class="row">
 								<li class="col-xs-5 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-pull-1">
-									<a href="javascript:history.back()" class="btn btn-default wTransOption">取消捐贈</a>
+									<a href="javascript:history.back()" class="btn btn-default eTransOption">取消捐贈</a>
 								</li>
 								<li class="col-xs-5 col-sm-5 col-md-5 col-lg-4  col-lg-push-3">
-									<a data-toggle="modal" data-target="#transMsg" class="btn btn-default wTransOption">確定送出</a>
+									<a data-toggle="modal" data-target="#transMsg" class="btn btn-default eTransOption">確定送出</a>
 								</li>
 							</ul>
 						</div>
@@ -107,7 +107,7 @@
 	</footer>
 
 
-	<script src="${pageContext.request.contextPath}/dist/js/showWishTransData.js"></script>
+	<script src="${pageContext.request.contextPath}/dist/js/showExchangeTransData.js"></script>
 	<script type="text/javascript">
 		var goodsno = location.search.slice(1);
 		var javaRoot = "${pageContext.servletContext.contextPath}";

@@ -130,7 +130,7 @@
               color: #666666;
               letter-spacing: 2px;
               padding: 10px; }
-              #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgContact .orgContactList li i {
+              #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgContact .orgContactList li .fa {
                 color: #ffc107;
                 width: 20px;
                 text-align: center;
@@ -162,7 +162,7 @@
               padding: 0px; }
               #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo .orgInfoList ul li {
                 padding: 10px; }
-                #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo .orgInfoList ul li i {
+                #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo .orgInfoList ul li .fa {
                   color: #ff6666;
                   width: 20px;
                   text-align: center;
