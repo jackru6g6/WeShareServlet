@@ -2,11 +2,14 @@ package web._03_updateMember.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -18,255 +21,279 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.sql.rowset.serial.SerialBlob;
 
+import com.google.gson.Gson;
+
 import web._00_init.GlobalService;
 import web._01_register.model.MemberBean;
 import web._01_register.model.OrgBean;
 import web._01_register.model.RegisterServiceDAO;
 import web._01_register.model.RegisterServiceDAO_JDBC;
+import web._03_updateMember.model.JSON_In_Up_Bean;
+import web._03_updateMember.model.MB_ORG_ErrorBean;
 
 //@WebServlet("/ch04/ex02/updateMember.do")
-@MultipartConfig(location = "", 
-fileSizeThreshold = 5*1024 * 1024, 
-maxFileSize = 1024 * 1024 * 500, 
-maxRequestSize = 1024 * 1024 * 500 * 5)
-//@WebServlet("/updateMember.do")
-@WebServlet("/web/_03_updateMember/controller/updateMember.do")
+//@MultipartConfig(location = "", fileSizeThreshold = 5 * 1024 * 1024, maxFileSize = 1024 * 1024
+//		* 500, maxRequestSize = 1024 * 1024 * 500 * 5)
+// @WebServlet("/updateMember.do")
+@WebServlet("/web/_03_updateMember/controller/updateMember")
 public class UpdateMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");		
-		HttpSession session = request.getSession();
-		
-		Map<String, String> errorMsg = new HashMap<String, String>();
-		Map<String, String> msgOK = new HashMap<String, String>();
-		
-		 request.setAttribute("MsgMap", errorMsg);  //顯示錯誤訊息
-	     session.setAttribute("MsgOK", msgOK);      //顯示正常訊息	     
-	     
-	     MemberBean mb= (MemberBean)session.getAttribute("LoginOK");
-	     
-	     int userType = Integer.valueOf(request.getParameter("usertype"));
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doFirst(request, response);
 
-	    	String indFileName= "";
-	    	String orgFileName= "";//
-	    	
-	    	String indId= "";
-	    	String indPassword= "";
-	    	String indPassword2= "";
-	    	String indName= "";
-	    	String indPhone= "";
-	    	String indEmail= "";
-	    	String indAddress= "";   
-	    	
-	    	String intro= "";
-	    	String leader= "";
-	    	String orgtypes0= "";
-	    	int orgtypes= 0;
-	    	String registerno= "";
-	    	String raiseno= "";
-	        
-			long sizeInBytes = 0;
-			InputStream is = null;
-			long sizeInBytes2 = 0;//
-			InputStream is2 = null;//
-			
-			
-			Collection<Part> parts = request.getParts(); // 取出HTTP multipart request內所有的parts
-			GlobalService.exploreParts(parts, request);
-			// 由parts != null來判斷此上傳資料是否為HTTP multipart request
-			if (parts != null) {   // 如果這是一個上傳資料的表單				
-				for (Part p : parts) {   
-					String fldName = p.getName();
-					String value = request.getParameter(fldName);
-									
-					// 1. 讀取使用者輸入資料
-					if (p.getContentType() == null) {
-						if (fldName.equals("indid")) {
-							indId = value;
-						} 
-//						else if (fldName.equals("indpassword")) {
-//							indPassword = value;
-//						} 
-//						else if (fldName.equalsIgnoreCase("indpassword2")) {
-//							indPassword2 = value;
-//						} 
-						else if (fldName.equalsIgnoreCase("indname")) {
-							indName = value;
-						} else if (fldName.equalsIgnoreCase("indemail")) {
-							indEmail = value;
-						} else if (fldName.equalsIgnoreCase("indaddress")) {
-							indAddress = value;  
-						} else if (fldName.equalsIgnoreCase("indphone")) {
-							indPhone = value;
-						} else if (fldName.equalsIgnoreCase("intro")) {
-							intro = value;  
-						}else if (fldName.equalsIgnoreCase("leader")) {
-							leader = value;  
-						}else if (fldName.equalsIgnoreCase("orgtypes")) {
-							orgtypes0 = value;  
-						}else if (fldName.equalsIgnoreCase("registerno")) {
-							registerno = value;  
-						}else if (fldName.equalsIgnoreCase("raiseno")) {
-							raiseno = value;  
-						}
-					}else {
-						
-						if (fldName.equalsIgnoreCase("file1")) {
-							indFileName = GlobalService.getFileName(p); // 此為圖片檔的檔名
-							indFileName = GlobalService.adjustFileName(indFileName, GlobalService.IMAGE_FILENAME_LENGTH);
-							if (indFileName != null && indFileName.trim().length() > 0) {
-								sizeInBytes = p.getSize();
-								is = p.getInputStream();
-							} else {
-								// 代表會員表格未修改圖片檔
-								sizeInBytes = -1; 
-							}
-						}else if(fldName.equalsIgnoreCase("file2")){
-							orgFileName = GlobalService.getFileName(p); // 此為圖片檔的檔名
-							orgFileName = GlobalService.adjustFileName(orgFileName, GlobalService.IMAGE_FILENAME_LENGTH);
-							if (orgFileName != null && orgFileName.trim().length() > 0) {
-								sizeInBytes2 = p.getSize();
-								is2 = p.getInputStream();
-							} else {
-								// 代表社福表格未修改圖片檔
-								sizeInBytes2 = -1; 
-							}
-						}
+	}
 
-					} 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doFirst(request, response);
 
-				}
-				
-				// 2. 進行必要的資料轉換
-				
-				if(userType==2){
-					try {
-						orgtypes = Integer.parseInt(orgtypes0.trim());
-					} catch (NumberFormatException e) {
-						errorMsg.put("errorFormat","社福類型格式錯誤，應該為整數");
-					}
-				}				
+	}
 
-				
-				// 3. 檢查使用者輸入資料
-
-//				if (indPassword == null || indPassword.trim().length() == 0) {
-//					errorMsg.put("errorPasswordEmpty","密碼欄必須輸入");
-//				}
-//				if (indPassword2 == null || indPassword2.trim().length() == 0) {
-//					errorMsg.put("errorPassword2Empty","密碼確認欄必須輸入");
-//				}
-//				if (indPassword.trim().length() > 0 && indPassword2.trim().length() > 0){
-//					if (!indPassword.trim().equals(indPassword2.trim())){
-//						errorMsg.put("errorPassword2Empty","密碼欄必須與確認欄一致");
-//						errorMsg.put("errorPasswordEmpty","*");
-//					}			
-//				}
-				if (indName == null || indName.trim().length() == 0) {
-					errorMsg.put("errorName","姓名欄必須輸入");
-				}
-				if (indAddress == null || indAddress.trim().length() == 0) {
-					errorMsg.put("errorAddr","地址欄必須輸入");
-				}
-				if (indEmail == null || indEmail.trim().length() == 0) {
-					errorMsg.put("errorEmail","電子郵件欄必須輸入");
-				}
-				if (indPhone == null || indPhone.trim().length() == 0) {
-					errorMsg.put("errorTel","電話號碼欄必須輸入");
-				}
-				
-				
-				
-				if(userType==2){
+	protected void doFirst(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String INDID = "";
+		String Type = "UPDATE";
+		String Ans = "TRUE";
+		JSON_In_Up_Bean jiub = new JSON_In_Up_Bean();
+		try {
+			HttpSession session = request.getSession(false);
+			MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+			INDID = mb.getIndid();
+			System.out.println("session INDID=" + INDID);
+		} catch (Exception e) {
+			Ans = "FALSE";
+			jiub.setMessage("Session Not Found");
+		}
+		String usertype = request.getParameter("usertype");
+		String indName = request.getParameter("indName");
+		String indPhone = request.getParameter("indPhone");
+		String indEmail = request.getParameter("indEmail");
+		String indAddress = request.getParameter("indAddress");
+		String intro = request.getParameter("intro");
+		String leader = request.getParameter("leader");
+		String orgtypes = request.getParameter("orgtypes");
+		String registerno = request.getParameter("registerno");
+		String raiseno = request.getParameter("raiseno");
+		System.out.println("usertype=" + usertype);
+		System.out.println("indName=" + indName);
+		System.out.println("indPhone=" + indPhone);
+		System.out.println("indEmail=" + indEmail);
+		System.out.println("indAddress=" + indAddress);
+		System.out.println("intro=" + intro);
+		System.out.println("leader=" + leader);
+		System.out.println("orgtypes=" + orgtypes);
+		System.out.println("registerno=" + registerno);
+		System.out.println("raiseno=" + raiseno);
+		MB_ORG_ErrorBean moeb = new MB_ORG_ErrorBean();
+		if (Ans.equals("TRUE")) {
+			if (usertype == null || usertype.trim().length() == 0) {
+				moeb.setErrUserType("帳號類別錯誤");
+				Ans = "FALSE";
+			} else {
+				if (usertype.equals("2")) {
 					if (intro == null || intro.trim().length() == 0) {
-						errorMsg.put("errorIntro","簡介欄必須輸入");
+						moeb.setErrorIntro("簡介欄必須輸入");
+						Ans = "FALSE";
 					}
 					if (leader == null || leader.trim().length() == 0) {
-						errorMsg.put("errorLeader","負責人欄必須輸入");
+						moeb.setErrorLeader("負責人欄必須輸入");
+						Ans = "FALSE";
 					}
-					if (orgtypes0 == null || orgtypes0.trim().length() == 0) {
-						errorMsg.put("errorOrgtypes","類型欄必須輸入");
+					if (orgtypes == null || orgtypes.trim().length() == 0) {
+						moeb.setErrorOrgtypes("類型欄必須輸入");
+						Ans = "FALSE";
 					}
 					if (registerno == null || registerno.trim().length() == 0) {
-						errorMsg.put("errorRegisterno","立案核准欄必須輸入");
+						moeb.setErrorRegisterno("立案核准欄必須輸入");
+						Ans = "FALSE";
 					}
 					if (raiseno == null || raiseno.trim().length() == 0) {
-						errorMsg.put("errorRaiseno","勸募許可欄必須輸入");
+						moeb.setErrorRaiseno("勸募許可欄必須輸入");
+						Ans = "FALSE";
 					}
 				}
-				
-				
-				
-			} else {
-					errorMsg.put("errTitle", "此表單不是上傳檔案的表單");
+				if (indName == null || indName.trim().length() == 0) {
+					moeb.setErrorName("姓名欄必須輸入");
+					Ans = "FALSE";
+				}
+				if (indAddress == null || indAddress.trim().length() == 0) {
+					moeb.setErrorAddr("地址欄必須輸入");
+					Ans = "FALSE";
+				}
+				if (indEmail == null || indEmail.trim().length() == 0) {
+					moeb.setErrorEmail("電子郵件欄必須輸入");
+					Ans = "FALSE";
+				}
+				if (indPhone == null || indPhone.trim().length() == 0) {
+					moeb.setErrorTel("電話號碼欄必須輸入");
+					Ans = "FALSE";
+				}
+
 			}
-				// 如果有錯誤
-				if (!errorMsg.isEmpty()) {
-					// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
-					
-					
-					RequestDispatcher rd = request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
-					rd.forward(request, response);
-					return;
-				}
-				try {
-				// 4. 進行Business Logic運算
-				// RegisterServiceFile類別的功能：
-				// 1.檢查帳號是否已經存在
-				// 2.儲存會員的資料 
-				RegisterServiceDAO rs = new RegisterServiceDAO_JDBC();  
-			
-					
-					if(userType==1){	
-						
-							MemberBean mem = new MemberBean(userType,indId,indPassword,indName,
-								indPhone,indEmail,indAddress);								
-							
-							
-							int n = rs.updateMember(mem, is, sizeInBytes, indFileName);
-							if ( n == 1) {
-								msgOK.put("InsertOK","<Font color='red'>新增成功，請開始使用本系統</Font>");
-								response.sendRedirect("FindMemberServlet");
-								return;
-							} else {
-								errorMsg.put("errorIDDup","新增此筆資料有誤(RegisterServlet)");
-							}
-						
-					}else if(userType==2){
-						
-							MemberBean mem = new MemberBean(userType,indId,indPassword,indName,
-								indPhone,indEmail,indAddress);	
-							OrgBean ob= new OrgBean(indId, intro, leader, orgtypes, registerno, raiseno);
-												
-							int n = rs.updateOrg(mem,ob,is,sizeInBytes,indFileName,is2,sizeInBytes2,orgFileName);
-							if ( n == 1) {
-								msgOK.put("InsertOK","<Font color='red'>新增成功，請開始使用本系統</Font>");
-								response.sendRedirect("FindMemberServlet");
-								return;
-							} else {
-								errorMsg.put("errorIDDup","新增此筆資料有誤(RegisterServlet)");
-							}	
-					}else{
-						System.out.println("userType錯誤");
-						errorMsg.put("errUserType", "userType錯誤");
+		}
+
+		if (Ans.equals("TRUE")) {
+			try {
+				RegisterServiceDAO rs = new RegisterServiceDAO_JDBC();
+				if (usertype.equals("1")) {
+
+					MemberBean mem = new MemberBean(Integer.parseInt(usertype), INDID, null, indName, indPhone,
+							indEmail, indAddress);
+					// updateMember(MemberBean mb, InputStream is,long
+					// size,String filename)
+					int n = rs.updateMember(mem, null, 0L, null);
+					if (n != 1) {
+						Ans = "FALSE";
 					}
-
-				// 5.依照 Business Logic 運算結果來挑選適當的畫面
-				if (!errorMsg.isEmpty()) {
-					// 導向原來輸入資料的畫面，這次會顯示錯誤訊息	
-					RequestDispatcher rd = request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
-					rd.forward(request, response);
-					return;
-				}		
+				} else if (usertype.equals("2")) {
+					MemberBean mem = new MemberBean(Integer.parseInt(usertype), INDID, null, indName, indPhone,
+							indEmail, indAddress);
+					OrgBean ob = new OrgBean(INDID, intro, leader, Integer.parseInt(orgtypes), registerno, raiseno);
+					// updateOrg(MemberBean mb,OrgBean ob, InputStream is,long
+					// size, String filename, InputStream is2,long size2, String
+					// filename2)
+					int n = rs.updateOrg(mem, ob, null, 0L, null, null, 0L, null);
+					if (n != 1) {
+						Ans = "FALSE";
+					}
+				} else {
+					Ans = "FALSE";
+					jiub.setMessage("usertype not found[" + usertype + "]");
+				}
 			} catch (Exception e) {
+				Ans = "FALSE";
 				e.printStackTrace();
-				errorMsg.put("errorIDDup", e.getMessage());
-				RequestDispatcher rd = request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
-				rd.forward(request, response);
-			}		
+				jiub.setMessage("SQL ERROR");
+			}
+		}
+		if (!Ans.equals("TRUE")) {
+			jiub.setMoeb(moeb);
+		}
+		jiub.setType(Type);
+		jiub.setAns(Ans);
+		Gson gson = new Gson();
+		String jiub_json = gson.toJson(jiub);
+		System.out.println(jiub_json);
+		response.setContentType("application/json; charset=UTF8");
+		try (PrintWriter out = response.getWriter();) {
+			out.print(jiub_json);
+		}
 
-	}	
-	
-	
+		return;
+		// 2. 進行必要的資料轉換
+
+		// if (userType == 2) {
+		// try {
+		// orgtypes = Integer.parseInt(orgtypes0.trim());
+		// } catch (NumberFormatException e) {
+		// errorMsg.put("errorFormat", "社福類型格式錯誤，應該為整數");
+		// }
+		// }
+		//
+		// if (indName == null || indName.trim().length() == 0) {
+		// errorMsg.put("errorName", "姓名欄必須輸入");
+		// }
+		// if (indAddress == null || indAddress.trim().length() == 0) {
+		// errorMsg.put("errorAddr", "地址欄必須輸入");
+		// }
+		// if (indEmail == null || indEmail.trim().length() == 0) {
+		// errorMsg.put("errorEmail", "電子郵件欄必須輸入");
+		// }
+		// if (indPhone == null || indPhone.trim().length() == 0) {
+		// errorMsg.put("errorTel", "電話號碼欄必須輸入");
+		// }
+		//
+		// if (userType == 2) {
+		// if (intro == null || intro.trim().length() == 0) {
+		// errorMsg.put("errorIntro", "簡介欄必須輸入");
+		// }
+		// if (leader == null || leader.trim().length() == 0) {
+		// errorMsg.put("errorLeader", "負責人欄必須輸入");
+		// }
+		// if (orgtypes0 == null || orgtypes0.trim().length() == 0) {
+		// errorMsg.put("errorOrgtypes", "類型欄必須輸入");
+		// }
+		// if (registerno == null || registerno.trim().length() == 0) {
+		// errorMsg.put("errorRegisterno", "立案核准欄必須輸入");
+		// }
+		// if (raiseno == null || raiseno.trim().length() == 0) {
+		// errorMsg.put("errorRaiseno", "勸募許可欄必須輸入");
+		// }
+		// }
+		//
+		// } else {
+		// errorMsg.put("errTitle", "此表單不是上傳檔案的表單");
+		// }
+		// // 如果有錯誤
+		// if (!errorMsg.isEmpty()) {
+		// // 導向原來輸入資料的畫面，這次會顯示錯誤訊息
+		//
+		// RequestDispatcher rd =
+		// request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
+		// rd.forward(request, response);
+		// return;
+		// }
+		// try {
+		// // 4. 進行Business Logic運算
+		// // RegisterServiceFile類別的功能：
+		// // 1.檢查帳號是否已經存在
+		// // 2.儲存會員的資料
+		// RegisterServiceDAO rs = new RegisterServiceDAO_JDBC();
+		//
+		// if (userType == 1) {
+		//
+		// MemberBean mem = new MemberBean(userType, indId, indPassword,
+		// indName, indPhone, indEmail, indAddress);
+		//
+		// int n = rs.updateMember(mem, is, sizeInBytes, indFileName);
+		// if (n == 1) {
+		// msgOK.put("InsertOK", "<Font color='red'>新增成功，請開始使用本系統</Font>");
+		// response.sendRedirect("FindMemberServlet");
+		// return;
+		// } else {
+		// errorMsg.put("errorIDDup", "新增此筆資料有誤(RegisterServlet)");
+		// }
+		//
+		// } else if (userType == 2) {
+		//
+		// MemberBean mem = new MemberBean(userType, indId, indPassword,
+		// indName, indPhone, indEmail, indAddress);
+		// OrgBean ob = new OrgBean(indId, intro, leader, orgtypes, registerno,
+		// raiseno);
+		//
+		// int n = rs.updateOrg(mem, ob, is, sizeInBytes, indFileName, is2,
+		// sizeInBytes2, orgFileName);
+		// if (n == 1) {
+		// msgOK.put("InsertOK", "<Font color='red'>新增成功，請開始使用本系統</Font>");
+		// response.sendRedirect("FindMemberServlet");
+		// return;
+		// } else {
+		// errorMsg.put("errorIDDup", "新增此筆資料有誤(RegisterServlet)");
+		// }
+		// } else {
+		// System.out.println("userType錯誤");
+		// errorMsg.put("errUserType", "userType錯誤");
+		// }
+		//
+		// // 5.依照 Business Logic 運算結果來挑選適當的畫面
+		// if (!errorMsg.isEmpty()) {
+		// // 導向原來輸入資料的畫面，這次會顯示錯誤訊息
+		// RequestDispatcher rd =
+		// request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
+		// rd.forward(request, response);
+		// return;
+		// }
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// errorMsg.put("errorIDDup", e.getMessage());
+		// RequestDispatcher rd =
+		// request.getRequestDispatcher("/web/test/_03_updateMember/updateMember.jsp");
+		// rd.forward(request, response);
+		// }
+		//
+	}
+
 }

@@ -1,6 +1,7 @@
 package web._03_updateMember.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,135 +18,111 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.google.gson.Gson;
+
 import web._00_init.GlobalService;
 import web._01_register.model.MemberBean;
 import web._01_register.model.RegisterServiceDAO;
 import web._01_register.model.RegisterServiceDAO_JDBC;
 import web._02_login.model.LoginServiceDB;
+import web._03_updateMember.model.JSON_In_Up_Bean;
+import web._03_updateMember.model.MB_ORG_ErrorBean;
 
-@MultipartConfig(location = "", 
-fileSizeThreshold = 5*1024 * 1024, 
-maxFileSize = 1024 * 1024 * 500, 
-maxRequestSize = 1024 * 1024 * 500 * 5)
-@WebServlet("/updateMemberPassword.do")
+@WebServlet("/web/_03_updateMember/controller/updateMemberPassword")
 public class UpdateMemberPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doFirst(request, response);
+
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		doFirst(request, response);
+
+	}
+
+	protected void doFirst(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
-		
-		HttpSession session = request.getSession();
-		Map<String, String> errorMsg = new HashMap<String, String>();
-		Map<String, String> msgOK = new HashMap<String, String>();
-
-		request.setAttribute("MsgMap", errorMsg); // 顯示錯誤訊息
-		session.setAttribute("MsgOK", msgOK); // 顯示正常訊息
-
-		
-		String userId =  "";
-		String password =  "";
-		String newpassword =  "";
-		String newpassword2 =  "";
-		
-		Collection<Part> parts = request.getParts(); // 取出HTTP multipart/ request內所有的parts
-		GlobalService.exploreParts(parts, request);
-		// 由parts != null來判斷此上傳資料是否為HTTP multipart request
-		if (parts != null) { // 如果這是一個上傳資料的表單
-			for (Part p : parts) {
-				String fldName = p.getName();
-				String value = request.getParameter(fldName);
-				
-				// 1. 讀取使用者輸入資料
-				if (p.getContentType() == null) {
-					if (fldName.equals("indid")) {
-						userId = value;
-					} else if (fldName.equals("indpassword")) {
-						password = value;
-					} else if (fldName.equalsIgnoreCase("newindpassword")) {
-						newpassword = value;
-					} else if (fldName.equalsIgnoreCase("newindpassword2")) {
-						newpassword2 = value;
-					}
-
-				} 
-			}
-		}
-
-		// 2. 進行必要的資料轉換
-
-		// 3. 檢查使用者輸入資料
-		// 如果 userId 欄位為空白，放一個錯誤訊息到 errorMsg 之內
-		if (newpassword.trim().length() > 0 && newpassword2.trim().length() > 0) {
-			if (!newpassword.trim().equals(newpassword2.trim())) {
-				errorMsg.put("errorNewPassword2Empty", "密碼欄必須與確認欄一致");
-				errorMsg.put("errorNewPasswordEmpty", "*");
-			}
-		}
-
-		// 如果 password 欄位為空白，放一個錯誤訊息到 errorMsg 之內
-		if (password == null || password.trim().length() == 0) {
-			errorMsg.put("PasswordEmptyError", "舊密碼欄必須輸入");
-		}
-		if (newpassword == null || newpassword.trim().length() == 0) {
-			errorMsg.put("PasswordEmptyError1", "密碼欄必須輸入");
-		}
-		if (newpassword2 == null || newpassword2.trim().length() == 0) {
-			errorMsg.put("PasswordEmptyError2", "密碼確認欄必須輸入");
-		}
-
-		// 如果 errorMsgMap 不是空的，表示有錯誤，交棒給updateMember.jsp
-		if (!errorMsg.isEmpty()) {
-			RequestDispatcher rd = request.getRequestDispatcher("/_03_updateMember/updateMemberPassword.jsp");
-//			RequestDispatcher rd = request.getRequestDispatcher("/_03_updateMember/updateMember.jsp");
-			rd.forward(request, response);
-			return;
-		}
-
-		// 4. 進行 Business Logic 運算
-		// 將LoginServiceDB類別new為物件，存放物件參考的變數為 lsdb
-		LoginServiceDB lsdb;
+		String INDID = "";
+		String Type = "UPDATE";
+		String Ans = "TRUE";
+		JSON_In_Up_Bean jiub = new JSON_In_Up_Bean();
 		try {
-			lsdb = new LoginServiceDB();
-
-			password = GlobalService.getMD5Endocing(GlobalService.encryptString(password));
-			newpassword = GlobalService.getMD5Endocing(GlobalService.encryptString(newpassword));
-			System.out.println("password=" + password);
-			System.out.println("newpassword=" + newpassword);
-
-			MemberBean mb = lsdb.checkPassword(userId, password);
-
-			RegisterServiceDAO rs = new RegisterServiceDAO_JDBC();
-			if (mb != null) {
-				int n = rs.updateMemberPassword(mb, newpassword);
-				System.out.println("n="+n+"密碼更新成功");
-			} else {
-				// NG, userid與密碼的組合錯誤，放一個錯誤訊息到 errorMsgMap 之內
-				errorMsg.put("LoginError", "該密碼錯誤");
+			HttpSession session = request.getSession(false);
+			MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+			INDID = mb.getIndid();
+			System.out.println("session INDID=" + INDID);
+		} catch (Exception e) {
+			Ans = "FALSE";
+			jiub.setMessage("Session Not Found");
+		}
+		MB_ORG_ErrorBean moeb = new MB_ORG_ErrorBean();
+		String oldpassword = request.getParameter("oldpassword");
+		String newpassword = request.getParameter("newpassword");
+		String checknewpassword = request.getParameter("checknewpassword");
+		if (Ans.equals("TRUE")) {
+			if (oldpassword == null || oldpassword.trim().length() == 0) {
+				moeb.setErroroldPassword("該欄位不為空值");
+				Ans = "FALSE";
 			}
-		} catch (NamingException e) {
-			errorMsg.put("LoginError", "LoginServlet->NamingException:" + e.getMessage());
-			e.printStackTrace();
-		} catch (SQLException e) {
-			errorMsg.put("LoginError", "LoginServlet->SQLException:" + e.getMessage());
-			e.printStackTrace();
+			if (newpassword == null || newpassword.trim().length() == 0) {
+				moeb.setErrornewPassword("該欄位不為空值");
+				Ans = "FALSE";
+			}
+			if (checknewpassword == null || checknewpassword.trim().length() == 0) {
+				moeb.setChecknewPassword("該欄位不為空值");
+				Ans = "FALSE";
+			}
+
+		}
+		if (Ans.equals("TRUE")) {
+			if (!newpassword.equals(checknewpassword)) {
+				moeb.setChecknewPassword("密碼欄必須與確認欄一致");
+				Ans = "FALSE";
+			}
+		}
+		if (Ans.equals("TRUE")) {
+			try {
+				LoginServiceDB lsdb;
+				lsdb = new LoginServiceDB();
+
+				oldpassword = GlobalService.getMD5Endocing(GlobalService.encryptString(oldpassword));
+				newpassword = GlobalService.getMD5Endocing(GlobalService.encryptString(newpassword));
+				System.out.println("password=" + oldpassword);
+				System.out.println("newpassword=" + newpassword);
+				MemberBean mb = lsdb.checkPassword(INDID, oldpassword);
+				RegisterServiceDAO rs = new RegisterServiceDAO_JDBC();
+				if (mb != null) {
+					int n = rs.updateMemberPassword(mb, newpassword);
+					System.out.println("n=" + n + "密碼更新成功");
+				} else {
+					Ans = "FALSE";
+					jiub.setMessage("change not success");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				Ans = "FALSE";
+				jiub.setMessage("SQL ERROR");
+			}
+		}
+		if (!Ans.equals("TRUE")) {
+			jiub.setMoeb(moeb);
+		}
+		jiub.setType(Type);
+		jiub.setAns(Ans);
+		Gson gson = new Gson();
+		String jiub_json = gson.toJson(jiub);
+		System.out.println(jiub_json);
+		response.setContentType("application/json; charset=UTF8");
+		try (PrintWriter out = response.getWriter();) {
+			out.print(jiub_json);
 		}
 
-		// 5.依照 Business Logic 運算結果來挑選適當的畫面
-		// 如果 errorMsgMap 是空的，表示沒有任何錯誤，交棒給下一棒
-		if (errorMsg.isEmpty()) {
-			response.sendRedirect(response.encodeRedirectURL(request.getContextPath()));
-			return;
-
-		} else {
-			// 如果errorMsgMap不是空的，表示有錯誤，交棒給updateMember.jsp
-			RequestDispatcher rd = request.getRequestDispatcher("/_03_updateMember/updateMemberPassword.jsp");
-//			RequestDispatcher rd = request.getRequestDispatcher("/_03_updateMember/updateMember.jsp");
-			rd.forward(request, response);
-			return;
-		}
-
+		return;
 	}
 
 }

@@ -229,7 +229,7 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 				String indPhone = rs.getString("indPhone");
 				String indEmail = rs.getString("indEmail");				
 				String indAddress = rs.getString("indAddress");	
-				Blob indImage = rs.getBlob("indImage");//
+//				Blob indImage = rs.getBlob("indImage");//
 				String indFileName = rs.getString("indFileName");//
 				
 				
@@ -239,13 +239,13 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 				int orgtypes = rs.getInt("ORGTYPES");
 				String registerno = rs.getString("REGISTERNO");
 				String raiseno = rs.getString("RAISENO");
-				Blob orgimage = rs.getBlob("orgImage");//
+//				Blob orgimage = rs.getBlob("orgImage");//
 				String orgfileName = rs.getString("orgFileName");//
 				
 				MemberBean mb = new MemberBean(userType, postDate, indId, indPassword, 
-						indName, indPhone, indEmail, indAddress,indImage,indFileName);
+						indName, indPhone, indEmail, indAddress,null,indFileName);
 				OrgBean ob = new OrgBean(indId,updatetime, intro, leader, orgtypes, 
-						registerno, raiseno,orgimage,orgfileName);
+						registerno, raiseno,null,orgfileName);
 
 
 
@@ -300,12 +300,12 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 				String indPhone = rs.getString("indPhone");
 				String indEmail = rs.getString("indEmail");				
 				String indAddress = rs.getString("indAddress");
-				Blob indImage = rs.getBlob("indImage");//
+//				Blob indImage = rs.getBlob("indImage");//
 				String indFileName = rs.getString("indFileName");//
 				
 
 				MemberBean mb = new MemberBean(userType, postDate, indId, indPassword, 
-						indName, indPhone, indEmail, indAddress,indImage,indFileName);
+						indName, indPhone, indEmail, indAddress,null,indFileName);
 
 
 				obj.add(mb);

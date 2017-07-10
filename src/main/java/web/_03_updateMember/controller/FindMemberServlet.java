@@ -2,11 +2,9 @@ package web._03_updateMember.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import web._01_register.model.Main_FOR_JSON_Bean;
+import web._01_register.model.JSON_Find_Bean;
 import web._01_register.model.MemberBean;
 import web._01_register.model.OrgBean;
 import web._01_register.model.RegisterServiceDAO;
@@ -32,85 +30,64 @@ public class FindMemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
-		String type = request.getParameter("type");
-		System.out.println("type="+type);
 		String INDID = "";
-		HttpSession session = request.getSession(false);
-		// 紀錄目前請求的RequestURI,以便使用者登入成功後能夠回到原本的畫面
-		String requestURI = request.getRequestURI();
-		// System.out.println("requestURI=" + requestURI);
-		// 如果session物件不存在
-		if (session == null || session.isNew()) {
-			// 請使用者登入
-			response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
-			// response.sendRedirect(response.encodeRedirectURL("/web/test/Demo/_02_login/login.jsp"));
+		String Type = "FIND";
+		String Ans = "TRUE";
+		String mfjb_json = "";
+		JSON_Find_Bean mfjb = new JSON_Find_Bean();
 
-			return;
-		}
-		session.setAttribute("requestURI", requestURI);
-		// 此時session物件存在，讀取session物件內的LoginOK
-		// 以檢查使用者是否登入。
-		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-		if (mb == null) {
-			response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
-			// response.sendRedirect(response.encodeRedirectURL("/web/test/Demo/_02_login/login.jsp"));
-
-			return;
-		}
-		INDID = mb.getIndid();
-		System.out.println("session INDID=" + INDID);
-		String pk = INDID;
-		Main_FOR_JSON_Bean mfjb = new Main_FOR_JSON_Bean();
-		Gson gson = new Gson();
 		try {
-			RegisterServiceDAO rs = new RegisterServiceDAO_JDBC();
-			List<Object> obj = rs.populateMember(pk);
-			Iterator<Object> it = obj.iterator();
-			MemberBean mb1 = null;
-			OrgBean ob = null;
-			while (it.hasNext()) {
-				Object object = it.next();
-				if (object instanceof MemberBean) {
-					mb1 = (MemberBean) object;
-				} else if (object instanceof OrgBean) {
-					ob = (OrgBean) object;
-				} else {
-					System.out.println("obj轉型失敗");
-				}
-			}
-			if (mb1 != null) {
-				mfjb.setUsertype(mb1.getUsertype());
-				mfjb.setPostdate(mb1.getPostdate());
-				mfjb.setIndid(mb1.getIndid());
-				mfjb.setIndname(mb1.getIndname());
-				mfjb.setIndphone(mb1.getIndphone());
-				mfjb.setIndemail(mb1.getIndemail());
-				mfjb.setIndaddress(mb1.getIndaddress());
-				mfjb.setIndfilename(mb1.getIndfilename());
-
-				request.setAttribute("ind", mb1);
-			}
-			if (ob != null) {
-				request.setAttribute("org", ob);
-				mfjb.setUpdatetime(ob.getUpdatetime());
-				mfjb.setIntro(ob.getIntro());
-				mfjb.setLeader(ob.getLeader());
-				mfjb.setOrgtypes(ob.getOrgtypes());
-				mfjb.setRegisterno(ob.getRegisterno());
-				mfjb.setRaiseno(ob.getRaiseno());
-				mfjb.setOrgfilename(ob.getOrgfilename());
-
-			}
+			HttpSession session = request.getSession(false);
+			MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+			INDID = mb.getIndid();
+			System.out.println("session INDID=" + INDID);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Ans = "FALSE";
+			mfjb.setMessage("Session Not Found");
 		}
-		String mfjb_json = gson.toJson(mfjb);
-		if (type == null) {
-			RequestDispatcher rd = request.getRequestDispatcher("/web/member_update.jsp");
-			rd.forward(request, response);
+		Gson gson = new Gson();
+		if (Ans.equals("TRUE")) {
+			try {
+				RegisterServiceDAO rs = new RegisterServiceDAO_JDBC();
+				List<Object> obj = rs.populateMember(INDID);
+				Iterator<Object> it = obj.iterator();
+				MemberBean mb1 = null;
+				OrgBean ob = null;
+				while (it.hasNext()) {
+					Object object = it.next();
+					if (object instanceof MemberBean) {
+						mb1 = (MemberBean) object;
+					} else if (object instanceof OrgBean) {
+						ob = (OrgBean) object;
+					} else {
+						System.out.println("obj轉型失敗");
+					}
+				}
+				if (mb1 != null) {
+
+					mfjb.setMb(mb1);
+					request.setAttribute("ind", mb1);
+				}
+				if (ob != null) {
+					mfjb.setOb(ob);
+					request.setAttribute("org", ob);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				Ans = "FALSE";
+			}
 		} else {
-			System.out.println("[type]="+type);
+
 		}
+		mfjb.setType(Type);
+		mfjb.setAns(Ans);
+		mfjb_json = gson.toJson(mfjb);
+		System.out.println("mfjb_json" + mfjb_json);
+		response.setContentType("application/json; charset=UTF8");
+		try (PrintWriter out = response.getWriter();) {
+			out.print(mfjb_json);
+		}
+
 		return;
 	}
 }
