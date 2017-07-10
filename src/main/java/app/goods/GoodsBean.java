@@ -97,7 +97,7 @@ public class GoodsBean implements Serializable{
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="goodsNo")
 	public int getGoodsNo() {
 		return goodsNo;
 	}

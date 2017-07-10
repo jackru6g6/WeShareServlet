@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import app.deal.DealBean;
 import app.main.HibernateUtil;
 import app.user.MemberBean;
 
@@ -249,7 +250,7 @@ public class GoodsDAO {
 		}
 		return list;
 	}
-<<<<<<< HEAD
+
 	
 	
 	
@@ -276,10 +277,31 @@ public class GoodsDAO {
 		return list;
 	}
 	
-	
-=======
+	public int getLastGoodsNo() {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		List<GoodsBean> list = new ArrayList<GoodsBean>();
+		int max= 0;
+		try {
+			String hql = "FROM GoodsBean g ORDER BY g.goodsNo";
+			Query query = session.createQuery(hql);
+			list = query.getResultList();
+			for(GoodsBean g : list) {
+				max = g.getGoodsNo();
+			}
+			tx.commit();
 
->>>>>>> e9a4ba0d1b8107e12a42b9d05bba4625c42f64c5
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return max;
+	}
+	
+
 	public List<GoodsBean> getHome(int status) {// jack
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();

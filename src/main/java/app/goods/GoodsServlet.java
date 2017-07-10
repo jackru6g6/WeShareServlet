@@ -94,16 +94,23 @@ public class GoodsServlet extends HttpServlet {
 		} else if (action.equals("goodsInsert")) {
 			String goodsJson = jsonObject.get("goods").getAsString();
 			GoodsBean goods = gson.fromJson(goodsJson, GoodsBean.class);
+			
 			String imageBase64 = jsonObject.get("imageBase64").getAsString();
 			byte[] image = Base64.getMimeDecoder().decode(imageBase64);
 			int count = 0;
+			int countt=0;
 			boolean check;
 			Blob blob = null;
 			try {
 				blob = new SerialBlob(image);
 				goods.setGoodsImage(blob);
-				count = gDAO.save(goods);
+				
 
+				int lastNo= gDAO.getLastGoodsNo();
+				goods.setGoodsNo(lastNo+1);
+				count = gDAO.save(goods);
+				
+				
 			} catch (SerialException e) {
 				e.printStackTrace();
 			} catch (SQLException e) {
