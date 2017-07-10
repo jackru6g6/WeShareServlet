@@ -22,7 +22,7 @@ public class DealDAO {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		try {
-			deal  = (DealBean) session.get(DealBean.class, dealNo);
+			deal = (DealBean) session.get(DealBean.class, dealNo);
 			tx.commit();
 		} catch (Exception ex) {
 			tx.rollback();
@@ -33,7 +33,7 @@ public class DealDAO {
 		}
 		return deal;
 	}
-	
+
 	public int update(DealBean deal) {
 		int n = 0;
 		Session session = sessionFactory.openSession();
@@ -137,34 +137,18 @@ public class DealDAO {
 		return list;
 	}
 
-	public List<DealBean> getNot(String userId) {
+	public List<DealBean> getNotDeal(String userId, int status) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		// List<Object[]> list= new ArrayList<>();
 		List<DealBean> list = new ArrayList<DealBean>();
 		try {
-			String hql = "FROM DealBean d WHERE (d.sourceId = :uid OR d.endId = :aid) AND d.dealStatus = 0";
-			// String hql = "SELECT new
-			// MessageBean(m.msgNo,m.msgStatus,m.postDate,m.msgEndId,m.msgText)
-			// FROM MessageBean m WHERE m.msgSourceId = :uid OR m.msgEndId =
-			// :aid";
-			// String hql = "SELECT new
-			// MessageBean(m.msgNo,m.msgStatus,m.msgSourceId,m.msgEndId,m.msgText)
-			// FROM MessageBean m WHERE m.msgSourceId = :uid OR m.msgEndId =
-			// :aid";
-			// String hql = "SELECT m.postDate FROM MessageBean m WHERE
-			// m.msgSource = :uid OR m.msgEndId = :aid";
-			// String hql = "SELECT new
-			// MessageBean(m.msgNo,m.msgStatus,m.msgSourceId,m.msgEndId,m.msgText,m.roomNo)
-			// FROM MessageBean m WHERE m.msgSourceId = :uid OR m.msgEndId =
-			// :aid GROUP BY m.roomNo ORDER BY MIN(m.postDate)";
-
+			String hql = "FROM DealBean d WHERE  d.endId = :aid AND d.dealStatus = :status";
 			Query query = session.createQuery(hql);
-			query.setParameter("uid", userId);
 			query.setParameter("aid", userId);
+			query.setParameter("status", status);
 			list = query.getResultList();
 			tx.commit();
-
 		} catch (Exception ex) {
 			tx.rollback();
 			ex.printStackTrace();
@@ -172,10 +156,29 @@ public class DealDAO {
 			if (session != null)
 				session.close();
 		}
-		// List<MessageBean> list2;
-		// for(MessageBean test : list){
-		// list2.add(test);
-		// }
+		return list;
+	}
+	
+	public List<DealBean> getStatus(String userId, int status) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		// List<Object[]> list= new ArrayList<>();
+		List<DealBean> list = new ArrayList<DealBean>();
+		try {
+			String hql = "FROM DealBean d WHERE (d.sourceId = :uid OR d.endId = :aid) AND d.dealStatus = :status";
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", userId);
+			query.setParameter("aid", userId);
+			query.setParameter("status", status);
+			list = query.getResultList();
+			tx.commit();
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
 		return list;
 	}
 

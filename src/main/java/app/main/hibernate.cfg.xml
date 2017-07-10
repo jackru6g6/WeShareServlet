@@ -27,6 +27,7 @@
 		<mapping class="app.goods.GoodsBean" />
 		<mapping class="app.goods.LocalBean" />
 		<mapping class="app.message.MessageBean" />
+		<mapping class="app.message.MsgRoomBean" />
 		<mapping class="app.deal.DealBean" />
 
 	</session-factory>

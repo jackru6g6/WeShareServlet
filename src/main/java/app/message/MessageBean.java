@@ -5,8 +5,6 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,13 +18,26 @@ public class MessageBean {
 	private String msgEndId;
 	private String msgText;
 	private Blob msgImage = null;
-	private String msgFileName = "msgFileName";
+//	private String msgFileName = "msgFileName";
+	private String msgFileName;
 	private int roomNo;
 
 	
 
 	public MessageBean() {
 		super();
+	}
+
+	public MessageBean(int msgNo, int msgStatus, Timestamp postDate, String msgSourceId, String msgEndId,
+			String msgText, int roomNo) {
+		super();
+		this.msgNo = msgNo;
+		this.msgStatus = msgStatus;
+		this.postDate = postDate;
+		this.msgSourceId = msgSourceId;
+		this.msgEndId = msgEndId;
+		this.msgText = msgText;
+		this.roomNo = roomNo;
 	}
 
 	public MessageBean(int msgNo, int msgStatus, String msgSourceId, String msgEndId, String msgText, int roomNo) {

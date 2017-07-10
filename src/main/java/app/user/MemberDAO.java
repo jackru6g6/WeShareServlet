@@ -35,7 +35,6 @@ public class MemberDAO {
 			session.close();
 		}
 		return check;
-
 	}
 
 	public boolean checkPassword(MemberBean mb) {

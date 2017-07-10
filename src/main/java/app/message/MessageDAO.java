@@ -2,7 +2,6 @@ package app.message;
 
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import app.main.HibernateUtil;
-import app.user.MemberBean;
 
 public class MessageDAO {
 	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -34,6 +32,73 @@ public class MessageDAO {
 				session.close();
 		}
 		return n;
+	}
+
+	public int updateRoom(MsgRoomBean room) {
+		int n = 0;
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			session.update(room);
+			tx.commit();
+			n = 1;
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return n;
+	}
+
+	public boolean checkRoomNo(String indId1, String indId2) {
+		boolean check = false; // 檢查id是否已經存在
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			String hql = "FROM MsgRoomBean m WHERE (m.indid1 = :uid AND m.indid2 = :aid) OR (m.indid1 = :u1id AND m.indid2 = :u2id)";
+//			String hql = "FROM MsgRoomBean m WHERE m.indid1 = :uid AND m.indid2 = :aid";
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", indId1);
+			query.setParameter("aid", indId2);
+			query.setParameter("u1id", indId2);
+			query.setParameter("u2id", indId1);
+			List<MsgRoomBean> list = query.getResultList();
+			for(MsgRoomBean pop : list){
+				System.out.println("popNO=" + pop.getRoomNo());
+			}
+			if (list.size() > 0) {
+				check = true;
+			}
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+		} finally {
+			session.close();
+		}
+		return check;
+	}
+
+	public List<MsgRoomBean> getRoomNo(String indId1, String indId2) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		List<MsgRoomBean> roomNo = null;
+		try {
+			String hql = "FROM MsgRoomBean m where (m.indid1 = :uid AND m.indid2 = :aid) OR (m.indid1 = :aid AND m.indid2 = :uid)";
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", indId1);
+			query.setParameter("aid", indId2);
+			roomNo = query.getResultList();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+		} finally {
+			session.close();
+		}
+		return roomNo;
 	}
 
 	// public int delete(String userId) {
@@ -79,12 +144,12 @@ public class MessageDAO {
 		List<MessageBean> list = new ArrayList<MessageBean>();
 		int i = 0;
 		try {
-			String hql = "FROM MessageBean m ORDER BY m.postDate";
+			String hql = "FROM MessageBean m ORDER BY m.msgNo ASC";
 			Query query = session.createQuery(hql);
 			list = query.getResultList();
 			for (MessageBean pop : list) {
 				i = pop.getMsgNo();
-				//System.out.println("++i" + i);
+				// System.out.println("++i" + i);
 			}
 			tx.commit();
 

@@ -45,7 +45,7 @@ public class DealServlet extends HttpServlet {
 
 		if (action.equals("getNotDeal")) {
 			String account = jsonObject.get("user").getAsString();
-			List<DealBean> deals = deDAO.getNot(account);
+			List<DealBean> deals = deDAO.getNotDeal(account, 0);
 			// List<DealBean> dealss = new ArrayList<>();
 			// int i=0;
 			// System.out.println("帳號account: " + account);
@@ -55,6 +55,20 @@ public class DealServlet extends HttpServlet {
 				pop.setGoodsImage(null);
 				// dealss.add(i, pop);
 				// i++;
+			}
+			writeText(response, gson.toJson(deals));
+		} else if (action.equals("getDealing")) {
+			String account = jsonObject.get("user").getAsString();
+			List<DealBean> deals = deDAO.getStatus(account, 1);
+			for (DealBean pop : deals) {
+				pop.setGoodsImage(null);
+			}
+			writeText(response, gson.toJson(deals));
+		} else if (action.equals("getDealed")) {
+			String account = jsonObject.get("user").getAsString();
+			List<DealBean> deals = deDAO.getStatus(account, 2);
+			for (DealBean pop : deals) {
+				pop.setGoodsImage(null);
 			}
 			writeText(response, gson.toJson(deals));
 		}

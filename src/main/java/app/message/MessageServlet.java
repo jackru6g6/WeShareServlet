@@ -1,14 +1,10 @@
 package app.message;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.sql.Blob;
-import java.util.Base64;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,14 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.rowset.serial.SerialBlob;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import app.main.ImageUtil;
-import app.user.MemberBean;
-import web._00_init.GlobalService;
 
 @SuppressWarnings("serial")
 @WebServlet("/MsgServlet")
@@ -54,8 +47,7 @@ public class MessageServlet extends HttpServlet {
 						+ ", MsgText：" + pop.getMsgText() + ", roomNo：" + pop.getRoomNo());
 			}
 			writeText(response, gson.toJson(msg));
-		}
-		if (action.equals("getOne")) {
+		} else if (action.equals("getOne")) {
 			String account = jsonObject.get("account").getAsString();
 			String talkTo = jsonObject.get("talkTo").getAsString();
 			List<MessageBean> msg = mgDAO.getOne(account, talkTo);
@@ -84,6 +76,26 @@ public class MessageServlet extends HttpServlet {
 				System.out.println("沒收到喔~");
 			}
 			os.write(image);// 送到client端
+		} else if (action.equals("sendMsgFirst")) {
+			String msgJson = jsonObject.get("msg").getAsString();
+			MessageBean msg = gson.fromJson(msgJson, MessageBean.class);
+			int count = 0;
+			try {
+				// Blob imageBlob = new SerialBlob(image);
+				// blob = new SerialBlob(image);
+				// System.out.println("有給圖片");
+				// user.setImage(imageBlob);
+
+				// user.setImage(blob);
+				// String name = msg.getMsgSourceId();
+				int i = mgDAO.getMaxNo();
+				msg.setMsgNo(i + 1);
+				count = mgDAO.save(msg);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			writeText(response, String.valueOf(count));
 		} else if (action.equals("sendMsg")) {
 			String msgJson = jsonObject.get("msg").getAsString();
 			MessageBean msg = gson.fromJson(msgJson, MessageBean.class);
@@ -95,10 +107,36 @@ public class MessageServlet extends HttpServlet {
 				// user.setImage(imageBlob);
 
 				// user.setImage(blob);
-				//String name = msg.getMsgSourceId();
-				int i = mgDAO.getMaxNo();
-				msg.setMsgNo(i+1);
-				count = mgDAO.save(msg);
+				// String name = msg.getMsgSourceId();
+				System.out.println("帳號1 =" + msg.getMsgSourceId() + ", 帳號2=" + msg.getMsgEndId());
+				boolean roomCheck = mgDAO.checkRoomNo(msg.getMsgSourceId(), msg.getMsgEndId());
+				System.out.println("roomCheck=" + roomCheck);
+				if (roomCheck == true) {
+					List<MsgRoomBean> list = mgDAO.getRoomNo(msg.getMsgSourceId(), msg.getMsgEndId());
+
+					int i = mgDAO.getMaxNo();
+					int NewMsgNo = i + 1;
+					System.out.println("NewMsgNo=" + NewMsgNo);
+					msg.setMsgNo(NewMsgNo);
+									
+					System.out.println("list.get(0).getRoomNo()=" + list.get(0).getRoomNo());
+					msg.setRoomNo(list.get(0).getRoomNo());
+
+					count = mgDAO.save(msg);
+
+					list.get(0).setLastMsgNo(NewMsgNo);
+
+					System.out.println("roomNo=" + list.get(0).getRoomNo() + ", 1=" + list.get(0).getIndid1() + ", 2="
+							+ list.get(0).getIndid2() + ", Last" + list.get(0).getLastMsgNo());
+
+					mgDAO.updateRoom(list.get(0));
+				} else {
+					System.out.println("else錯誤");
+				}
+
+				// int i = mgDAO.getMaxNo();
+				// msg.setMsgNo(i + 1);
+				// count = mgDAO.save(msg);
 
 			} catch (Exception e) {
 				e.printStackTrace();
