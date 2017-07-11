@@ -87,7 +87,6 @@ public class FindMemberServlet extends HttpServlet {
 		try (PrintWriter out = response.getWriter();) {
 			out.print(mfjb_json);
 		}
-
 		return;
 	}
 }

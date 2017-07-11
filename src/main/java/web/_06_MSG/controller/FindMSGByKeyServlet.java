@@ -2,13 +2,10 @@ package web._06_MSG.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLDecoder;
 import java.util.Collection;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,10 +14,11 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import web._01_register.model.MemberBean;
+import web._06_MSG.model.JSON_Find_Bean;
 import web._06_MSG.model.MSGBean;
 import web._06_MSG.model.MSGDAO;
 
-@WebServlet("/web/_06_MSG/controller/FindMSGByKey.do")
+@WebServlet("/web/_06_MSG/controller/FindMSGByKey")
 public class FindMSGByKeyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -40,50 +38,38 @@ public class FindMSGByKeyServlet extends HttpServlet {
 
 	public void do_First(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
 		String INDID = "";
-		String type = "1";
-		HttpSession session = request.getSession(false);
-		// 紀錄目前請求的RequestURI,以便使用者登入成功後能夠回到原本的畫面
-		String requestURI = request.getRequestURI();
-		// System.out.println("requestURI=" + requestURI);
-		// 如果session物件不存在
-		if (session == null || session.isNew()) {
-			// 請使用者登入
-			response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
-			return;
-		}
-		session.setAttribute("requestURI", requestURI);
-		// 此時session物件存在，讀取session物件內的LoginOK
-		// 以檢查使用者是否登入。
-		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-		if (mb == null) {
-			response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
-			return;
-		}
-		INDID = mb.getIndid();
-		System.out.println("session INDID=" + INDID);
+		String Type = "FIND";
+		String Ans = "TRUE";
+		String mfjb_json = "";
+		JSON_Find_Bean mfjb = new JSON_Find_Bean();
 
-		Collection<MSGBean> coll = new MSGDAO().FindMSGByKey(INDID);
-		System.out.println(INDID + "一共有" + coll.size() + "筆訊息");
+		try {
+			HttpSession session = request.getSession(false);
+			MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+			INDID = mb.getIndid();
+			System.out.println("session INDID=" + INDID);
+		} catch (Exception e) {
+			Ans = "FALSE";
+			mfjb.setMessage("Session Not Found");
+		}
 		Gson gson = new Gson();
-		String msg_json = gson.toJson(coll);
-		System.out.println(msg_json);
-		if (type.equals("1")) {
-			if (coll.size() != 0) {
-				request.setAttribute("MSGROOM_DATA", coll);
-			} else {
-				request.setAttribute("MSGROOM_DATA", null);
-			}
-			RequestDispatcher rd = request.getRequestDispatcher("/web/test/_06_MSG/DisplayMSG.jsp");
-			rd.forward(request, response);
-			return;
-		} else {
-			response.setContentType("application/json; charset=UTF8");
-			try (PrintWriter out = response.getWriter();) {
-				out.print(msg_json);
-			}
-		}
+		if (Ans.equals("TRUE")) {
+			Collection<MSGBean> coll = new MSGDAO().FindMSGByKey(INDID);
+			System.out.println(INDID + "一共有" + coll.size() + "筆訊息");
+			mfjb.setColl(coll);
 
+		}
+		mfjb.setType(Type);
+		mfjb.setAns(Ans);
+		mfjb_json = gson.toJson(mfjb);
+		System.out.println(mfjb_json);
+		response.setContentType("application/json; charset=UTF8");
+		try (PrintWriter out = response.getWriter();) {
+			out.print(mfjb_json);
+		}
+		return;
 	};
 
 }
