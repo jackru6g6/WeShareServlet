@@ -34,14 +34,14 @@
 										<span id="btKWSearch"><i class="fa fa-search" aria-hidden="true"></i></span>
 									</div>
 
-									<!-- 需求者身份區塊 -->
+									<!-- 交換者身份區塊 -->
 									<div class="blockFilter">
-										<!-- 需求者身份標題 -->
+										<!-- 交換者身份標題 -->
 										<button id="btBy" type="button" class="btn btn-default btn-block in btFilterTitle" data-toggle="collapse" data-target="#blockBy">
-											<span>需求者身份</span>
+											<span>交換者身份</span>
 											<span class="caret caretRotate"></span>
 										</button>
-										<!-- 需求者身份選項 -->
+										<!-- 交換者身份選項 -->
 										<div id="blockBy" class="collapse in btFilterBlock">
 											<ul type="none">
 												<li>
@@ -111,14 +111,14 @@
 										</div>
 									</div>
 
-									<!-- 物資需求地區塊 -->
+									<!-- 物資交換地區塊 -->
 									<div class="blockFilter">
-										<!-- 物資需求地標題 -->
+										<!-- 物資交換地標題 -->
 										<button id="btLoc" type="button" class="btn btn-default btn-block in btFilterTitle" data-toggle="collapse" data-target="#blockLoc">
-											<span>物資需求地</span>
+											<span>物資交換地</span>
 											<span class="caret caretRotate"></span>
 										</button>
-										<!-- 物資需求地選項 -->
+										<!-- 物資交換地選項 -->
 										<div id="blockLoc" class="collapse in btFilterBlock">
 											<ul>
 												<li>
@@ -245,31 +245,31 @@
 							</div>
 						</div>
 
-						<!-- 右邊需求物資列 -->
+						<!-- 右邊交換物資列 -->
 						<div id="sectionGoods" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-							<!-- 右邊需求物資 -->
+							<!-- 右邊交換物資 -->
 							<div id="divExchangeGoods" class="row">
-								<!-- 右邊需求物資第一列第一項 -->
+								<!-- 右邊交換物資第一列第一項 -->
 <!-- 								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"> -->
 <!-- 									<div class="exchangeGoods"> -->
 <!-- 										<a href="#" class="exchangeGoodsA"> -->
-<!-- 											需求物資圖片 -->
+<!-- 											交換物資圖片 -->
 <!-- 											<div class="exchangeGoodsImgLayout"> -->
 <!-- 												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_31.png"> -->
 <!-- 											</div> -->
-<!-- 											需求物資文字敘述 -->
+<!-- 											交換物資文字敘述 -->
 <!-- 											<div class="exchangeGoodsOverlay"> -->
 <!-- 												<div class="exchangeGoodsOverlayText"> -->
-<!-- 													需求物資名稱 -->
+<!-- 													交換物資名稱 -->
 <!-- 													<div class="exchangeGoodsName exchangeGoodsContent"> -->
 <!-- 														<span>Lepa Vida</span> -->
 <!-- 													</div> -->
-<!-- 													需求物資發佈者 -->
+<!-- 													交換物資發佈者 -->
 <!-- 													<div class="exchangeGoodsBy exchangeGoodsContent"> -->
 <!-- 														<span>By <span class="exchangeGoodsByAuthor">Matter</span> Of Mind from France</span> -->
 <!-- 													</div> -->
-<!-- 													需求物資描述 -->
+<!-- 													交換物資描述 -->
 <!-- 													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1"> -->
 <!-- 														<span>詳細資訊</span> -->
 <!-- 													</div> -->
