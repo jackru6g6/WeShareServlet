@@ -65,6 +65,7 @@ public class UpdateMemberServlet extends HttpServlet {
 		String orgtypes = request.getParameter("orgtypes");
 		String registerno = request.getParameter("registerno");
 		String raiseno = request.getParameter("raiseno");
+		String website = request.getParameter("website");
 		System.out.println("usertype=" + usertype);
 		System.out.println("indName=" + indName);
 		System.out.println("indPhone=" + indPhone);
@@ -75,6 +76,7 @@ public class UpdateMemberServlet extends HttpServlet {
 		System.out.println("orgtypes=" + orgtypes);
 		System.out.println("registerno=" + registerno);
 		System.out.println("raiseno=" + raiseno);
+		System.out.println("website=" + website);
 		MB_ORG_ErrorBean moeb = new MB_ORG_ErrorBean();
 		if (Ans.equals("TRUE")) {
 			if (usertype == null || usertype.trim().length() == 0) {
@@ -100,6 +102,10 @@ public class UpdateMemberServlet extends HttpServlet {
 					}
 					if (raiseno == null || raiseno.trim().length() == 0) {
 						moeb.setErrorRaiseno("勸募許可欄必須輸入");
+						Ans = "FALSE";
+					}
+					if (website == null || website.trim().length() == 0) {
+						moeb.setErrorWebsite("網址必須輸入");
 						Ans = "FALSE";
 					}
 				}
@@ -142,7 +148,7 @@ public class UpdateMemberServlet extends HttpServlet {
 				} else if (usertype.equals("2")) {
 					MemberBean mem = new MemberBean(Integer.parseInt(usertype), INDID, null, indName, indPhone,
 							indEmail, indAddress);
-					OrgBean ob = new OrgBean(INDID, intro, leader, Integer.parseInt(orgtypes), registerno, raiseno);
+					OrgBean ob = new OrgBean(INDID, intro, leader, Integer.parseInt(orgtypes), registerno, raiseno,website);
 					// updateOrg(MemberBean mb,OrgBean ob, InputStream is,long
 					// size, String filename, InputStream is2,long size2, String
 					// filename2)

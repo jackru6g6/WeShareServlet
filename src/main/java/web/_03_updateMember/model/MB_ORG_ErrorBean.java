@@ -15,6 +15,7 @@ public class MB_ORG_ErrorBean {
 	String errorOrgtypes;
 	String errorRegisterno;
 	String errorRaiseno;
+	String errorWebsite;
 	String errTitle;
 	String errorIDDup;
 	String errUserType;
@@ -150,5 +151,14 @@ public class MB_ORG_ErrorBean {
 	public void setChecknewPassword(String checknewPassword) {
 		this.checknewPassword = checknewPassword;
 	}
+	
+	public String getErrorWebsite() {
+		return errorWebsite;
+	}
+
+	public void setErrorWebsite(String errorWebsite) {
+		this.errorWebsite = errorWebsite;
+	}
+
 
 }
