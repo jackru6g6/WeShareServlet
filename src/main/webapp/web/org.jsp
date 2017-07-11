@@ -66,22 +66,22 @@
 			<!-- 社福團體簡介 -->
 			<div id="sectionOrgAbout" class="container">
 				<!-- 社福團體簡介第一筆 -->
-				<div class="rowOrg">
+				<!--<div class="rowOrg">-->
 					<!-- 上層翻轉列 -->
-					<div class="rowUpper">
+					<!--<div class="rowUpper">-->
 						<!-- 上左_圖片 -->
-						<div class="orgImgLayout blockUpper">
+						<!--<div class="orgImgLayout blockUpper">
 							<img class="img-responsive orgImg" src="../dist/img/300x300/20170627_47.png">
-						</div>
+						</div>-->
 						<!-- 上右_地圖 -->
-						<div class="orgMap blockUpper">
+						<!--<div class="orgMap blockUpper">
 						</div>
-					</div>
+					</div>-->
 
 					<!-- 下層固定列 -->
-					<div class="rowLower">
+					<!--<div class="rowLower">-->
 						<!-- 底左_聯絡資訊 -->
-						<div class="orgContact blockLower">
+						<!--<div class="orgContact blockLower">
 							<div class="orgContactList">
 								<ul type="none">
 									<li><i class="fa fa-phone" aria-hidden="true"></i>
@@ -97,97 +97,35 @@
 										<a href="http://www.ecpat.org.tw" target="_blank">http://www.ecpat.org.tw</a>
 									</li>
 								</ul>
-								<a href="wish.jsp" type="button" class="orgGoods btn btn-default">查看募集物資</a>
+								<a href="wish.html" type="button" class="orgGoods btn btn-default">查看募集物資</a>
 							</div>
-						</div>
+						</div>-->
 
 						<!-- 底右_放簡介 -->
-						<div class="orgInfo blockLower">
+						<!--<div class="orgInfo blockLower">
 							<div class="orgInfoList">
 								<div class="orgName">台灣展翅協會</div>
-								<ul type="none">
-									<li><i class="fa fa-heart" aria-hidden="true"></i>社福類別：
-										<span>兒少福利</span>
-									</li>
-									<li><i class="fa fa-heart" aria-hidden="true"></i>社福負責人：
-										<span>高亘瑩</span>
-									</li>
-									<li><i class="fa fa-heart" aria-hidden="true"></i>立案核准字號：
-										<span>台內社字第8375183號</span>
-									</li>
-									<li><i class="fa fa-heart" aria-hidden="true"></i>勸募許可字號：
-										<span>衛部救字第1051360904號</span>
-									</li>
-									<li>
-										<span>提倡兒童人權、預防兒少商業性剝削、兒少上網安全與反人口販運，我們期望匯集眾人的力量，協助受傷的孩子擁有能力與機會，如鷹展翅高飛。</span>
-									</li>
-								</ul>
+									<ul type="none">
+										<li><i class="fa fa-heart" aria-hidden="true"></i>社福類別：
+											<span>兒少福利</span>
+										</li>
+										<li><i class="fa fa-heart" aria-hidden="true"></i>社福負責人：
+											<span>高亘瑩</span>
+										</li>
+										<li><i class="fa fa-heart" aria-hidden="true"></i>立案核准字號：
+											<span>台內社字第8375183號</span>
+										</li>
+										<li><i class="fa fa-heart" aria-hidden="true"></i>勸募許可字號：
+											<span>衛部救字第1051360904號</span>
+										</li>
+										<li>
+											<span>提倡兒童人權、預防兒少商業性剝削、兒少上網安全與反人口販運，我們期望匯集眾人的力量，協助受傷的孩子擁有能力與機會，如鷹展翅高飛。</span>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				
-				<!-- 社福團體簡介第二筆 -->
-				<div class="rowOrg">
-					<!-- 上層翻轉列 -->
-					<div class="rowUpper">
-						<!-- 上左_圖片 -->
-						<div class="orgImgLayout blockUpper">
-							<img class="img-responsive orgImg" src="../dist/img/300x300/20170627_47.png">
-						</div>
-						<!-- 上右_地圖 -->
-						<div class="orgMap blockUpper">
-						</div>
-					</div>
-
-					<!-- 下層固定列 -->
-					<div class="rowLower">
-						<!-- 底左_聯絡資訊 -->
-						<div class="orgContact blockLower">
-							<div class="orgContactList">
-								<ul type="none">
-									<li><i class="fa fa-phone" aria-hidden="true"></i>
-										<span>03-3353545</span>
-									</li>
-									<li><i class="fa fa-envelope" aria-hidden="true"></i>
-										<a href="mailto:winnie@ecpat.org.tw">winnie@ecpat.org.tw</a>
-									</li>
-									<li><i class="fa fa-home" aria-hidden="true"></i>
-										<span>330桃園市桃園區復興路205號15樓-4</span>
-									</li>
-									<li><i class="fa fa-globe" aria-hidden="true"></i>
-										<a href="http://www.ecpat.org.tw" target="_blank">http://www.ecpat.org.tw</a>
-									</li>
-								</ul>
-								<a href="wish.jsp" type="button" class="orgGoods btn btn-default">查看募集物資</a>
-							</div>
-						</div>
-
-						<!-- 底右_放簡介 -->
-						<div class="orgInfo blockLower">
-							<div class="orgInfoList">
-								<div class="orgName">台灣展翅協會</div>
-								<ul type="none">
-									<li><i class="fa fa-heart" aria-hidden="true"></i>社福類別：
-										<span>兒少福利</span>
-									</li>
-									<li><i class="fa fa-heart" aria-hidden="true"></i>社福負責人：
-										<span>高亘瑩</span>
-									</li>
-									<li><i class="fa fa-heart" aria-hidden="true"></i>立案核准字號：
-										<span>台內社字第8375183號</span>
-									</li>
-									<li><i class="fa fa-heart" aria-hidden="true"></i>勸募許可字號：
-										<span>衛部救字第1051360904號</span>
-									</li>
-									<li>
-										<span>提倡兒童人權、預防兒少商業性剝削、兒少上網安全與反人口販運，我們期望匯集眾人的力量，協助受傷的孩子擁有能力與機會，如鷹展翅高飛。</span>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+					</div>-->
 				
 			</div>
 		</div>
@@ -225,16 +163,30 @@
 <!-- 		}; -->
 <!-- 	</script> -->
 		
-	<!-- Google Maps Api -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm5pII1q2w0d3GQLjGIdrCKFHB_WL6qvc&callback=orgMap" async defer></script>
-
 	<script>
-		// 點下層固定列，翻轉上層翻轉列
-		$(function(){
+		window.onload = function(){
+			var orgData = [
+				{
+					name: '國立台灣圖書館',
+					address: '235新北市中和區中安街85號'
+				},
+				{
+					name: '國立臺灣大學圖書館',
+					address: '106台北市大安區羅斯福路四段1號'
+				},
+				{
+					name: '台北植物園',
+					address: '10066台北市中正區南海路53號'
+				},
+			];
+			
+			showData(orgData);
+
+			// 點下層固定列，翻轉上層翻轉列
 			$(".rowLower").click(function () {
 				turnPage($(this));
 			});
-		});
+		}
 	</script>
 	
 </body>
