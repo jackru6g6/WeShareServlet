@@ -1,29 +1,17 @@
 package web._03_updateMember.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Blob;
-import java.sql.SQLException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import javax.sql.rowset.serial.SerialBlob;
 
 import com.google.gson.Gson;
 
-import web._00_init.GlobalService;
 import web._01_register.model.MemberBean;
 import web._01_register.model.OrgBean;
 import web._01_register.model.RegisterServiceDAO;
@@ -133,6 +121,9 @@ public class UpdateMemberServlet extends HttpServlet {
 				}
 
 			}
+			if (!Ans.equals("TRUE")) {
+				jiub.setMoeb(moeb);
+			}
 		}
 
 		if (Ans.equals("TRUE")) {
@@ -169,9 +160,7 @@ public class UpdateMemberServlet extends HttpServlet {
 				jiub.setMessage("SQL ERROR");
 			}
 		}
-		if (!Ans.equals("TRUE")) {
-			jiub.setMoeb(moeb);
-		}
+
 		jiub.setType(Type);
 		jiub.setAns(Ans);
 		Gson gson = new Gson();

@@ -77,6 +77,9 @@ public class UpdateMemberPasswordServlet extends HttpServlet {
 				moeb.setChecknewPassword("該欄位不為空值");
 				Ans = "FALSE";
 			}
+			if (!Ans.equals("TRUE")) {
+				jiub.setMoeb(moeb);
+			}
 
 		}
 		if (Ans.equals("TRUE")) {
@@ -108,9 +111,6 @@ public class UpdateMemberPasswordServlet extends HttpServlet {
 				Ans = "FALSE";
 				jiub.setMessage("SQL ERROR");
 			}
-		}
-		if (!Ans.equals("TRUE")) {
-			jiub.setMoeb(moeb);
 		}
 		jiub.setType(Type);
 		jiub.setAns(Ans);

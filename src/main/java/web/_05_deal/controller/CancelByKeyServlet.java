@@ -38,7 +38,7 @@ public class CancelByKeyServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
 		String INDID = "";
-		String Type = "INSERT";
+		String Type = "UPDATE";
 		String Ans = "TRUE";
 		String jiub_json = "";
 		JSON_In_Up_Bean jiub = new JSON_In_Up_Bean();
