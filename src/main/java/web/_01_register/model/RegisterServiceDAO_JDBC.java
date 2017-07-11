@@ -133,8 +133,8 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 			
 			String sql2 = "insert into org " +
 			  		" (indid, updatetime, intro, leader, orgtypes, "
-			  		+ "registerno, raiseno, orgimage, orgfilename) " +
-			  		" values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			  		+ "registerno, raiseno, website, orgimage, orgfilename) " +
+			  		" values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			  pstmt2 = conn.prepareStatement(sql2);
 			  pstmt2.setString(1, mb.getIndid());          
 	          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
@@ -143,11 +143,12 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 	          pstmt2.setString(4, ob.getLeader());
 	          pstmt2.setInt(5, ob.getOrgtypes());
 	          pstmt2.setString(6, ob.getRegisterno());
-	          pstmt2.setString(7, ob.getRaiseno());		          
+	          pstmt2.setString(7, ob.getRaiseno());
+	          pstmt2.setString(8, ob.getWebsite());	
 	          
 	          // 設定Image欄位
-				pstmt2.setBinaryStream(8, is2, size2);
-				pstmt2.setString(9, filename2);
+				pstmt2.setBinaryStream(9, is2, size2);
+				pstmt2.setString(10, filename2);
 				r = pstmt2.executeUpdate();	
 				
 				conn.commit();  
@@ -200,7 +201,7 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 		String sql = 
 				"SELECT i.usertype,i.postdate,i.indid,i.INDPASSWORD,i.INDNAME,i.INDPHONE,i.INDEMAIL,"
 				+" i.INDADDRESS, i.indImage, i.indFileName,o.indid,o.updatetime,"
-				+ "o.INTRO,o.LEADER,o.ORGTYPES,o.REGISTERNO,o.RAISENO, o.orgimage, o.orgfilename "
+				+ "o.INTRO,o.LEADER,o.ORGTYPES,o.REGISTERNO,o.RAISENO,o.website, o.orgimage, o.orgfilename "
 				+" From ind i JOIN org o ON i.indid=o.indid "
 				+" where i.indid=?";
 		
@@ -239,13 +240,14 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 				int orgtypes = rs.getInt("ORGTYPES");
 				String registerno = rs.getString("REGISTERNO");
 				String raiseno = rs.getString("RAISENO");
+				String website = rs.getString("website");
 //				Blob orgimage = rs.getBlob("orgImage");//
 				String orgfileName = rs.getString("orgFileName");//
 				
 				MemberBean mb = new MemberBean(userType, postDate, indId, indPassword, 
 						indName, indPhone, indEmail, indAddress,null,indFileName);
 				OrgBean ob = new OrgBean(indId,updatetime, intro, leader, orgtypes, 
-						registerno, raiseno,null,orgfileName);
+						registerno, raiseno,website,null,orgfileName);
 
 
 
@@ -468,22 +470,23 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 				
 			String sql2 = " update org " 
 					+" set intro=?, leader=?, orgtypes=?, registerno=?, "
-					+" raiseno=?, orgimage=?, orgfilename=?"
+					+" raiseno=?, website=?, orgimage=?, orgfilename=?"
 			  		+" where indId=? " ;
 			  pstmt2 = conn.prepareStatement(sql2);
-			  pstmt2.setString(1, mb.getIndid());          
-	          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
-	          pstmt2.setTimestamp(2, now2);
+//			  pstmt2.setString(1, mb.getIndid());          
+//	          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
+//	          pstmt2.setTimestamp(2, now2);
 	          pstmt2.setString(1, ob.getIntro());
 	          pstmt2.setString(2, ob.getLeader());
 	          pstmt2.setInt(3, ob.getOrgtypes());
 	          pstmt2.setString(4, ob.getRegisterno());
-	          pstmt2.setString(5, ob.getRaiseno());		          
+	          pstmt2.setString(5, ob.getRaiseno());
+	          pstmt2.setString(6, ob.getWebsite());	
 	          
 	          // 設定Image欄位
-				pstmt2.setBinaryStream(6, is2, size2);
-				pstmt2.setString(7, filename2);
-				pstmt2.setString(8, ob.getIndid());
+				pstmt2.setBinaryStream(7, is2, size2);
+				pstmt2.setString(8, filename2);
+				pstmt2.setString(9, ob.getIndid());
 				r = pstmt2.executeUpdate();	
 				
 				conn.commit();  
@@ -551,21 +554,22 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 				
 			String sql2 = " update org " 
 					+" set intro=?, leader=?, orgtypes=?, registerno=?, "
-					+" raiseno=?, orgimage=?, orgfilename=?"
+					+" raiseno=?,website=?, orgimage=?, orgfilename=?"
 			  		+" where indId=? " ;
 			  pstmt2 = conn.prepareStatement(sql2);
 //			  pstmt2.setString(1, mb.getIndid());          
-	          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
-	          pstmt2.setTimestamp(2, now2);
+//	          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
+//	          pstmt2.setTimestamp(2, now2);
 	          pstmt2.setString(1, ob.getIntro());
 	          pstmt2.setString(2, ob.getLeader());
 	          pstmt2.setInt(3, ob.getOrgtypes());
 	          pstmt2.setString(4, ob.getRegisterno());
 	          pstmt2.setString(5, ob.getRaiseno());
+	          pstmt2.setString(6, ob.getWebsite());
 	          // 設定Image欄位
-				pstmt2.setBinaryStream(6, is2, size2);
-				pstmt2.setString(7, filename2);
-				pstmt2.setString(8, ob.getIndid());
+				pstmt2.setBinaryStream(7, is2, size2);
+				pstmt2.setString(8, filename2);
+				pstmt2.setString(9, ob.getIndid());
 				r = pstmt2.executeUpdate();	
 				
 				conn.commit();  
@@ -638,18 +642,19 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 					
 				String sql2 = " update org " 
 						+" set intro=?, leader=?, orgtypes=?, registerno=?, "
-						+" raiseno=?"
+						+" raiseno=?,website=?"
 				  		+" where indId=? " ;
 				  pstmt2 = conn.prepareStatement(sql2);
 //				  pstmt2.setString(1, mb.getIndid());          
-		          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
-		          pstmt2.setTimestamp(2, now2);
+//		          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
+//		          pstmt2.setTimestamp(2, now2);
 		          pstmt2.setString(1, ob.getIntro());
 		          pstmt2.setString(2, ob.getLeader());
 		          pstmt2.setInt(3, ob.getOrgtypes());
 		          pstmt2.setString(4, ob.getRegisterno());
-		          pstmt2.setString(5, ob.getRaiseno());		          
-					pstmt2.setString(6, ob.getIndid());
+		          pstmt2.setString(5, ob.getRaiseno());
+		          pstmt2.setString(6, ob.getWebsite());	
+					pstmt2.setString(7, ob.getIndid());
 					r = pstmt2.executeUpdate();	
 					
 					conn.commit();  
@@ -719,18 +724,19 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 					
 				String sql2 = " update org " 
 						+" set intro=?, leader=?, orgtypes=?, registerno=?, "
-						+" raiseno=?"
+						+" raiseno=?,website=?"
 				  		+" where indId=? " ;
 				  pstmt2 = conn.prepareStatement(sql2);
 //				  pstmt2.setString(1, mb.getIndid());          
-		          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
-		          pstmt2.setTimestamp(2, now2);
+//		          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
+//		          pstmt2.setTimestamp(2, now2);
 		          pstmt2.setString(1, ob.getIntro());
 		          pstmt2.setString(2, ob.getLeader());
 		          pstmt2.setInt(3, ob.getOrgtypes());
 		          pstmt2.setString(4, ob.getRegisterno());
 		          pstmt2.setString(5, ob.getRaiseno());
-					pstmt2.setString(6, ob.getIndid());
+		          pstmt2.setString(6, ob.getWebsite());
+					pstmt2.setString(7, ob.getIndid());
 					r = pstmt2.executeUpdate();	
 					
 					conn.commit();  
