@@ -1,6 +1,7 @@
 package web._05_deal.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
@@ -11,11 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import web._01_register.model.MemberBean;
 import web._05_deal.model.DEALBean;
 import web._05_deal.model.DealDAO;
+import web._05_deal.model.JSON_Find_Bean;
 
-@WebServlet("/web/_05_deal/controller/FindDEALByKey.do")
+@WebServlet("/web/_05_deal/controller/FindDEALByKey")
 public class FindDEALByKeyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -35,50 +39,39 @@ public class FindDEALByKeyServlet extends HttpServlet {
 
 	public void do_First(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
 		String INDID = "";
-		HttpSession session = request.getSession(false);
-		// 紀錄目前請求的RequestURI,以便使用者登入成功後能夠回到原本的畫面
-		String requestURI = request.getRequestURI();
-		// System.out.println("requestURI=" + requestURI);
-		// 如果session物件不存在
-		if (session == null || session.isNew()) {
-			// 請使用者登入
-			 response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
+		String Type = "FIND";
+		String Ans = "TRUE";
+		String mfjb_json = "";
+		JSON_Find_Bean mfjb = new JSON_Find_Bean();
 
-//			response.sendRedirect(response.encodeRedirectURL("/web/test/Demo/_02_login/login.jsp"));
-			return;
+		try {
+			HttpSession session = request.getSession(false);
+			MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+			INDID = mb.getIndid();
+			System.out.println("session INDID=" + INDID);
+		} catch (Exception e) {
+			Ans = "FALSE";
+			mfjb.setMessage("Session Not Found");
 		}
-		session.setAttribute("requestURI", requestURI);
-		// 此時session物件存在，讀取session物件內的LoginOK
-		// 以檢查使用者是否登入。
-		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-		if (mb == null) {
-			 response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
-//			response.sendRedirect(response.encodeRedirectURL("/web/test/Demo/_02_login/login.jsp"));
+		Gson gson = new Gson();
+		if (Ans.equals("TRUE")) {
+			Collection<DEALBean> collEND = new DealDAO().FindByENDKey_DEAL(INDID);
+			System.out.println(INDID + "一共有" + collEND.size() + "的交易訂單(買家)");
+//			Collection<DEALBean> collSOURCE = new DealDAO().FindBySOURCEKey_DEAL(INDID);
+//			System.out.println(INDID + "一共有" + collSOURCE.size() + "的交易訂單(賣家)");
+			mfjb.setColl(collEND);
 
-			return;
 		}
-		INDID = mb.getIndid();
-		System.out.println("session INDID=" + INDID);
-		Collection<DEALBean> collEND = new DealDAO().FindByENDKey_DEAL(INDID);
-		System.out.println(INDID + "一共有" + collEND.size() + "的交易訂單(買家)");
-		Collection<DEALBean> collSOURCE = new DealDAO().FindBySOURCEKey_DEAL(INDID);
-		System.out.println(INDID + "一共有" + collSOURCE.size() + "的交易訂單(賣家)");
-		if (collEND.size() != 0) {
-			request.setAttribute("DEALEND_DATA", collEND);
-		} else {
-			request.setAttribute("DEALEND_DATA", null);
+		mfjb.setType(Type);
+		mfjb.setAns(Ans);
+		mfjb_json = gson.toJson(mfjb);
+		System.out.println(mfjb_json);
+		response.setContentType("application/json; charset=UTF8");
+		try (PrintWriter out = response.getWriter();) {
+			out.print(mfjb_json);
 		}
-		if (collSOURCE.size() != 0) {
-			request.setAttribute("DEALSOURCE_DATA", collSOURCE);
-		} else {
-			request.setAttribute("DEALSOURCE_DATA", null);
-		}
-		// RequestDispatcher rd =
-		// request.getRequestDispatcher("/_05_deal/DisplayDeal.jsp");
-
-		RequestDispatcher rd = request.getRequestDispatcher("/web/test/_05_deal/DisplayDeal.jsp");
-		rd.forward(request, response);
 		return;
 	}
 

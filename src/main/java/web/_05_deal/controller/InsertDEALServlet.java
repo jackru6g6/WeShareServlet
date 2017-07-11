@@ -1,27 +1,25 @@
 package web._05_deal.controller;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
-import web._00_init.GlobalService;
+import com.google.gson.Gson;
+
 import web._01_register.model.MemberBean;
+import web._05_deal.model.DEAL_ErrorBean;
 import web._05_deal.model.DealDAO;
+import web._05_deal.model.JSON_In_Up_Bean;
 
-@MultipartConfig(location = "", fileSizeThreshold = 5 * 1024 * 1024, maxFileSize = 1024 * 1024
-		* 500, maxRequestSize = 1024 * 1024 * 500 * 5)
-@WebServlet("/web/_05_deal/controller/InsertDEAL.do")
+//@MultipartConfig(location = "", fileSizeThreshold = 5 * 1024 * 1024, maxFileSize = 1024 * 1024
+//		* 500, maxRequestSize = 1024 * 1024 * 500 * 5)
+@WebServlet("/web/_05_deal/controller/InsertDEAL")
 public class InsertDEALServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -42,89 +40,66 @@ public class InsertDEALServlet extends HttpServlet {
 	public void do_First(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
-		Collection<Part> parts = request.getParts(); // 取出HTTP multipart
-														// request內所有的parts
 		String INDID = "";
-		HttpSession session = request.getSession(false);
-		// 紀錄目前請求的RequestURI,以便使用者登入成功後能夠回到原本的畫面
-		String requestURI = request.getRequestURI();
-		// System.out.println("requestURI=" + requestURI);
-		// 如果session物件不存在
-		if (session == null || session.isNew()) {
-			// 請使用者登入
-			response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
-			return;
-		}
-		session.setAttribute("requestURI", requestURI);
-		// 此時session物件存在，讀取session物件內的LoginOK
-		// 以檢查使用者是否登入。
-		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-		if (mb == null) {
-			response.sendRedirect(response.encodeRedirectURL("/Demo/_02_login/login.jsp"));
-			return;
-		}
-		INDID = mb.getIndid();
-		System.out.println("session INDID=" + INDID);
+		String Type = "INSERT";
+		String Ans = "TRUE";
+		JSON_In_Up_Bean jiub = new JSON_In_Up_Bean();
 
-		GlobalService.exploreParts(parts, request);
-		String GOODSNO = null;
-		String DEALQTY = null;
-		String GOODSTYPE = null;
-		String DEALNOTE = null;
-		Map<String, String> errorMsg = new HashMap<String, String>();
-		request.setAttribute("MsgMap", errorMsg); // 顯示錯誤訊息
-
-		if (parts != null) {
-			for (Part p : parts) {
-				String fldName = p.getName();// 取的鍵值
-				String value = request.getParameter(fldName);// 取得值
-				if (p.getContentType() == null) {
-					if (fldName.equalsIgnoreCase("GOODSNO")) {
-						GOODSNO = value;
-					} else if (fldName.equalsIgnoreCase("DEALQTY")) {
-						DEALQTY = value;
-					} else if (fldName.equalsIgnoreCase("GOODSTYPE")) {
-						GOODSTYPE = value;
-					} else if (fldName.equalsIgnoreCase("DEALNOTE")) {
-						DEALNOTE = value;
-					}
-				} else {
-					System.out.println("getContentType !=null");
-				}
-			}
+		try {
+			HttpSession session = request.getSession(false);
+			MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+			INDID = mb.getIndid();
+			System.out.println("session INDID=" + INDID);
+		} catch (Exception e) {
+			Ans = "FALSE";
+			jiub.setMessage("Session Not Found");
 		}
-		if (GOODSNO == null || GOODSNO.trim().length() == 0) {
-			errorMsg.put("errorGOODSNO", "物資編號不可空白");
-		}
-		if (DEALQTY == null || DEALQTY.trim().length() == 0) {
-			errorMsg.put("errorDEALQTY", "物資數量不可空白");
-		}
-		if (!errorMsg.isEmpty()) {
-			// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
-			// RequestDispatcher rd =
-			// request.getRequestDispatcher("/_05_deal/addDEAL.jsp");
-
-			RequestDispatcher rd = request.getRequestDispatcher("/web/test/_05_deal/addDEAL.jsp");
-			rd.forward(request, response);
-			return;
-		}
+		String GOODSNO = request.getParameter("GOODSNO");
+		String DEALQTY = request.getParameter("DEALQTY");
+		String ENDSHIPWAY = request.getParameter("ENDSHIPWAY");
+		String DEALNOTE = request.getParameter("DEALNOTE");
 		System.out.println("GOODSNO=" + GOODSNO);
 		System.out.println("DEALQTY=" + DEALQTY);
-		System.out.println("GOODSTYPE=" + GOODSTYPE);
+		System.out.println("GOODSTYPE=" + ENDSHIPWAY);
 		System.out.println("DEALNOTE=" + DEALNOTE);
-		String ans = new DealDAO().Insert_DEAL(Integer.parseInt(GOODSNO), INDID, Integer.parseInt(DEALQTY),
-				Integer.parseInt(GOODSTYPE), DEALNOTE);
-
-		System.out.println("ans=" + ans);
-		if (ans.equals("TRUE")) {
-			response.sendRedirect("FindDEALByKey.do");
-			return;
-		} else {
-			errorMsg.put("errorans", "交易失敗");
-//			RequestDispatcher rd = request.getRequestDispatcher("/_05_deal/addDEAL.jsp");
-			RequestDispatcher rd = request.getRequestDispatcher("/web/test/_05_deal/addDEAL.jsp");
-			rd.forward(request, response);
-			return;
+		DEAL_ErrorBean dealeb = new DEAL_ErrorBean();
+		if (Ans.equals("TRUE")) {
+			if (GOODSNO == null || GOODSNO.trim().length() == 0) {
+				dealeb.setErrorGOODSNO("物資編號不可為空值");
+				Ans = "FALSE";
+			}
+			if (DEALQTY == null || DEALQTY.trim().length() == 0) {
+				dealeb.setErrorDEALQTY("數量不可為空值");
+				Ans = "FALSE";
+			}
+			if (ENDSHIPWAY == null || ENDSHIPWAY.trim().length() == 0) {
+				dealeb.setErroENDSHIPWAY("交易方式不可為空值");
+				Ans = "FALSE";
+			}
+			if (!Ans.equals("TRUE")) {
+				jiub.setDealb(dealeb);
+			}
 		}
+
+		if (Ans.equals("TRUE")) {
+			String SQLAns = new DealDAO().Insert_DEAL(Integer.parseInt(GOODSNO), INDID, Integer.parseInt(DEALQTY),
+					Integer.parseInt(ENDSHIPWAY), DEALNOTE);
+			System.out.println("ans=" + SQLAns);
+			if (!SQLAns.equals("TRUE")) {
+				Ans = "FALSE";
+				jiub.setMessage("SQL ERROR");
+			}
+		}
+		jiub.setType(Type);
+		jiub.setAns(Ans);
+		Gson gson = new Gson();
+		String jiub_json = gson.toJson(jiub);
+		System.out.println(jiub_json);
+		response.setContentType("application/json; charset=UTF8");
+		try (PrintWriter out = response.getWriter();) {
+			out.print(jiub_json);
+		}
+
+		return;
 	}
 }
