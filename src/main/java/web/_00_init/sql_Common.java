@@ -38,6 +38,7 @@ public class sql_Common {
 	static String DROP_FUNCTION_INSERT_DEAL = "DROP FUNCTION IF EXISTS insert_deal";
 	static String DROP_FUNCTION_CHECK_ROOMNO = "DROP FUNCTION IF EXISTS check_roomNo";
 	static String DROP_FUNCTION_INSERT_MSG = "DROP FUNCTION IF EXISTS insert_MSG";
+	static String DROP_FUNCTION_INSERT_FEEDBACK = "DROP FUNCTION IF EXISTS INSERT_FEEDBACK";
 	static String DROP_PROCEDURE_INSERT_MSG = "DROP PROCEDURE IF EXISTS insert_MSG";
 	// -------------------------------------------------------------------------------------<CREATE>
 	static String CREATE_TABLE_IND = "Create Table ind(usertype int,"
@@ -49,9 +50,9 @@ public class sql_Common {
 	static String CREATE_TABLE_ORG = "Create Table org (" + "indid varchar(50) NOT NULL, "
 			+ "updatetime timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP," + "intro varchar(500) NOT NULL, "
 			+ "leader varchar(500) NOT NULL, " + "orgtypes int NOT NULL, " + "registerno varchar(500), "
-			+ "raiseno varchar(500), " + "website varchar(500), " + "orgimage MEDIUMBLOB, " + "orgfilename varchar(20), "
-			+ "FOREIGN KEY(indid) REFERENCES ind (indid), " + "FOREIGN KEY(orgtypes) REFERENCES orgtype (orgno) "
-			+ ") CHARACTER SET utf8 COLLATE utf8_general_ci";
+			+ "raiseno varchar(500), " + "website varchar(500), " + "orgimage MEDIUMBLOB, "
+			+ "orgfilename varchar(20), " + "FOREIGN KEY(indid) REFERENCES ind (indid), "
+			+ "FOREIGN KEY(orgtypes) REFERENCES orgtype (orgno) " + ") CHARACTER SET utf8 COLLATE utf8_general_ci";
 
 	static String CREATE_TABLE_GOODS = "Create Table goods ( goodsno int(7) NOT NULL Auto_Increment Primary Key,"
 			+ "goodsstatus int(1),updatetime timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP, "
@@ -81,7 +82,7 @@ public class sql_Common {
 			+ "FOREIGN KEY(sourceid) REFERENCES ind (indid), " + "FOREIGN KEY(endid) REFERENCES ind (indid) "
 			+ ") CHARACTER SET utf8 COLLATE utf8_general_ci";
 
-	static String CREATE_TABLE_FEEDBACK = "Create Table feedback(" + "dealno int(7) NOT NULL, "
+	static String CREATE_TABLE_FEEDBACK = "Create Table feedback(" + "dealno int(7) NOT NULL Auto_Increment Primary Key, "
 			+ "postdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, " + "fbsourceid varchar(50) NOT NULL, "
 			+ "fbendid varchar(50) NOT NULL, " + "fbtext varchar(200) NOT NULL, " + "fbscore int(2) NOT NULL, "
 			+ "fbimage MEDIUMBLOB, " + "fbfilename varchar(20), " + "FOREIGN KEY(dealno) REFERENCES deal (dealno), "
@@ -131,6 +132,12 @@ public class sql_Common {
 	static String CREATE_FUNCTION_INSERT_MSG = "CREATE FUNCTION insert_MSG(USER_MSGSOURCEID VARCHAR(50),USER_MSGENDID VARCHAR(50),USER_MSGTEXT VARCHAR(200),USER_MSGIMAGE MEDIUMBLOB,USER_MSGIMAGEFILENAME VARCHAR(50))"
 			+ "RETURNS VARCHAR(10) BEGIN DECLARE result VARCHAR(10) DEFAULT '';INSERT INTO MSG VALUE(null,'2',null,USER_MSGSOURCEID,USER_MSGENDID,USER_MSGTEXT,USER_MSGIMAGE,USER_MSGIMAGEFILENAME,"
 			+ "check_roomNo(USER_MSGSOURCEID,USER_MSGENDID));SET result = 'TRUE';UPDATE MSG_ROOM SET LASTMSGNO=LAST_INSERT_ID() WHERE ROOMNO = check_roomNo(USER_MSGSOURCEID,USER_MSGENDID);RETURN result;END;";
+
+	static String CREATE_FUNCTION_INSERT_FEEDBACK = "CREATE FUNCTION INSERT_FEEDBACK(USER_DEALNO int,USER_FBSOURCE VARCHAR(50),USER_FBENDID varchar(50),USER_FBTEXT VARCHAR(200),USER_FBSCORE INT(2),USER_FBIMAGE MEDIUMBLOB,USER_FBFILENAME VARCHAR(20))"
+			+ "RETURNS VARCHAR(30)BEGIN DECLARE result VARCHAR(30) DEFAULT '';DECLARE buf0 INT DEFAULT 0;DECLARE buf1 INT DEFAULT 0;SELECT COUNT(*) INTO buf0 FROM DEAL WHERE (DEALNO=USER_DEALNO AND SOURCEID=USER_FBSOURCE AND dealstatus=2);"
+			+ "IF buf0=1 THEN SELECT COUNT(*) INTO buf1 FROM feedback WHERE dealno=USER_DEALNO;	if buf1=1 THEN SET result = 'FLASE|Repeat Data';"
+			+ "ELSE	INSERT INTO FEEDBACK VALUE(USER_DEALNO,null,USER_FBSOURCE,USER_FBENDID,USER_FBTEXT,USER_FBSCORE,USER_FBIMAGE,USER_FBFILENAME);"
+			+ "SET result = 'TRUE';END IF;ELSE SET result = 'FLASE|DEALNO NOT FOUND';END IF;RETURN result;END;";
 	static String CREATE_PROCEDURE_INSERT_MSG = "CREATE PROCEDURE insert_MSG(IN USER_MSGSOURCEID VARCHAR(50),IN USER_MSGENDID VARCHAR(50),IN USER_MSGTEXT VARCHAR(200),IN USER_MSGIMAGE MEDIUMBLOB,IN USER_MSGIMAGEFILENAME VARCHAR(50))"
 			+ "BEGIN INSERT INTO MSG VALUE(null,'2',null,USER_MSGSOURCEID,USER_MSGENDID,USER_MSGTEXT,USER_MSGIMAGE,USER_MSGIMAGEFILENAME,check_roomNo(USER_MSGSOURCEID,USER_MSGENDID));"
 			+ "UPDATE MSG_ROOM SET LASTMSGNO=LAST_INSERT_ID() WHERE ROOMNO = check_roomNo(USER_MSGSOURCEID,USER_MSGENDID);END;";

@@ -1,4 +1,4 @@
-package web._05_deal.controller;
+package web._07_Feedback.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,17 +13,16 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import web._01_register.model.MemberBean;
-import web._05_deal.model.DEAL_ErrorBean;
-import web._05_deal.model.DealDAO;
-import web._05_deal.model.JSON_In_Up_Bean;
+import web._07_Feedback.model.FeedbackBean;
+import web._07_Feedback.model.FeedbackDAO;
+import web._07_Feedback.model.Feedback_ErrorBean;
+import web._07_Feedback.model.JSON_In_Up_Bean;
 
-//@MultipartConfig(location = "", fileSizeThreshold = 5 * 1024 * 1024, maxFileSize = 1024 * 1024
-//		* 500, maxRequestSize = 1024 * 1024 * 500 * 5)
-@WebServlet("/web/_05_deal/controller/InsertDEAL")
-public class InsertDEALServlet extends HttpServlet {
+@WebServlet("/web/_07_Feedback/controller/InsertFeedback")
+public class InsertFeedbackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public InsertDEALServlet() {
+	public InsertFeedbackServlet() {
 		super();
 	}
 
@@ -54,40 +53,48 @@ public class InsertDEALServlet extends HttpServlet {
 			Ans = "FALSE";
 			jiub.setMessage("Session Not Found");
 		}
-		String GOODSNO = request.getParameter("GOODSNO");
-		String DEALQTY = request.getParameter("DEALQTY");
-		String ENDSHIPWAY = request.getParameter("ENDSHIPWAY");
-		String DEALNOTE = request.getParameter("DEALNOTE");
-		System.out.println("GOODSNO=" + GOODSNO);
-		System.out.println("DEALQTY=" + DEALQTY);
-		System.out.println("GOODSTYPE=" + ENDSHIPWAY);
-		System.out.println("DEALNOTE=" + DEALNOTE);
-		DEAL_ErrorBean dealeb = new DEAL_ErrorBean();
+		String DEALNO = request.getParameter("DEALNO");
+		String FBSOURCEID = request.getParameter("FBSOURCEID");
+		String FBENDID = request.getParameter("FBENDID");
+		String FBTEXT = request.getParameter("FBTEXT");
+		String FBSCORE = request.getParameter("FBSCORE");
+		// System.out.println("DEALNO=" + DEALNO);
+		// System.out.println("FBSOURCEID=" + FBSOURCEID);
+		// System.out.println("FBENDID=" + FBENDID);
+		// System.out.println("FBTEXT=" + FBTEXT);
+		// System.out.println("FBSCORE=" + FBSCORE);
+		Feedback_ErrorBean fdbe = new Feedback_ErrorBean();
 		if (Ans.equals("TRUE")) {
-			if (GOODSNO == null || GOODSNO.trim().length() == 0) {
-				dealeb.setErrorGOODSNO("物資編號不可為空值");
+			if (DEALNO == null || DEALNO.trim().length() == 0) {
+				fdbe.setERRORDEALNO("物資編號不可為空值");
 				Ans = "FALSE";
 			}
-			if (DEALQTY == null || DEALQTY.trim().length() == 0) {
-				dealeb.setErrorDEALQTY("數量不可為空值");
+			if (FBSOURCEID == null || FBSOURCEID.trim().length() == 0) {
+				fdbe.setERRORFBSOURCEID("給評者不可為空值");
 				Ans = "FALSE";
 			}
-			if (ENDSHIPWAY == null || ENDSHIPWAY.trim().length() == 0) {
-				dealeb.setErroENDSHIPWAY("交易方式不可為空值");
+			if (FBENDID == null || FBENDID.trim().length() == 0) {
+				fdbe.setERRORFBENDID("被評者不可為空值");
+				Ans = "FALSE";
+			}
+			if (FBSCORE == null || FBSCORE.trim().length() == 0) {
+				fdbe.setERRORFBSCORE("評價分數不可為空值");
 				Ans = "FALSE";
 			}
 			if (!Ans.equals("TRUE")) {
-				jiub.setDealb(dealeb);
+				jiub.setFdbeb(fdbe);
 			}
 		}
-
 		if (Ans.equals("TRUE")) {
-			String SQLAns = new DealDAO().Insert_DEAL(Integer.parseInt(GOODSNO), INDID, Integer.parseInt(DEALQTY),
-					Integer.parseInt(ENDSHIPWAY), DEALNOTE);
-			System.out.println("ans=" + SQLAns);
-			if (!SQLAns.equals("TRUE")) {
+
+			FeedbackBean fb = new FeedbackBean(DEALNO, null, FBSOURCEID, FBENDID, FBTEXT, Integer.parseInt(FBSCORE),
+					null, null);
+			String SQLAns = new FeedbackDAO().Insert_FB(fb, INDID, null, 0L);
+			System.out.println("SQLAns=" + SQLAns);
+			String buf[] = SQLAns.split("\\|");
+			if (!buf[0].equals("TRUE")) {
 				Ans = "FALSE";
-				jiub.setMessage("SQL ERROR");
+				jiub.setMessage(buf[1]);
 			}
 		}
 		jiub.setType(Type);
@@ -99,6 +106,8 @@ public class InsertDEALServlet extends HttpServlet {
 		try (PrintWriter out = response.getWriter();) {
 			out.print(jiub_json);
 		}
+
 		return;
 	}
+
 }

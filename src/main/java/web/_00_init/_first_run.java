@@ -60,6 +60,7 @@ public class _first_run {
 		stmt.executeUpdate(sql_Common.DROP_FUNCTION_INSERT_DEAL);
 		stmt.executeUpdate(sql_Common.DROP_FUNCTION_CHECK_ROOMNO);
 		stmt.executeUpdate(sql_Common.DROP_FUNCTION_INSERT_MSG);
+		stmt.executeUpdate(sql_Common.DROP_FUNCTION_INSERT_FEEDBACK);
 		stmt.executeUpdate(sql_Common.DROP_PROCEDURE_INSERT_MSG);
 
 	}
@@ -79,6 +80,7 @@ public class _first_run {
 		stmt.executeUpdate(sql_Common.CREATE_FUNCTION_INSERT_DEAL);
 		stmt.executeUpdate(sql_Common.CREATE_FUNCTION_CHECK_ROOMNO);
 		stmt.executeUpdate(sql_Common.CREATE_FUNCTION_INSERT_MSG);
+		stmt.executeUpdate(sql_Common.CREATE_FUNCTION_INSERT_FEEDBACK);
 		stmt.executeUpdate(sql_Common.CREATE_PROCEDURE_INSERT_MSG);
 	}
 
