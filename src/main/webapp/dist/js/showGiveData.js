@@ -9,9 +9,10 @@ function showData(responseData, javaRoot) {
 		$('#divGiveGoods').append(resultData);
 		return;
 	}
+	// 將資料寫入
 	for (var i = 0; i < responseData.length; i++) {
 		resultData =
-			`<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+			`<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 				<div class="giveGoods">
 					<a href="giveGoods.jsp?goodsno=${responseData[i].goodsno}" class="giveGoodsA">
 
@@ -40,4 +41,11 @@ function showData(responseData, javaRoot) {
 			</div>`;
 		$('#divGiveGoods').append(resultData);
 	}
+	
+	// 依序顯示物資
+	$('.giveGoods').each(function(e) {
+		setTimeout(function() {
+			$('.giveGoods').eq(e).animate({opacity:1},1000).addClass('animated fadeInUp');
+		},200 * e);
+	});
 }

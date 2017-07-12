@@ -11,7 +11,6 @@
 	<jsp:include page="../fragment/refCss.jsp" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/org.css">
 	<jsp:include page="../fragment/refJs.jsp" />
-	<script src="../dist/js/org.js"></script>
 	<title>WeShare 微分享</title>
 </head>
 
@@ -135,8 +134,7 @@
 		<jsp:include page="../fragment/footer.jsp" />
 	</footer>
 	
-	
-<%-- 	<script src="${pageContext.request.contextPath}/dist/js/showIndexData.js?t=2"></script> --%>
+	<script src="${pageContext.request.contextPath}/dist/js/org.js"></script>
 <!-- 	<script type="text/javascript"> -->
 <%-- 		var javaRoot = "${pageContext.servletContext.contextPath}"; --%>
 <!-- 		var xhrWish = new XMLHttpRequest(); -->

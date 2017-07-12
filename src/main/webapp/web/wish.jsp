@@ -251,7 +251,7 @@
 							<!-- 右邊需求物資 -->
 							<div id="divWishGoods" class="row">
 								<!-- 右邊需求物資第一項 -->
-<!-- 								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"> -->
+<!-- 								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> -->
 <!-- 									<div class="wishGoods"> -->
 <!-- 										<a href="#" class="wishGoodsA"> -->
 <!-- 											需求物資圖片 -->
@@ -303,7 +303,7 @@
 			var searchString = location.search.slice(1);
 			keyWordSearch(searchString);
 		} else {
-			window.onload = function(){					
+			window.onload = function(){
 				xhr.open('GET', servletPath, true);
 				xhr.send();
 				xhr.onreadystatechange = function(){
@@ -355,7 +355,7 @@
 		$('.btnFilterType').click(function(){
 			servletPath = javaRoot + '/_08_query/Query.do?goodsstatus=1';
 			var col = $(this).find('.findCol').val();
-			var val = $(this).find('.findVal').val();			
+			var val = $(this).find('.findVal').val();
 			console.log("findCol = " + col + ", findVal = " + val);
 			servletPath += '&type=' + col + '&value=' + val;
 			console.log("servletPath = " + servletPath);

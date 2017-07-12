@@ -20,6 +20,8 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/bower_components/bootstrap/dist/css/bootstrap.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/font-awesome-4.7.0/css/font-awesome.min.css">
+<!-- Animate CSS-->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/bower_components/animate.css/animate.min.css">
 <!-- 個人化 -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/header.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/footer.css">

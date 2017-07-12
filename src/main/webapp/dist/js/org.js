@@ -66,7 +66,13 @@ function showData(data) {
 
 // 點下層固定列，翻轉上層翻轉列
 function turnPage(e) {
-	// $(this).closest('.rowOrg').find('.rowUpper').toggleClass('rotate180');
-	e.closest('.rowOrg').find('.rowUpper').toggleClass('rotate180');
 	// $(this).closest('.rowOrg').find('.rowUpper').css('zIndex', 300);
+	
+	// 如果rowUpper的class有'rotate180'(地圖)，就加上'rotate0'(社福圖片)並移除'rotate180'
+	if (e.closest('.rowOrg').find('.rowUpper').hasClass('rotate180')) {
+		// $(this).closest('.rowOrg').find('.rowUpper').addClass('rotate0').removeClass('rotate180');
+		e.closest('.rowOrg').find('.rowUpper').addClass('rotate0').removeClass('rotate180');
+	} else {
+		e.closest('.rowOrg').find('.rowUpper').addClass('rotate180').removeClass('rotate0');
+	}
 }
