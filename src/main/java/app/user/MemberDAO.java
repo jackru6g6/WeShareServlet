@@ -234,6 +234,7 @@ public class MemberDAO {
 		return list;
 	}
 
+	
 	public byte[] getImage(String id) {
 		byte[] image = null;
 		Session session = sessionFactory.getCurrentSession();
@@ -331,6 +332,59 @@ public class MemberDAO {
 
 		return image;
 	}
+    public List<MemberBean> getQueryMem(String memqry) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        // List<Object[]> list= new ArrayList<>();
+        List<MemberBean> list = new ArrayList<MemberBean>();
+        try {
+            // String hql = "SELECT new
+            // MemberBean(m.tal,m.email,m.address,m.idType) FROM MemberBean m
+            // WHERE m.userId = :uid";
+            String hql = "SELECT new MemberBean(m.userId,m.name,m.tal,m.email,m.address,m.idType) FROM MemberBean m "+memqry;
+            // String hql = "SELECT new
+            // MemberBean(m.userId,m.password,m.name,m.tal,m.email,m.address,m.idType,m.createDate)
+            // FROM MemberBean m WHERE m.userId = :uid";
+            Query query = session.createQuery(hql);
+            list = query.getResultList();
+            tx.commit();
+
+        } catch (Exception ex) {
+            tx.rollback();
+            ex.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return list;
+    }
+    
+    public List<InstiutionBean> getQueryInst(String instqry) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        // List<Object[]> list= new ArrayList<>();
+        List<InstiutionBean> list = new ArrayList<InstiutionBean>();
+        try {
+            // String hql = "SELECT new
+            // MemberBean(m.tal,m.email,m.address,m.idType) FROM MemberBean m
+            // WHERE m.userId = :uid";
+            String hql = "SELECT new InstiutionBean(i.indId,i.leader,i.orgType,i.registerNo,i.raiseNo,i.intRo) FROM InstiutionBean i "+instqry;
+            // String hql = "SELECT new
+            // MemberBean(m.userId,m.password,m.name,m.tal,m.email,m.address,m.idType,m.createDate)
+            // FROM MemberBean m WHERE m.userId = :uid";
+            Query query = session.createQuery(hql);
+            list = query.getResultList();
+            tx.commit();
+
+        } catch (Exception ex) {
+            tx.rollback();
+            ex.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return list;
+    }
 
 	public String getName(String id) {
 		Session session = sessionFactory.getCurrentSession();
