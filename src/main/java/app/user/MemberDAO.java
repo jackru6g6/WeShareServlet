@@ -60,6 +60,29 @@ public class MemberDAO {
 		return check;
 
 	}
+	
+	public int getType(String indId) {
+		int type = 0; // 檢查id是否已經存在
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			String hql = "From MemberBean where indId = :uid";
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", indId);
+			List<MemberBean> list = query.getResultList();
+			for(MemberBean pop : list){
+				type = pop.getIdType();
+			}
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+		} finally {
+			session.close();
+		}
+		return type;
+	}
+	
 
 	public int save(MemberBean user) {
 		int n = 0;
