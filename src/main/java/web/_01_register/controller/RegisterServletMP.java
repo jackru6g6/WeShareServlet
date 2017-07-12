@@ -61,8 +61,6 @@ public class RegisterServletMP extends HttpServlet {
         session.setAttribute("MsgOK", msgOK);      //顯示正常訊息
 
         int userType = Integer.valueOf(request.getParameter("usertype"));
-    	//Timestamp postDate;
-    	//Blob indImage;
     	String indFileName= "";
     	String orgFileName= "";
     	
@@ -80,6 +78,7 @@ public class RegisterServletMP extends HttpServlet {
     	int orgtypes= 0;
     	String registerno= "";
     	String raiseno= "";
+    	String website="";
         
 		long sizeInBytes = 0;
 		InputStream is = null;
@@ -122,6 +121,8 @@ public class RegisterServletMP extends HttpServlet {
 						registerno = value;  
 					}else if (fldName.equalsIgnoreCase("raiseno")) {
 						raiseno = value;  
+					}else if (fldName.equalsIgnoreCase("website")) {
+						website = value;  
 					}
 				} else {
 					//一般|社福會員大頭貼
@@ -208,6 +209,9 @@ public class RegisterServletMP extends HttpServlet {
 //				if (raiseno == null || raiseno.trim().length() == 0) {
 //					errorMsg.put("errorRaiseno","勸募許可欄必須輸入");
 //				}
+//				if (website == null || raiseno.trim().length() == 0) {
+//					errorMsg.put("errorWebsite","網址欄必須輸入");
+//				}
 			}
 			
 			
@@ -224,9 +228,6 @@ public class RegisterServletMP extends HttpServlet {
 			}
 			try {
 			// 4. 進行Business Logic運算
-			// RegisterServiceFile類別的功能：
-			// 1.檢查帳號是否已經存在
-			// 2.儲存會員的資料 
 			RegisterServiceDAO rs = new RegisterServiceDAO_JDBC();  
 			if (rs.idExists(indId)) {
 				errorMsg.put("errorIDDup","此代號已存在，請換新代號");
@@ -236,9 +237,8 @@ public class RegisterServletMP extends HttpServlet {
 					
 						MemberBean mem = new MemberBean(userType,indId,indPassword,indName,
 							indPhone,indEmail,indAddress);					
-					
-						// 將MemberBean mem立即寫入Database				
-						System.out.println("filename:" + indFileName);
+				
+//						System.out.println("filename:" + indFileName);
 						int n = rs.saveMember(mem, is, sizeInBytes, indFileName);
 						if ( n == 1) {
 							msgOK.put("InsertOK","<Font color='red'>新增成功，請開始使用本系統</Font>");
@@ -252,10 +252,9 @@ public class RegisterServletMP extends HttpServlet {
 					
 						MemberBean mem = new MemberBean(userType,indId,indPassword,indName,
 							indPhone,indEmail,indAddress);	
-						OrgBean ob= new OrgBean(indId, intro, leader, orgtypes, registerno, raiseno);
-					
-						// 將MemberBean mem立即寫入Database				
-						System.out.println("filename:" + indFileName);
+						OrgBean ob= new OrgBean(indId, intro, leader, orgtypes, registerno, raiseno,website);
+			
+//						System.out.println("filename:" + indFileName);
 						int n = rs.saveOrg(mem,ob,is,sizeInBytes,indFileName, is2, sizeInBytes2, orgFileName);
 						if ( n == 1) {
 							msgOK.put("InsertOK","<Font color='red'>新增成功，請開始使用本系統</Font>");
