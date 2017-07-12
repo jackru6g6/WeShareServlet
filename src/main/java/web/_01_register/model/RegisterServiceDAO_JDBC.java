@@ -33,34 +33,30 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 		return exist;
 	}
 
-	//註冊==>一般會員
-	synchronized public int saveMember(MemberBean mb, InputStream is,
-			long size, String filename) throws SQLException {
+	// 註冊==>一般會員
+	synchronized public int saveMember(MemberBean mb, InputStream is, long size, String filename) throws SQLException {
 		PreparedStatement pstmt1 = null;
 		Connection conn = ds.getConnection();
 		int r = 0;
 		try {
-			String sql1 = "insert into ind " +
-			  		" (userType, postDate, indId, indPassword, indName, indPhone, indEmail, " +
-			  		" indAddress, indImage, indFileName) " +
-			  		" values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql1 = "insert into ind " + " (userType, postDate, indId, indPassword, indName, indPhone, indEmail, "
+					+ " indAddress, indImage, indFileName) " + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt1 = conn.prepareStatement(sql1);
-	          pstmt1.setInt(1, mb.getUsertype());          
-	          java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-	          pstmt1.setTimestamp(2, now);
-	          pstmt1.setString(3, mb.getIndid());
-	          String encrypedString = GlobalService.encryptString(mb.getIndpassword());
-			  pstmt1.setString(4, GlobalService.getMD5Endocing(encrypedString));
-	          pstmt1.setString(5, mb.getIndname());
-	          pstmt1.setString(6, mb.getIndphone());
-	          pstmt1.setString(7, mb.getIndemail());
-	          pstmt1.setString(8, mb.getIndaddress());   
-	          // 設定Image欄位
-				pstmt1.setBinaryStream(9, is, size);
-				pstmt1.setString(10, filename);
-				r = pstmt1.executeUpdate();
-			
-			
+			pstmt1.setInt(1, mb.getUsertype());
+			java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+			pstmt1.setTimestamp(2, now);
+			pstmt1.setString(3, mb.getIndid());
+			String encrypedString = GlobalService.encryptString(mb.getIndpassword());
+			pstmt1.setString(4, GlobalService.getMD5Endocing(encrypedString));
+			pstmt1.setString(5, mb.getIndname());
+			pstmt1.setString(6, mb.getIndphone());
+			pstmt1.setString(7, mb.getIndemail());
+			pstmt1.setString(8, mb.getIndaddress());
+			// 設定Image欄位
+			pstmt1.setBinaryStream(9, is, size);
+			pstmt1.setString(10, filename);
+			r = pstmt1.executeUpdate();
+
 			if (r == 1) {
 				// 寫入成功，應該將MemberBean mem立即加入LoginService的memberList內
 				// 否則，最新的User將無法登入
@@ -89,37 +85,34 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 		}
 		return r;
 	}
-	
-	//註冊==>社福會員
-	synchronized public int saveOrg(MemberBean mb,OrgBean ob, InputStream is,
-			long size, String filename, InputStream is2,
-			long size2, String filename2) throws SQLException {
+
+	// 註冊==>社福會員
+	synchronized public int saveOrg(MemberBean mb, OrgBean ob, InputStream is, long size, String filename,
+			InputStream is2, long size2, String filename2) throws SQLException {
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
 		Connection conn = ds.getConnection();
 		int r = 0;
 		try {
 			conn.setAutoCommit(false);
-			
-			String sql1 = "insert into ind " +
-			  		" (userType, postDate, indId, indPassword, indName, indPhone, indEmail, " +
-			  		" indAddress, indImage, indFileName) " +
-			  		" values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+			String sql1 = "insert into ind " + " (userType, postDate, indId, indPassword, indName, indPhone, indEmail, "
+					+ " indAddress, indImage, indFileName) " + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt1 = conn.prepareStatement(sql1);
-	          pstmt1.setInt(1, mb.getUsertype());          
-	          java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-	          pstmt1.setTimestamp(2, now);
-	          pstmt1.setString(3, mb.getIndid());
-	          String encrypedString = GlobalService.encryptString(mb.getIndpassword());
-			  pstmt1.setString(4, GlobalService.getMD5Endocing(encrypedString));
-	          pstmt1.setString(5, mb.getIndname());
-	          pstmt1.setString(6, mb.getIndphone());
-	          pstmt1.setString(7, mb.getIndemail());
-	          pstmt1.setString(8, mb.getIndaddress());   
-	          // 設定Image欄位
-				pstmt1.setBinaryStream(9, is, size);
-				pstmt1.setString(10, filename);
-				r = pstmt1.executeUpdate();		
+			pstmt1.setInt(1, mb.getUsertype());
+			java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+			pstmt1.setTimestamp(2, now);
+			pstmt1.setString(3, mb.getIndid());
+			String encrypedString = GlobalService.encryptString(mb.getIndpassword());
+			pstmt1.setString(4, GlobalService.getMD5Endocing(encrypedString));
+			pstmt1.setString(5, mb.getIndname());
+			pstmt1.setString(6, mb.getIndphone());
+			pstmt1.setString(7, mb.getIndemail());
+			pstmt1.setString(8, mb.getIndaddress());
+			// 設定Image欄位
+			pstmt1.setBinaryStream(9, is, size);
+			pstmt1.setString(10, filename);
+			r = pstmt1.executeUpdate();
 
 			if (r == 1) {
 				// 寫入成功，應該將MemberBean mem立即加入LoginService的memberList內
@@ -130,33 +123,33 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 				throw new SQLException("RegisterServiceDB:新增記錄數 : 0");
 			}
 			// System.out.println("新增一筆eMember紀錄，是否成功=" + r);
-			
-			String sql2 = "insert into org " +
-			  		" (indid, updatetime, intro, leader, orgtypes, "
-			  		+ "registerno, raiseno, website, orgimage, orgfilename) " +
-			  		" values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-			  pstmt2 = conn.prepareStatement(sql2);
-			  pstmt2.setString(1, mb.getIndid());          
-	          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
-	          pstmt2.setTimestamp(2, now2);
-	          pstmt2.setString(3, ob.getIntro());
-	          pstmt2.setString(4, ob.getLeader());
-	          pstmt2.setInt(5, ob.getOrgtypes());
-	          pstmt2.setString(6, ob.getRegisterno());
-	          pstmt2.setString(7, ob.getRaiseno());
-	          pstmt2.setString(8, ob.getWebsite());	
-	          
-	          // 設定Image欄位
-				pstmt2.setBinaryStream(9, is2, size2);
-				pstmt2.setString(10, filename2);
-				r = pstmt2.executeUpdate();	
-				
-				conn.commit();  
-		}catch(SQLException ex){
+
+			String sql2 = "insert into org " + " (indid, updatetime, intro, leader, orgtypes, "
+					+ "registerno, raiseno, website, orgimage, orgfilename) "
+					+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt2 = conn.prepareStatement(sql2);
+			pstmt2.setString(1, mb.getIndid());
+			java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
+			pstmt2.setTimestamp(2, now2);
+			pstmt2.setString(3, ob.getIntro());
+			pstmt2.setString(4, ob.getLeader());
+			pstmt2.setInt(5, ob.getOrgtypes());
+			pstmt2.setString(6, ob.getRegisterno());
+			pstmt2.setString(7, ob.getRaiseno());
+			pstmt2.setString(8, ob.getWebsite());
+
+			// 設定Image欄位
+			pstmt2.setBinaryStream(9, is2, size2);
+			pstmt2.setString(10, filename2);
+			r = pstmt2.executeUpdate();
+
+			conn.commit();
+		} catch (SQLException ex) {
 			ex.printStackTrace();
 			System.out.println("資料還原");
-			if(conn!=null) conn.rollback();			
-			
+			if (conn != null)
+				conn.rollback();
+
 		} finally {
 			// 關閉相關的物件
 			if (pstmt1 != null) {
@@ -166,7 +159,7 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 					e.printStackTrace();
 				}
 			}
-			
+
 			if (pstmt2 != null) {
 				try {
 					pstmt2.close();
@@ -174,9 +167,9 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 					e.printStackTrace();
 				}
 			}
-			if(conn!=null) conn.setAutoCommit(true);
-			
-			
+			if (conn != null)
+				conn.setAutoCommit(true);
+
 			if (conn != null) {
 				try {
 					conn.close();
@@ -184,28 +177,21 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 					System.err.println("關閉相關物件時發生例外: " + e);
 				}
 			}
-		}		
+		}
 		return r;
 	}
-	
-	
-	
-	
-	
-	//讀取==>社福會員
+
+	// 讀取==>社福會員
 	public List<Object> populateMember(String pk) throws SQLException {
 		// 由Database讀取會員資料
 		List<Object> obj = new ArrayList<>();
-		List<Object> obj2 = populateMember2(pk);	
-		
-		String sql = 
-				"SELECT i.usertype,i.postdate,i.indid,i.INDPASSWORD,i.INDNAME,i.INDPHONE,i.INDEMAIL,"
-				+" i.INDADDRESS, i.indImage, i.indFileName,o.indid,o.updatetime,"
+		List<Object> obj2 = populateMember2(pk);
+
+		String sql = "SELECT i.usertype,i.postdate,i.indid,i.INDPASSWORD,i.INDNAME,i.INDPHONE,i.INDEMAIL,"
+				+ " i.INDADDRESS, i.indImage, i.indFileName,o.indid,o.updatetime,"
 				+ "o.INTRO,o.LEADER,o.ORGTYPES,o.REGISTERNO,o.RAISENO,o.website, o.orgimage, o.orgfilename "
-				+" From ind i JOIN org o ON i.indid=o.indid "
-				+" where i.indid=?";
-		
-		
+				+ " From ind i JOIN org o ON i.indid=o.indid " + " where i.indid=?";
+
 		Connection connection = null;
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
@@ -214,46 +200,41 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 			pStmt = connection.prepareStatement(sql);
 			pStmt.setString(1, pk);
 			rs = pStmt.executeQuery();
-			
 
-			
 			if (rs.next()) {
-				
+
 				int userType = rs.getInt("userType");
-				java.sql.Timestamp postDate = rs.getTimestamp("postDate");				
+				java.sql.Timestamp postDate = rs.getTimestamp("postDate");
 				String indId = rs.getString("indId").trim(); // 必須確定
 																// rs.getString("memberID")
 																// 不是null才能
 																// .trim()
-				String indPassword = rs.getString("indPassword").trim();				
+				String indPassword = rs.getString("indPassword").trim();
 				String indName = rs.getString("indName").trim();
 				String indPhone = rs.getString("indPhone");
-				String indEmail = rs.getString("indEmail");				
-				String indAddress = rs.getString("indAddress");	
-//				Blob indImage = rs.getBlob("indImage");//
+				String indEmail = rs.getString("indEmail");
+				String indAddress = rs.getString("indAddress");
+				// Blob indImage = rs.getBlob("indImage");//
 				String indFileName = rs.getString("indFileName");//
-				
-				
-				java.sql.Timestamp updatetime = rs.getTimestamp("updatetime");//	
+
+				java.sql.Timestamp updatetime = rs.getTimestamp("updatetime");//
 				String intro = rs.getString("INTRO");
 				String leader = rs.getString("LEADER");
 				int orgtypes = rs.getInt("ORGTYPES");
 				String registerno = rs.getString("REGISTERNO");
 				String raiseno = rs.getString("RAISENO");
 				String website = rs.getString("website");
-//				Blob orgimage = rs.getBlob("orgImage");//
+				// Blob orgimage = rs.getBlob("orgImage");//
 				String orgfileName = rs.getString("orgFileName");//
-				
-				MemberBean mb = new MemberBean(userType, postDate, indId, indPassword, 
-						indName, indPhone, indEmail, indAddress,null,indFileName);
-				OrgBean ob = new OrgBean(indId,updatetime, intro, leader, orgtypes, 
-						registerno, raiseno,website,null,orgfileName);
 
-
+				MemberBean mb = new MemberBean(userType, postDate, indId, indPassword, indName, indPhone, indEmail,
+						indAddress, null, indFileName);
+				OrgBean ob = new OrgBean(indId, updatetime, intro, leader, orgtypes, registerno, raiseno, website, null,
+						orgfileName);
 
 				obj.add(mb);
 				obj.add(ob);
-			
+
 			}
 		} finally {
 			if (rs != null) {
@@ -263,24 +244,19 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 				connection.close();
 			}
 		}
-		if(!obj.isEmpty()){
+		if (!obj.isEmpty()) {
 			return obj;
-		}else{
+		} else {
 			return obj2;
 		}
 	}
-	
-	//讀取==>一般會員
+
+	// 讀取==>一般會員
 	public List<Object> populateMember2(String pk) throws SQLException {
 		// 由Database讀取會員資料
 		List<Object> obj = new ArrayList<>();
-		String sql = 
-		"SELECT *"+ 
-		"From ind "+
-		"where indid=?";
-		
+		String sql = "SELECT *" + "From ind " + "where indid=?";
 
-		
 		Connection connection = null;
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
@@ -290,29 +266,26 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 			pStmt.setString(1, pk);
 			rs = pStmt.executeQuery();
 			if (rs.next()) {
-				
+
 				int userType = rs.getInt("userType");
-				java.sql.Timestamp postDate = rs.getTimestamp("postDate");				
+				java.sql.Timestamp postDate = rs.getTimestamp("postDate");
 				String indId = rs.getString("indId").trim(); // 必須確定
 																// rs.getString("memberID")
 																// 不是null才能
 																// .trim()
-				String indPassword = rs.getString("indPassword").trim();				
+				String indPassword = rs.getString("indPassword").trim();
 				String indName = rs.getString("indName").trim();
 				String indPhone = rs.getString("indPhone");
-				String indEmail = rs.getString("indEmail");				
+				String indEmail = rs.getString("indEmail");
 				String indAddress = rs.getString("indAddress");
-//				Blob indImage = rs.getBlob("indImage");//
+				// Blob indImage = rs.getBlob("indImage");//
 				String indFileName = rs.getString("indFileName");//
-				
 
-				MemberBean mb = new MemberBean(userType, postDate, indId, indPassword, 
-						indName, indPhone, indEmail, indAddress,null,indFileName);
-
+				MemberBean mb = new MemberBean(userType, postDate, indId, indPassword, indName, indPhone, indEmail,
+						indAddress, null, indFileName);
 
 				obj.add(mb);
-				
-				
+
 			}
 		} finally {
 			if (rs != null) {
@@ -324,40 +297,39 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 		}
 		return obj;
 	}
-	
-	
+
 	// 更新一般會員==>修改圖片
-	synchronized public int updateMember(MemberBean mb, InputStream is,
-			long size, String filename) throws SQLException {
+	synchronized public int updateMember(MemberBean mb, InputStream is, long size, String filename)
+			throws SQLException {
 		PreparedStatement pstmt1 = null;
 		Connection conn = ds.getConnection();
 		int r = 0;
-		
+
 		if (size == -1) { // 不修改圖片
 			r = updateMember2(mb);
 			return r;
 		}
-		
+
 		try {
-			String sql1 = " update ind " 
-					+" set indName=?, indPhone=?, indEmail=?, "
-					+" indAddress=?, indImage=?, indFileName=?"
-			  		+" where indId=? " ;
-			
+			String sql1 = " update ind " + " set indName=?, indPhone=?, indEmail=?, "
+					+ " indAddress=?, indImage=?, indFileName=?" + " where indId=? ";
+
 			pstmt1 = conn.prepareStatement(sql1);
-	         
-//	          String encrypedString = GlobalService.encryptString(mb.getIndpassword());
-//			  pstmt1.setString(1, GlobalService.getMD5Endocing(encrypedString));
-	          pstmt1.setString(1, mb.getIndname());
-	          pstmt1.setString(2, mb.getIndphone());
-	          pstmt1.setString(3, mb.getIndemail());
-	          pstmt1.setString(4, mb.getIndaddress());   
-	          // 設定Image欄位
-				pstmt1.setBinaryStream(5, is, size);
-				pstmt1.setString(6, filename);
-				pstmt1.setString(7, mb.getIndid());
-				r = pstmt1.executeUpdate();								
-						
+
+			// String encrypedString =
+			// GlobalService.encryptString(mb.getIndpassword());
+			// pstmt1.setString(1,
+			// GlobalService.getMD5Endocing(encrypedString));
+			pstmt1.setString(1, mb.getIndname());
+			pstmt1.setString(2, mb.getIndphone());
+			pstmt1.setString(3, mb.getIndemail());
+			pstmt1.setString(4, mb.getIndaddress());
+			// 設定Image欄位
+			pstmt1.setBinaryStream(5, is, size);
+			pstmt1.setString(6, filename);
+			pstmt1.setString(7, mb.getIndid());
+			r = pstmt1.executeUpdate();
+
 		} finally {
 			// 關閉相關的物件
 			if (pstmt1 != null) {
@@ -377,28 +349,28 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 		}
 		return r;
 	}
-	
+
 	// 更新一般會員==>不修改圖片
 	synchronized public int updateMember2(MemberBean mb) throws SQLException {
 		PreparedStatement pstmt1 = null;
 		Connection conn = ds.getConnection();
-		int r = 0;				
+		int r = 0;
 		try {
-			String sql1 = " update ind " 
-					+" set indName=?, indPhone=?, indEmail=?, "
-					+" indAddress=?"
-			  		+" where indId=? " ;
-			
-			pstmt1 = conn.prepareStatement(sql1);	         
-//	          String encrypedString = GlobalService.encryptString(mb.getIndpassword());
-//			  pstmt1.setString(1, GlobalService.getMD5Endocing(encrypedString));
-	          pstmt1.setString(1, mb.getIndname());
-	          pstmt1.setString(2, mb.getIndphone());
-	          pstmt1.setString(3, mb.getIndemail());
-	          pstmt1.setString(4, mb.getIndaddress());   	          
-				pstmt1.setString(5, mb.getIndid());
-				r = pstmt1.executeUpdate();								
-						
+			String sql1 = " update ind " + " set indName=?, indPhone=?, indEmail=?, " + " indAddress=?"
+					+ " where indId=? ";
+
+			pstmt1 = conn.prepareStatement(sql1);
+			// String encrypedString =
+			// GlobalService.encryptString(mb.getIndpassword());
+			// pstmt1.setString(1,
+			// GlobalService.getMD5Endocing(encrypedString));
+			pstmt1.setString(1, mb.getIndname());
+			pstmt1.setString(2, mb.getIndphone());
+			pstmt1.setString(3, mb.getIndemail());
+			pstmt1.setString(4, mb.getIndaddress());
+			pstmt1.setString(5, mb.getIndid());
+			r = pstmt1.executeUpdate();
+
 		} finally {
 			// 關閉相關的物件
 			if (pstmt1 != null) {
@@ -418,83 +390,78 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 		}
 		return r;
 	}
-	
-	
+
 	// 更新社福會員==>會員表格|社福表格==>修改圖片
-	synchronized public int updateOrg(MemberBean mb,OrgBean ob, InputStream is,
-			long size, String filename, InputStream is2,
-			long size2, String filename2) throws SQLException {
+	synchronized public int updateOrg(MemberBean mb, OrgBean ob, InputStream is, long size, String filename,
+			InputStream is2, long size2, String filename2) throws SQLException {
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
 		Connection conn = ds.getConnection();
 		int r = 0;
-		
-		
+
 		// 更新社福會員==>不修改圖片
-		if (size == -1 && size2 == -1) { 
-			r = updateOrg4(mb,ob,is,size,filename,is2,size2,filename2);
+		if (size == -1 && size2 == -1) {
+			r = updateOrg4(mb, ob, is, size, filename, is2, size2, filename2);
 			return r;
 		}
 		// 會員表格不改圖==>社福表格改圖
-		if (size == -1) { 
-			r = updateOrg2(mb,ob,is,size,filename,is2,size2,filename2);
+		if (size == -1) {
+			r = updateOrg2(mb, ob, is, size, filename, is2, size2, filename2);
 			return r;
 		}
-		 // 社福表格不改圖==>會員表格改圖
+		// 社福表格不改圖==>會員表格改圖
 		if (size2 == -1) {
-			r = updateOrg3(mb,ob,is,size,filename,is2,size2,filename2);
+			r = updateOrg3(mb, ob, is, size, filename, is2, size2, filename2);
 			return r;
-		}		
-		
-		
+		}
+
 		try {
 			conn.setAutoCommit(false);
-			
-			String sql1 = " update ind " 
-					+" set indName=?, indPhone=?, indEmail=?, "
-					+" indAddress=?, indImage=?, indFileName=?"
-			  		+" where indId=? " ;			
-			pstmt1 = conn.prepareStatement(sql1);	         
-//	          String encrypedString = GlobalService.encryptString(mb.getIndpassword());
-//			  pstmt1.setString(1, GlobalService.getMD5Endocing(encrypedString));
-	          pstmt1.setString(1, mb.getIndname());
-	          pstmt1.setString(2, mb.getIndphone());
-	          pstmt1.setString(3, mb.getIndemail());
-	          pstmt1.setString(4, mb.getIndaddress());   
-	          // 設定Image欄位
-				pstmt1.setBinaryStream(5, is, size);
-				pstmt1.setString(6, filename);
-				pstmt1.setString(7, mb.getIndid());
-				r = pstmt1.executeUpdate();			
 
-				
-			String sql2 = " update org " 
-					+" set intro=?, leader=?, orgtypes=?, registerno=?, "
-					+" raiseno=?, website=?, orgimage=?, orgfilename=?"
-			  		+" where indId=? " ;
-			  pstmt2 = conn.prepareStatement(sql2);
-//			  pstmt2.setString(1, mb.getIndid());          
-//	          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
-//	          pstmt2.setTimestamp(2, now2);
-	          pstmt2.setString(1, ob.getIntro());
-	          pstmt2.setString(2, ob.getLeader());
-	          pstmt2.setInt(3, ob.getOrgtypes());
-	          pstmt2.setString(4, ob.getRegisterno());
-	          pstmt2.setString(5, ob.getRaiseno());
-	          pstmt2.setString(6, ob.getWebsite());	
-	          
-	          // 設定Image欄位
-				pstmt2.setBinaryStream(7, is2, size2);
-				pstmt2.setString(8, filename2);
-				pstmt2.setString(9, ob.getIndid());
-				r = pstmt2.executeUpdate();	
-				
-				conn.commit();  
-		}catch(SQLException ex){
+			String sql1 = " update ind " + " set indName=?, indPhone=?, indEmail=?, "
+					+ " indAddress=?, indImage=?, indFileName=?" + " where indId=? ";
+			pstmt1 = conn.prepareStatement(sql1);
+			// String encrypedString =
+			// GlobalService.encryptString(mb.getIndpassword());
+			// pstmt1.setString(1,
+			// GlobalService.getMD5Endocing(encrypedString));
+			pstmt1.setString(1, mb.getIndname());
+			pstmt1.setString(2, mb.getIndphone());
+			pstmt1.setString(3, mb.getIndemail());
+			pstmt1.setString(4, mb.getIndaddress());
+			// 設定Image欄位
+			pstmt1.setBinaryStream(5, is, size);
+			pstmt1.setString(6, filename);
+			pstmt1.setString(7, mb.getIndid());
+			r = pstmt1.executeUpdate();
+
+			String sql2 = " update org " + " set intro=?, leader=?, orgtypes=?, registerno=?, "
+					+ " raiseno=?, website=?, orgimage=?, orgfilename=?" + " where indId=? ";
+			pstmt2 = conn.prepareStatement(sql2);
+			// pstmt2.setString(1, mb.getIndid());
+			// java.sql.Timestamp now2 = new
+			// java.sql.Timestamp(System.currentTimeMillis());
+			// pstmt2.setTimestamp(2, now2);
+			pstmt2.setString(1, ob.getIntro());
+			pstmt2.setString(2, ob.getLeader());
+			pstmt2.setInt(3, ob.getOrgtypes());
+			pstmt2.setString(4, ob.getRegisterno());
+			pstmt2.setString(5, ob.getRaiseno());
+			pstmt2.setString(6, ob.getWebsite());
+
+			// 設定Image欄位
+			pstmt2.setBinaryStream(7, is2, size2);
+			pstmt2.setString(8, filename2);
+			pstmt2.setString(9, ob.getIndid());
+			r = pstmt2.executeUpdate();
+
+			conn.commit();
+		} catch (SQLException ex) {
 			ex.printStackTrace();
 			System.out.println("資料還原");
-			if(conn!=null) conn.rollback();			
-			
+			if (conn != null)
+				conn.rollback();
+
 		} finally {
 			// 關閉相關的物件
 			if (pstmt1 != null) {
@@ -504,7 +471,7 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 					e.printStackTrace();
 				}
 			}
-			
+
 			if (pstmt2 != null) {
 				try {
 					pstmt2.close();
@@ -512,9 +479,9 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 					e.printStackTrace();
 				}
 			}
-			if(conn!=null) conn.setAutoCommit(true);
-			
-			
+			if (conn != null)
+				conn.setAutoCommit(true);
+
 			if (conn != null) {
 				try {
 					conn.close();
@@ -522,62 +489,61 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 					System.err.println("關閉相關物件時發生例外: " + e);
 				}
 			}
-		}		
+		}
 		return r;
 	}
+
 	// 更新社福會員==>會員表格不改圖==>社福表格改圖
-	synchronized public int updateOrg2(MemberBean mb,OrgBean ob, InputStream is,
-			long size, String filename, InputStream is2,
-			long size2, String filename2) throws SQLException {
+	synchronized public int updateOrg2(MemberBean mb, OrgBean ob, InputStream is, long size, String filename,
+			InputStream is2, long size2, String filename2) throws SQLException {
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
 		Connection conn = ds.getConnection();
-		int r = 0;		
-		
+		int r = 0;
+
 		try {
 			conn.setAutoCommit(false);
-			
-			String sql1 = " update ind " 
-					+" set indName=?, indPhone=?, indEmail=?, "
-					+" indAddress=?"
-			  		+" where indId=? " ;			
-			pstmt1 = conn.prepareStatement(sql1);	         
-//	          String encrypedString = GlobalService.encryptString(mb.getIndpassword());
-//			  pstmt1.setString(1, GlobalService.getMD5Endocing(encrypedString));
-	          pstmt1.setString(1, mb.getIndname());
-	          pstmt1.setString(2, mb.getIndphone());
-	          pstmt1.setString(3, mb.getIndemail());
-	          pstmt1.setString(4, mb.getIndaddress());
-				pstmt1.setString(5, mb.getIndid());
-				r = pstmt1.executeUpdate();			
 
-				
-			String sql2 = " update org " 
-					+" set intro=?, leader=?, orgtypes=?, registerno=?, "
-					+" raiseno=?,website=?, orgimage=?, orgfilename=?"
-			  		+" where indId=? " ;
-			  pstmt2 = conn.prepareStatement(sql2);
-//			  pstmt2.setString(1, mb.getIndid());          
-//	          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
-//	          pstmt2.setTimestamp(2, now2);
-	          pstmt2.setString(1, ob.getIntro());
-	          pstmt2.setString(2, ob.getLeader());
-	          pstmt2.setInt(3, ob.getOrgtypes());
-	          pstmt2.setString(4, ob.getRegisterno());
-	          pstmt2.setString(5, ob.getRaiseno());
-	          pstmt2.setString(6, ob.getWebsite());
-	          // 設定Image欄位
-				pstmt2.setBinaryStream(7, is2, size2);
-				pstmt2.setString(8, filename2);
-				pstmt2.setString(9, ob.getIndid());
-				r = pstmt2.executeUpdate();	
-				
-				conn.commit();  
-		}catch(SQLException ex){
+			String sql1 = " update ind " + " set indName=?, indPhone=?, indEmail=?, " + " indAddress=?"
+					+ " where indId=? ";
+			pstmt1 = conn.prepareStatement(sql1);
+			// String encrypedString =
+			// GlobalService.encryptString(mb.getIndpassword());
+			// pstmt1.setString(1,
+			// GlobalService.getMD5Endocing(encrypedString));
+			pstmt1.setString(1, mb.getIndname());
+			pstmt1.setString(2, mb.getIndphone());
+			pstmt1.setString(3, mb.getIndemail());
+			pstmt1.setString(4, mb.getIndaddress());
+			pstmt1.setString(5, mb.getIndid());
+			r = pstmt1.executeUpdate();
+
+			String sql2 = " update org " + " set intro=?, leader=?, orgtypes=?, registerno=?, "
+					+ " raiseno=?,website=?, orgimage=?, orgfilename=?" + " where indId=? ";
+			pstmt2 = conn.prepareStatement(sql2);
+			// pstmt2.setString(1, mb.getIndid());
+			// java.sql.Timestamp now2 = new
+			// java.sql.Timestamp(System.currentTimeMillis());
+			// pstmt2.setTimestamp(2, now2);
+			pstmt2.setString(1, ob.getIntro());
+			pstmt2.setString(2, ob.getLeader());
+			pstmt2.setInt(3, ob.getOrgtypes());
+			pstmt2.setString(4, ob.getRegisterno());
+			pstmt2.setString(5, ob.getRaiseno());
+			pstmt2.setString(6, ob.getWebsite());
+			// 設定Image欄位
+			pstmt2.setBinaryStream(7, is2, size2);
+			pstmt2.setString(8, filename2);
+			pstmt2.setString(9, ob.getIndid());
+			r = pstmt2.executeUpdate();
+
+			conn.commit();
+		} catch (SQLException ex) {
 			ex.printStackTrace();
 			System.out.println("資料還原");
-			if(conn!=null) conn.rollback();			
-			
+			if (conn != null)
+				conn.rollback();
+
 		} finally {
 			// 關閉相關的物件
 			if (pstmt1 != null) {
@@ -587,7 +553,7 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 					e.printStackTrace();
 				}
 			}
-			
+
 			if (pstmt2 != null) {
 				try {
 					pstmt2.close();
@@ -595,9 +561,9 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 					e.printStackTrace();
 				}
 			}
-			if(conn!=null) conn.setAutoCommit(true);
-			
-			
+			if (conn != null)
+				conn.setAutoCommit(true);
+
 			if (conn != null) {
 				try {
 					conn.close();
@@ -605,255 +571,228 @@ public class RegisterServiceDAO_JDBC implements RegisterServiceDAO {
 					System.err.println("關閉相關物件時發生例外: " + e);
 				}
 			}
-		}		
+		}
 		return r;
 	}
-	
-	
+
 	// 更新社福會員==>社福表格不改圖==>會員表格改圖
-		synchronized public int updateOrg3(MemberBean mb,OrgBean ob, InputStream is,
-				long size, String filename, InputStream is2,
-				long size2, String filename2) throws SQLException {
-			PreparedStatement pstmt1 = null;
-			PreparedStatement pstmt2 = null;
-			Connection conn = ds.getConnection();
-			int r = 0;		
-			
-			try {
-				conn.setAutoCommit(false);
-				
-				String sql1 = " update ind " 
-						+" set indName=?, indPhone=?, indEmail=?, "
-						+" indAddress=?, indImage=?, indFileName=?"
-				  		+" where indId=? " ;			
-				pstmt1 = conn.prepareStatement(sql1);	         
-//		          String encrypedString = GlobalService.encryptString(mb.getIndpassword());
-//				  pstmt1.setString(1, GlobalService.getMD5Endocing(encrypedString));
-		          pstmt1.setString(1, mb.getIndname());
-		          pstmt1.setString(2, mb.getIndphone());
-		          pstmt1.setString(3, mb.getIndemail());
-		          pstmt1.setString(4, mb.getIndaddress());
-		          // 設定Image欄位
-					pstmt1.setBinaryStream(5, is, size);
-					pstmt1.setString(6, filename);
-					pstmt1.setString(7, mb.getIndid());
-					r = pstmt1.executeUpdate();			
+	synchronized public int updateOrg3(MemberBean mb, OrgBean ob, InputStream is, long size, String filename,
+			InputStream is2, long size2, String filename2) throws SQLException {
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		Connection conn = ds.getConnection();
+		int r = 0;
 
-					
-				String sql2 = " update org " 
-						+" set intro=?, leader=?, orgtypes=?, registerno=?, "
-						+" raiseno=?,website=?"
-				  		+" where indId=? " ;
-				  pstmt2 = conn.prepareStatement(sql2);
-//				  pstmt2.setString(1, mb.getIndid());          
-//		          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
-//		          pstmt2.setTimestamp(2, now2);
-		          pstmt2.setString(1, ob.getIntro());
-		          pstmt2.setString(2, ob.getLeader());
-		          pstmt2.setInt(3, ob.getOrgtypes());
-		          pstmt2.setString(4, ob.getRegisterno());
-		          pstmt2.setString(5, ob.getRaiseno());
-		          pstmt2.setString(6, ob.getWebsite());	
-					pstmt2.setString(7, ob.getIndid());
-					r = pstmt2.executeUpdate();	
-					
-					conn.commit();  
-			}catch(SQLException ex){
-				ex.printStackTrace();
-				System.out.println("資料還原");
-				if(conn!=null) conn.rollback();			
-				
-			} finally {
-				// 關閉相關的物件
-				if (pstmt1 != null) {
-					try {
-						pstmt1.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				
-				if (pstmt2 != null) {
-					try {
-						pstmt2.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				if(conn!=null) conn.setAutoCommit(true);
-				
-				
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (Exception e) {
-						System.err.println("關閉相關物件時發生例外: " + e);
-					}
-				}
-			}		
-			return r;
-		}
+		try {
+			conn.setAutoCommit(false);
 
-	
-	// 更新社福會員==>不修改圖片
-		synchronized public int updateOrg4(MemberBean mb,OrgBean ob, InputStream is,
-				long size, String filename, InputStream is2,
-				long size2, String filename2) throws SQLException {
-			PreparedStatement pstmt1 = null;
-			PreparedStatement pstmt2 = null;
-			Connection conn = ds.getConnection();
-			int r = 0;		
-			
-			try {
-				conn.setAutoCommit(false);
-				
-				String sql1 = " update ind " 
-						+" set indName=?, indPhone=?, indEmail=?, "
-						+" indAddress=?"
-				  		+" where indId=? " ;			
-				pstmt1 = conn.prepareStatement(sql1);	         
-//		          String encrypedString = GlobalService.encryptString(mb.getIndpassword());
-//				  pstmt1.setString(1, GlobalService.getMD5Endocing(encrypedString));
-		          pstmt1.setString(1, mb.getIndname());
-		          pstmt1.setString(2, mb.getIndphone());
-		          pstmt1.setString(3, mb.getIndemail());
-		          pstmt1.setString(4, mb.getIndaddress());
-					pstmt1.setString(5, mb.getIndid());
-					r = pstmt1.executeUpdate();			
+			String sql1 = " update ind " + " set indName=?, indPhone=?, indEmail=?, "
+					+ " indAddress=?, indImage=?, indFileName=?" + " where indId=? ";
+			pstmt1 = conn.prepareStatement(sql1);
+			// String encrypedString =
+			// GlobalService.encryptString(mb.getIndpassword());
+			// pstmt1.setString(1,
+			// GlobalService.getMD5Endocing(encrypedString));
+			pstmt1.setString(1, mb.getIndname());
+			pstmt1.setString(2, mb.getIndphone());
+			pstmt1.setString(3, mb.getIndemail());
+			pstmt1.setString(4, mb.getIndaddress());
+			// 設定Image欄位
+			pstmt1.setBinaryStream(5, is, size);
+			pstmt1.setString(6, filename);
+			pstmt1.setString(7, mb.getIndid());
+			r = pstmt1.executeUpdate();
 
-					
-				String sql2 = " update org " 
-						+" set intro=?, leader=?, orgtypes=?, registerno=?, "
-						+" raiseno=?,website=?"
-				  		+" where indId=? " ;
-				  pstmt2 = conn.prepareStatement(sql2);
-//				  pstmt2.setString(1, mb.getIndid());          
-//		          java.sql.Timestamp now2 = new java.sql.Timestamp(System.currentTimeMillis());
-//		          pstmt2.setTimestamp(2, now2);
-		          pstmt2.setString(1, ob.getIntro());
-		          pstmt2.setString(2, ob.getLeader());
-		          pstmt2.setInt(3, ob.getOrgtypes());
-		          pstmt2.setString(4, ob.getRegisterno());
-		          pstmt2.setString(5, ob.getRaiseno());
-		          pstmt2.setString(6, ob.getWebsite());
-					pstmt2.setString(7, ob.getIndid());
-					r = pstmt2.executeUpdate();	
-					
-					conn.commit();  
-			}catch(SQLException ex){
-				ex.printStackTrace();
-				System.out.println("資料還原");
-				if(conn!=null) conn.rollback();			
-				
-			} finally {
-				// 關閉相關的物件
-				if (pstmt1 != null) {
-					try {
-						pstmt1.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				
-				if (pstmt2 != null) {
-					try {
-						pstmt2.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				if(conn!=null) conn.setAutoCommit(true);
-				
-				
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (Exception e) {
-						System.err.println("關閉相關物件時發生例外: " + e);
-					}
-				}
-			}		
-			return r;
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// 更新會員密碼
-		synchronized public int updateMemberPassword(MemberBean mb, String newpassword) throws SQLException {
-			PreparedStatement pstmt1 = null;
-			Connection conn = ds.getConnection();
-			int r = 0;
-			
-			try {
-				String sql1 = " update ind " 
-						+" set indPassword=? "
-				  		+" where indId=? " ;
-				
-				pstmt1 = conn.prepareStatement(sql1);		         
-//		          String encrypedString = GlobalService.encryptString(mb.getIndpassword());
-//				  pstmt1.setString(1, GlobalService.getMD5Endocing(encrypedString));
-				pstmt1.setString(1, newpassword);
-				pstmt1.setString(2, mb.getIndid());
-				r = pstmt1.executeUpdate();								
-							
-			} finally {
-				// 關閉相關的物件
-				if (pstmt1 != null) {
-					try {
-						pstmt1.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (Exception e) {
-						System.err.println("關閉相關物件時發生例外: " + e);
-					}
+			String sql2 = " update org " + " set intro=?, leader=?, orgtypes=?, registerno=?, " + " raiseno=?,website=?"
+					+ " where indId=? ";
+			pstmt2 = conn.prepareStatement(sql2);
+			// pstmt2.setString(1, mb.getIndid());
+			// java.sql.Timestamp now2 = new
+			// java.sql.Timestamp(System.currentTimeMillis());
+			// pstmt2.setTimestamp(2, now2);
+			pstmt2.setString(1, ob.getIntro());
+			pstmt2.setString(2, ob.getLeader());
+			pstmt2.setInt(3, ob.getOrgtypes());
+			pstmt2.setString(4, ob.getRegisterno());
+			pstmt2.setString(5, ob.getRaiseno());
+			pstmt2.setString(6, ob.getWebsite());
+			pstmt2.setString(7, ob.getIndid());
+			r = pstmt2.executeUpdate();
+
+			conn.commit();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			System.out.println("資料還原");
+			if (conn != null)
+				conn.rollback();
+
+		} finally {
+			// 關閉相關的物件
+			if (pstmt1 != null) {
+				try {
+					pstmt1.close();
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
-			return r;
+
+			if (pstmt2 != null) {
+				try {
+					pstmt2.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null)
+				conn.setAutoCommit(true);
+
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (Exception e) {
+					System.err.println("關閉相關物件時發生例外: " + e);
+				}
+			}
 		}
-	
-		
-		
-		
-		
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		return r;
+	}
+
+	// 更新社福會員==>不修改圖片
+	synchronized public int updateOrg4(MemberBean mb, OrgBean ob, InputStream is, long size, String filename,
+			InputStream is2, long size2, String filename2) throws SQLException {
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		Connection conn = ds.getConnection();
+		int r = 0;
+
+		try {
+			conn.setAutoCommit(false);
+
+			String sql1 = " update ind " + " set indName=?, indPhone=?, indEmail=?, " + " indAddress=?"
+					+ " where indId=? ";
+			pstmt1 = conn.prepareStatement(sql1);
+			// String encrypedString =
+			// GlobalService.encryptString(mb.getIndpassword());
+			// pstmt1.setString(1,
+			// GlobalService.getMD5Endocing(encrypedString));
+			pstmt1.setString(1, mb.getIndname());
+			pstmt1.setString(2, mb.getIndphone());
+			pstmt1.setString(3, mb.getIndemail());
+			pstmt1.setString(4, mb.getIndaddress());
+			pstmt1.setString(5, mb.getIndid());
+			r = pstmt1.executeUpdate();
+
+			String sql2 = " update org " + " set intro=?, leader=?, orgtypes=?, registerno=?, " + " raiseno=?,website=?"
+					+ " where indId=? ";
+			pstmt2 = conn.prepareStatement(sql2);
+			// pstmt2.setString(1, mb.getIndid());
+			// java.sql.Timestamp now2 = new
+			// java.sql.Timestamp(System.currentTimeMillis());
+			// pstmt2.setTimestamp(2, now2);
+			pstmt2.setString(1, ob.getIntro());
+			pstmt2.setString(2, ob.getLeader());
+			pstmt2.setInt(3, ob.getOrgtypes());
+			pstmt2.setString(4, ob.getRegisterno());
+			pstmt2.setString(5, ob.getRaiseno());
+			pstmt2.setString(6, ob.getWebsite());
+			pstmt2.setString(7, ob.getIndid());
+			r = pstmt2.executeUpdate();
+
+			conn.commit();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			System.out.println("資料還原");
+			if (conn != null)
+				conn.rollback();
+
+		} finally {
+			// 關閉相關的物件
+			if (pstmt1 != null) {
+				try {
+					pstmt1.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (pstmt2 != null) {
+				try {
+					pstmt2.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null)
+				conn.setAutoCommit(true);
+
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (Exception e) {
+					System.err.println("關閉相關物件時發生例外: " + e);
+				}
+			}
+		}
+		return r;
+	}
+
+	// 更新會員密碼
+	synchronized public int updateMemberPassword(MemberBean mb, String newpassword) throws SQLException {
+		PreparedStatement pstmt1 = null;
+		Connection conn = ds.getConnection();
+		int r = 0;
+
+		try {
+			String sql1 = " update ind " + " set indPassword=? " + " where indId=? ";
+
+			pstmt1 = conn.prepareStatement(sql1);
+			// String encrypedString =
+			// GlobalService.encryptString(mb.getIndpassword());
+			// pstmt1.setString(1,
+			// GlobalService.getMD5Endocing(encrypedString));
+			pstmt1.setString(1, newpassword);
+			pstmt1.setString(2, mb.getIndid());
+			r = pstmt1.executeUpdate();
+
+		} finally {
+			// 關閉相關的物件
+			if (pstmt1 != null) {
+				try {
+					pstmt1.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (Exception e) {
+					System.err.println("關閉相關物件時發生例外: " + e);
+				}
+			}
+		}
+		return r;
+	}
+
+	@Override
+	public String GetNameByKey(String key) {
+		String Ans = "FALSE|NOT_Found";
+		try (Connection conn = ds.getConnection();
+				PreparedStatement pst = conn.prepareStatement("SELECT INDNAME FROM IND WHERE INDID=?");) {
+			pst.setString(1, key);
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				Ans = "TRUE|";
+				Ans += rs.getString(1);
+			}
+			rs.close();
+			System.out.println("Ans=" + Ans);
+		} catch (SQLException e) {
+			Ans = "FALSE|SQL_ERROR";
+			e.printStackTrace();
+		}
+
+		return Ans;
+	}
+
 }
