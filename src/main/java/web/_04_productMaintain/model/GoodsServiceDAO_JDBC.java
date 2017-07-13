@@ -27,6 +27,51 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO, Serializable {
 		Context ctx = new InitialContext();
 		ds = (DataSource) ctx.lookup(GlobalService.JNDI_DB_NAME);
 	}
+	
+	//透過社福團體id取得物資需求
+	public List<GoodsBean> queryGoodsByIndId(String indid,long now) throws SQLException {
+		List<GoodsBean> list = new ArrayList<>();
+		Connection con = ds.getConnection();
+		try {
+			String sql = "SELECT g.goodsno, g.goodsstatus, g.updatetime, g.indid, g.goodstype, "
+					+ "g.goodsname, g.goodsloc, g.goodsnote, g.qty, g.goodsshipway,g.deadline,"
+					+ "g.goodsimage,g.goodsfilename,i.indname,gt.goodsname,l.localname"
+					+ " FROM goods g JOIN ind i ON g.indid = i.indid"
+					+ " INNER JOIN goodstype gt ON g.goodstype = gt.goodstypeno"
+					+ " INNER JOIN LOCAL l ON g.goodsloc = l.localno"
+					+ " Where g.indid = ? and g.deadline > ? AND g.qty > 0 "
+					+ " ORDER BY g.updatetime DESC;";
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, indid);
+			stmt.setLong(2, now);
+			ResultSet rs = stmt.executeQuery();			
+			while (rs.next()) {
+				GoodsBean bean = new GoodsBean();
+				bean.setGoodsno(rs.getInt(1));
+				bean.setGoodsstatus(rs.getInt(2));
+				bean.setUpdatetime(rs.getTimestamp(3));
+				bean.setIndid(rs.getString(4));
+				bean.setGoodstype(rs.getInt(5));
+				bean.setGoodsname(rs.getString(6));
+				bean.setGoodsloc(rs.getInt(7));
+				bean.setGoodsnote(rs.getString(8));
+				bean.setQty(rs.getInt(9));
+				bean.setGoodsshipway(rs.getInt(10));
+				bean.setDeadline(rs.getLong(11));
+				bean.setGoodsimage(rs.getBlob(12));
+				bean.setGoodsfilename(rs.getString(13));				
+				bean.setIndname_TEMP(rs.getString(14));
+				bean.setGoodsname_TEMP(rs.getString(15));
+				bean.setLocalname_TEMP(rs.getString(16));
+				list.add(bean);
+			}
+		} finally {
+			con.close();
+		}
+		return list;
+	}
+	
 
 	// 透過物資編號搜尋該筆物資資料
 	public List<GoodsBean> queryGoodsByGoodsno(String goodsno) throws SQLException {
@@ -364,8 +409,8 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO, Serializable {
 				bean.setGoodsnote(rs.getString(8));
 				bean.setQty(rs.getInt(9));
 				bean.setGoodsshipway(rs.getInt(10));
-				// bean.setDeadline(rs.getLong(11));
-				bean.setDeadlinestring(new SimpleDateFormat("yyyy-MM-dd").format(new Date(rs.getLong(11))));
+				 bean.setDeadline(rs.getLong(11));
+//				bean.setDeadlinestring(new SimpleDateFormat("yyyy-MM-dd").format(new Date(rs.getLong(11))));
 				bean.setGoodsimage(rs.getBlob(12));
 				bean.setGoodsfilename(rs.getString(13));
 				bean.setIndname_TEMP(rs.getString(14));
@@ -378,6 +423,9 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO, Serializable {
 		}
 		return list;
 	}
+	
+	
+	
 
 	// 利用會員帳號(indid) + 截止日之前 ==> 找到該會員現存的所有物資箱紀錄
 	public List<GoodsBean> getGoodsByIndId(String indid, long now) throws SQLException {

@@ -29,5 +29,7 @@ public interface GoodsServiceDAO {
 	public List<GoodsBean> getGoodsByKeyword(String goodsstatusValue, String keyword) throws SQLException;
 
 	public List<GoodsBean> queryGoodsByGoodsno(String goodsno) throws SQLException;
+	
+	public List<GoodsBean> queryGoodsByIndId(String indid,long now) throws SQLException ;
 
 }
