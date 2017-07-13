@@ -29,6 +29,7 @@
 		<mapping class="app.message.MessageBean" />
 		<mapping class="app.message.MsgRoomBean" />
 		<mapping class="app.deal.DealBean" />
+		<mapping class="app.deal.FeedbackBean" />
 
 	</session-factory>
 </hibernate-configuration>

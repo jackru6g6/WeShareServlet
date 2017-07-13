@@ -46,18 +46,21 @@
         position: relative;
         width: 550px;
         height: 550px;
-        transform: rotate(0deg);
         transform-style: preserve-3d;
         z-index: 2;
         transform-origin: 50% 50%;
-        animation: flip1 0.5s ease-in-out forwards;
+        /* 顯示社福圖片 */
+        /* 顯示地圖 */
         /* 圖片 */
         /* 地圖 */ }
+        #sectionOrg #sectionOrgAbout .rowOrg .rowUpper.rotate0 {
+          transform: rotate(0deg);
+          animation: flipImg 0.5s ease-in-out forwards; }
         #sectionOrg #sectionOrgAbout .rowOrg .rowUpper.rotate180 {
           transform: rotateY(180deg);
-          animation: flip2 0.5s ease-in-out forwards; }
+          animation: flipMap 0.5s ease-in-out forwards; }
 
-@keyframes flip1 {
+@keyframes flipImg {
   0% {
     left: 550px;
     transform: rotateY(0deg) translateX(0) scale(1); }
@@ -69,7 +72,7 @@
     left: 0px;
     transform: rotateY(-360deg) translateX(0) scale(1); } }
 
-@keyframes flip2 {
+@keyframes flipMap {
   0% {
     left: 0px;
     transform: rotateY(0deg) translateX(0) scale(1); }

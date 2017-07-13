@@ -101,7 +101,13 @@ public class MemberServlet extends HttpServlet {
 				System.out.println("沒收到喔~");
 			}
 			os.write(image);// 送到client端
-		} else if (action.equals("userLogin")) {
+		}else if (action.equals("getMemberType")) {
+			String account = jsonObject.get("account").getAsString();
+			int type = mbDAO.getType(account);
+			System.out.println("帳號account: " + account);
+			writeText(response, String.valueOf(type));
+		} 
+		else if (action.equals("userLogin")) {
 			String userJson = jsonObject.get("user").getAsString();
 			MemberBean mb = gson.fromJson(userJson, MemberBean.class);// 轉為Spot物件
 			String userName = null;

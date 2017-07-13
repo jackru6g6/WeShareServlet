@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.Blob;
+import java.sql.Timestamp;
 import java.util.Base64;
 import java.util.List;
 
@@ -104,7 +105,28 @@ public class DealServlet extends HttpServlet {
 				System.out.println("沒收到喔~");
 			}
 			os.write(image);// 送到client端
-		} else if (action.equals("newDeal")) {
+		}else if (action.equals("getFbImage")) {
+			String fbNo = jsonObject.get("fbNo").getAsString();
+			int fbNon = Integer.valueOf(fbNo);
+			OutputStream os = response.getOutputStream();
+			// account = jsonObject.get("account").getAsString();
+			int imageSize = jsonObject.get("imageSize").getAsInt();
+			System.out.println("dealNo=" + fbNon + ", imageSize=" + imageSize);
+			byte[] image = deDAO.getFbImage(fbNon);
+			if (image != null) {
+				image = ImageUtil.shrink(image, imageSize);// ImageUtil縮圖
+				response.setContentType("image/jpeg");
+				response.setContentType("image/png");
+				// 只要送一張圖，就不用轉json，指定他傳送的型態，如果要用json就要用Base64
+				// // encode才能傳送
+				response.setContentLength(image.length);// 輸出圖的長度
+				System.out.println(image);
+			} else {
+				System.out.println("沒收到喔~");
+			}
+			os.write(image);// 送到client端
+		}
+		else if (action.equals("newDeal")) {
 			String dealJson = jsonObject.get("deal").getAsString();
 			DealBean deal = gson.fromJson(dealJson, DealBean.class);
 
@@ -145,7 +167,11 @@ public class DealServlet extends HttpServlet {
 				int dealNon = Integer.valueOf(dealNo);
 				DealBean deal = deDAO.getDealBean(dealNon);
 				System.out.println("dealNo=" + deal.getDealNo() + ", dealName=" + deal.getGoodsName());
-				deal.setDealStatus(1);
+				if (deal.getEndShipWay() == 0) {
+					deal.setDealStatus(2);
+				} else if (deal.getEndShipWay() == 1) {
+					deal.setDealStatus(1);
+				}
 				count = deDAO.update(deal);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -165,6 +191,83 @@ public class DealServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			writeText(response, String.valueOf(count));
+		} else if (action.equals("sendDealContext")) {
+			int count = 0;
+			try {
+				String dealNo = jsonObject.get("dealNo").getAsString();
+				int dealNon = Integer.valueOf(dealNo);
+				String shipNo = jsonObject.get("shipNo").getAsString();
+				DealBean deal = deDAO.getDealBean(dealNon);
+				System.out.println("dealNo=" + deal.getDealNo() + ", dealName=" + deal.getGoodsName());
+				deal.setShipNo(shipNo);
+				Timestamp ts = new Timestamp(new java.util.Date().getTime());
+				deal.setShipDate(ts);
+				deal.setDealStatus(2);
+				// deal.set
+				count = deDAO.update(deal);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			writeText(response, String.valueOf(count));
+		} else if (action.equals("snedFeedback")) {
+			int count = 0;
+			try {
+				String feedbackJson = jsonObject.get("fb").getAsString();
+				FeedbackBean feedback = gson.fromJson(feedbackJson, FeedbackBean.class);
+
+				String imageBase64 = jsonObject.get("imageBase64").getAsString();
+				System.out.println("imageBase64=" + imageBase64);
+				if (feedback.getFbFileName() == null) {
+					feedback.setFbImage(null);
+				} else {
+					byte[] image = null;
+					image = Base64.getMimeDecoder().decode(imageBase64);
+					Blob blob = null;
+					blob = new SerialBlob(image);
+					feedback.setFbImage(blob);
+				}
+				Timestamp ts = new Timestamp(new java.util.Date().getTime());
+				feedback.setPostDate(ts);
+				count = deDAO.saveFeedback(feedback);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			writeText(response, String.valueOf(count));
+		} else if (action.equals("checkFbExist")) {
+			int count = 0;
+			boolean checkFb = false;
+			List<FeedbackBean> listFb = null;
+			try {
+				String fb = jsonObject.get("fbNo").getAsString();
+				int fbNo = Integer.valueOf(fb);
+				checkFb = deDAO.isFbExists(fbNo);
+				if (checkFb == true) {
+					count = 1;
+					System.out.println("No=" + fb + "存在");
+				} else if (checkFb == false) {
+					count = -1;
+					System.out.println("No=" + fb + "不存在");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			writeText(response, String.valueOf(count));
+		} else if (action.equals("getFeedback")) {
+			int count = 0;
+			boolean checkFb = false;
+			List<FeedbackBean> listFb = null;
+			try {
+				String fb = jsonObject.get("fbNo").getAsString();
+				int fbNo = Integer.valueOf(fb);
+				listFb = deDAO.getFb(fbNo);
+				for (FeedbackBean pop : listFb) {
+					pop.setFbImage(null);
+					System.out.println("DealNo=" + pop.getDealNo() + ", FbText=" + pop.getFbText());
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			writeText(response, gson.toJson(listFb));
 		}
 
 	}

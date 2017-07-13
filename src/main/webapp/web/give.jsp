@@ -251,7 +251,7 @@
 							<!-- 右邊贈送物資 -->
 							<div id="divGiveGoods" class="row">
 								<!-- 右邊贈送物資第一列第一項 -->
-<!-- 								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"> -->
+<!-- 								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> -->
 <!-- 									<div class="giveGoods"> -->
 <!-- 										<a href="#" class="giveGoodsA"> -->
 <!-- 											贈送物資圖片 -->
@@ -304,7 +304,7 @@
 			var searchString = location.search.slice(1);
 			keyWordSearch(searchString);
 		} else {
-			window.onload = function(){					
+			window.onload = function(){
 				xhr.open('GET', servletPath, true);
 				xhr.send();
 				xhr.onreadystatechange = function(){

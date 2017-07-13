@@ -49,6 +49,18 @@ public class MemberBean {
 		this.password = password;
 	}
 
+	
+	
+	public MemberBean(String userId, String name, String tal, String email, String address, int idType) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.tal = tal;
+		this.email = email;
+		this.address = address;
+		this.idType = idType;
+	}
+
 	public MemberBean(String name, String tal, String email, String address, int idType) {
 		this.name = name;
 		this.tal = tal;
