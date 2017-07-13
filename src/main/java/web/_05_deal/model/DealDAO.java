@@ -30,13 +30,31 @@ public class DealDAO {
 			e.printStackTrace();
 		}
 	}
-
+	public String agreen_DEAL(String key, String INDID, String SHIPNO) {
+		String ans = "FALSE";
+		System.out.println("key=" + key + "  INDID=" + INDID + " SHIPNO=" + SHIPNO);
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con
+						.prepareStatement("UPDATE DEAL SET DEALSTATUS=1 ,SHIPNO=? WHERE DEALNO =? AND SOURCEID=? DEALSTATUS NOT IN(1,2,3)");) {
+			pstmt.setString(1, SHIPNO);
+			pstmt.setString(2, key);
+			pstmt.setString(3, INDID);
+			int buf = pstmt.executeUpdate();
+			if (buf == 1) {
+				ans = "TRUE";
+			}
+		} catch (Exception e) {
+			ans = "FALSE";
+			e.printStackTrace();
+		}
+		return ans;
+	}
 	public String OK_DEAL(String key, String INDID, String SHIPNO) {
 		String ans = "FALSE";
 		System.out.println("key=" + key + "  INDID=" + INDID + " SHIPNO=" + SHIPNO);
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con
-						.prepareStatement("UPDATE DEAL SET DEALSTATUS=1 ,SHIPNO=? WHERE DEALNO =? AND SOURCEID=? ");) {
+						.prepareStatement("UPDATE DEAL SET DEALSTATUS=2 ,SHIPNO=? WHERE DEALNO =? AND SOURCEID=? DEALSTATUS NOT IN(0,2,3)");) {
 			pstmt.setString(1, SHIPNO);
 			pstmt.setString(2, key);
 			pstmt.setString(3, INDID);
@@ -55,7 +73,7 @@ public class DealDAO {
 		String ans = "FALSE";
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con
-						.prepareStatement("UPDATE DEAL SET DEALSTATUS=2 WHERE DEALNO =? AND SOURCEID=? ");) {
+						.prepareStatement("UPDATE DEAL SET DEALSTATUS=3 WHERE DEALNO =? AND SOURCEID=? DEALSTATUS NOT IN(2,3)");) {
 			pstmt.setString(1, key);
 			pstmt.setString(2, INDID);
 			int buf = pstmt.executeUpdate();
