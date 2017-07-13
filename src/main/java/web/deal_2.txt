@@ -1,0 +1,17 @@
+1|google|1|aaaaa
+1|google|2|aaaaa
+1|google|18|aaaaa
+1|google|4|aaaaa 
+1|google|5|aaaaa 
+1|google|11|aaaaa
+1|google|8|aaaaa 
+1|google|9|aaaaa 
+3|google|10|aaaaa 
+3|google|17|aaaaa 
+3|kitty|6|aaaaa 
+3|micky|20|aaaaa 
+1|kitty|3|aaaaa 
+1|kitty|12|aaaaa 
+1|kitty|7|aaaaa 
+1|kitty|14|aaaaa 
+1|micky|19|aaaaa

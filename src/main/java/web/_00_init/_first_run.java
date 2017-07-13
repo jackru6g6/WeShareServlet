@@ -18,6 +18,7 @@ import javax.sql.rowset.serial.SerialBlob;
 
 import web._01_register.model.MemberBean;
 import web._01_register.model.OrgBean;
+import web._05_deal.model.DealDAO;
 
 public class _first_run {
 
@@ -109,6 +110,7 @@ public class _first_run {
 		org_data(con);
 		goods_data(con);
 		DEAL_DATA(con);
+		DEAL_DATA_defor(con);
 		MSG_DATA(con);
 	}
 
@@ -403,7 +405,98 @@ public class _first_run {
 			e.printStackTrace();
 		}
 	}
+
+	public static void DEAL_DATA_defor(Connection con) throws SQLException {
+		System.out.println("[DEAL_2]");
+		try (// java 7.0 提共自動關閉的資源
+				BufferedReader bf = new BufferedReader(
+						new InputStreamReader(new FileInputStream("src//main//java//web//deal_2.txt"), "UTF8"));) {
+			String Read_line = "";
+			while ((Read_line = bf.readLine()) != null) {
+				String[] sa = Read_line.split("\\|");
+				// sa[0]: 1 agreen 2 ok 3 cancel
+				switch (sa[0]) {
+				case "1":
+					if (!agreen_DEAL(con, sa[2], sa[1]).equals("TRUE")) {
+						System.out.println("1[ERROR] :" + sa[0] + "|" + sa[1] + "|" + sa[2] + "|" + sa[3]);
+					}
+					break;
+				case "2":
+					break;
+				case "3":
+					if (!CANCEL_DEAL(con, sa[2], sa[1]).equals("TRUE")) {
+						System.out.println("3[ERROR] :" + sa[0] + "|" + sa[1] + "|" + sa[2] + "|" + sa[3]);
+					}
+					break;
+				default:
+					System.out.println("4[ERROR] :" + sa[0] + "|" + sa[1] + "|" + sa[2] + "|" + sa[3]);
+					;
+				}
+				GlobalService.random_time_1_2();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static String agreen_DEAL(Connection con, String key, String INDID) {
+		String ans = "FALSE";
+		try (PreparedStatement pstmt = con.prepareStatement(
+				"UPDATE DEAL SET DEALSTATUS=1 WHERE (DEALNO =? AND ((ENDID=? AND GOODSSTATUS=1)OR(SOURCEID=? AND GOODSSTATUS=2)) AND DEALSTATUS=0) ");) {
+			pstmt.setString(1, key);
+			pstmt.setString(2, INDID);
+			pstmt.setString(3, INDID);
+			int buf = pstmt.executeUpdate();
+			System.out.println("buf=" + buf);
+			if (buf == 1) {
+				ans = "TRUE";
+			}
+		} catch (Exception e) {
+			ans = "FALSE";
+			e.printStackTrace();
+		}
+		return ans;
+	}
+
+	public static String OK_DEAL(Connection con, String key, String INDID) {
+		String ans = "FALSE";
+		try (PreparedStatement pstmt = con
+				.prepareStatement("UPDATE DEAL SET DEALSTATUS=2 WHERE (DEALNO =? AND SOURCEID=? AND DEALSTATUS=1");) {
+			pstmt.setString(1, key);
+			pstmt.setString(2, INDID);
+			pstmt.setString(3, INDID);
+			int buf = pstmt.executeUpdate();
+			if (buf == 1) {
+				ans = "TRUE";
+			}
+		} catch (Exception e) {
+			ans = "FALSE";
+			e.printStackTrace();
+		}
+		return ans;
+	}
+
+	public static String CANCEL_DEAL(Connection con, String key, String INDID) {
+		String ans = "FALSE";
+		try (PreparedStatement pstmt = con.prepareStatement(
+				"UPDATE DEAL SET DEALSTATUS=3 WHERE DEALNO =? AND (SOURCEID=? OR ENDID=?) AND DEALSTATUS IN(0,1)");) {
+			pstmt.setString(1, key);
+			pstmt.setString(2, INDID);
+			pstmt.setString(3, INDID);
+
+			int buf = pstmt.executeUpdate();
+			if (buf == 1) {
+				ans = "TRUE";
+			}
+		} catch (Exception e) {
+			ans = "FALSE";
+			e.printStackTrace();
+		}
+		return ans;
+	}
 }
+
 // MYSQL
 //
 // DROP DATABASE WESHARE;
