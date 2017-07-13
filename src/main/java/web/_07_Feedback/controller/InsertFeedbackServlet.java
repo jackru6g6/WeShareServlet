@@ -53,11 +53,10 @@ public class InsertFeedbackServlet extends HttpServlet {
 			Ans = "FALSE";
 			jiub.setMessage("Session Not Found");
 		}
-		String DEALNO = request.getParameter("DEALNO");
-		String FBSOURCEID = request.getParameter("FBSOURCEID");
-		String FBENDID = request.getParameter("FBENDID");
-		String FBTEXT = request.getParameter("FBTEXT");
-		String FBSCORE = request.getParameter("FBSCORE");
+		String DEALNO = request.getParameter("dealno");
+		String FBENDID = request.getParameter("fbendid");
+		String FBTEXT = request.getParameter("fbtext");
+		String FBSCORE = request.getParameter("fbscore");
 		// System.out.println("DEALNO=" + DEALNO);
 		// System.out.println("FBSOURCEID=" + FBSOURCEID);
 		// System.out.println("FBENDID=" + FBENDID);
@@ -69,8 +68,8 @@ public class InsertFeedbackServlet extends HttpServlet {
 				fdbe.setERRORDEALNO("物資編號不可為空值");
 				Ans = "FALSE";
 			}
-			if (FBSOURCEID == null || FBSOURCEID.trim().length() == 0) {
-				fdbe.setERRORFBSOURCEID("給評者不可為空值");
+			if (FBTEXT == null || FBTEXT.trim().length() == 0) {
+				fdbe.setERRORFBTEXT("評價內容不為空值");
 				Ans = "FALSE";
 			}
 			if (FBENDID == null || FBENDID.trim().length() == 0) {
@@ -87,7 +86,7 @@ public class InsertFeedbackServlet extends HttpServlet {
 		}
 		if (Ans.equals("TRUE")) {
 
-			FeedbackBean fb = new FeedbackBean(DEALNO, null, FBSOURCEID, FBENDID, FBTEXT, Integer.parseInt(FBSCORE),
+			FeedbackBean fb = new FeedbackBean(DEALNO, null, INDID, FBENDID, FBTEXT, Integer.parseInt(FBSCORE),
 					null, null);
 			String SQLAns = new FeedbackDAO().Insert_FB(fb, INDID, null, 0L);
 			System.out.println("SQLAns=" + SQLAns);

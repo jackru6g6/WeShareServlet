@@ -97,3 +97,15 @@ http://localhost:8080/Demo/web/_04_productMaintain/controller/GoodsUpdate?goodsn
 http://localhost:8080/Demo/web/_00_intit/getNameByKey
 
 http://localhost:8080/Demo/web/_00_intit/getNameByKey?key=google
+
+評價新增
+
+http://localhost:8080/Demo/web/_07_Feedback/controller/InsertFeedback?dealno=14&fbendid=kitty&fbscore=6&fbtext=aaaa
+
+評價查詢(登入)
+
+http://localhost:8080/Demo/web/_07_Feedback/controller/FindFeedbacklg
+
+評價查詢(公開)
+
+http://localhost:8080/Demo/web/_07_Feedback/controller/FindFeedback?key=kitty

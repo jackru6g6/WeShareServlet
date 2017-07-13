@@ -10,6 +10,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
@@ -112,6 +113,7 @@ public class _first_run {
 		DEAL_DATA(con);
 		DEAL_DATA_defor(con);
 		MSG_DATA(con);
+		FEEDBACK_DATA(con);
 	}
 
 	public static void org_data(Connection con) throws SQLException {
@@ -422,6 +424,9 @@ public class _first_run {
 					}
 					break;
 				case "2":
+					if (!OK_DEAL(con, sa[3], sa[2], sa[1]).equals("TRUE")) {
+						System.out.println("2[ERROR] :" + sa[0] + "|" + sa[1] + "|" + sa[2] + "|" + sa[3]);
+					}
 					break;
 				case "3":
 					if (!CANCEL_DEAL(con, sa[2], sa[1]).equals("TRUE")) {
@@ -448,7 +453,6 @@ public class _first_run {
 			pstmt.setString(2, INDID);
 			pstmt.setString(3, INDID);
 			int buf = pstmt.executeUpdate();
-			System.out.println("buf=" + buf);
 			if (buf == 1) {
 				ans = "TRUE";
 			}
@@ -459,12 +463,13 @@ public class _first_run {
 		return ans;
 	}
 
-	public static String OK_DEAL(Connection con, String key, String INDID) {
+	public static String OK_DEAL(Connection con, String SHIPNO, String key, String INDID) {
 		String ans = "FALSE";
-		try (PreparedStatement pstmt = con
-				.prepareStatement("UPDATE DEAL SET DEALSTATUS=2 WHERE (DEALNO =? AND SOURCEID=? AND DEALSTATUS=1");) {
-			pstmt.setString(1, key);
-			pstmt.setString(2, INDID);
+		try (PreparedStatement pstmt = con.prepareStatement(
+				"UPDATE DEAL SET DEALSTATUS=2, SHIPNO=? WHERE (DEALNO =? AND SOURCEID=? AND DEALSTATUS=1)");) {
+			pstmt.setString(1, SHIPNO);
+			pstmt.setString(2, key);
+			pstmt.setString(3, INDID);
 			pstmt.setString(3, INDID);
 			int buf = pstmt.executeUpdate();
 			if (buf == 1) {
@@ -480,7 +485,7 @@ public class _first_run {
 	public static String CANCEL_DEAL(Connection con, String key, String INDID) {
 		String ans = "FALSE";
 		try (PreparedStatement pstmt = con.prepareStatement(
-				"UPDATE DEAL SET DEALSTATUS=3 WHERE DEALNO =? AND (SOURCEID=? OR ENDID=?) AND DEALSTATUS IN(0,1)");) {
+				"UPDATE DEAL SET DEALSTATUS=3 WHERE (DEALNO =?) AND (SOURCEID=? OR ENDID=?) AND (DEALSTATUS NOT IN(2,3))");) {
 			pstmt.setString(1, key);
 			pstmt.setString(2, INDID);
 			pstmt.setString(3, INDID);
@@ -494,6 +499,38 @@ public class _first_run {
 			e.printStackTrace();
 		}
 		return ans;
+	}
+
+	public static void FEEDBACK_DATA(Connection con) throws SQLException {
+		System.out.println("[FEEDBACK]");
+		try (// java 7.0 提共自動關閉的資源
+				BufferedReader bf = new BufferedReader(
+						new InputStreamReader(new FileInputStream("src//main//java//web//feedback.txt"), "UTF8"));) {
+			String Read_line = "";
+			String SQL_Ans = "";
+			while ((Read_line = bf.readLine()) != null) {
+				String[] sa = Read_line.split("\\|");
+//				{? =CALL INSERT_FEEDBACK(?,?,?,?,?,?,?)}
+				try (CallableStatement cs = con.prepareCall(sql_Common.CALL_FUNCTION_INSERT_FEEDBACK);) {
+					cs.registerOutParameter(1, Types.VARCHAR);
+					cs.setString(2, sa[0]);
+					cs.setString(3, sa[1]);
+					cs.setString(4, sa[2]);
+					cs.setString(5, sa[3]);
+					cs.setInt(6, Integer.parseInt(sa[4]));
+					cs.setBinaryStream(7, null, 0L);
+					cs.setString(8, null);
+					cs.executeUpdate();
+					GlobalService.random_time_1_2();
+				} catch (Exception e) {
+					SQL_Ans = "FALSE";
+					e.printStackTrace();
+				}
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
 

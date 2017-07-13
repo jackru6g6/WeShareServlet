@@ -18,11 +18,11 @@ import web._07_Feedback.model.FeedbackBean;
 import web._07_Feedback.model.FeedbackDAO;
 import web._07_Feedback.model.JSON_Find_Bean;
 
-@WebServlet("/web/_07_Feedback/controller/FindFeedbacklg")
-public class FindFeedbackServlet extends HttpServlet {
+@WebServlet("/web/_07_Feedback/controller/FindFeedback")
+public class FindFeedbackPServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public FindFeedbackServlet() {
+	public FindFeedbackPServlet() {
 		super();
 	}
 
@@ -44,25 +44,24 @@ public class FindFeedbackServlet extends HttpServlet {
 		String Ans = "TRUE";
 		String mfjb_json = "";
 		JSON_Find_Bean mfjb = new JSON_Find_Bean();
-
-		try {
-			HttpSession session = request.getSession(false);
-			MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-			INDID = mb.getIndid();
-			System.out.println("session INDID=" + INDID);
-		} catch (Exception e) {
-			Ans = "FALSE";
-			mfjb.setMessage("Session Not Found");
-		}
+		String key = request.getParameter("key");
 		Gson gson = new Gson();
 		if (Ans.equals("TRUE")) {
-			Collection<FeedbackBean> collEND = new FeedbackDAO().FindByINDID(INDID);
+			if (key == null) {
+				Ans = "FALSE";
+				mfjb.setMessage("key not null");
+			}
+		}
+		if (Ans.equals("TRUE")) {
+			Collection<FeedbackBean> collEND = new FeedbackDAO().FindByINDID_NOT_SESSION(key);
 			System.out.println(INDID + "一共有" + collEND.size() + "筆評價");
-//			Collection<DEALBean> collSOURCE = new DealDAO().FindBySOURCEKey_DEAL(INDID);
-//			System.out.println(INDID + "一共有" + collSOURCE.size() + "的交易訂單(賣家)");
-			if(collEND.size()==0){
+			// Collection<DEALBean> collSOURCE = new
+			// DealDAO().FindBySOURCEKey_DEAL(INDID);
+			// System.out.println(INDID + "一共有" + collSOURCE.size() +
+			// "的交易訂單(賣家)");
+			if (collEND.size() == 0) {
 				mfjb.setMessage("Not Feedback");
-			}else{
+			} else {
 				mfjb.setCfb(collEND);
 			}
 		}

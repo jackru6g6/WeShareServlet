@@ -15,3 +15,15 @@
 1|kitty|7|aaaaa 
 1|kitty|14|aaaaa 
 1|micky|19|aaaaa
+2|micky|2|人呆看臉就知道了
+2|micky|19|總統級安裝服務
+2|kitty|11|東西已寄出
+2|kitty|14|感謝大大無私的奉獻
+3|google|4|處理中被取消(google)
+3|kitty|3|處理中被取消(kitty)
+1|micky|16|這邊資料看不到
+2|micky|16|能幫助到你是我的榮幸
+1|google|26|這邊資料看不到
+2|micky|26|東西已經寄出去了2天會收到
+1|google|22|這邊資料看不到
+2|micky|22|剛剛寄出去了

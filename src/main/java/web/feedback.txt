@@ -1,0 +1,4 @@
+2|google|micky|熟度ㄟ丟|1
+22|google|micky|值得信賴的好賣家|8
+11|google|kitty|值得信賴的好賣家|8
+19|google|micky|值得信賴的好賣家|8
