@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -40,11 +40,21 @@ public class MessageServlet extends HttpServlet {
 
 		if (action.equals("getAll")) {
 			String account = jsonObject.get("account").getAsString();
-			List<MessageBean> msg = mgDAO.get(account);
+			List<MsgRoomBean> msgRoom = mgDAO.get(account);
+			List<MessageBean> msg = new ArrayList<>();
 			System.out.println("帳號account: " + account);
-			for (MessageBean pop : msg) {
-				System.out.println("MsgSource：" + pop.getMsgSourceId() + ", MsgEndId：" + pop.getMsgEndId()
-						+ ", MsgText：" + pop.getMsgText() + ", roomNo：" + pop.getRoomNo());
+			// for (MessageBean pop : msg) {
+			// System.out.println("MsgSource：" + pop.getMsgSourceId() + ",
+			// MsgEndId：" + pop.getMsgEndId()
+			// + ", MsgText：" + pop.getMsgText() + ", roomNo：" +
+			// pop.getRoomNo());
+			// }
+
+			for (MsgRoomBean pop : msgRoom) {
+				System.out.println("pop.getLastMsgNo=" + pop.getLastMsgNo());
+				MessageBean mm = mgDAO.getMessageBean(pop.getLastMsgNo());
+				System.out.println("text" + mm.getMsgText());
+				msg.add(mm);
 			}
 			writeText(response, gson.toJson(msg));
 		} else if (action.equals("getOne")) {
@@ -118,7 +128,7 @@ public class MessageServlet extends HttpServlet {
 					int NewMsgNo = i + 1;
 					System.out.println("NewMsgNo=" + NewMsgNo);
 					msg.setMsgNo(NewMsgNo);
-									
+
 					System.out.println("list.get(0).getRoomNo()=" + list.get(0).getRoomNo());
 					msg.setRoomNo(list.get(0).getRoomNo());
 

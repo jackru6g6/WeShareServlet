@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import app.deal.DealBean;
 import app.main.HibernateUtil;
 
 public class MessageDAO {
@@ -58,14 +59,15 @@ public class MessageDAO {
 		Transaction tx = session.beginTransaction();
 		try {
 			String hql = "FROM MsgRoomBean m WHERE (m.indid1 = :uid AND m.indid2 = :aid) OR (m.indid1 = :u1id AND m.indid2 = :u2id)";
-//			String hql = "FROM MsgRoomBean m WHERE m.indid1 = :uid AND m.indid2 = :aid";
+			// String hql = "FROM MsgRoomBean m WHERE m.indid1 = :uid AND
+			// m.indid2 = :aid";
 			Query query = session.createQuery(hql);
 			query.setParameter("uid", indId1);
 			query.setParameter("aid", indId2);
 			query.setParameter("u1id", indId2);
 			query.setParameter("u2id", indId1);
 			List<MsgRoomBean> list = query.getResultList();
-			for(MsgRoomBean pop : list){
+			for (MsgRoomBean pop : list) {
 				System.out.println("popNO=" + pop.getRoomNo());
 			}
 			if (list.size() > 0) {
@@ -163,26 +165,13 @@ public class MessageDAO {
 		return i;
 	}
 
-	public List<MessageBean> get(String userId) {
+	public List<MsgRoomBean> get(String userId) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		// List<Object[]> list= new ArrayList<>();
-		List<MessageBean> list = new ArrayList<MessageBean>();
+		List<MsgRoomBean> list = new ArrayList<MsgRoomBean>();
 		try {
-			// String hql = "FROM MessageBean m WHERE m.msgSource = :uid OR
-			// m.msgEndId = :aid";
-			// String hql = "SELECT new
-			// MessageBean(m.msgNo,m.msgStatus,m.postDate,m.msgEndId,m.msgText)
-			// FROM MessageBean m WHERE m.msgSourceId = :uid OR m.msgEndId =
-			// :aid";
-			// String hql = "SELECT new
-			// MessageBean(m.msgNo,m.msgStatus,m.msgSourceId,m.msgEndId,m.msgText)
-			// FROM MessageBean m WHERE m.msgSourceId = :uid OR m.msgEndId =
-			// :aid";
-			// String hql = "SELECT m.postDate FROM MessageBean m WHERE
-			// m.msgSource = :uid OR m.msgEndId = :aid";
-			String hql = "SELECT new MessageBean(m.msgNo,m.msgStatus,m.msgSourceId,m.msgEndId,m.msgText,m.roomNo) FROM MessageBean m WHERE m.msgSourceId = :uid OR m.msgEndId = :aid GROUP BY m.roomNo ORDER BY MIN(m.postDate)";
-
+			String hql = "FROM MsgRoomBean m WHERE m.indid1 = :uid OR m.indid2 = :aid";
 			Query query = session.createQuery(hql);
 			query.setParameter("uid", userId);
 			query.setParameter("aid", userId);
@@ -196,11 +185,24 @@ public class MessageDAO {
 			if (session != null)
 				session.close();
 		}
-		// List<MessageBean> list2;
-		// for(MessageBean test : list){
-		// list2.add(test);
-		// }
 		return list;
+	}
+
+	public MessageBean getMessageBean(int msgNo) {
+		MessageBean msg = null;
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			msg = (MessageBean) session.get(MessageBean.class, msgNo);
+			tx.commit();
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return msg;
 	}
 
 	public List<MessageBean> getOne(String userId, String talkTo) {
