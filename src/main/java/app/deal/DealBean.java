@@ -24,6 +24,7 @@ public class DealBean {
 	private java.sql.Timestamp shipDate;
 
 	private String goodsName;
+	private int goodsStatus;
 	private int dealQty;
 	private Blob goodsImage;
 	private String goodsImageName;
@@ -36,8 +37,8 @@ public class DealBean {
 	}
 
 	public DealBean(int dealNo, Timestamp postDate, String sourceId, String endId, int dealStatus, int endShipWay,
-			String shipNo, Timestamp shipDate, String goodsName, int dealQty, Blob goodsImage, String goodsImageName,
-			int goodstype, int goodsLoc, String goodsNote, String dealNote) {
+			String shipNo, Timestamp shipDate, String goodsName, int goodsStatus, int dealQty, Blob goodsImage,
+			String goodsImageName, int goodstype, int goodsLoc, String goodsNote, String dealNote) {
 		super();
 		this.dealNo = dealNo;
 		this.postDate = postDate;
@@ -48,6 +49,7 @@ public class DealBean {
 		this.shipNo = shipNo;
 		this.shipDate = shipDate;
 		this.goodsName = goodsName;
+		this.goodsStatus = goodsStatus;
 		this.dealQty = dealQty;
 		this.goodsImage = goodsImage;
 		this.goodsImageName = goodsImageName;
@@ -129,6 +131,15 @@ public class DealBean {
 
 	public void setShipDate(java.sql.Timestamp shipDate) {
 		this.shipDate = shipDate;
+	}
+
+	@Column(name = "goodsStatus")
+	public int getGoodsStatus() {
+		return goodsStatus;
+	}
+
+	public void setGoodsStatus(int goodsStatus) {
+		this.goodsStatus = goodsStatus;
 	}
 
 	@Column(name = "goodsName")

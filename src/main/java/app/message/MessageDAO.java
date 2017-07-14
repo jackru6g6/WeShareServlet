@@ -35,6 +35,25 @@ public class MessageDAO {
 		}
 		return n;
 	}
+	
+	public int saveRoom(MsgRoomBean msgRoom) {
+		int n = 0;
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			Object o = session.save(msgRoom);
+			System.out.println("o = " + o);
+			tx.commit();
+			n = 1;
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return n;
+	}
 
 	public int updateMsg(MessageBean msg) {
 		int n = 0;
@@ -174,6 +193,30 @@ public class MessageDAO {
 			}
 			tx.commit();
 
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return i;
+	}
+	
+	public int getMaxRoomNo() {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		List<MsgRoomBean> list = new ArrayList<MsgRoomBean>();
+		int i = 0;
+		try {
+			String hql = "FROM MsgRoomBean m ORDER BY m.roomNo ASC";
+			Query query = session.createQuery(hql);
+			list = query.getResultList();
+			for (MsgRoomBean pop : list) {
+				i = pop.getRoomNo();
+				// System.out.println("++i" + i);
+			}
+			tx.commit();
 		} catch (Exception ex) {
 			tx.rollback();
 			ex.printStackTrace();

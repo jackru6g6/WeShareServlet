@@ -155,14 +155,20 @@ public class DealServlet extends HttpServlet {
 
 				// user.setImage(blob);
 				// String name = msg.getMsgSourceId();
+				System.out.println("Goods狀態=" + deal.getGoodsStatus());
+
 				int i = deDAO.getMaxNo();
 				deal.setDealNo(i + 1);
 				System.out.println("i + 1＝" + (i + 1));
 				count = deDAO.save(deal);
 
 				GoodsBean changeGood = gdDAO.getGoodsBean(goodsNoo);
-				changeGood.setQty(changeGood.getQty() - deal.getDealQty());
-				countt = gdDAO.update(changeGood);
+				if (changeGood.getQty() - deal.getDealQty() == 0) {
+					countt = gdDAO.delete(goodsNoo);
+				} else {
+					changeGood.setQty(changeGood.getQty() - deal.getDealQty());
+					countt = gdDAO.update(changeGood);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

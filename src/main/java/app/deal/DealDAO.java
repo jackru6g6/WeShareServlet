@@ -243,10 +243,14 @@ public class DealDAO {
 		// List<Object[]> list= new ArrayList<>();
 		List<DealBean> list = new ArrayList<DealBean>();
 		try {
-			String hql = "FROM DealBean d WHERE  d.endId = :aid AND d.dealStatus = :status";
+			// String hql = "FROM DealBean d WHERE d.endId = :aid AND
+			// d.dealStatus = :status";
+			String hql = "FROM DealBean d WHERE  (d.endId = :aid AND d.dealStatus = :status AND d.goodsStatus = 1) OR (d.sourceId = :sid AND d.dealStatus = :sstatus AND d.goodsStatus = 2)";
 			Query query = session.createQuery(hql);
 			query.setParameter("aid", userId);
 			query.setParameter("status", status);
+			query.setParameter("sid", userId);
+			query.setParameter("sstatus", status);
 			list = query.getResultList();
 			tx.commit();
 		} catch (Exception ex) {

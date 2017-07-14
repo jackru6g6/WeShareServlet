@@ -147,7 +147,6 @@ public class MessageServlet extends HttpServlet {
 				// blob = new SerialBlob(image);
 				// System.out.println("有給圖片");
 				// user.setImage(imageBlob);
-
 				// user.setImage(blob);
 				// String name = msg.getMsgSourceId();
 				Timestamp ts = new Timestamp(new java.util.Date().getTime());
@@ -192,6 +191,70 @@ public class MessageServlet extends HttpServlet {
 				// msg.setMsgNo(i + 1);
 				// count = mgDAO.save(msg);
 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			writeText(response, String.valueOf(count));
+		} else if (action.equals("dealSendMsg")) {
+			String msgJson = jsonObject.get("msg").getAsString();
+			MessageBean msg = gson.fromJson(msgJson, MessageBean.class);
+			int count = 0;
+			try {
+
+				Timestamp ts = new Timestamp(new java.util.Date().getTime());
+				msg.setPostDate(ts);
+				if (msg.getMsgFileName() == null) {
+					msg.setMsgImage(null);
+				}
+
+				System.out.println("帳號1 =" + msg.getMsgSourceId() + ", 帳號2=" + msg.getMsgEndId());
+				boolean roomCheck = mgDAO.checkRoomNo(msg.getMsgSourceId(), msg.getMsgEndId());
+				System.out.println("roomCheck=" + roomCheck);
+				if (roomCheck == true) {
+					List<MsgRoomBean> list = mgDAO.getRoomNo(msg.getMsgSourceId(), msg.getMsgEndId());
+
+					int i = mgDAO.getMaxNo();
+					int NewMsgNo = i + 1;
+					System.out.println("NewMsgNo=" + NewMsgNo);
+					msg.setMsgNo(NewMsgNo);
+
+					System.out.println("list.get(0).getRoomNo()=" + list.get(0).getRoomNo());
+					msg.setRoomNo(list.get(0).getRoomNo());
+
+					count = mgDAO.save(msg);
+
+					list.get(0).setLastMsgNo(NewMsgNo);
+
+					System.out.println("roomNo=" + list.get(0).getRoomNo() + ", 1=" + list.get(0).getIndid1() + ", 2="
+							+ list.get(0).getIndid2() + ", Last" + list.get(0).getLastMsgNo());
+
+					mgDAO.updateRoom(list.get(0));
+				} else {
+					int gg = mgDAO.getMaxRoomNo();
+					MsgRoomBean msgRoom = new MsgRoomBean(gg+1, msg.getMsgSourceId(), msg.getMsgEndId(), 0);
+					int createRoom = mgDAO.saveRoom(msgRoom);
+					
+
+
+					List<MsgRoomBean> list = mgDAO.getRoomNo(msg.getMsgSourceId(), msg.getMsgEndId());
+
+					int i = mgDAO.getMaxNo();
+					int NewMsgNo = i + 1;
+					System.out.println("NewMsgNo=" + NewMsgNo);
+					msg.setMsgNo(NewMsgNo);
+
+					System.out.println("list.get(0).getRoomNo()=" + list.get(0).getRoomNo());
+					msg.setRoomNo(list.get(0).getRoomNo());
+
+					count = mgDAO.save(msg);
+
+					list.get(0).setLastMsgNo(NewMsgNo);
+
+					System.out.println("roomNo=" + list.get(0).getRoomNo() + ", 1=" + list.get(0).getIndid1() + ", 2="
+							+ list.get(0).getIndid2() + ", Last" + list.get(0).getLastMsgNo());
+
+					mgDAO.updateRoom(list.get(0));
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
