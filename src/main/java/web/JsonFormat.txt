@@ -29,7 +29,7 @@ http://localhost:8080/Demo/web/_05_deal/controller/FindDEALByKey
 
 交易訂單取消
 
-http://localhost:8080/Demo/web/_05_deal/controller/CancelByKey?key=3
+http://localhost:8080/Demo/web/_05_deal/controller/CancelByKey?key=30
 
 交易訂單新增
 
@@ -39,10 +39,12 @@ http://localhost:8080/Demo/web/_05_deal/controller/InsertDEAL
 http://localhost:8080/Demo/web/_05_deal/controller/InsertDEAL?GOODSNO=3&DEALQTY=10&ENDSHIPWAY=2
 
 
-交易訂單送出
+交易訂單同意(0 to 1)
 
+http://localhost:8080/Demo/web/_05_deal/controller/agreenByKey?key=29
 
-http://localhost:8080/Demo/web/_05_deal/controller/SubmitByKey?key=3
+交易訂單送出(1 to 2)
+http://localhost:8080/Demo/web/_05_deal/controller/SubmitByKey?key=30
 
 
 
@@ -66,7 +68,7 @@ http://localhost:8080/Demo/web/_06_MSG/controller/ChangeMSGstatus
 http://localhost:8080/Demo/web/_06_MSG/controller/AddNewMSG
 
 
-http://localhost:8080/Demo/web/_06_MSG/controller/AddNewMSG?MSGENDID=google&MSGTEXT=8787878787
+http://localhost:8080/Demo/web/_06_MSG/controller/AddNewMSG?MSGENDID=jack&MSGTEXT=8787878787
 
 
 物資箱查詢(個人的所有物資)
@@ -86,7 +88,13 @@ http://localhost:8080/Demo/web/_04_productMaintain/controller/GoodsDelete?key=9
 
 物資箱新增
 
-http://localhost:8080/Demo/web/_04_productMaintain/controller/GoodsInsert?goodsstatus=1&goodstype=3&goodsname=bread&goodsloc=5&goodsnote=frush&qty=10&goodsshipway=1&deadline=2018-08-10
+http://localhost:8080/Demo/web/_04_productMaintain/controller/GoodsInsert?goodsstatus=1&goodstype=3&goodsname=bread&goodsloc=5&goodsnote=frush&qty=9&goodsshipway=1&deadline=2018-08-10
+
+
+http://localhost:8080/Demo/web/_04_productMaintain/controller/GoodsInsert?goodsstatus=2&goodstype=3&goodsname=cake&goodsloc=5&goodsnote=frush&qty=8&goodsshipway=1&deadline=2018-08-10
+
+
+http://localhost:8080/Demo/web/_04_productMaintain/controller/GoodsInsert?goodsstatus=3&goodstype=3&goodsname=juice&goodsloc=5&goodsnote=frush&qty=7&goodsshipway=1&deadline=2018-08-10
 
 物資箱修改
 
@@ -100,7 +108,7 @@ http://localhost:8080/Demo/web/_00_intit/getNameByKey?key=google
 
 評價新增
 
-http://localhost:8080/Demo/web/_07_Feedback/controller/InsertFeedback?dealno=14&fbendid=kitty&fbscore=6&fbtext=aaaa
+http://localhost:8080/Demo/web/_07_Feedback/controller/InsertFeedback?dealno=31&fbendid=jack&fbscore=9&fbtext=8+9,8+9
 
 評價查詢(登入)
 
