@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import app.deal.DealBean;
+import app.deal.FeedbackBean;
 import app.main.HibernateUtil;
 
 public class MessageDAO {
@@ -23,6 +24,24 @@ public class MessageDAO {
 		try {
 			Object o = session.save(msg);
 			System.out.println("o = " + o);
+			tx.commit();
+			n = 1;
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return n;
+	}
+
+	public int updateMsg(MessageBean msg) {
+		int n = 0;
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			session.update(msg);
 			tx.commit();
 			n = 1;
 		} catch (Exception ex) {
@@ -211,15 +230,11 @@ public class MessageDAO {
 		// List<Object[]> list= new ArrayList<>();
 		List<MessageBean> list = new ArrayList<MessageBean>();
 		try {
-			// String hql = "FROM MessageBean m WHERE m.msgSource = :uid OR
-			// m.msgEndId = :aid";
 			// String hql = "SELECT new
-			// MessageBean(m.msgNo,m.msgStatus,m.postDate,m.msgEndId,m.msgText)
-			// FROM MessageBean m WHERE m.msgSourceId = :uid OR m.msgEndId =
-			// :aid";
-			String hql = "SELECT new MessageBean(m.msgNo,m.msgStatus,m.msgSourceId,m.msgEndId,m.msgText,m.roomNo) FROM MessageBean m WHERE (m.msgSourceId = :uid AND m.msgEndId = :aid) OR (m.msgSourceId = :sid AND m.msgEndId = :zid)";
-			// String hql = "SELECT m.postDate FROM MessageBean m WHERE
-			// m.msgSource = :uid OR m.msgEndId = :aid";
+			// MessageBean(m.msgNo,m.msgStatus,m.msgSourceId,m.msgEndId,m.msgText,m.roomNo)
+			// FROM MessageBean m WHERE (m.msgSourceId = :uid AND m.msgEndId =
+			// :aid) OR (m.msgSourceId = :sid AND m.msgEndId = :zid)";
+			String hql = "FROM MessageBean m WHERE (m.msgSourceId = :uid AND m.msgEndId = :aid) OR (m.msgSourceId = :sid AND m.msgEndId = :zid)";
 
 			Query query = session.createQuery(hql);
 			query.setParameter("uid", userId);
@@ -228,7 +243,6 @@ public class MessageDAO {
 			query.setParameter("zid", userId);
 			list = query.getResultList();
 			tx.commit();
-
 		} catch (Exception ex) {
 			tx.rollback();
 			ex.printStackTrace();
@@ -236,10 +250,6 @@ public class MessageDAO {
 			if (session != null)
 				session.close();
 		}
-		// List<MessageBean> list2;
-		// for(MessageBean test : list){
-		// list2.add(test);
-		// }
 		return list;
 	}
 
@@ -288,6 +298,47 @@ public class MessageDAO {
 			}
 		}
 
+		return image;
+	}
+
+	public byte[] getMsgImage(int id) {
+		byte[] image = null;
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		List<MessageBean> list = new ArrayList<MessageBean>();
+		Blob blob = null;
+		try {
+			String hql = "FROM MessageBean WHERE msgNo = :uid";
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", id);
+			list = query.getResultList();
+			for (MessageBean pop : list) {
+				System.out.println(id + "--->" + pop.getClass().getName());
+			}
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+		} finally {
+			session.close();
+		}
+
+		System.out.println("list" + list);
+		for (MessageBean pop : list) {
+			try {
+				int blobLength = 0;
+				blob = pop.getMsgImage();
+				if (blob != null) {
+					blobLength = (int) blob.length();
+					image = blob.getBytes(1, blobLength);
+					System.out.println("image=" + image);
+				} else {
+					System.out.println("image 沒有圖片歐~");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return image;
 	}
 

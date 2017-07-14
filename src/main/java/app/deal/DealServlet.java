@@ -65,6 +65,14 @@ public class DealServlet extends HttpServlet {
 				pop.setGoodsImage(null);
 			}
 			writeText(response, gson.toJson(deals));
+		} else if (action.equals("getAllFb")) {
+			String account = jsonObject.get("account").getAsString();
+			List<FeedbackBean> fbs = deDAO.getAllFb(account);
+			for (FeedbackBean pop : fbs) {
+				System.out.println("來源" + pop.getFbSourceId() + ", 內容" + pop.getFbText());
+				pop.setFbImage(null);
+			}
+			writeText(response, gson.toJson(fbs));
 		} else if (action.equals("getDealed")) {
 			String account = jsonObject.get("user").getAsString();
 			List<DealBean> deals = deDAO.getStatus(account, 2);
@@ -105,7 +113,7 @@ public class DealServlet extends HttpServlet {
 				System.out.println("沒收到喔~");
 			}
 			os.write(image);// 送到client端
-		}else if (action.equals("getFbImage")) {
+		} else if (action.equals("getFbImage")) {
 			String fbNo = jsonObject.get("fbNo").getAsString();
 			int fbNon = Integer.valueOf(fbNo);
 			OutputStream os = response.getOutputStream();
@@ -125,8 +133,7 @@ public class DealServlet extends HttpServlet {
 				System.out.println("沒收到喔~");
 			}
 			os.write(image);// 送到client端
-		}
-		else if (action.equals("newDeal")) {
+		} else if (action.equals("newDeal")) {
 			String dealJson = jsonObject.get("deal").getAsString();
 			DealBean deal = gson.fromJson(dealJson, DealBean.class);
 

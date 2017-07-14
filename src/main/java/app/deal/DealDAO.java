@@ -282,6 +282,27 @@ public class DealDAO {
 		return list;
 	}
 
+	public List<FeedbackBean> getAllFb(String userId) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		// List<Object[]> list= new ArrayList<>();
+		List<FeedbackBean> list = new ArrayList<FeedbackBean>();
+		try {
+			String hql = "FROM FeedbackBean d WHERE d.fbEndId = :uid";
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", userId);
+			list = query.getResultList();
+			tx.commit();
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return list;
+	}
+
 	//
 	// public List<DealBean> getOne(String userId, String talkTo) {
 	// Session session = sessionFactory.openSession();

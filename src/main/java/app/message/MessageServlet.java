@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.sql.Blob;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,10 +15,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.rowset.serial.SerialBlob;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import app.deal.FeedbackBean;
 import app.main.ImageUtil;
 
 @SuppressWarnings("serial")
@@ -49,10 +54,10 @@ public class MessageServlet extends HttpServlet {
 			// + ", MsgText：" + pop.getMsgText() + ", roomNo：" +
 			// pop.getRoomNo());
 			// }
-
 			for (MsgRoomBean pop : msgRoom) {
 				System.out.println("pop.getLastMsgNo=" + pop.getLastMsgNo());
 				MessageBean mm = mgDAO.getMessageBean(pop.getLastMsgNo());
+				mm.setMsgImage(null);
 				System.out.println("text" + mm.getMsgText());
 				msg.add(mm);
 			}
@@ -62,7 +67,12 @@ public class MessageServlet extends HttpServlet {
 			String talkTo = jsonObject.get("talkTo").getAsString();
 			List<MessageBean> msg = mgDAO.getOne(account, talkTo);
 			System.out.println("帳號account: " + account);
+			for (MessageBean pop1 : msg) {
+				pop1.setMsgStatus(1);
+				mgDAO.updateMsg(pop1);
+			}
 			for (MessageBean pop : msg) {
+				pop.setMsgImage(null);
 				System.out.println("MsgSource：" + pop.getMsgSourceId() + ", MsgEndId：" + pop.getMsgEndId()
 						+ ", MsgText：" + pop.getMsgText() + ", roomNo：" + pop.getRoomNo());
 			}
@@ -74,6 +84,26 @@ public class MessageServlet extends HttpServlet {
 			int imageSize = jsonObject.get("imageSize").getAsInt();
 			System.out.println("account=" + account + ", imageSize=" + imageSize);
 			byte[] image = mgDAO.getImage(account);
+			if (image != null) {
+				image = ImageUtil.shrink(image, imageSize);// ImageUtil縮圖
+				response.setContentType("image/jpeg");
+				response.setContentType("image/png");
+				// 只要送一張圖，就不用轉json，指定他傳送的型態，如果要用json就要用Base64
+				// // encode才能傳送
+				response.setContentLength(image.length);// 輸出圖的長度
+				System.out.println(image);
+			} else {
+				System.out.println("沒收到喔~");
+			}
+			os.write(image);// 送到client端
+		} else if (action.equals("getMsgImage")) {
+			String msgNo = jsonObject.get("msgNo").getAsString();
+			int msgNon = Integer.valueOf(msgNo);
+			OutputStream os = response.getOutputStream();
+			// account = jsonObject.get("account").getAsString();
+			int imageSize = jsonObject.get("imageSize").getAsInt();
+			System.out.println("dealNo=" + msgNon + ", imageSize=" + imageSize);
+			byte[] image = mgDAO.getMsgImage(msgNon);
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize);// ImageUtil縮圖
 				response.setContentType("image/jpeg");
@@ -109,6 +139,8 @@ public class MessageServlet extends HttpServlet {
 		} else if (action.equals("sendMsg")) {
 			String msgJson = jsonObject.get("msg").getAsString();
 			MessageBean msg = gson.fromJson(msgJson, MessageBean.class);
+			String imageBase64 = jsonObject.get("imageBase64").getAsString();
+			System.out.println("imageBase64=" + imageBase64);
 			int count = 0;
 			try {
 				// Blob imageBlob = new SerialBlob(image);
@@ -118,6 +150,18 @@ public class MessageServlet extends HttpServlet {
 
 				// user.setImage(blob);
 				// String name = msg.getMsgSourceId();
+				Timestamp ts = new Timestamp(new java.util.Date().getTime());
+				msg.setPostDate(ts);
+				if (msg.getMsgFileName() == null) {
+					msg.setMsgImage(null);
+				} else {
+					byte[] image = null;
+					image = Base64.getMimeDecoder().decode(imageBase64);
+					Blob blob = null;
+					blob = new SerialBlob(image);
+					msg.setMsgImage(blob);
+				}
+
 				System.out.println("帳號1 =" + msg.getMsgSourceId() + ", 帳號2=" + msg.getMsgEndId());
 				boolean roomCheck = mgDAO.checkRoomNo(msg.getMsgSourceId(), msg.getMsgEndId());
 				System.out.println("roomCheck=" + roomCheck);
