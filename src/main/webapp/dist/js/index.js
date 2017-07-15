@@ -1,3 +1,4 @@
+// 資料排序
 function sortJSON(data, colName, way) {
 	return data.sort(function(a, b){
 		var x = a[colName];
@@ -11,6 +12,7 @@ function sortJSON(data, colName, way) {
 	});
 }
 
+// 許願池物資
 function showWishData(data, path, colName, way) {
 	sortJSON(data, colName, way);
 	var javaRoot = path;
@@ -44,6 +46,7 @@ function showWishData(data, path, colName, way) {
 	}
 }
 
+// 送愛心物資
 function showGiveData(data, path, colName, way) {
 	sortJSON(data, colName, way);
 	var javaRoot = path;
@@ -73,11 +76,11 @@ function showGiveData(data, path, colName, way) {
 					</div>
 				</div>
 			</div>`;
-
 		$('#giveContent').append(resultGiveData);
 	}
 }
 
+// 以物易物物資
 function showExchangeData(data, path, colName, way) {
 	sortJSON(data, colName, way);
 	var javaRoot = path;
@@ -107,7 +110,6 @@ function showExchangeData(data, path, colName, way) {
 					</div>
 				</div>
 			</div>`;
-			
 		$('#exchangeContent').append(resultExchangeData);
 	}
 }

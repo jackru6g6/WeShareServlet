@@ -4,7 +4,8 @@
   min-height: calc(100vh - 306px);
   font-size: 20px;
   /*  物資圖片 */
-  /* 捐贈&詢問按鈕 */
+  /* 贈送&詢問按鈕 */
+  /* 留言詢問modal */
   /* 物資資訊 */
   /* 詳細說明及簡介 */ }
   #sectionGGoods #gGoodsImgLayout {
@@ -59,6 +60,12 @@
             box-shadow: 0px 15px 15px -10px #e06f39;
             transform: translateY(-8px);
             transition: 0.3s; }
+  #sectionGGoods #sendMsg #msgText, #sectionGGoods #sendMsg button {
+    font-size: 18px;
+    margin: 5px; }
+  #sectionGGoods #sendMsg #msgImg {
+    font-size: 16px;
+    margin: 5px; }
   #sectionGGoods #gGoodsInfo {
     color: #3e3e3e;
     animation-delay: .3s;

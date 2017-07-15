@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	<!-- 確定送出 -->
+	<!-- 確定送出modal -->
 	<div id="transMsg" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -26,11 +26,11 @@
 				</div>
 				<!-- 內容 -->
 				<div class="modal-body">
-					<div>資料已送出，詳細資訊請至會員專區瀏覽</div>
+					<div id="msgText" class="modalFont"></div>
 				</div>
 				<!-- 關閉鈕 -->
 				<div class="modal-footer">
-					<a href="javascript:history.back()" type="button" class="btn btn-default">關閉視窗</a>
+					<a href="javascript:history.back()" type="button" class="btn btn-default modalFont">關閉視窗</a>
 				</div>
 			</div>
 		</div>
@@ -45,52 +45,15 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div id="gTransBlock" class="row animated zoomIn">
-<!-- 						左邊物資圖片 -->
-<!-- 						<div class="col-xs-12 col-sm-6 col-md-5 col-lg-6"> -->
-<!-- 							物資圖片 -->
-<!-- 							<div id="gTransImgLayout"> -->
-<!-- 								<img id="gTransImg" class="img-responsive" src="../dist/img/300x300/20170627_49.png"> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-
-<!-- 						右邊物資資訊 -->
-<!-- 						<div class="col-xs-12 col-sm-6 col-md-5 col-lg-5"> -->
-<!-- 							<div id="gTransInfo" class="row"> -->
-<!-- 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> -->
-<!-- 									<div class="row gTransInfoRow"> -->
-<!-- 										<ul type="none"> -->
-<!-- 											<li>索取物品 -->
-<!-- 												<span>繪本、青少年文學、休閒類書籍</span> -->
-<!-- 											</li> -->
-<!-- 											<li>索取對象 -->
-<!-- 												<span>愛閱社</span> -->
-<!-- 											</li> -->
-<!-- 											<li>索取數量 -->
-<!-- 												<input type="number" class="form-control" value="1" min="1" max="10" step="1" required="required"> -->
-<!-- 											</li> -->
-<!-- 											<li>索取方式 -->
-<!-- 												<select name="" id="ship" class="form-control" required="required"> -->
-<!-- 													<option value="">郵寄</option> -->
-<!-- 													<option value="">面交</option> -->
-<!-- 												</select> -->
-<!-- 											</li> -->
-<!-- 											<li>留言訊息 -->
-<!-- 												<textarea class="form-control" rows="5" maxlength="200" placeholder="留言最多200字"></textarea> -->
-<!-- 											</li> -->
-<!-- 										</ul> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
 
 						<!-- 取消&確定按鈕 -->
 						<div id="blockGTransOption" class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
 							<ul type="none" class="row">
 								<li class="col-xs-5 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-pull-1">
-									<a href="javascript:history.back()" class="btn btn-default gTransOption">取消捐贈</a>
+									<a href="javascript:history.back()" class="btn btn-default gTransOption">取消索取</a>
 								</li>
-								<li class="col-xs-5 col-sm-5 col-md-5 col-lg-4  col-lg-push-3">
-									<a data-toggle="modal" data-target="#transMsg" class="btn btn-default gTransOption">確定送出</a>
+								<li class="col-xs-5 col-sm-5 col-md-5 col-lg-4 col-lg-push-3">
+									<a id="aSendTrans" data-toggle="modal" data-target="#transMsg" class="btn btn-default gTransOption">確定送出</a>
 								</li>
 							</ul>
 						</div>
@@ -105,7 +68,7 @@
 	</footer>
 
 
-	<script src="${pageContext.request.contextPath}/dist/js/showGiveTransData.js"></script>
+	<script src="${pageContext.request.contextPath}/dist/js/giveTrans.js"></script>
 	<script type="text/javascript">
 		var goodsno = location.search.slice(1);
 		var javaRoot = "${pageContext.servletContext.contextPath}";
@@ -115,20 +78,28 @@
 		
 		// 頁面載入時
 		window.onload = function(){
-// 			if (indname == "" || indname == "${LoginOK.indname}"){
-// 				alert("請先登入帳號！")
-// 				location.href = "login.jsp";
-// 				return;
-// 			}
 			xhr.open('GET', servletPath, true);
 			xhr.send();
 			xhr.onreadystatechange = function(){
 				if(xhr.status == 200 && xhr.readyState == 4){
 					responseData = JSON.parse(xhr.responseText);
+					// 產生網頁內容
 					showData(responseData, javaRoot);
 				}
 			}
 		}
+
+		// 點擊確定送出
+		$('#aSendTrans').click(function(){
+			// 判斷是否已登入，未登入跳出提醒視窗，已登入顯示留言詢問modal
+			if (loginOk  == ""){
+				$('#msgText').html("您還沒登入唷~ 請先登入以進行後續步驟！");
+//					location.href = "login.jsp";
+				return;
+			} else {
+				sendTrans();
+			}
+		});
 	</script>
 	
 	

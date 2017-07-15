@@ -5,6 +5,7 @@
   font-size: 20px;
   /*  物資圖片 */
   /* 捐贈&詢問按鈕 */
+  /* 留言詢問modal */
   /* 物資資訊 */
   /* 詳細說明及簡介 */ }
   #sectionWGoods #wGoodsImgLayout {
@@ -59,6 +60,12 @@
             box-shadow: 0px 15px 15px -10px #ff9797;
             transform: translateY(-8px);
             transition: 0.3s; }
+  #sectionWGoods #sendMsg #msgText, #sectionWGoods #sendMsg button {
+    font-size: 18px;
+    margin: 5px; }
+  #sectionWGoods #sendMsg #msgImg {
+    font-size: 16px;
+    margin: 5px; }
   #sectionWGoods #wGoodsInfo {
     color: #3e3e3e;
     animation-delay: .3s;

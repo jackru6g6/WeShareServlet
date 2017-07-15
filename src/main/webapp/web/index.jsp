@@ -83,26 +83,6 @@
 
 			<!--許願池物資清單-->
 			<div id="wishContent" class="row">
-			
-<!-- 				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"> -->
-<!-- 					<div class="wishItem"> -->
-<!-- 						<div> -->
-<!-- 							<a href="#" class="itemA"> -->
-<!-- 								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_1.png"> -->
-<!-- 								<div class="itemOverlay"> -->
-<!-- 									<p>Labore aliqua aliqua ex ametulpa Lorem cillum magna ea cupidatat ea.</p> -->
-<!-- 								</div> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div> -->
-<!-- 						<div class="itemBy itemContent"> -->
-<!-- 							<a href="#"> -->
-<!-- 								<h6>By <span>Matter</span></h6> -->
-<!-- 								<h5><span>June 21, 2017</span></h5> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
 
 			</div>
 
@@ -131,26 +111,6 @@
 
 			<!--送愛心物資清單-->
 			<div id="giveContent" class="row">
-			
-<!-- 				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"> -->
-<!-- 					<div class="giveItem"> -->
-<!-- 						<div> -->
-<!-- 							<a href="#" class="itemA"> -->
-<!-- 								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_5.png"> -->
-<!-- 								<div class="itemOverlay"> -->
-<!-- 									<p>Labore aliqua aliqua ex ametulpa Lorem cillum magna ea cupidatat ea.</p> -->
-<!-- 								</div> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div> -->
-<!-- 						<div class="itemBy itemContent"> -->
-<!-- 							<a href="#"> -->
-<!-- 								<h6>By <span>Matter</span></h6> -->
-<!-- 								<h5><span>June 21, 2017</span></h5> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
 
 			</div>
 
@@ -179,26 +139,6 @@
 
 			<!--以物易物物資清單-->
 			<div id="exchangeContent" class="row">
-			
-<!-- 				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"> -->
-<!-- 					<div class="exchangeItem"> -->
-<!-- 						<div> -->
-<!-- 							<a href="#" class="itemA"> -->
-<!-- 								<img class="img-responsive itemImg" src="../dist/img/300x300/20170627_9.png"> -->
-<!-- 								<div class="itemOverlay"> -->
-<!-- 									<p>Labore aliqua aliqua ex ametulpa Lorem cillum magna ea cupidatat ea.</p> -->
-<!-- 								</div> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 						<div class="itemName itemContent"><a href="#">Lepa Vida</a></div> -->
-<!-- 						<div class="itemBy itemContent"> -->
-<!-- 							<a href="#"> -->
-<!-- 								<h6>By <span>Matter</span></h6> -->
-<!-- 								<h5><span>June 21, 2017</span></h5> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
 				
 			</div>
 		</div>
@@ -209,7 +149,7 @@
 	</footer>
 	
 	
-	<script src="${pageContext.request.contextPath}/dist/js/showIndexData.js"></script>
+	<script src="${pageContext.request.contextPath}/dist/js/index.js"></script>
 	<script type="text/javascript">
 		var javaRoot = "${pageContext.servletContext.contextPath}";
 		var xhrWish = new XMLHttpRequest();
@@ -227,9 +167,6 @@
 			xhrWish.onreadystatechange = function(){
 				if(xhrWish.status == 200 && xhrWish.readyState == 4){
 					responseWishData = JSON.parse(xhrWish.responseText);
-					console.log("-------------------");
-					console.log("首頁許願池符合的資料筆數:" + responseWishData.length);
-					console.log("-------------------");
 					showWishData(responseWishData, javaRoot, "updatetime", "desc");
 				}
 			}
@@ -239,9 +176,6 @@
 			xhrGive.onreadystatechange = function(){
 				if(xhrGive.status == 200 && xhrGive.readyState == 4){
 					responseGiveData = JSON.parse(xhrGive.responseText);
-					console.log("-------------------");
-					console.log("首頁送愛心符合的資料筆數:" + responseGiveData.length);
-					console.log("-------------------");
 					showGiveData(responseGiveData, javaRoot, "updatetime", "desc");
 				}
 			}
@@ -251,9 +185,6 @@
 			xhrExchange.onreadystatechange = function(){
 				if(xhrExchange.status == 200 && xhrExchange.readyState == 4){
 					responseExchangeData = JSON.parse(xhrExchange.responseText);
-					console.log("-------------------");
-					console.log("首頁以物易物符合的資料筆數:" + responseExchangeData.length);
-					console.log("-------------------");
 					showExchangeData(responseExchangeData, javaRoot, "updatetime", "desc");
 				}
 			}

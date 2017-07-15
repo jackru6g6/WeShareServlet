@@ -239,7 +239,7 @@
 								</div>
 
 								<!-- 收和按鈕 -->
-								<button id="slideMenuTrigger" class="btn btn-default" type="">
+								<button id="slideMenuTrigger" class="btn btn-default">
 									<i class="fa fa-filter" aria-hidden="true"></i>
 								</button>
 							</div>
@@ -247,39 +247,10 @@
 
 						<!-- 右邊交換物資列 -->
 						<div id="sectionGoods" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
 							<!-- 右邊交換物資 -->
 							<div id="divExchangeGoods" class="row">
-								<!-- 右邊交換物資第一列第一項 -->
-<!-- 								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> -->
-<!-- 									<div class="exchangeGoods"> -->
-<!-- 										<a href="#" class="exchangeGoodsA"> -->
-<!-- 											交換物資圖片 -->
-<!-- 											<div class="exchangeGoodsImgLayout"> -->
-<!-- 												<img class="img-responsive exchangeGoodsImg" src="../dist/img/300x300/20170627_31.png"> -->
-<!-- 											</div> -->
-<!-- 											交換物資文字敘述 -->
-<!-- 											<div class="exchangeGoodsOverlay"> -->
-<!-- 												<div class="exchangeGoodsOverlayText"> -->
-<!-- 													交換物資名稱 -->
-<!-- 													<div class="exchangeGoodsName exchangeGoodsContent"> -->
-<!-- 														<span>Lepa Vida</span> -->
-<!-- 													</div> -->
-<!-- 													交換物資發佈者 -->
-<!-- 													<div class="exchangeGoodsBy exchangeGoodsContent"> -->
-<!-- 														<span>By <span class="exchangeGoodsByAuthor">Matter</span> Of Mind from France</span> -->
-<!-- 													</div> -->
-<!-- 													交換物資描述 -->
-<!-- 													<div class="exchangeGoodsDesc exchangeGoodsContent col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1"> -->
-<!-- 														<span>詳細資訊</span> -->
-<!-- 													</div> -->
-<!-- 												</div> -->
-<!-- 											</div> -->
-<!-- 										</a> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
+								
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -292,7 +263,7 @@
 	</footer>
 	
 	
-	<script src="${pageContext.request.contextPath}/dist/js/showExchangeData.js"></script>
+	<script src="${pageContext.request.contextPath}/dist/js/exchange.js"></script>
 	<script type="text/javascript">
 		var javaRoot = "${pageContext.servletContext.contextPath}";
 		var xhr = new XMLHttpRequest();
@@ -310,9 +281,7 @@
 				xhr.onreadystatechange = function(){
 					if(xhr.status == 200 && xhr.readyState == 4){
 						responseData = JSON.parse(xhr.responseText);
-						console.log("-------------------");
-						console.log("符合的資料筆數:" + responseData.length);
-						console.log("-------------------");
+						// 產生物資內容
 						showData(responseData, javaRoot);
 					}
 				}
@@ -322,31 +291,22 @@
 		// 關鍵字查詢
 		$('#searchInput').keydown(function(e){
 			if(e.keyCode == 13){
-				keyWordSearch();
+				keyWordSearch($('#searchInput').val());
 			}
 		});
 		$('#btKWSearch').click(function(){
-			keyWordSearch();
+			keyWordSearch($('#searchInput').val());
 		});
 		function keyWordSearch(e){
 			servletPath = javaRoot + '/_08_query/Query.do?goodsstatus=3';
-			var keyWord;
-			if (e !== ""){
-				keyWord = e;
-			} else {
-				keyWord = $('#searchInput').val();
-			}
-			console.log("keyWord = " + keyWord);
+			var keyWord = e;
 			servletPath += '&type=keyword&value=' + keyWord;
-			console.log("servletPath = " + servletPath);
 			xhr.open('GET', servletPath, true);
 			xhr.send();
 			xhr.onreadystatechange = function(){
 				if(xhr.status == 200 && xhr.readyState == 4){
 					responseData = JSON.parse(xhr.responseText);
-					console.log("-------------------");
-					console.log("篩選後符合的資料筆數:" + responseData.length);
-					console.log("-------------------");
+					// 產生物資內容
 					showData(responseData, javaRoot);
 				}
 			}
@@ -357,17 +317,13 @@
 			servletPath = javaRoot + '/_08_query/Query.do?goodsstatus=3';
 			var col = $(this).find('.findCol').val();
 			var val = $(this).find('.findVal').val();
-			console.log("findCol = " + col + ", findVal = " + val);
 			servletPath += '&type=' + col + '&value=' + val;
-			console.log("servletPath = " + servletPath);
 			xhr.open('GET', servletPath, true);
 			xhr.send();
 			xhr.onreadystatechange = function(){
 				if(xhr.status == 200 && xhr.readyState == 4){
 					responseData = JSON.parse(xhr.responseText);
-					console.log("-------------------");
-					console.log("篩選後符合的資料筆數:" + responseData.length);
-					console.log("-------------------");
+					// 產生物資內容
 					showData(responseData, javaRoot);
 				}
 			}

@@ -20,12 +20,8 @@
 
 <!-- Bootstrap JavaScript -->
 <script src="${pageContext.request.contextPath}/dist/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-<!-- Holder Background -->
-<script src="//cdn.jsdelivr.net/holder/2.9.4/holder.min.js"></script>
 	
 <!-- 個人化 -->
-<script src="${pageContext.request.contextPath}/dist/js/bundle.js"></script>
 <script src="${pageContext.request.contextPath}/dist/js/login.js"></script>
 
 <!-- 引進外部資源頁面 END-->

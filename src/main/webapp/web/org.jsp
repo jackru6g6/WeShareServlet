@@ -36,20 +36,20 @@
 							<!-- 社福團體類型搜尋 -->
 							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 								<div id="blockTypeSearch">
-									<select id="searchType" name="server" class="form-control">
+									<select id="searchType" value="orgtypes" class="form-control">
 										<option selected style="display: none;">社福團體類型</option>
-										<option value="server">兒少福利</option>
-										<option value="server">偏鄉教育</option>
-										<option value="server">老人福利</option>
-										<option value="server">身障福利</option>
-										<option value="server">其他</option>
+										<option value="1" class="opFilterType">兒少福利</option>
+										<option value="2" class="opFilterType">偏鄉教育</option>
+										<option value="3" class="opFilterType">老人福利</option>
+										<option value="4" class="opFilterType">身障福利</option>
+										<option value="5" class="opFilterType">其他類型</option>
 									</select>
 								</div>
 							</div>
 							<!-- 社福團體所在地搜尋 -->
 							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 								<div id="blockLocSearch">
-									<select id="searchLoc" name="server" class="form-control">
+									<select id="searchLoc" value="indaddress" class="form-control">
 										<option selected style="display: none;">社福團體所在地</option>
 										<option value="server">北部(基隆市、臺北市、新北市、桃園市、新竹市、新竹縣)</option>
 										<option value="server">中部(苗栗縣、臺中市、南投縣、彰化縣、雲林縣)</option>
@@ -64,67 +64,6 @@
 
 			<!-- 社福團體簡介 -->
 			<div id="sectionOrgAbout" class="container">
-				<!-- 社福團體簡介第一筆 -->
-				<!--<div class="rowOrg">-->
-					<!-- 上層翻轉列 -->
-					<!--<div class="rowUpper">-->
-						<!-- 上左_圖片 -->
-						<!--<div class="orgImgLayout blockUpper">
-							<img class="img-responsive orgImg" src="../dist/img/300x300/20170627_47.png">
-						</div>-->
-						<!-- 上右_地圖 -->
-						<!--<div class="orgMap blockUpper">
-						</div>
-					</div>-->
-
-					<!-- 下層固定列 -->
-					<!--<div class="rowLower">-->
-						<!-- 底左_聯絡資訊 -->
-						<!--<div class="orgContact blockLower">
-							<div class="orgContactList">
-								<ul type="none">
-									<li><i class="fa fa-phone" aria-hidden="true"></i>
-										<span>03-3353545</span>
-									</li>
-									<li><i class="fa fa-envelope" aria-hidden="true"></i>
-										<a href="mailto:winnie@ecpat.org.tw">winnie@ecpat.org.tw</a>
-									</li>
-									<li><i class="fa fa-home" aria-hidden="true"></i>
-										<span>330桃園市桃園區復興路205號15樓-4</span>
-									</li>
-									<li><i class="fa fa-globe" aria-hidden="true"></i>
-										<a href="http://www.ecpat.org.tw" target="_blank">http://www.ecpat.org.tw</a>
-									</li>
-								</ul>
-								<a href="wish.html" type="button" class="orgGoods btn btn-default">查看募集物資</a>
-							</div>
-						</div>-->
-
-						<!-- 底右_放簡介 -->
-						<!--<div class="orgInfo blockLower">
-							<div class="orgInfoList">
-								<div class="orgName">台灣展翅協會</div>
-									<ul type="none">
-										<li><i class="fa fa-heart" aria-hidden="true"></i>社福類別：
-											<span>兒少福利</span>
-										</li>
-										<li><i class="fa fa-heart" aria-hidden="true"></i>社福負責人：
-											<span>高亘瑩</span>
-										</li>
-										<li><i class="fa fa-heart" aria-hidden="true"></i>立案核准字號：
-											<span>台內社字第8375183號</span>
-										</li>
-										<li><i class="fa fa-heart" aria-hidden="true"></i>勸募許可字號：
-											<span>衛部救字第1051360904號</span>
-										</li>
-										<li>
-											<span>提倡兒童人權、預防兒少商業性剝削、兒少上網安全與反人口販運，我們期望匯集眾人的力量，協助受傷的孩子擁有能力與機會，如鷹展翅高飛。</span>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>-->
 				
 			</div>
 		</div>
@@ -135,57 +74,90 @@
 	</footer>
 	
 	<script src="${pageContext.request.contextPath}/dist/js/org.js"></script>
-<!-- 	<script type="text/javascript"> -->
-<%-- 		var javaRoot = "${pageContext.servletContext.contextPath}"; --%>
-<!-- 		var xhrWish = new XMLHttpRequest(); -->
-<!-- 		var xhrGive = new XMLHttpRequest(); -->
-<!-- 		var xhrExchange = new XMLHttpRequest(); -->
-<!-- 		var servletPath = javaRoot + '/_08_query/Query.do?goodsstatus='; -->
-<!-- 		var responseWishData; -->
-<!-- 		var responseGiveData; -->
-<!-- 		var responseExchangeData; -->
+	<script type="text/javascript">
+		var javaRoot = "${pageContext.servletContext.contextPath}";
+		var xhr = new XMLHttpRequest();
+		var servletPath = javaRoot + '/_08_query/OrgQuery.do';
+		var responseData;
 		
-<!-- 		// 頁面載入時 -->
-<!-- 		window.onload = function(){ -->
-<!-- 			xhrWish.open('GET', servletPath + '1', true); -->
-<!-- 			xhrWish.send(); -->
-<!-- 			xhrWish.onreadystatechange = function(){ -->
-<!-- 				if(xhrWish.status == 200 && xhrWish.readyState == 4){ -->
-<!-- 					responseWishData = JSON.parse(xhrWish.responseText); -->
-<!-- 					console.log("-------------------"); -->
-<!-- 					console.log("首頁許願池符合的資料筆數:" + responseWishData.length); -->
-<!-- 					console.log("-------------------"); -->
-<!-- 					showWishData(responseWishData, javaRoot, "updatetime", "desc"); -->
-<!-- 				} -->
-<!-- 			} -->
-<!-- 		}; -->
-<!-- 	</script> -->
-		
-	<script>
+		// 頁面載入時
 		window.onload = function(){
-			var orgData = [
-				{
-					name: '國立台灣圖書館',
-					address: '235新北市中和區中安街85號'
-				},
-				{
-					name: '國立臺灣大學圖書館',
-					address: '106台北市大安區羅斯福路四段1號'
-				},
-				{
-					name: '台北植物園',
-					address: '10066台北市中正區南海路53號'
-				},
-			];
-			
-			showData(orgData);
-
-			// 點下層固定列，翻轉上層翻轉列
-			$(".rowLower").click(function () {
-				turnPage($(this));
-			});
+			xhr.open('GET', servletPath, true);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					console.log(xhr.responseText);
+					responseData = JSON.parse(xhr.responseText);
+					console.log("-------------------");
+					console.log("org符合的資料筆數:" + responseData.length);
+					console.log("-------------------");
+					// 產生社福資料
+					showData(responseData, javaRoot);
+					
+					// 點下層固定列，翻轉上層翻轉列
+					$(".rowLower").click(function () {
+						turnPage($(this));
+					});
+				}
+			}
+		};
+		
+		// 關鍵字查詢
+		$('#searchInput').keydown(function(e){
+			if(e.keyCode == 13){
+				keyWordSearch();
+			}
+		});
+		$('#btKWSearch').click(function(){
+			keyWordSearch();
+		});
+		function keyWordSearch(){
+			servletPath = javaRoot + '/_08_query/OrgQuery.do';
+			var keyWord = $('#searchInput').val();
+			console.log("keyWord = " + keyWord);
+			servletPath += '?&type=keyword&value=' + keyWord;
+			xhr.open('GET', servletPath, true);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					responseData = JSON.parse(xhr.responseText);
+					// 產生社福資料
+					showData(responseData, javaRoot);
+					
+					// 點下層固定列，翻轉上層翻轉列
+					$(".rowLower").click(function () {
+						turnPage($(this));
+					});
+				}
+			}
 		}
+		
+		// 類別、地點查詢
+// 		$('.opFilterType').click(function(){
+// 			console.log("opFilterType click");
+// 			servletPath = javaRoot + '/_08_query/OrgQuery.do';
+// 			var col = $(this).closest('select').val();
+// 			var val = $(this).val();
+// 			console.log("col = " + col);
+// 			console.log("val = " + val);
+// 			servletPath += '?&type=' + col + '&value=' + val;
+// 			xhr.open('GET', servletPath, true);
+// 			xhr.send();
+// 			xhr.onreadystatechange = function(){
+// 				if(xhr.status == 200 && xhr.readyState == 4){
+// 					responseData = JSON.parse(xhr.responseText);
+// 					// 產生物資內容
+// 					showData(responseData, javaRoot);
+					
+// 					// 點下層固定列，翻轉上層翻轉列
+// 					$(".rowLower").click(function () {
+// 						turnPage($(this));
+// 					});
+// 				}
+// 			}
+// 		});
 	</script>
+		
 	
 </body>
 

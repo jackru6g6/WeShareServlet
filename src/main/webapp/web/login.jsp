@@ -19,10 +19,8 @@
 	<meta name="google-signin-scope" content="profile email">
 	<meta name="google-signin-client_id" content="${abc.getGoogleClientId()}">
 	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async></script>
-<!-- 	<script type="text/javascript" src="https://mail.google.com/mail/u/0/?logout&hl=en"></script> -->
 	<script>
 		var GoogleClientId = "${abc.getGoogleClientId()}";
-// 		console.log("getGoogleClientId = " + GoogleClientId);
 		function onSignIn(googleUser) {
 			var redirectUrl = '/Demo/web/_02_login/controller/GoogleLogin.do';
 			var form = $('<form action="' + redirectUrl + '" method="post">'
@@ -144,21 +142,14 @@
 																<h5><a href="#">忘記密碼？</a></h5>
 															</div>
 															<!--註冊帳號-->
-															<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">																															
-																
+															<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 																<h5>還沒有帳號？
 																	<a data-toggle="modal" data-target="#register_modal">註冊帳號</a>
 																	<!-- 按下 [註冊帳號] 跳出會員註冊頁面 -->
 																	<div class="modal fade" id="register_modal" role="dialog">
 																		<jsp:include page="register.jsp" />													
 																	</div>
-																
 																</h5>
-																	
-																
-																	
-																
-																
 															</div>
 														</div>
 													</div>

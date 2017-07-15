@@ -1,58 +1,70 @@
 function showData(data) {
-	for (var i = 0; i < data.length; i++) {
+	$('#sectionOrgAbout').empty();
+	var resultData;
+	if(data.length == 0){
+		resultData = 
+		`<div style="font-size:24px; color:#ff0000; text-align:center; margin-top:30px;">
+			找不到物資唷~請重新查詢！
+		</div>`;
+		$('#sectionOrgAbout').append(resultData);
+		return;
+	}
+	for (var i = 0; i < data.length; i+=2) {
 		var result =
 		`<div class="rowOrg">
+			<!-- 上層翻轉列 -->
 			<div class="rowUpper">
-
+				<!-- 上左_圖片 -->
 				<div class="orgImgLayout blockUpper">
-					<img class="img-responsive orgImg" src="../dist/img/300x300/20170627_47.png">
+					<img class="img-responsive orgImg" src="${javaRoot}/_00_init/getImage?id=${data[i].orgfileName}&type=ORG">
 				</div>
-
+				<!-- 上右_地圖 -->
 				<div class="orgMap blockUpper">
-					<iframe class="iframeMap" frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${data[i].address}&z=15&output=embed&t='></iframe>
+					<iframe class="iframeMap" frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${data[i].indaddress}&z=15&output=embed&t='></iframe>
 				</div>
 			</div>
-
+			
+			<!-- 下層固定列 -->
 			<div class="rowLower">
-
+				<!-- 底左_聯絡資訊 -->
 				<div class="orgContact blockLower">
 					<div class="orgContactList">
 						<ul type="none">
 							<li><i class="fa fa-phone" aria-hidden="true"></i>
-								<span>03-3353545</span>
+								<span>${data[i].indphone}</span>
 							</li>
 							<li><i class="fa fa-envelope" aria-hidden="true"></i>
-								<a href="mailto:winnie@ecpat.org.tw">winnie@ecpat.org.tw</a>
+								<a href="mailto:${data[i].indemail}">${data[i].indemail}</a>
 							</li>
 							<li><i class="fa fa-home" aria-hidden="true"></i>
-								<span>${data[i].address}</span>
+								<span>${data[i].indaddress}</span>
 							</li>
 							<li><i class="fa fa-globe" aria-hidden="true"></i>
-								<a href="http://www.ecpat.org.tw" target="_blank">http://www.ecpat.org.tw</a>
+								<a href="${data[i+1].website}" target="_blank">${data[i+1].website}</a>
 							</li>
 						</ul>
-						<a href="wish.jsp" type="button" class="orgGoods btn btn-default">查看募集物資</a>
+						<a href="wish.jsp?${data[i].indname}" type="button" class="orgGoods btn btn-default">查看募集物資</a>
 					</div>
 				</div>
-
+				<!-- 底右_簡介 -->
 				<div class="orgInfo blockLower">
 					<div class="orgInfoList">
-						<div class="orgName">${data[i].name}</div>
+						<div class="orgName">${data[i].indname}</div>
 						<ul type="none">
 							<li><i class="fa fa-heart" aria-hidden="true"></i>社福類別：
-								<span>兒少福利</span>
+								<span>${data[i+1].orgname_TEMP}</span>
 							</li>
 							<li><i class="fa fa-heart" aria-hidden="true"></i>社福負責人：
-								<span>高亘瑩</span>
+								<span>${data[i+1].leader}</span>
 							</li>
 							<li><i class="fa fa-heart" aria-hidden="true"></i>立案核准字號：
-								<span>台內社字第8375183號</span>
+								<span>${data[i+1].registerno}</span>
 							</li>
 							<li><i class="fa fa-heart" aria-hidden="true"></i>勸募許可字號：
-								<span>衛部救字第1051360904號</span>
+								<span>${data[i+1].raiseno}</span>
 							</li>
 							<li>
-								<span>提倡兒童人權、預防兒少商業性剝削、兒少上網安全與反人口販運，我們期望匯集眾人的力量，協助受傷的孩子擁有能力與機會，如鷹展翅高飛。</span>
+								<span>${data[i+1].intro}</span>
 							</li>
 						</ul>
 					</div>
@@ -62,7 +74,6 @@ function showData(data) {
 		$('#sectionOrgAbout').append(result);
 	}
 }
-
 
 // 點下層固定列，翻轉上層翻轉列
 function turnPage(e) {

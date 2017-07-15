@@ -66,3 +66,6 @@
     box-shadow: 0px 0px 0px 0px #e06f39; }
   100% {
     box-shadow: 0px 0px 20px 10px #ffffff; } }
+
+#transMsg .modalFont {
+  font-size: 18px; }
