@@ -64,6 +64,7 @@ public class _first_run {
 		stmt.executeUpdate(sql_Common.DROP_FUNCTION_INSERT_MSG);
 		stmt.executeUpdate(sql_Common.DROP_FUNCTION_INSERT_FEEDBACK);
 		stmt.executeUpdate(sql_Common.DROP_PROCEDURE_INSERT_MSG);
+		stmt.executeUpdate(sql_Common.DROP_PROCEDURE_INSERT_FEEDBACK);
 
 	}
 
@@ -84,6 +85,8 @@ public class _first_run {
 		stmt.executeUpdate(sql_Common.CREATE_FUNCTION_INSERT_MSG);
 		stmt.executeUpdate(sql_Common.CREATE_FUNCTION_INSERT_FEEDBACK);
 		stmt.executeUpdate(sql_Common.CREATE_PROCEDURE_INSERT_MSG);
+		stmt.executeUpdate(sql_Common.CREATE_PROCEDURE_INSERT_FEEDBACK);
+
 	}
 
 	public static void CreateData(Connection con) throws SQLException {
