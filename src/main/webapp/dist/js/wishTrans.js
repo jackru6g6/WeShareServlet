@@ -84,17 +84,17 @@ function sendTrans(){
 //	}];
 //	console.log(transDataJSON);
 //	data: JSON.stringify({transDataString : transDataJSON}),
-	
-	$.ajax({
-		type: 'post',
-		url: transServletPath,
-		data: {
+	var jsondata = JSON.stringify({
 			GOODSNO : goodsNo,
 			DEALQTY : dealQty,
 			ENDSHIPWAY : endShipway,
 			DEALNOTE : dealNote,
 			transImg : transImg
-		},
+		});
+	$.ajax({
+		type: 'post',
+		url: transServletPath,
+		data:jsondata,
 		dataType: 'json',
 		success: function(response){
 			console.log("response = " + response);

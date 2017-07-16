@@ -1,5 +1,6 @@
 package web._05_deal.model;
 
+import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import web._00_init.GlobalService;
+import web._00_init.sql_Common;
 
 public class DealDAO {
 
@@ -90,16 +92,19 @@ public class DealDAO {
 		return ans;
 	}
 
-	public String Insert_DEAL(int GOODSNO, String SOURCEID, int DEALQTY, int ENDSHIPWAY, String DEALNOTE) {
+	public String Insert_DEAL(int GOODSNO, String SOURCEID, int DEALQTY, int ENDSHIPWAY, String DEALNOTE,
+			InputStream is, long size) {
 		String ans = "FALSE";
 		try (Connection con = ds.getConnection();
-				CallableStatement CS = con.prepareCall("{? = CALL insert_deal(?,?,?,?,?)}");) {
+				CallableStatement CS = con.prepareCall(sql_Common.CALL_FUNCTION_INSERT_DEAL);) {
 			CS.registerOutParameter(1, Types.VARCHAR);
 			CS.setInt(2, GOODSNO);
 			CS.setString(3, SOURCEID);
 			CS.setInt(4, DEALQTY);
 			CS.setInt(5, ENDSHIPWAY);
 			CS.setString(6, DEALNOTE);
+			CS.setBinaryStream(7, is, size);
+			CS.setString(8, String.valueOf(GOODSNO) + String.valueOf(DEALQTY) + String.valueOf(ENDSHIPWAY) + ".jpg");
 			CS.execute();
 			ans = CS.getString(1);
 		} catch (Exception e) {

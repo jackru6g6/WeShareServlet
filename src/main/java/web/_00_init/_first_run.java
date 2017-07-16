@@ -396,6 +396,8 @@ public class _first_run {
 					cs.setInt(4, Integer.parseInt(sa[2]));
 					cs.setInt(5, Integer.parseInt(sa[3]));
 					cs.setString(6, sa[4]);
+					cs.setBinaryStream(7, null, 0L);
+					cs.setString(8, null);
 					cs.executeUpdate();
 					GlobalService.random_time_1_2();
 				} catch (Exception e) {
@@ -510,7 +512,7 @@ public class _first_run {
 			String SQL_Ans = "";
 			while ((Read_line = bf.readLine()) != null) {
 				String[] sa = Read_line.split("\\|");
-//				{? =CALL INSERT_FEEDBACK(?,?,?,?,?,?,?)}
+				// {? =CALL INSERT_FEEDBACK(?,?,?,?,?,?,?)}
 				try (CallableStatement cs = con.prepareCall(sql_Common.CALL_FUNCTION_INSERT_FEEDBACK);) {
 					cs.registerOutParameter(1, Types.VARCHAR);
 					cs.setString(2, sa[0]);

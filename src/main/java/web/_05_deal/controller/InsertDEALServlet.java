@@ -1,7 +1,10 @@
 package web._05_deal.controller;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Base64;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import web._01_register.model.MemberBean;
 import web._05_deal.model.DEAL_ErrorBean;
@@ -44,6 +48,7 @@ public class InsertDEALServlet extends HttpServlet {
 		String Type = "INSERT";
 		String Ans = "TRUE";
 		JSON_In_Up_Bean jiub = new JSON_In_Up_Bean();
+		Gson gson = new Gson();
 
 		try {
 			HttpSession session = request.getSession(false);
@@ -54,14 +59,29 @@ public class InsertDEALServlet extends HttpServlet {
 			Ans = "FALSE";
 			jiub.setMessage("Session Not Found");
 		}
-		String GOODSNO = request.getParameter("GOODSNO");
-		String DEALQTY = request.getParameter("DEALQTY");
-		String ENDSHIPWAY = request.getParameter("ENDSHIPWAY");
-		String DEALNOTE = request.getParameter("DEALNOTE");
-		System.out.println("GOODSNO=" + GOODSNO);
-		System.out.println("DEALQTY=" + DEALQTY);
-		System.out.println("GOODSTYPE=" + ENDSHIPWAY);
-		System.out.println("DEALNOTE=" + DEALNOTE);
+		// String GOODSNO = request.getParameter("GOODSNO");
+		// String DEALQTY = request.getParameter("DEALQTY");
+		// String ENDSHIPWAY = request.getParameter("ENDSHIPWAY");
+		// String DEALNOTE = request.getParameter("DEALNOTE");
+		BufferedReader br = request.getReader();
+		StringBuffer jsonIn = new StringBuffer();
+		String line = "";
+		while ((line = br.readLine()) != null) {
+			jsonIn.append(line);
+		}
+		System.out.println("JSON size=" + jsonIn.length());
+		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
+		String GOODSNO = jsonObject.get("GOODSNO").getAsString();
+		String DEALQTY = jsonObject.get("DEALQTY").getAsString();
+		String ENDSHIPWAY = jsonObject.get("ENDSHIPWAY").getAsString();
+		String DEALNOTE = jsonObject.get("DEALNOTE").getAsString();
+		String transImg = jsonObject.get("transImg").getAsString();
+		byte[] image = Base64.getMimeDecoder().decode(transImg.split(",")[1]);
+//		System.out.println("GOODSNO=" + GOODSNO);
+//		System.out.println("DEALQTY=" + DEALQTY);
+//		System.out.println("ENDSHIPWAY=" + ENDSHIPWAY);
+//		System.out.println("transImg_size=" + image.length);
+
 		DEAL_ErrorBean dealeb = new DEAL_ErrorBean();
 		if (Ans.equals("TRUE")) {
 			if (GOODSNO == null || GOODSNO.trim().length() == 0) {
@@ -83,7 +103,7 @@ public class InsertDEALServlet extends HttpServlet {
 
 		if (Ans.equals("TRUE")) {
 			String SQLAns = new DealDAO().Insert_DEAL(Integer.parseInt(GOODSNO), INDID, Integer.parseInt(DEALQTY),
-					Integer.parseInt(ENDSHIPWAY), DEALNOTE);
+					Integer.parseInt(ENDSHIPWAY), DEALNOTE, new ByteArrayInputStream(image), image.length);
 			System.out.println("ans=" + SQLAns);
 			if (!SQLAns.equals("TRUE")) {
 				Ans = "FALSE";
@@ -92,7 +112,6 @@ public class InsertDEALServlet extends HttpServlet {
 		}
 		jiub.setType(Type);
 		jiub.setAns(Ans);
-		Gson gson = new Gson();
 		String jiub_json = gson.toJson(jiub);
 		System.out.println(jiub_json);
 		response.setContentType("application/json; charset=UTF8");
