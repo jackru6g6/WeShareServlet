@@ -56,45 +56,22 @@ function sendTrans(){
 	var dealQty = $('#dealQty').val();
 	var endShipway = $('#endShipway').val();
 	var dealNote = $('#dealNote').val();
-	var transImg = localStorage.getItem('transImg');
+	var dealImage = localStorage.getItem('dealImage');
 	var transServletPath = javaRoot + '/web/_05_deal/controller/InsertDEAL';
 	
-	// get傳字串，會出現Request header is too large
-//	$.ajax({
-//		type: 'get',
-//		url: transServletPath,
-//		data: {
-//			GOODSNO : goodsNo,
-//			DEALQTY : dealQty,
-//			ENDSHIPWAY : endShipway,
-//			DEALNOTE : dealNote,
-//			transImg : transImg
-//		},
-	
-	
-	// post傳資料
-	
-	// JSON格式
-//	var transDataJSON = [{
-//		GOODSNO: goodsNo,
-//		DEALQTY : dealQty,
-//		ENDSHIPWAY : endShipway,
-//		DEALNOTE : dealNote,
-//		transImg : transImg
-//	}];
-//	console.log(transDataJSON);
-//	data: JSON.stringify({transDataString : transDataJSON}),
+	// post傳資料(JSON格式)
+	var transDataString = JSON.stringify({
+		GOODSNO : goodsNo,
+		DEALQTY : dealQty,
+		ENDSHIPWAY : endShipway,
+		DEALNOTE : dealNote,
+		DEALIMAGE : dealImage
+	});
 	
 	$.ajax({
 		type: 'post',
 		url: transServletPath,
-		data: {
-			GOODSNO : goodsNo,
-			DEALQTY : dealQty,
-			ENDSHIPWAY : endShipway,
-			DEALNOTE : dealNote,
-			transImg : transImg
-		},
+		data: transDataString,
 		dataType: 'json',
 		success: function(response){
 			console.log("response = " + response);
@@ -102,6 +79,7 @@ function sendTrans(){
 			// 出現錯誤訊息
 			if(response.Ans == "TRUE"){
 				$('#msgText').html("資料已送出，詳細資訊請至會員專區瀏覽");
+				$('#aMsgClose').attr('href', 'wishGoods.jsp?goodsno=' + `${responseData[0].goodsno}`);
 			} else {
 				$('#msgText').html("發生了一點錯誤，請確認是否已登入，並重新進入此頁面，謝謝!");
 			}

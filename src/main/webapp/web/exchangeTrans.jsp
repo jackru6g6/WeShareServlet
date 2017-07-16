@@ -30,7 +30,7 @@
 				</div>
 				<!-- 關閉鈕 -->
 				<div class="modal-footer">
-					<a href="javascript:history.back()" type="button" class="btn btn-default modalFont">關閉視窗</a>
+					<a id="aMsgClose" type="button" class="btn btn-default modalFont">關閉視窗</a>
 				</div>
 			</div>
 		</div>
@@ -94,7 +94,6 @@
 			// 判斷是否已登入，未登入跳出提醒視窗，已登入顯示留言詢問modal
 			if (loginOk  == ""){
 				$('#msgText').html("您還沒登入唷~ 請先登入以進行後續步驟！");
-//					location.href = "login.jsp";
 				return;
 			} else {
 				sendTrans();

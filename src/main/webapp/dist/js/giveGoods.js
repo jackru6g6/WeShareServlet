@@ -160,7 +160,6 @@ function aGiveTrans(){
 	// 判斷是否已登入，未登入跳出提醒視窗，已登入導向確認頁面
 	if (loginOk  == ""){
 		alert("您還沒登入唷~\n請先登入以進行後續步驟！");
-//			location.href = "login.jsp";
 		return;
 	} else {
 		// 先移除進場動畫，否則只會截到剛進場時位置的圖片
@@ -175,10 +174,8 @@ function aGiveTrans(){
 
 		html2canvas(document.body, {
 			onrendered: function(canvas) {
-//				$('#showImgCanvas').html(canvas);
 				var mediumQuality = canvas.toDataURL("image/jpeg");
-				localStorage.setItem('transImg', mediumQuality);
-				console.log('canvas end');
+				localStorage.setItem('dealImage', mediumQuality);
 			}
 		});
 		// 延遲後轉至giveTrans.jsp
@@ -203,43 +200,31 @@ function sendMsg(){
 	var msgEndId = `${responseData[0].indid}`;
 	var msgText = $('#msgText').val();
 	var msgServletPath = javaRoot + '/web/_06_MSG/controller/AddNewMSG';
-	console.log("msgEndId = " + msgEndId);
-	console.log("msgText = " + msgText);
-	console.log("msgImg = " + readImg.result);
 	
-	// get傳字串
-//	$.ajax({
-//		type: 'get',
-//		url: msgServletPath,
-//		data: {
-//			MSGENDID : msgEndId,
-//			MSGTEXT : msgText,
-//			msgImg : readImg.result
-//		},
-	
-	
-	// post傳資料
-	
-	// JSON格式
-//	var msgDataJSON = [{
-//		MSGENDID: msgEndId,
-//		MSGTEXT : msgText,
-//		msgImg : readImg.result
-//	}];
-//	console.log(msgDataJSON);
-//	data: JSON.stringify({msgDataString : msgDataJSON}),
+	// post傳資料(JSON格式)
+	var msgDataString = JSON.stringify({
+		MSGENDID: msgEndId,
+		MSGTEXT : msgText,
+		MSGIMAGE : readImg.result
+	});
 	
 	$.ajax({
 		type: 'post',
 		url: msgServletPath,
-		data: {
-			MSGENDID : msgEndId,
-			MSGTEXT : msgText,
-			msgImg : readImg.result
-		},
+		data: msgDataString,
 		dataType: 'json',
 		success: function(response){
 			console.log(response);
+			// 出現錯誤訊息
+			if(response.Ans == "TRUE"){
+				alert("訊息已送出，詳細資訊請至會員專區瀏覽");
+			} else {
+				alert("發生了一點錯誤，請確認是否已登入，並重新進入此頁面，謝謝!");
+			}
+		},
+		error: function(response){
+			// 出現錯誤訊息
+			alert("發生了一點錯誤，請重新發送訊息，謝謝!");
 		}
 	});
 }

@@ -25,13 +25,6 @@
 		<div id="sectionWGoods" class="container">
 
 		</div>
-		
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> -->
-<!-- 				<div id="showImgCanvas" style="border:1px solid #87cefa;"></div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-		
 	</section>
 	
 	<footer>
@@ -46,7 +39,7 @@
 		var xhr = new XMLHttpRequest();
 		var servletPath = javaRoot + '/_08_query/GoodsQuery.do?' + goodsno;
 		var responseData;
-		var readImg;
+		var readImg = "";
 		
 		// 頁面載入時
 		window.onload = function(){
@@ -72,7 +65,6 @@
 						if (loginOk  == ""){
 							$('#msgBody').html("<div>您還沒登入唷~ 請先登入以進行後續步驟！</div>");
 							$('#msgFooter').hide();
-//								location.href = "login.jsp";
 							return;
 						}
 					});
