@@ -1,7 +1,9 @@
 package web._01_register.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import com.google.common.io.ByteStreams;
 
 import app.user.MemberDAO;
 import web._00_init.GlobalService;
@@ -170,9 +174,10 @@ public class OAuthRegisterServlet extends HttpServlet {
 
 					MemberBean mem = new MemberBean(userType, GLB.getUserId(), GLB.getUserPassword(), GLB.getName(),
 							null, GLB.getEmail(), null);
+					byte[] bytes = ByteStreams.toByteArray(new URL(GLB.getPictureUrl()).openStream());
 
 					// 將MemberBean mem立即寫入Database
-					int n = rs.saveMember(mem, null, 0L, null);
+					int n = rs.saveMember(mem, new ByteArrayInputStream(bytes), bytes.length, "user_icon.jpg");
 					if (n == 1) {
 						msgOK.put("InsertOK", "<Font color='red'>新增成功，請開始使用本系統</Font>");
 						response.sendRedirect(contextPath + "/web/index.jsp");
@@ -183,19 +188,23 @@ public class OAuthRegisterServlet extends HttpServlet {
 
 				} else if (userType == 2) {
 
-//					MemberBean mem = new MemberBean(userType, GLB.getUserId(), GLB.getUserPassword(), GLB.getName(),
-//							null, GLB.getEmail(), null);
-//					OrgBean ob = new OrgBean(GLB.getUserId(), ORGINF, ORGLEADER, ORGTYPES, ORGREGISTERNO, ORGRAISENO);
-//
-//					// 將MemberBean mem立即寫入Database
-//					int n = rs.saveOrg(mem, ob, null, 0L, null, null, 0L, null);
-//					if (n == 1) {
-//						msgOK.put("InsertOK", "<Font color='red'>新增成功，請開始使用本系統</Font>");
-//						response.sendRedirect(contextPath + "/web/index.jsp");
-//						return;
-//					} else {
-//						errorMsg.put("errorIDDup", "新增此筆資料有誤(RegisterServlet)");
-//					}
+					// MemberBean mem = new MemberBean(userType,
+					// GLB.getUserId(), GLB.getUserPassword(), GLB.getName(),
+					// null, GLB.getEmail(), null);
+					// OrgBean ob = new OrgBean(GLB.getUserId(), ORGINF,
+					// ORGLEADER, ORGTYPES, ORGREGISTERNO, ORGRAISENO);
+					//
+					// // 將MemberBean mem立即寫入Database
+					// int n = rs.saveOrg(mem, ob, null, 0L, null, null, 0L,
+					// null);
+					// if (n == 1) {
+					// msgOK.put("InsertOK", "<Font
+					// color='red'>新增成功，請開始使用本系統</Font>");
+					// response.sendRedirect(contextPath + "/web/index.jsp");
+					// return;
+					// } else {
+					// errorMsg.put("errorIDDup", "新增此筆資料有誤(RegisterServlet)");
+					// }
 				} else {
 					System.out.println("userType錯誤");
 					errorMsg.put("errUserType", "userType錯誤");
