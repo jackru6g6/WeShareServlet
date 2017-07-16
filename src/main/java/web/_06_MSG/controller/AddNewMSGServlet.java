@@ -1,9 +1,12 @@
 package web._06_MSG.controller;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import web._00_init.GlobalService;
 import web._01_register.model.MemberBean;
@@ -52,6 +56,7 @@ public class AddNewMSGServlet extends HttpServlet {
 
 	public void do_First(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		Gson gson = new Gson();
 		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
 		String INDID = "";
 		String Type = "INSERT";
@@ -67,11 +72,22 @@ public class AddNewMSGServlet extends HttpServlet {
 			Ans = "FALSE";
 			mfjb.setMessage("Session Not Found");
 		}
-		String MSGENDID = request.getParameter("MSGENDID");
-		String MSGTEXT = request.getParameter("MSGTEXT");
+		BufferedReader br = request.getReader();
+		StringBuffer jsonIn = new StringBuffer();
+		String line = "";
+		while ((line = br.readLine()) != null) {
+			jsonIn.append(line);
+		}
+		System.out.println("JSON size=" + jsonIn.length());
+		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
+		String MSGENDID = jsonObject.get("MSGENDID").getAsString();
+		String MSGTEXT = jsonObject.get("MSGTEXT").getAsString();
+		String MSGIMAGE = jsonObject.get("MSGIMAGE").getAsString();
+		byte[] image = Base64.getMimeDecoder().decode(MSGIMAGE.split(",")[1]);
+		// String MSGENDID = request.getParameter("MSGENDID");
+		// String MSGTEXT = request.getParameter("MSGTEXT");
 		System.out.println("MSGENDID=" + MSGENDID + "	MSGTEXT=" + MSGTEXT);
 		MSG_ErrorBean msgeb = new MSG_ErrorBean();
-		Gson gson = new Gson();
 		if (Ans.equals("TRUE")) {
 			if (MSGENDID == null || MSGENDID.trim().length() == 0) {
 				msgeb.setErrorMSGENDID("帳號欄必須輸入");
@@ -94,7 +110,7 @@ public class AddNewMSGServlet extends HttpServlet {
 		if (Ans.equals("TRUE")) {
 			try {
 				MSGBean msgb = new MSGBean(INDID, MSGENDID, MSGTEXT, null);
-				String SQLAns = new MSGDAO().Insert_MSG(msgb, null, 0L);
+				String SQLAns = new MSGDAO().Insert_MSG(msgb, new ByteArrayInputStream(image), image.length);
 				if (!SQLAns.equals("TRUE")) {
 					mfjb.setMessage("SQL ERROR");
 					Ans = "FALSE";

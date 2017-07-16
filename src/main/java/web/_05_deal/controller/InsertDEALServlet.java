@@ -75,7 +75,7 @@ public class InsertDEALServlet extends HttpServlet {
 		String DEALQTY = jsonObject.get("DEALQTY").getAsString();
 		String ENDSHIPWAY = jsonObject.get("ENDSHIPWAY").getAsString();
 		String DEALNOTE = jsonObject.get("DEALNOTE").getAsString();
-		String transImg = jsonObject.get("transImg").getAsString();
+		String transImg = jsonObject.get("DEALIMAGE").getAsString();
 		byte[] image = Base64.getMimeDecoder().decode(transImg.split(",")[1]);
 //		System.out.println("GOODSNO=" + GOODSNO);
 //		System.out.println("DEALQTY=" + DEALQTY);

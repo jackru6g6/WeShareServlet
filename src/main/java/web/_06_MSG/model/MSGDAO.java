@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -44,7 +45,7 @@ public class MSGDAO {
 			cs.setString(3, msgb.getMSGENDID());
 			cs.setString(4, msgb.getMSGTEXT());
 			cs.setBinaryStream(5, image, imagesize);
-			cs.setString(6, msgb.getMSGFILENAME());
+			cs.setString(6, String.valueOf(new Date().getTime()));
 			cs.executeUpdate();
 			ans = "TRUE";
 		} catch (Exception e) {
