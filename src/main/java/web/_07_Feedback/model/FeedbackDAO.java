@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -80,8 +81,8 @@ public class FeedbackDAO {
 		return coll;
 	}
 
-	public Collection<FeedbackBean> FindByINDID_NOT_SESSION(String INDID) {
-		Collection<FeedbackBean> coll = new ArrayList<FeedbackBean>();
+	public List<FeedbackBean> FindByINDID_NOT_SESSION(String INDID) {
+		List<FeedbackBean> coll = new ArrayList<FeedbackBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con
 						.prepareStatement("SELECT fbtext,fbscore,postdate,fbfilename FROM FEEDBACK WHERE fbendid=?");) {

@@ -3,6 +3,7 @@ package web._07_Feedback.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,6 +46,7 @@ public class FindFeedbackPServlet extends HttpServlet {
 		String mfjb_json = "";
 		JSON_Find_Bean mfjb = new JSON_Find_Bean();
 		String key = request.getParameter("key");
+		List<FeedbackBean> collEND = null;
 		Gson gson = new Gson();
 		if (Ans.equals("TRUE")) {
 			if (key == null) {
@@ -53,7 +55,7 @@ public class FindFeedbackPServlet extends HttpServlet {
 			}
 		}
 		if (Ans.equals("TRUE")) {
-			Collection<FeedbackBean> collEND = new FeedbackDAO().FindByINDID_NOT_SESSION(key);
+			collEND = new FeedbackDAO().FindByINDID_NOT_SESSION(key);
 			System.out.println(INDID + "一共有" + collEND.size() + "筆評價");
 			// Collection<DEALBean> collSOURCE = new
 			// DealDAO().FindBySOURCEKey_DEAL(INDID);
@@ -65,10 +67,10 @@ public class FindFeedbackPServlet extends HttpServlet {
 				mfjb.setCfb(collEND);
 			}
 		}
-		mfjb.setType(Type);
-		mfjb.setAns(Ans);
-		mfjb_json = gson.toJson(mfjb);
-		System.out.println(mfjb_json);
+//		mfjb.setType(Type);
+//		mfjb.setAns(Ans);
+		mfjb_json = gson.toJson(collEND);
+//		System.out.println(mfjb_json);
 		response.setContentType("application/json; charset=UTF8");
 		try (PrintWriter out = response.getWriter();) {
 			out.print(mfjb_json);
