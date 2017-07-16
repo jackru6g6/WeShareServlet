@@ -155,7 +155,7 @@ public class GoodsDAO {
 		// GoodsBean goods = new GoodsBean();
 		List<GoodsBean> list = new ArrayList<GoodsBean>();
 		try {
-			String hql = "FROM GoodsBean g WHERE g.goodsNo = :uid";
+			String hql = "SELECT new GoodsBean(g.goodsNo,g.goodsStatus,g.indId,g.goodsName,g.goodsType,g.qty,g.goodsLoc,g.goodsNote,g.goodsShipWay,g.deadLine,g.goodsfilename) FROM GoodsBean g WHERE g.indId = :uid";
 			// String hql = "SELECT new GoodsBean(g.updateTime) AS TIMESTAMP
 			// FROM GoodsBean g WHERE indId=:uid";
 			Query query = session.createQuery(hql);
