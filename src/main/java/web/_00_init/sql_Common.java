@@ -76,7 +76,7 @@ public class sql_Common {
 	static String CREATE_TABLE_DEAL = "Create Table deal (" + "dealno int(7) NOT NULL Auto_Increment Primary Key, "
 			+ "postdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, " + "sourceid varchar(50) NOT NULL, "
 			+ "endid varchar(50) NOT NULL, " + "dealstatus int(1), " + "endshipway INT(7), "
-			+ "dealqty int(3) UNSIGNED, " + "shipdate timestamp ON UPDATE CURRENT_TIMESTAMP, " + "shipno varchar(20),"
+			+ "dealqty int(3) UNSIGNED, " + "shipdate timestamp ON UPDATE CURRENT_TIMESTAMP, " + "shipno varchar(200),"
 			+ "DEALNOTE VARCHAR(200), " + "dealimage MEDIUMBLOB, " + "dealfilename varchar(20), "
 			+ "goodsname varchar(20) NOT NULL," + "goodsimage MEDIUMBLOB," + "goodsimagename varchar(50),"
 			+ "goodstype varchar(10) NOT NULL," + "loc INT NOT NULL," + "goodsnote varchar(200)," + "goodsstatus int,"
