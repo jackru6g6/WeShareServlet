@@ -46,7 +46,7 @@ public class FindFeedbackPServlet extends HttpServlet {
 		String mfjb_json = "";
 		JSON_Find_Bean mfjb = new JSON_Find_Bean();
 		String key = request.getParameter("key");
-		List<FeedbackBean> collEND = null;
+		Collection<FeedbackBean> collEND = null;
 		Gson gson = new Gson();
 		if (Ans.equals("TRUE")) {
 			if (key == null) {

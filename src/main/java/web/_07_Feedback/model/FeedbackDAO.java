@@ -81,8 +81,8 @@ public class FeedbackDAO {
 		return coll;
 	}
 
-	public List<FeedbackBean> FindByINDID_NOT_SESSION(String INDID) {
-		List<FeedbackBean> coll = new ArrayList<FeedbackBean>();
+	public Collection<FeedbackBean> FindByINDID_NOT_SESSION(String INDID) {
+		Collection<FeedbackBean> coll = new ArrayList<FeedbackBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con
 						.prepareStatement("SELECT fbtext,fbscore,postdate,fbfilename FROM FEEDBACK WHERE fbendid=?");) {
