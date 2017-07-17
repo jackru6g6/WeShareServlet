@@ -94,6 +94,7 @@
 			// 判斷是否已登入，未登入跳出提醒視窗，已登入顯示留言詢問modal
 			if (loginOk  == ""){
 				$('#msgText').html("您還沒登入唷~ 請先登入以進行後續步驟！");
+				$('#aMsgClose').attr('data-dismiss', 'modal');
 				return;
 			} else {
 				sendTrans();
