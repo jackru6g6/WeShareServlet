@@ -9,6 +9,13 @@ function showData(data, path) {
 		</div>`;
 		$('#wTransBlock').html(resultData);
 		$('#blockWTransOption').empty();
+		return;
+	}
+	if( `${data[0].indid}` == indid){
+		$("#sectionWTrans").empty();
+		alert("不可以捐贈物資給自己唷~");
+		window.history.back();
+		return;
 	}
 	resultData =
 		`<!-- 左邊物資圖片 -->

@@ -8,6 +8,7 @@ function showData(data, path) {
 			找不到物資唷~請重新查詢！
 		</div>`;
 		$('#sectionWGoods').append(resultData);
+		return;
 	}
 	resultData =
 		`<div class="row">
@@ -154,6 +155,12 @@ function showData(data, path) {
 			</div>
 		</div>`;
 	$('#sectionWGoods').append(resultData);
+	if( `${data[0].qty}` == 0){
+		$('#aWishTrans').hide();
+	}
+	if( `${data[0].indid}` == indid){
+		$('#blockWGoodsOption').hide();
+	}
 }
 
 // 點擊我要捐贈

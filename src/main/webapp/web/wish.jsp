@@ -123,13 +123,6 @@
 											<ul>
 												<li>
 													<button class="btn btnFilterType">
-														<span>基隆市</span>
-														<input class="findCol" type="hidden" value="goodsloc">
-														<input class="findVal" type="hidden" value="3">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
 														<span>臺北市</span>
 														<input class="findCol" type="hidden" value="goodsloc">
 														<input class="findVal" type="hidden" value="7">
@@ -147,13 +140,6 @@
 														<span>桃園市</span>
 														<input class="findCol" type="hidden" value="goodsloc">
 														<input class="findVal" type="hidden" value="2">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>新竹市</span>
-														<input class="findCol" type="hidden" value="goodsloc">
-														<input class="findVal" type="hidden" value="5">
 													</button>
 												</li>
 												<li>
@@ -179,58 +165,9 @@
 												</li>
 												<li>
 													<button class="btn btnFilterType">
-														<span>南投縣</span>
-														<input class="findCol" type="hidden" value="goodsloc">
-														<input class="findVal" type="hidden" value="8">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>彰化縣</span>
-														<input class="findCol" type="hidden" value="goodsloc">
-														<input class="findVal" type="hidden" value="12">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>雲林縣</span>
-														<input class="findCol" type="hidden" value="goodsloc">
-														<input class="findVal" type="hidden" value="9">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>嘉義市</span>
-														<input class="findCol" type="hidden" value="goodsloc">
-														<input class="findVal" type="hidden" value="10">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>嘉義縣</span>
-														<input class="findCol" type="hidden" value="goodsloc">
-														<input class="findVal" type="hidden" value="11">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>臺南市</span>
-														<input class="findCol" type="hidden" value="goodsloc">
-														<input class="findVal" type="hidden" value="16">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
 														<span>高雄市</span>
 														<input class="findCol" type="hidden" value="goodsloc">
 														<input class="findVal" type="hidden" value="15">
-													</button>
-												</li>
-												<li>
-													<button class="btn btnFilterType">
-														<span>屏東縣</span>
-														<input class="findCol" type="hidden" value="goodsloc">
-														<input class="findVal" type="hidden" value="14">
 													</button>
 												</li>
 											</ul>

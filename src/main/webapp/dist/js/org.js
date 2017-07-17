@@ -4,7 +4,7 @@ function showData(data) {
 	if(data.length == 0){
 		resultData = 
 		`<div style="font-size:24px; color:#ff0000; text-align:center; margin-top:30px;">
-			找不到物資唷~請重新查詢！
+			找不到社福團體資料唷~請重新查詢！
 		</div>`;
 		$('#sectionOrgAbout').append(resultData);
 		return;
@@ -16,7 +16,7 @@ function showData(data) {
 			<div class="rowUpper">
 				<!-- 上左_圖片 -->
 				<div class="orgImgLayout blockUpper">
-					<img class="img-responsive orgImg" src="${javaRoot}/_00_init/getImage?id=${data[i].orgfileName}&type=ORG">
+					<img class="img-responsive orgImg" src="${javaRoot}/_00_init/getImage?id=${data[i].indid}&type=MEMBER">
 				</div>
 				<!-- 上右_地圖 -->
 				<div class="orgMap blockUpper">

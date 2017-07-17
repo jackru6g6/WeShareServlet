@@ -36,7 +36,7 @@
 							<!-- 社福團體類型搜尋 -->
 							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 								<div id="blockTypeSearch">
-									<select id="searchType" value="orgtypes" class="form-control">
+									<select id="searchType" name="orgtypes" class="form-control selectSearch">
 										<option selected style="display: none;">社福團體類型</option>
 										<option value="1" class="opFilterType">兒少福利</option>
 										<option value="2" class="opFilterType">偏鄉教育</option>
@@ -49,11 +49,15 @@
 							<!-- 社福團體所在地搜尋 -->
 							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 								<div id="blockLocSearch">
-									<select id="searchLoc" value="indaddress" class="form-control">
+									<select id="searchLoc" name="indaddress" class="form-control selectSearch">
 										<option selected style="display: none;">社福團體所在地</option>
-										<option value="server">北部(基隆市、臺北市、新北市、桃園市、新竹市、新竹縣)</option>
-										<option value="server">中部(苗栗縣、臺中市、南投縣、彰化縣、雲林縣)</option>
-										<option value="server">南部(嘉義市、嘉義縣、臺南市、高雄市、屏東縣)</option>
+										<option value="臺北市">臺北市</option>
+										<option value="新北市">新北市</option>
+										<option value="桃園市">桃園市</option>
+										<option value="新竹縣">新竹縣</option>
+										<option value="苗栗縣">苗栗縣</option>
+										<option value="臺中市">臺中市</option>
+										<option value="高雄市">高雄市</option>
 									</select>
 								</div>
 							</div>
@@ -133,29 +137,29 @@
 		}
 		
 		// 類別、地點查詢
-// 		$('.opFilterType').click(function(){
-// 			console.log("opFilterType click");
-// 			servletPath = javaRoot + '/_08_query/OrgQuery.do';
-// 			var col = $(this).closest('select').val();
-// 			var val = $(this).val();
-// 			console.log("col = " + col);
-// 			console.log("val = " + val);
-// 			servletPath += '?&type=' + col + '&value=' + val;
-// 			xhr.open('GET', servletPath, true);
-// 			xhr.send();
-// 			xhr.onreadystatechange = function(){
-// 				if(xhr.status == 200 && xhr.readyState == 4){
-// 					responseData = JSON.parse(xhr.responseText);
-// 					// 產生物資內容
-// 					showData(responseData, javaRoot);
+		$('.selectSearch').change(function(){
+			servletPath = javaRoot + '/_08_query/OrgQuery.do';
+			var col = $(this).attr("name");
+			var val = $(this).val();
+			console.log("col" + col);
+			console.log("val" + val);
+			servletPath += '?&type=' + col + '&value=' + val;
+			xhr.open('GET', servletPath, true);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					responseData = JSON.parse(xhr.responseText);
+					console.log(responseData);
+					// 產生社福資料
+					showData(responseData, javaRoot);
 					
-// 					// 點下層固定列，翻轉上層翻轉列
-// 					$(".rowLower").click(function () {
-// 						turnPage($(this));
-// 					});
-// 				}
-// 			}
-// 		});
+					// 點下層固定列，翻轉上層翻轉列
+					$(".rowLower").click(function () {
+						turnPage($(this));
+					});
+				}
+			}
+		});
 	</script>
 		
 	

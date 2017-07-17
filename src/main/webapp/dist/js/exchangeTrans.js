@@ -9,6 +9,13 @@ function showData(data, path) {
 		</div>`;
 		$('#eTransBlock').html(resultData);
 		$('#blockETransOption').empty();
+		return;
+	}
+	if( `${data[0].indid}` == indid){
+		$("#sectionETrans").empty();
+		alert("不可以跟自己交換物資唷~");
+		window.history.back();
+		return;
 	}
 	resultData =
 		`<!--左邊物資圖片 -->
@@ -79,7 +86,7 @@ function sendTrans(){
 			// 出現錯誤訊息
 			if(response.Ans == "TRUE"){
 				$('#msgText').html("資料已送出，詳細資訊請至會員專區瀏覽");
-				$('#aMsgClose').attr('href', 'wishGoods.jsp?goodsno=' + `${responseData[0].goodsno}`);
+				$('#aMsgClose').attr('href', 'exchangeGoods.jsp?goodsno=' + `${responseData[0].goodsno}`);
 			} else {
 				$('#msgText').html("發生了一點錯誤，請確認是否已登入，並重新進入此頁面，謝謝!");
 				$('#aMsgClose').attr('data-dismiss', 'modal');

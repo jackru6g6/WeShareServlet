@@ -8,6 +8,7 @@ function showData(data, path) {
 			找不到物資唷~請重新查詢！
 		</div>`;
 		$('#sectionGGoods').append(resultData);
+		return;
 	}
 	resultData =
 		`<div class="row">
@@ -23,7 +24,7 @@ function showData(data, path) {
 						<div id="blockGGoodsOption" class="animated fadeInLeft">
 							<ul type="none" class="row">
 								<li class="col-xs-12 col-sm-12 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1">
-									<a  id="aGiveTrans" class="btn btn-default gGoodsOption" >我要索取</a>
+									<a id="aGiveTrans" class="btn btn-default gGoodsOption" >我要索取</a>
 								</li>
 								<li class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
 									<a id="aMsgModal" data-toggle="modal" data-target="#sendMsg" class="btn btn-default gGoodsOption" >留言詢問</a>
@@ -154,6 +155,12 @@ function showData(data, path) {
 			</div>
 		</div>`;
 	$('#sectionGGoods').append(resultData);
+	if( `${data[0].qty}` == 0){
+		$('#aGiveTrans').hide();
+	}
+	if( `${data[0].indid}` == indid){
+		$('#blockGGoodsOption').hide();
+	}
 }
 
 //點擊我要捐贈
