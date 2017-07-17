@@ -2,8 +2,8 @@ kitty|google|安安你好安安我是凱蒂
 google|kitty|安安你好安安我是谷哥大神
 google|micky|安安你好我是大神
 micky|kitty|安安你好安安!!我是米奇
-kitty|animals|請問一下!! 先有雞還是先有蛋
-animals|kitty|你家住海邊唷!!
+kitty|micky|請問一下!! 先有雞還是先有蛋
+micky|kitty|你家住海邊唷!!
 kitty|micky|米奇我問你喔! 為什麼我作弊常常被老師抓到?
 micky|kitty|廢話!! 因為老師沒教你呀
 micky|google|為什麼小華帶著帳單去超卻坐著輪椅出來?
