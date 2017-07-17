@@ -82,11 +82,13 @@ function sendTrans(){
 				$('#aMsgClose').attr('href', 'wishGoods.jsp?goodsno=' + `${responseData[0].goodsno}`);
 			} else {
 				$('#msgText').html("發生了一點錯誤，請確認是否已登入，並重新進入此頁面，謝謝!");
+				$('#aMsgClose').attr('data-dismiss', 'modal');
 			}
 		},
 		error: function(response){
 			// 出現錯誤訊息
 			$('#msgText').html("發生了一點錯誤，請重新進入此頁面，謝謝!");
+			$('#aMsgClose').attr('data-dismiss', 'modal');
 		}
 	});
 }

@@ -43,6 +43,7 @@ function showData(data, path) {
 									<div id="msgBody" class="modal-body">
 										<textarea id="msgText" class="form-control" rows="5" required="required" maxlength="200" placeholder="留言最多200字" style="resize : none;"></textarea>
 										<input id="msgImg" type="file" accept="image/*">
+										<div><img id="showMsgImg"></div>
 									</div>
 									<!-- 關閉鈕 -->
 									<div id="msgFooter" class="modal-footer">
@@ -191,6 +192,9 @@ function imgChange(input){
 	readImg.readAsDataURL(input.files[0]);
 	// 圖片讀取完畢再執行以下方法
 	readImg.onload = function(){
+		$('#showMsgImg').attr('src', this.result);
+		$('#showMsgImg').css('maxWidth', '500px');
+		$('#showMsgImg').css('maxHeight', '350px');
 		console.log("readImg end");
 	}
 }
@@ -218,6 +222,7 @@ function sendMsg(){
 			// 出現錯誤訊息
 			if(response.Ans == "TRUE"){
 				alert("訊息已送出，詳細資訊請至會員專區瀏覽");
+				$('#sendMsg').modal('hide');
 			} else {
 				alert("發生了一點錯誤，請確認是否已登入，並重新進入此頁面，謝謝!");
 			}
