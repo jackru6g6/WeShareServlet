@@ -104,7 +104,12 @@ public class DealDAO {
 			CS.setInt(5, ENDSHIPWAY);
 			CS.setString(6, DEALNOTE);
 			CS.setBinaryStream(7, is, size);
-			CS.setString(8, String.valueOf(GOODSNO) + String.valueOf(DEALQTY) + String.valueOf(ENDSHIPWAY) + ".jpg");
+			if (is == null) {
+				CS.setString(8, null);
+			} else {
+				CS.setString(8,String.valueOf(GOODSNO) + String.valueOf(DEALQTY) + String.valueOf(ENDSHIPWAY) + ".jpg");
+
+			}
 			CS.execute();
 			ans = CS.getString(1);
 		} catch (Exception e) {

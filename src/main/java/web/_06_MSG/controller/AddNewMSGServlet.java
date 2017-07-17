@@ -24,6 +24,7 @@ import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 
 import web._00_init.GlobalService;
 import web._01_register.model.MemberBean;
@@ -62,6 +63,7 @@ public class AddNewMSGServlet extends HttpServlet {
 		String Type = "INSERT";
 		String Ans = "TRUE";
 		String mfjb_json = "";
+		boolean Insert_IMG = true;
 		JSON_In_Up_Bean mfjb = new JSON_In_Up_Bean();
 		try {
 			HttpSession session = request.getSession(false);
@@ -72,18 +74,32 @@ public class AddNewMSGServlet extends HttpServlet {
 			Ans = "FALSE";
 			mfjb.setMessage("Session Not Found");
 		}
-		BufferedReader br = request.getReader();
-		StringBuffer jsonIn = new StringBuffer();
-		String line = "";
-		while ((line = br.readLine()) != null) {
-			jsonIn.append(line);
+		String MSGENDID = null;
+		String MSGTEXT = null;
+		byte[] image = null;
+		
+		try (BufferedReader br = request.getReader();) {
+			StringBuffer jsonIn = new StringBuffer();
+			String line = "";
+			while ((line = br.readLine()) != null) {
+				jsonIn.append(line);
+			}
+			System.out.println("JSON size=" + jsonIn.length());
+			JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
+			MSGENDID = jsonObject.get("MSGENDID").getAsString();
+			MSGTEXT = jsonObject.get("MSGTEXT").getAsString();
+			try {
+				String MSGIMAGE = jsonObject.get("MSGIMAGE").getAsString();
+				image = Base64.getMimeDecoder().decode(MSGIMAGE.split(",")[1]);
+			} catch (Exception e) {
+				Insert_IMG = false;
+			}
+
+		} catch (Exception e1) {
+			Ans = "FALSE";
+			mfjb.setMessage("Json Decode ERROR");
+			e1.printStackTrace();
 		}
-		System.out.println("JSON size=" + jsonIn.length());
-		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
-		String MSGENDID = jsonObject.get("MSGENDID").getAsString();
-		String MSGTEXT = jsonObject.get("MSGTEXT").getAsString();
-		String MSGIMAGE = jsonObject.get("MSGIMAGE").getAsString();
-		byte[] image = Base64.getMimeDecoder().decode(MSGIMAGE.split(",")[1]);
 		// String MSGENDID = request.getParameter("MSGENDID");
 		// String MSGTEXT = request.getParameter("MSGTEXT");
 		System.out.println("MSGENDID=" + MSGENDID + "	MSGTEXT=" + MSGTEXT);
@@ -110,7 +126,12 @@ public class AddNewMSGServlet extends HttpServlet {
 		if (Ans.equals("TRUE")) {
 			try {
 				MSGBean msgb = new MSGBean(INDID, MSGENDID, MSGTEXT, null);
-				String SQLAns = new MSGDAO().Insert_MSG(msgb, new ByteArrayInputStream(image), image.length);
+				String SQLAns = null;
+				if (Insert_IMG) {
+					SQLAns = new MSGDAO().Insert_MSG(msgb, new ByteArrayInputStream(image), image.length);
+				} else {
+					SQLAns = new MSGDAO().Insert_MSG(msgb, null, 0L);
+				}
 				if (!SQLAns.equals("TRUE")) {
 					mfjb.setMessage("SQL ERROR");
 					Ans = "FALSE";

@@ -45,7 +45,11 @@ public class MSGDAO {
 			cs.setString(3, msgb.getMSGENDID());
 			cs.setString(4, msgb.getMSGTEXT());
 			cs.setBinaryStream(5, image, imagesize);
-			cs.setString(6, String.valueOf(new Date().getTime()));
+			if (image == null) {
+				cs.setString(6, null);
+			} else {
+				cs.setString(6, String.valueOf(new Date().getTime()));
+			}
 			cs.executeUpdate();
 			ans = "TRUE";
 		} catch (Exception e) {

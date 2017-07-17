@@ -47,6 +47,7 @@ public class InsertDEALServlet extends HttpServlet {
 		String INDID = "";
 		String Type = "INSERT";
 		String Ans = "TRUE";
+		boolean Insert_IMG = true;
 		JSON_In_Up_Bean jiub = new JSON_In_Up_Bean();
 		Gson gson = new Gson();
 
@@ -59,28 +60,60 @@ public class InsertDEALServlet extends HttpServlet {
 			Ans = "FALSE";
 			jiub.setMessage("Session Not Found");
 		}
+		String GOODSNO = null;
+		String DEALQTY = null;
+		String ENDSHIPWAY = null;
+		String DEALNOTE = null;
+		String DEALIMAGE = null;
+		byte[] image = null;
+		try (BufferedReader br = request.getReader();) {
+			StringBuffer jsonIn = new StringBuffer();
+			String line = "";
+			while ((line = br.readLine()) != null) {
+				jsonIn.append(line);
+			}
+			System.out.println("JSON size=" + jsonIn.length());
+			JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
+			GOODSNO = jsonObject.get("GOODSNO").getAsString();
+			DEALQTY = jsonObject.get("DEALQTY").getAsString();
+			ENDSHIPWAY = jsonObject.get("ENDSHIPWAY").getAsString();
+			DEALNOTE = jsonObject.get("DEALNOTE").getAsString();
+			try {
+				DEALIMAGE = jsonObject.get("DEALIMAGE").getAsString();
+				image = Base64.getMimeDecoder().decode(DEALIMAGE.split(",")[1]);
+			} catch (Exception e) {
+				Insert_IMG = false;
+			}
+
+		} catch (Exception e1) {
+			Ans = "FALSE";
+			jiub.setMessage("Json Decode ERROR");
+			e1.printStackTrace();
+		}
 		// String GOODSNO = request.getParameter("GOODSNO");
 		// String DEALQTY = request.getParameter("DEALQTY");
 		// String ENDSHIPWAY = request.getParameter("ENDSHIPWAY");
 		// String DEALNOTE = request.getParameter("DEALNOTE");
-		BufferedReader br = request.getReader();
-		StringBuffer jsonIn = new StringBuffer();
-		String line = "";
-		while ((line = br.readLine()) != null) {
-			jsonIn.append(line);
-		}
-		System.out.println("JSON size=" + jsonIn.length());
-		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
-		String GOODSNO = jsonObject.get("GOODSNO").getAsString();
-		String DEALQTY = jsonObject.get("DEALQTY").getAsString();
-		String ENDSHIPWAY = jsonObject.get("ENDSHIPWAY").getAsString();
-		String DEALNOTE = jsonObject.get("DEALNOTE").getAsString();
-		String transImg = jsonObject.get("DEALIMAGE").getAsString();
-		byte[] image = Base64.getMimeDecoder().decode(transImg.split(",")[1]);
-//		System.out.println("GOODSNO=" + GOODSNO);
-//		System.out.println("DEALQTY=" + DEALQTY);
-//		System.out.println("ENDSHIPWAY=" + ENDSHIPWAY);
-//		System.out.println("transImg_size=" + image.length);
+		// BufferedReader br = request.getReader();
+		// StringBuffer jsonIn = new StringBuffer();
+		// String line = "";
+		// while ((line = br.readLine()) != null) {
+		// jsonIn.append(line);
+		// }
+		// System.out.println("JSON size=" + jsonIn.length());
+		// JsonObject jsonObject = gson.fromJson(jsonIn.toString(),
+		// JsonObject.class);
+		// String GOODSNO = jsonObject.get("GOODSNO").getAsString();
+		// String DEALQTY = jsonObject.get("DEALQTY").getAsString();
+		// String ENDSHIPWAY = jsonObject.get("ENDSHIPWAY").getAsString();
+		// String DEALNOTE = jsonObject.get("DEALNOTE").getAsString();
+		// String transImg = jsonObject.get("DEALIMAGE").getAsString();
+		// byte[] image =
+		// Base64.getMimeDecoder().decode(transImg.split(",")[1]);
+		// System.out.println("GOODSNO=" + GOODSNO);
+		// System.out.println("DEALQTY=" + DEALQTY);
+		// System.out.println("ENDSHIPWAY=" + ENDSHIPWAY);
+		// System.out.println("transImg_size=" + image.length);
 
 		DEAL_ErrorBean dealeb = new DEAL_ErrorBean();
 		if (Ans.equals("TRUE")) {
@@ -102,8 +135,15 @@ public class InsertDEALServlet extends HttpServlet {
 		}
 
 		if (Ans.equals("TRUE")) {
-			String SQLAns = new DealDAO().Insert_DEAL(Integer.parseInt(GOODSNO), INDID, Integer.parseInt(DEALQTY),
-					Integer.parseInt(ENDSHIPWAY), DEALNOTE, new ByteArrayInputStream(image), image.length);
+			String SQLAns;
+			if (Insert_IMG) {
+				SQLAns = new DealDAO().Insert_DEAL(Integer.parseInt(GOODSNO), INDID, Integer.parseInt(DEALQTY),
+						Integer.parseInt(ENDSHIPWAY), DEALNOTE, new ByteArrayInputStream(image), image.length);
+			} else {
+				SQLAns = new DealDAO().Insert_DEAL(Integer.parseInt(GOODSNO), INDID, Integer.parseInt(DEALQTY),
+						Integer.parseInt(ENDSHIPWAY), DEALNOTE, null, 0L);
+			}
+
 			System.out.println("ans=" + SQLAns);
 			if (!SQLAns.equals("TRUE")) {
 				Ans = "FALSE";
