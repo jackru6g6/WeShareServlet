@@ -34,8 +34,17 @@ public class GetImageFromDB extends HttpServlet {
 		String type = request.getParameter("type");
 		if (!id.equals("")) {
 			ib = getImage(id, type);
-			if (ib.FileName.equals("FALSE")) {
-				System.out.println("[Image]DEF");
+			if (ib.FileName.equals("FALSE") & type.equals("MEMBER")) {
+				System.out.println("[Image MEMBER]DEF");
+				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
+			} else if (ib.FileName.equals("FALSE") & type.equals("ORG")) {
+				System.out.println("[Image ORG]DEF");
+				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
+			} else if (ib.FileName.equals("FALSE") & type.equals("MSG")) {
+				System.out.println("[Image MSG]DEF");
+				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
+			} else if (ib.FileName.equals("FALSE") & type.equals("GOODS")) {
+				System.out.println("[Image GOODS]DEF");
 				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
 			} else {
 				System.out.println("[Image]OK");
@@ -88,13 +97,13 @@ public class GetImageFromDB extends HttpServlet {
 							"SELECT count(msgFileName),msgImage,msgFileName from MSG where msgno = ?");
 					pstmt.setString(1, id);
 					rs = pstmt.executeQuery();
-					
+
 				} else if (type.equals("GOODS")) {
 					pstmt = conn.prepareStatement(
 							"SELECT count(goodsFileName),goodsImage,goodsFileName from goods where goodsno = ?");
 					pstmt.setString(1, id);
-					rs = pstmt.executeQuery();	
-					
+					rs = pstmt.executeQuery();
+
 				} else {
 					System.out.println("type not found:" + type);
 				}
