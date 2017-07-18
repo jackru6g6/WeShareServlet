@@ -39,7 +39,7 @@ public class GetImageFromDB extends HttpServlet {
 				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
 			} else if (ib.FileName.equals("FALSE") & type.equals("ORG")) {
 				System.out.println("[Image ORG]DEF");
-				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
+				is = getServletContext().getResourceAsStream("/dist/img/org_house_default.png");
 			} else if (ib.FileName.equals("FALSE") & type.equals("MSG")) {
 				System.out.println("[Image MSG]DEF");
 				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
