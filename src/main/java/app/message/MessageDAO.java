@@ -35,7 +35,7 @@ public class MessageDAO {
 		}
 		return n;
 	}
-	
+
 	public int saveRoom(MsgRoomBean msgRoom) {
 		int n = 0;
 		Session session = sessionFactory.openSession();
@@ -202,7 +202,7 @@ public class MessageDAO {
 		}
 		return i;
 	}
-	
+
 	public int getMaxRoomNo() {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -296,6 +296,33 @@ public class MessageDAO {
 		return list;
 	}
 
+	public List<MessageBean> getOneReaded(String userId, String talkTo) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		// List<Object[]> list= new ArrayList<>();
+		List<MessageBean> list = new ArrayList<MessageBean>();
+		try {
+			// String hql = "SELECT new
+			// MessageBean(m.msgNo,m.msgStatus,m.msgSourceId,m.msgEndId,m.msgText,m.roomNo)
+			// FROM MessageBean m WHERE (m.msgSourceId = :uid AND m.msgEndId =
+			// :aid) OR (m.msgSourceId = :sid AND m.msgEndId = :zid)";
+			String hql = "FROM MessageBean m WHERE m.msgSourceId = :uid AND m.msgEndId = :aid";
+
+			Query query = session.createQuery(hql);
+			query.setParameter("uid", talkTo);
+			query.setParameter("aid", userId);
+			list = query.getResultList();
+			tx.commit();
+		} catch (Exception ex) {
+			tx.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return list;
+	}
+
 	public byte[] getImage(String id) {
 		byte[] image = null;
 		Session session = sessionFactory.getCurrentSession();
@@ -328,7 +355,7 @@ public class MessageDAO {
 				if (blob != null) {
 					blobLength = (int) blob.length();
 					image = blob.getBytes(1, blobLength);
-					System.out.println("image=" + image);
+					// System.out.println("image=" + image);
 				} else {
 					System.out.println("image 沒有圖片歐~");
 				}
