@@ -181,7 +181,8 @@ public class DealServlet extends HttpServlet {
 				DealBean deal = deDAO.getDealBean(dealNon);
 				System.out.println("dealNo=" + deal.getDealNo() + ", dealName=" + deal.getGoodsName());
 				if (deal.getEndShipWay() == 0) {
-					deal.setDealStatus(2);
+					// deal.setDealStatus(2);
+					deal.setDealStatus(1);
 				} else if (deal.getEndShipWay() == 1) {
 					deal.setDealStatus(1);
 				}
