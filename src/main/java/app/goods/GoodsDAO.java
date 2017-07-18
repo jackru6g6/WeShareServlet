@@ -251,16 +251,14 @@ public class GoodsDAO {
 		return list;
 	}
 
-	
-	
-	
 	public List<GoodsBean> getQuery(String goodsqry) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		// GoodsBean goods = new GoodsBean();
 		List<GoodsBean> list = new ArrayList<GoodsBean>();
 		try {
-			String hql = "SELECT new GoodsBean(g.goodsNo,g.goodsStatus,g.indId,g.goodsName,g.goodsType,g.qty,g.goodsLoc,g.goodsNote,g.goodsShipWay,g.deadLine,g.goodsfilename) FROM GoodsBean g "+goodsqry;
+			String hql = "SELECT new GoodsBean(g.goodsNo,g.goodsStatus,g.indId,g.goodsName,g.goodsType,g.qty,g.goodsLoc,g.goodsNote,g.goodsShipWay,g.deadLine,g.goodsfilename) FROM GoodsBean g "
+					+ goodsqry;
 			// String hql = "SELECT new GoodsBean(g.updateTime) AS TIMESTAMP
 			// FROM GoodsBean g WHERE indId=:uid";
 			Query query = session.createQuery(hql);
@@ -276,17 +274,17 @@ public class GoodsDAO {
 		}
 		return list;
 	}
-	
+
 	public int getLastGoodsNo() {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		List<GoodsBean> list = new ArrayList<GoodsBean>();
-		int max= 0;
+		int max = 0;
 		try {
 			String hql = "FROM GoodsBean g ORDER BY g.goodsNo";
 			Query query = session.createQuery(hql);
 			list = query.getResultList();
-			for(GoodsBean g : list) {
+			for (GoodsBean g : list) {
 				max = g.getGoodsNo();
 			}
 			tx.commit();
@@ -300,7 +298,6 @@ public class GoodsDAO {
 		}
 		return max;
 	}
-	
 
 	public List<GoodsBean> getHome(int status) {// jack
 		Session session = sessionFactory.openSession();
@@ -308,7 +305,7 @@ public class GoodsDAO {
 		// GoodsBean goods = new GoodsBean();
 		List<GoodsBean> list = new ArrayList<GoodsBean>();
 		try {
-			String hql = "SELECT new GoodsBean(g.goodsNo,g.goodsStatus,g.indId,g.goodsName,g.goodsType,g.qty,g.goodsLoc,g.goodsNote,g.goodsShipWay,g.deadLine) FROM GoodsBean g WHERE g.goodsStatus=:uid";
+			String hql = "SELECT new GoodsBean(g.goodsNo,g.goodsStatus,g.indId,g.goodsName,g.goodsType,g.qty,g.goodsLoc,g.goodsNote,g.goodsShipWay,g.deadLine) FROM GoodsBean g WHERE g.goodsStatus=:uid ORDER BY g.updateTime DESC";
 			// String hql = "SELECT new GoodsBean(g.updateTime) AS TIMESTAMP
 			// FROM GoodsBean g WHERE indId=:uid";
 			Query query = session.createQuery(hql);

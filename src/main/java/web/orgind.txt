@@ -3,7 +3,7 @@
 2|null|fcdd0855|123456|發展遲緩兒童基金會|0227530855|fcdd@ms47.hinet.net|台北市南京東路五段156號7樓之1|03.jpg
 2|null|babywish|123456|台灣寶希望樹兒童協會|0287519277|rex@babywish.org.tw|新北市新莊區新泰路131號8樓|04.jpg
 2|null|ecpat|123456|台灣展翅協會|0225621233|ecpattw@ecpat.org.tw|台北市中山區民權東路2段26號4樓-5|05.jpg
-2|null|rgn1250s|123456|社團法人真佛宗華光功德會中區分會|0424061348|lotusli.middle@msa.hinet.net|台中市大里區國光路二段779號六樓（真佛大樓）|06.jpg
+2|null|rgn1250s|123456|社團法人真佛宗華光功德會中區分會|0424061348|lotusli.middle@msa.hinet.net|台中市大里區國光路二段779號六樓|06.jpg
 2|null|oldcitybook|123456|中華懷恩慈善協會|0229930885|f90771@yahoo.com.tw|新北市新莊區中港路615巷26號|07.jpg
 2|null|ms1952|123456|基督教芥菜種會|0225972200|pr@mustard.org.tw|台北市中山區雙城街49巷6-1號|08.jpg
 2|null|sl|123456|社團法人台灣基督教好牧人全人關顧協會|0424063624|slow.service.learning@gmail.com|台中市北區錦新街30號11樓|09.jpg
@@ -13,7 +13,7 @@
 2|null|chensenmeipr|123456|真善美社會福利基金會|034561455|chensenmei@gmail.com|桃園市中壢區龍川九街28號|13.jpg
 2|null|haiching|123456|財團法人苗栗縣私立海青老人養護中心|037783409|haichints@gmail.com|苗栗縣通霄鎮坪頂里15鄰坪頂142-5號|14.jpg
 2|null|fortune0619|123456|社團法人台灣福氣社區關懷協會|0426221220|fortune0619@gmail.com|台中市沙鹿區臺灣大道六段805號1-2樓|15.jpg
-2|null|genesis|123456|創世基金會|0228357700|genesis@ms.genesis.org.tw|台北市中正路420號10樓|16.png
+2|null|genesis|123456|創世基金會|0228357700|genesis@ms.genesis.org.tw|台北市北平東路28號4樓|16.png
 2|null|scif|123456|財團法人脊髓損傷社會福利基金會|0225230110|sandy111688@scsrc.org.tw|台北市民權西路20號11樓之10|17.jpg
 2|null|kuangching242|123456|新北市樂慧身心障礙者家庭資源中心|0229971951|kuangching242@yahoo.com.tw|新北市新莊區中港路172號2樓|18.jpg
 2|null|tcasdas|123456|社團法人台中市亞斯伯格症肯納症協進會|0422918197|asdkk63628@gmail.com|台中市瀋陽北路6號|19.jpg

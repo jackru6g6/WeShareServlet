@@ -90,7 +90,7 @@ public class _first_run {
 	}
 
 	public static void CreateData(Connection con) throws SQLException {
-		MemberBean mb1 = new MemberBean(1, null, "kitty", "123", "凱蒂", "0229625270", "kitty@gmail.com", "新北市板橋區中正路100號",
+		MemberBean mb1 = new MemberBean(1, null, "kitty", "123", "王雅婷", "0229625270", "kitty@gmail.com", "新北市板橋區中正路100號",
 				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\kitty.jpg")),
 				"kitty.jpg");
 		MemberBean mb2 = new MemberBean(2, null, "Google", "123", "谷哥大神", "0229625270", "Google@gmail.com",
@@ -102,12 +102,12 @@ public class _first_run {
 				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\Googleorg.jpg")),
 				"Googleorg.jpg");
 
-		MemberBean mb3 = new MemberBean(1, null, "micky", "123", "米奇", "0228825252", "micky@gmail.com", "米奇的家",
+		MemberBean mb3 = new MemberBean(1, null, "micky", "123", "陳家豪", "0228825252", "micky@gmail.com", "台北市中正區黎明里北平西路3號",
 				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\micky.png")),
 				"micky.png");
 		ORGTYPE_DATA(con);
 		IND_DATA(mb1, con);
-		ORG_DATA(mb2, ob2, con);
+//		ORG_DATA(mb2, ob2, con);
 		IND_DATA(mb3, con);
 		LOCAL_DATA(con);
 		GOODSTYPE_DATA(con);

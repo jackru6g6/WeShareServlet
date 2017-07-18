@@ -66,8 +66,13 @@ public class MessageServlet extends HttpServlet {
 			String account = jsonObject.get("account").getAsString();
 			String talkTo = jsonObject.get("talkTo").getAsString();
 			List<MessageBean> msg = mgDAO.getOne(account, talkTo);
+			List<MessageBean> msgReaded = mgDAO.getOneReaded(account, talkTo);
 			System.out.println("帳號account: " + account);
-			for (MessageBean pop1 : msg) {
+			// for (MessageBean pop1 : msg) {
+			// pop1.setMsgStatus(1);
+			// mgDAO.updateMsg(pop1);
+			// }
+			for (MessageBean pop1 : msgReaded) {
 				pop1.setMsgStatus(1);
 				mgDAO.updateMsg(pop1);
 			}
@@ -111,7 +116,7 @@ public class MessageServlet extends HttpServlet {
 				// 只要送一張圖，就不用轉json，指定他傳送的型態，如果要用json就要用Base64
 				// // encode才能傳送
 				response.setContentLength(image.length);// 輸出圖的長度
-				System.out.println(image);
+				// System.out.println(image);
 			} else {
 				System.out.println("沒收到喔~");
 			}
@@ -231,10 +236,8 @@ public class MessageServlet extends HttpServlet {
 					mgDAO.updateRoom(list.get(0));
 				} else {
 					int gg = mgDAO.getMaxRoomNo();
-					MsgRoomBean msgRoom = new MsgRoomBean(gg+1, msg.getMsgSourceId(), msg.getMsgEndId(), 0);
+					MsgRoomBean msgRoom = new MsgRoomBean(gg + 1, msg.getMsgSourceId(), msg.getMsgEndId(), 0);
 					int createRoom = mgDAO.saveRoom(msgRoom);
-					
-
 
 					List<MsgRoomBean> list = mgDAO.getRoomNo(msg.getMsgSourceId(), msg.getMsgEndId());
 
