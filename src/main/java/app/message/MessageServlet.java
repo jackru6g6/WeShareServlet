@@ -189,7 +189,31 @@ public class MessageServlet extends HttpServlet {
 
 					mgDAO.updateRoom(list.get(0));
 				} else {
-					System.out.println("else錯誤");
+//					System.out.println("else錯誤");--
+					int gg = mgDAO.getMaxRoomNo();
+					MsgRoomBean msgRoom = new MsgRoomBean(gg+1, msg.getMsgSourceId(), msg.getMsgEndId(), 0);
+					int createRoom = mgDAO.saveRoom(msgRoom);
+					
+
+
+					List<MsgRoomBean> list = mgDAO.getRoomNo(msg.getMsgSourceId(), msg.getMsgEndId());
+
+					int i = mgDAO.getMaxNo();
+					int NewMsgNo = i + 1;
+					System.out.println("NewMsgNo=" + NewMsgNo);
+					msg.setMsgNo(NewMsgNo);
+
+					System.out.println("list.get(0).getRoomNo()=" + list.get(0).getRoomNo());
+					msg.setRoomNo(list.get(0).getRoomNo());
+
+					count = mgDAO.save(msg);
+
+					list.get(0).setLastMsgNo(NewMsgNo);
+
+					System.out.println("roomNo=" + list.get(0).getRoomNo() + ", 1=" + list.get(0).getIndid1() + ", 2="
+							+ list.get(0).getIndid2() + ", Last" + list.get(0).getLastMsgNo());
+
+					mgDAO.updateRoom(list.get(0));
 				}
 
 				// int i = mgDAO.getMaxNo();
