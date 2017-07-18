@@ -85,15 +85,16 @@ public class FeedbackDAO {
 		Collection<FeedbackBean> coll = new ArrayList<FeedbackBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con
-						.prepareStatement("SELECT fbtext,fbscore,postdate,fbfilename FROM FEEDBACK WHERE fbendid=?");) {
+						.prepareStatement("SELECT fbsourceid,fbtext,fbscore,postdate,fbfilename FROM FEEDBACK WHERE fbendid=?");) {
 			pstmt.setString(1, INDID);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				FeedbackBean fdbb = new FeedbackBean();
-				fdbb.setFBTEXT(rs.getString(1));
-				fdbb.setFBSCORE(rs.getInt(2));
-				fdbb.setPOSTDATE(rs.getTimestamp(3));
-				fdbb.setFBFILENAME(rs.getString(4));
+				fdbb.setFBSOURCEID(rs.getString(1));
+				fdbb.setFBTEXT(rs.getString(2));
+				fdbb.setFBSCORE(rs.getInt(3));
+				fdbb.setPOSTDATE(rs.getTimestamp(4));
+				fdbb.setFBFILENAME(rs.getString(5));
 				coll.add(fdbb);
 			}
 			rs.close();
