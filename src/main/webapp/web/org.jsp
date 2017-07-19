@@ -51,12 +51,12 @@
 								<div id="blockLocSearch">
 									<select id="searchLoc" name="indaddress" class="form-control selectSearch">
 										<option selected style="display: none;">社福團體所在地</option>
-										<option value="臺北市">臺北市</option>
+										<option value="台北市">臺北市</option>
 										<option value="新北市">新北市</option>
 										<option value="桃園市">桃園市</option>
 										<option value="新竹縣">新竹縣</option>
 										<option value="苗栗縣">苗栗縣</option>
-										<option value="臺中市">臺中市</option>
+										<option value="台中市">臺中市</option>
 										<option value="高雄市">高雄市</option>
 									</select>
 								</div>
