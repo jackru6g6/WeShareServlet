@@ -23,6 +23,8 @@ public class DEALBean {
 	int GOODSTYPES;
 	int GOODSLOC;
 	String GOODSNOTE;
+	String SOURCENAME;
+	String ENDNAME;
 
 	public DEALBean() {
 		// TODO Auto-generated constructor stub
@@ -194,6 +196,22 @@ public class DEALBean {
 
 	public void setGOODSNOTE(String gOODSNOTE) {
 		GOODSNOTE = gOODSNOTE;
+	}
+
+	public String getSOURCENAME() {
+		return SOURCENAME;
+	}
+
+	public void setSOURCENAME(String sOURCENAME) {
+		SOURCENAME = sOURCENAME;
+	}
+
+	public String getENDNAME() {
+		return ENDNAME;
+	}
+
+	public void setENDNAME(String eNDNAME) {
+		ENDNAME = eNDNAME;
 	}
 
 }

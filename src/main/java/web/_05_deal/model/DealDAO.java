@@ -107,7 +107,8 @@ public class DealDAO {
 			if (is == null) {
 				CS.setString(8, null);
 			} else {
-				CS.setString(8,String.valueOf(GOODSNO) + String.valueOf(DEALQTY) + String.valueOf(ENDSHIPWAY) + ".jpg");
+				CS.setString(8,
+						String.valueOf(GOODSNO) + String.valueOf(DEALQTY) + String.valueOf(ENDSHIPWAY) + ".jpg");
 
 			}
 			CS.execute();
@@ -122,8 +123,8 @@ public class DealDAO {
 	public Collection<DEALBean> FindByENDKey_DEAL(String INDID) {
 		Collection<DEALBean> coll = new ArrayList<DEALBean>();
 		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con
-						.prepareStatement("SELECT * FROM DEAL WHERE SOURCEID=? OR ENDID=?  ORDER BY postdate DESC");) {
+				PreparedStatement pstmt = con.prepareStatement(
+						"SELECT d.*,i.indname,i1.indname FROM DEAL AS d , ind AS i ,ind AS i1 WHERE (d.sourceid=i.indid)AND(d.endid=i1.indid)AND(SOURCEID=? OR ENDID=?) ORDER BY postdate DESC;");) {
 			pstmt.setString(1, INDID);
 			pstmt.setString(2, INDID);
 
@@ -144,6 +145,8 @@ public class DealDAO {
 				dealb.setGOODSTYPES(rs.getInt(16));
 				dealb.setGOODSLOC(rs.getInt(17));
 				dealb.setGOODSNOTE(rs.getString(18));
+				dealb.setSOURCENAME(rs.getString(19));
+				dealb.setENDNAME(rs.getString(20));
 				coll.add(dealb);
 			}
 			rs.close();
@@ -152,37 +155,4 @@ public class DealDAO {
 		}
 		return coll;
 	}
-
-	// public Collection<DEALBean> FindBySOURCEKey_DEAL(String INDID) {
-	// Collection<DEALBean> coll = new ArrayList<DEALBean>();
-	// try (Connection con = ds.getConnection();
-	// PreparedStatement pstmt = con
-	// .prepareStatement("SELECT * FROM DEAL WHERE SOURCEID=? ORDER BY postdate
-	// DESC");) {
-	// pstmt.setString(1, INDID);
-	// ResultSet rs = pstmt.executeQuery();
-	// while (rs.next()) {
-	// DEALBean dealb = new DEALBean();
-	// dealb.setDEALNO(rs.getInt(1));
-	// dealb.setPOSTDATE(rs.getTimestamp(2));
-	// dealb.setSOURCEID(rs.getString(3));
-	// dealb.setENDID(rs.getString(4));
-	// dealb.setDEALSTATUS(rs.getInt(5));
-	// dealb.setENDSHIPWAY(rs.getInt(6));
-	// dealb.setDEALQTY(rs.getInt(7));
-	// dealb.setSHIPDATE(rs.getTimestamp(8));
-	// dealb.setSHIPNO(rs.getString(9));
-	// dealb.setDEALNOTE(rs.getString(10));
-	// dealb.setGOODSNAME(rs.getString(13));
-	// dealb.setGOODSTYPES(rs.getInt(16));
-	// dealb.setGOODSLOC(rs.getInt(17));
-	// dealb.setGOODSNOTE(rs.getString(18));
-	// coll.add(dealb);
-	// }
-	// rs.close();
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// return coll;
-	// }
 }

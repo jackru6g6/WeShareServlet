@@ -63,7 +63,7 @@ public class MSGDAO {
 		Collection<MSGBean> coll = new ArrayList<MSGBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						"SELECT * FROM msg WHERE MSGNO IN(SELECT LASTMSGNO FROM MSG_ROOM where INDID1=? or INDID2=?)");) {
+						"SELECT m.*,i.indname,i2.indname FROM msg AS m, ind AS i,ind AS i2 WHERE (i2.indid=m.msgendid)AND(i.indid=m.msgsourceid) AND(MSGNO IN(SELECT LASTMSGNO FROM MSG_ROOM WHERE INDID1=? OR INDID2=?))");) {
 			pstmt.setString(1, INDID);
 			pstmt.setString(2, INDID);
 			ResultSet rs = pstmt.executeQuery();
@@ -78,6 +78,8 @@ public class MSGDAO {
 				// msgb.setMSGIMAGE(rs.getBlob(7));
 				msgb.setMSGFILENAME(rs.getString(8));
 				msgb.setROOMNO(rs.getInt(9));
+				msgb.setMSGSOURCENAME(rs.getString(10));
+				msgb.setMSGENDNAME(rs.getString(11));
 				coll.add(msgb);
 			}
 			rs.close();
@@ -90,8 +92,8 @@ public class MSGDAO {
 	public Collection<MSGBean> FindMSGByRoomNoKey(String INDID) {
 		Collection<MSGBean> coll = new ArrayList<MSGBean>();
 		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con
-						.prepareStatement("SELECT * from msg where ROOMNO=? ORDER BY postdate ");) {
+				PreparedStatement pstmt = con.prepareStatement(
+						"SELECT m.*,i.indname,i2.indname FROM msg AS m ,ind AS i,ind AS i2 WHERE (ROOMNO=?) AND (m.msgsourceid=i.indid) AND (m.msgendid=i2.indid) ORDER BY postdate;");) {
 			pstmt.setString(1, INDID);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -105,6 +107,8 @@ public class MSGDAO {
 				// msgb.setMSGIMAGE(rs.getBlob(7));
 				msgb.setMSGFILENAME(rs.getString(8));
 				msgb.setROOMNO(rs.getInt(9));
+				msgb.setMSGSOURCENAME(rs.getString(10));
+				msgb.setMSGENDNAME(rs.getString(11));
 				coll.add(msgb);
 			}
 			rs.close();

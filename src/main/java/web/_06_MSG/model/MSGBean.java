@@ -13,6 +13,9 @@ public class MSGBean {
 	Blob MSGIMAGE;
 	String MSGFILENAME;
 	int ROOMNO;
+	String MSGSOURCENAME;
+	String MSGENDNAME;
+
 	public MSGBean() {
 		// TODO Auto-generated constructor stub
 	}
@@ -113,5 +116,20 @@ public class MSGBean {
 		ROOMNO = rOOMNO;
 	}
 
+	public String getMSGSOURCENAME() {
+		return MSGSOURCENAME;
+	}
+
+	public void setMSGSOURCENAME(String mSGSOURCENAME) {
+		MSGSOURCENAME = mSGSOURCENAME;
+	}
+
+	public String getMSGENDNAME() {
+		return MSGENDNAME;
+	}
+
+	public void setMSGENDNAME(String mSGENDNAME) {
+		MSGENDNAME = mSGENDNAME;
+	}
 
 }
