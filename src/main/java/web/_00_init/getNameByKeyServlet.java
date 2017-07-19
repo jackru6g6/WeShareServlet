@@ -44,15 +44,15 @@ public class getNameByKeyServlet extends HttpServlet {
 		String Ans = "TRUE";
 		String mfjb_json = "";
 		JSON_Find_Bean jiub = new JSON_Find_Bean();
-		try {
-			HttpSession session = request.getSession(false);
-			MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-			INDID = mb.getIndid();
-			System.out.println("session INDID=" + INDID);
-		} catch (Exception e) {
-			Ans = "FALSE";
-			jiub.setMessage("Session Not Found");
-		}
+//		try {
+//			HttpSession session = request.getSession(false);
+//			MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+//			INDID = mb.getIndid();
+//			System.out.println("session INDID=" + INDID);
+//		} catch (Exception e) {
+//			Ans = "FALSE";
+//			jiub.setMessage("Session Not Found");
+//		}
 		Gson gson = new Gson();
 
 		String key = request.getParameter("key");
@@ -81,8 +81,8 @@ public class getNameByKeyServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		jiub.setType(Type);
-		jiub.setAns(Ans);
+//		jiub.setType(Type);
+//		jiub.setAns(Ans);
 		mfjb_json = gson.toJson(jiub);
 		System.out.println("mfjb_json" + mfjb_json);
 		response.setContentType("application/json; charset=UTF8");
