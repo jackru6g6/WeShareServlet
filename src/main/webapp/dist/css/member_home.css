@@ -1,0 +1,96 @@
+/*mrmber_home.css*/
+
+/* 背景的藍色半透明效果 */
+/* :before 偽元素，可以在元素之前添加内容。*/
+/*  #background_img:before{ */
+/* 	content: ''; */
+/* 	width: 100%; */
+/*     height: 100%; */
+/*     background: rgba(0, 128, 255, 0.4); */
+/*     position: fixed; */
+/* 	background-size: cover; */
+/* }  */
+
+/* 背景圖案 */
+#background_img{  
+/* 	background: url("src\\main\\webapp\\dist\\img\\member_home_background.jpg") no-repeat center center fixed; */
+/* 	background: url("${pageContext.request.contextPath}/dist/img/member_home_background.jpg") no-repeat center center fixed; */
+/* 	background: url("C:/GitHub_root/WeShare/src/main/webapp/dist/img/member_home_background.jpg") no-repeat center center fixed; */
+	background-size: cover;
+	min-width: 100%;
+	min-height: 100%;
+/* 	filter: opacity(0.2); */
+/* 	z-index: -1; */
+}
+
+/* 會員圖片 */
+#member_img{
+	width: 100%;
+	margin: 60px auto 20px auto;
+}
+
+/* 會員名稱 */
+#member_name{
+	font-size: 24px;
+	text-align: center;
+	margin: 10px auto 10px auto;	
+}
+
+/* 會員評價 */
+#member_feedback{
+	font-size: 24px;
+	text-align: center;
+	margin: 10px auto 50px auto;	
+}
+
+	
+/* 功能按鈕=================================================================== */
+
+.member_home_button{
+	width: 85%;
+	height: 50px;
+	letter-spacing: 2px;
+	font-size: 20px;
+	text-align: center;
+	margin: 30px auto;
+	padding: 0px;
+}
+	
+	/* 修改會員資料 */
+	#update_button{
+		background-color: #A3DAFF;
+		color: #0000A1;
+	}
+	
+	/* 我的物資箱 */
+	#goodsCart_button{
+		background-color: #1EC0FF;
+		color: #003399;
+	}
+	
+	/* 我的站內信 */
+	#message_button{
+		background-color: #03A6FF;
+		color: #B9EDF8;
+	}
+	
+	/* 紀錄與評價 */
+	#feedback_button{
+		background-color: #007AFF;
+		color: #FFFFFF;
+	}
+
+		/* 按鈕動畫 */
+		button:hover{	
+			cursor: pointer;
+			animation-name: button_animation;
+			animation-duration: 1s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
+
+		@keyframes button_animation{
+			0%   { transform: scale(1);}
+			50%  { transform: scale(1.1);}	
+			100% { transform: scale(1);}
+		}

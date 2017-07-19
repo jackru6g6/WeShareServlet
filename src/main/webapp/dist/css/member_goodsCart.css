@@ -1,0 +1,259 @@
+/* member_goodsCart.css */
+
+/* 頁面內容設定 */
+
+	/* 頁面內容title */
+	#member_goodsCart_content_title{
+		background-color: #1EC0FF;
+		color: #003399;
+	}
+
+	/* 頁面內容body */
+	#member_goodsCart_content_body{
+		border: solid #1EC0FF 1px;
+	}
+
+		/* 新增物資按鈕 */	
+		#goods_insert_button{
+			background-color: #03A6FF;
+			color: #B9EDF8;
+			font-size: 16px;
+			letter-spacing: 2px;
+			margin: 30px auto;
+			padding: 5px;
+		}
+		
+			/*新增物資視窗*/
+			/*新增物資視窗_header */
+			#goods_insert_modal_header{
+				background-color: #1EC0FF;
+			}
+				/* 滑鼠移至關閉(X)時，變成紅色*/
+				#goods_insert_modal_header_close:hover{
+					color: red;
+				}
+				
+				/* 視窗_title */
+				#goods_insert_modal_title{
+					color: #003399;
+					letter-spacing: 2px;
+					font-size: 20px;
+				}			
+				
+
+			/*新增物資視窗_body*/
+			
+			/* 去除原本的樣式，讓表單左側可以留白 */
+			#goods_insert_form_horizontal{
+				margin-left: 0px;
+			}
+			
+				#goods_insert_form_horizontal .goods_insert_form_group{
+					margin-left: 0px;
+				}
+				
+				
+				/* 新增物資表單label */
+				#goods_insert_form_horizontal .goods_insert_form_label{
+					background-color: #03A6FF;
+					font-size: 16px;
+					color: #B9EDF8;
+					border-radius: 5px;
+					padding: 6px;
+					text-align: center;
+				}
+				
+				/* 新增物資表單input */
+				#goods_insert_form_horizontal .goods_insert_form_input{
+					background-color: #E0E0E0;
+					font-size: 16px;
+				}
+				
+					/* 需求類別radio */
+					#goods_status{
+						margin: 10px 3px 10px 6px;	
+						font-size: 18px;			
+					}
+				
+					/* 新增物資表單_需求地區_選項分隔底色*/
+					.goods_loc_disabled_option{
+						background-color: #1EC0FF;
+					}
+					
+					/* 需求方式radio */
+					#goods_shipway{
+						margin: 10px 3px 10px 6px;	
+						font-size: 20px;
+					}
+
+					/* 上傳及預覽檔案 */
+					#upload_img_goods{
+						margin: 10px 0px;
+					}
+					
+					#preview_img_goods{
+						width: 100%;
+						margin: 5px;
+					}				
+
+				/* 新增按鈕*/
+				#goods_insert_form_submit_button{
+					cursor: pointer;
+					font-size: 20px;
+					background-color: #FFFFFF;
+					color: #03A6FF;
+					border: solid #03A6FF 3px;
+					border-radius: 5px;
+					margin: 30px auto 10px auto;
+					padding: 2px;
+				}
+					
+					#goods_insert_form_submit_button:hover{
+						box-shadow: 0 -50px 0 0  #03A6FF inset;
+						color: #B9EDF8;
+						transition: 0.5s;
+					}
+					
+					
+			/* 新增物資視窗_footer */
+			#goods_insert_modal_footer{
+				height: 50px;
+				background-color: #1EC0FF;
+			}
+					
+					
+			
+		/* 物資排序底色 */
+		#goods_priority_button{
+			background-color: #03A6FF;
+			color: #B9EDF8;
+			font-size: 16px;
+			letter-spacing: 2px;
+			margin: 30px auto;
+			padding: 5px;
+		}
+		
+		/*物資查詢*/
+		#goods_search_bar{
+			margin: 30px auto;
+		}
+		
+			#goods_search_bar_input{
+				margin: 0px;
+				padding: 9px;
+			}
+		
+		#goods_search_button{
+			background-color: #03A6FF;
+			color: #B9EDF8;
+			font-size: 16px;
+			letter-spacing: 2px;
+			padding: 4.5px;
+			margin: 0px;
+		}	
+		
+		
+		/* 我的物資箱內容 */
+		
+		/* 物資項目_背景顏色 */
+		#goods_item{
+			background-color: #03A6FF;
+			padding: 20px 0px 30px 0px;
+		}
+			/* 物資圖片 */
+			#goods_item_image{	
+				padding: 0px 6px 10px 6px;
+				border-radius: 20px;
+			}
+			
+			/* 物資內容 */
+			#goods_item_caption{
+				padding: 0px;
+			}
+				/* 物資_title */
+				#goods_item_title{
+					width: 100%;
+					font-size: 20px;
+					letter-spacing: 2px;
+					background-color: #007AFF;
+					color: #FFFFFF;
+					cursor: pointer;
+					text-align: center;
+					margin: 10px 0px 0px 0px;
+					padding: 5px;
+				}
+				
+				
+				/* 物資_content  ul */
+				.goods_item_content{
+					display: none;
+					list-style: none;
+				}
+				
+					.goods_item_content_li{						
+						margin: -1px;
+						background-color: #03A6FF;						
+					}
+						
+						/* span 顏色 */							
+						.goods_item_content_li_span{
+							background-color: #03A6FF;
+							color: #B9EDF8;							
+							margin: 0px;
+							border: 0.5px;
+							border-radius: 0px;
+						}	
+							
+						/* input顏色 */							
+						.goods_item_content_li  .goods_item_content_li_input{								
+							margin: 0px;								
+							border: 0.5px;
+							border-radius: 0px;							
+							background-color: #A3DAFF;
+							color: #0000A1;							
+						}						
+				
+						/* 刪除按鈕 */
+						#goods_item_delete_button{	
+							letter-spacing: 2px;
+							background-color: #007AFF;
+							color: #FFFFFF;
+							border-color: #007AFF;
+							margin: 20px 0px 0px 0px;
+						}
+						
+							#goods_item_delete_button:hover{
+								background-color: #FF2D2D;  /* 紅色 */
+							}
+						
+						/* 修改按鈕 */
+						#goods_item_update_button{							
+							letter-spacing: 2px;
+							background-color: #007AFF;
+							color: #FFFFFF;
+							border-color: #007AFF;
+							margin: 20px 0px 0px 0px;
+						}
+						
+							#goods_item_update_button:hover{
+								background-color: #00A600; /* 綠色 */
+							}	
+						
+						/* 送出按鈕 */
+						#goods_item_submit_button{
+							letter-spacing: 2px;
+							background-color: #007AFF;
+							color: #FFFFFF;
+							border-color: #007AFF;
+							margin: 20px 0px 0px 0px;
+							display: none;
+						}
+							#goods_item_submit_button:hover{
+								background-color: #FFE66F; /* 黃色 */
+								color: #003399;
+							}
+					
+	/* 頁面內容footer */
+	#goods_insert_modal_footer{
+		background-color: #1EC0FF;
+	}

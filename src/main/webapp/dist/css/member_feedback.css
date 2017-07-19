@@ -1,0 +1,56 @@
+/* member_goodsCart.css */
+
+/* 頁面內容設定 */
+
+	/* 頁面內容title */
+	#member_feedback_content_title{
+		background-color: #007AFF;
+		color: #FFFFFF;
+	}
+
+	/* 頁面內容body */
+	#member_feedback_content_body{
+		border: solid #007AFF 1px;
+	}
+		
+		/* 我的評價排序底色 */
+		#feedback_priority_button{
+			background-color: #A3DAFF;
+			color: #0000A1;
+			font-size: 16px;
+			letter-spacing: 2px;
+			margin: 30px auto 10px auto;
+			padding: 5px;
+		}
+
+		/* 我的評價查詢*/
+		#feedback_search_bar{
+			margin: 30px auto 10px auto;
+		}
+		
+			#feedback_search_bar_input{
+				margin: 0px;
+				padding: 9px;
+			}
+		
+		#feedback_search_button{
+			background-color: #A3DAFF;
+			color: #0000A1;
+			font-size: 16px;
+			letter-spacing: 2px;
+			padding: 4.5px;
+			margin: 0px;
+		}
+	
+	
+	
+	
+	
+	/* 頁面內容footer */
+	#member_feedback_content_footer{
+		background-color: #007AFF;
+	}
+	
+	
+
+	
