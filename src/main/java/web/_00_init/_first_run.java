@@ -111,12 +111,53 @@ public class _first_run {
 		IND_DATA(mb3, con);
 		LOCAL_DATA(con);
 		GOODSTYPE_DATA(con);
+		ind_data(con);
 		org_data(con);
 		goods_data(con);
 		DEAL_DATA(con);
 		DEAL_DATA_defor(con);
 		MSG_DATA(con);
 		FEEDBACK_DATA(con);
+	}
+	
+	public static void ind_data(Connection con) throws SQLException {
+		try {
+			String line1 = "";
+			String sql1 = "insert into ind "
+					+ " (usertype,postdate,indid,indpassword,indname,indphone,indemail,indaddress,indimage,indfilename) "
+					+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement pstmt1 = con.prepareStatement(sql1);
+			BufferedReader br = new BufferedReader(
+					new InputStreamReader(new FileInputStream("src//main//java//web//ind.txt"), "UTF8"));
+			while ((line1 = br.readLine()) != null) {
+				if (line1.startsWith("\uFEFF")) {
+					line1 = line1.substring(1);
+				}
+				String[] token = line1.split("\\|");
+				pstmt1.setInt(1, Integer.parseInt(token[0]));
+				java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+				pstmt1.setTimestamp(2, now);
+				pstmt1.setString(3, token[2].trim());
+				pstmt1.setString(4, GlobalService.getMD5Endocing(GlobalService.encryptString(token[3].trim())));
+				pstmt1.setString(5, token[4].trim());
+				pstmt1.setString(6, token[5].trim());
+				pstmt1.setString(7, token[6].trim());
+				pstmt1.setString(8, token[7].trim());
+				File aFile = new File("src\\main\\webapp\\images\\ind\\" + token[8].trim());
+				long size = aFile.length();
+				InputStream is = new FileInputStream(aFile);
+				pstmt1.setBlob(9, is, size);
+				String fileName = aFile.getName();
+				fileName = GlobalService.adjustFileName(fileName, GlobalService.IMAGE_FILENAME_LENGTH);
+				pstmt1.setString(10, fileName);
+				int r = pstmt1.executeUpdate();
+			}
+		} catch (SQLException e) {
+			System.err.println("新建ind表格時發生SQL例外: " + e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.err.println("新建ind表格時發生IO例外: " + e.getMessage());
+		}
 	}
 
 	public static void org_data(Connection con) throws SQLException {
