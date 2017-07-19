@@ -69,35 +69,12 @@
                     	</a>
                     </li>                
                     <li>
-                    	<a href="${pageContext.request.contextPath}/web/member.jsp">
+                    	<a href="${pageContext.request.contextPath}/web/member_home.jsp">
+<%--                     	<a href="${pageContext.request.contextPath}/web/member_menu.jsp"> --%>
                     		會員專區
                     	</a>
-                    </li>
-                    
-                    <li>
-<%--                     	<a href="${pageContext.request.contextPath}/web/test/_03_updateMember/updateMember.jsp"> --%>
-                    		<a href="/Demo/web/_03_updateMember/controller/FindMemberServlet">
-                    		修改會員資料
-                    	</a>
-                    </li>
-                    
-                    <li>
-                    	<a href="${pageContext.request.contextPath}/web/member_goods.jsp">
-                    		我的物資箱
-                    	</a>
-                    </li>
-                    
-                    <li>
-                    	<a href="${pageContext.request.contextPath}/web/member_msg.jsp">
-                    		我的站內信
-                    	</a>
-                    </li>
-                    
-                    <li>
-                    	<a href="${pageContext.request.contextPath}/web/member_feedback.jsp">
-                    		 評價與紀錄
-                    	</a>
-                    </li>
+                    </li>                    
+                
                     <li class="divider"></li>
                     <li><a href="${pageContext.request.contextPath}/web/logout.jsp">登出</a></li>
                 </ul>

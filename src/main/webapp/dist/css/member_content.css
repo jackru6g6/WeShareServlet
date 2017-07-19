@@ -1,0 +1,27 @@
+/* member_content.css */
+
+/* 頁面內容設定 */
+
+	/* 頁面內容title */
+	.member_contnet_title{
+		width: 100%;
+		letter-spacing: 10px;		
+		margin: 20px auto 0px auto;
+		padding: 5px auot 10px auto;
+		text-align: center;
+	}
+
+	/* 頁面內容body */
+	.member_content_body{
+		width: 100%;
+		margin: 0px auto;
+		padding: 10px;
+		background-color: #FFFFFF;		
+	}
+
+	/* 頁面內容footer */
+	.member_content_footer{
+		width: 100%;
+		height: 50px;		
+		margin: 0px auto 10px auto;
+	}

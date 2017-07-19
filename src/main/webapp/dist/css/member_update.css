@@ -1,0 +1,96 @@
+/* member_update.css */
+
+/* 頁面內容設定 */
+
+	/* 頁面內容title */
+	#member_update_content_title{
+		background-color: #A3DAFF;
+		color: #0000A1;
+	}
+
+	/* 頁面內容body */
+	#member_update_content_body{
+		border: solid #A3DAFF 1px;
+	}
+	
+		#member_update_form_horizontal{
+			margin-left: 0px;
+			margin-top: 20px;
+		}
+			
+			#member_update_form_horizontal .member_update_form_group{
+				margin-left: 0px;
+			}
+				
+				/* 表單標籤 */
+				#member_update_form_horizontal .member_update_form_label{
+					font-size: 16px;
+					color: #1EC0FF; 
+					text-align: center;
+				}
+				
+				/* 表單填入欄位 */
+				#member_update_form_horizontal .member_update_form_input{
+					background-color: #E0E0E0;
+				}
+				
+				/* 可修改的 glyphicon 顏色 */
+				.form_input_disabled_icon{
+					color: #FF2D2D;  /* 紅色 */
+				}
+				
+				/* 身分 radio */
+				#member_types{
+					padding: 5px 10px 5px 15px;
+					font-size: 18px;
+				}
+				
+				/* 修改會員密碼按鈕 */
+				#passsword_update_button{
+					background-color: #1EC0FF;
+					color: #003399;
+					letter-spacing: 5px;
+					text-align: center;
+				}
+				
+					#passsword_update_content{
+						display: none;
+						list-style: none;
+						background-color: #1EC0FF;
+						color: #003399;
+						margin-top: -1px;
+						padding: 20px;
+					}
+				
+				/* 上傳及預覽檔案 */
+				.upload_img{
+					margin: 10px 0px;
+				}
+				
+				.preview_img{
+					max-width: 300px;
+					max-height: 300px;
+					margin: 5px;
+				}
+		
+			/* 修改會員資料送出按鈕 */
+			#member_update_submit_button{
+				font-size: 20px;
+				background-color: #1EC0FF;
+				color: #003399; 
+				margin: 40px auto 20px auto;
+				padding: 5px;
+			}
+			
+				#member_update_submit_button:hover{			
+					box-shadow: 0 20px 20px -5px #1EC0FF;
+					background-color: #A3DAFF;
+					color: #0000A1;
+					transform: translateY(-10px);			
+					transition: 1s;
+				}
+			
+	/* 頁面內容footer */
+	#member_update_content_footer{
+		background-color: #A3DAFF;
+	}

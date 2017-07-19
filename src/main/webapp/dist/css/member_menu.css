@@ -1,0 +1,104 @@
+/* member_menu.css */
+
+/* 左側導覽列title */
+#member_menu_title{
+	font-size: 24px;
+    text-align: center;
+	letter-spacing: 2px;
+	margin-top: 20px;
+	color: #003399;
+}
+
+/* 左側導覽列會員圖片 */
+#member_menu_img{
+    align: center;
+    width: 100%;
+	border-radius: 20px;
+	margin: 20px auto;
+}
+
+/* 左側導覽列選項 */
+
+/* 清除ul樣式 */
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 左側導覽列按鈕 */
+
+	.member_menu_button{
+		height: 50px;
+		margin: 15px auto;
+		padding: 0px;
+		font-size: 16px;
+		text-align: center;
+		letter-spacing: 2px;
+	}
+	
+		.member_menu_button:hover{
+			cursor: pointer; /*滑鼠指到時變成手指樣式*/
+			font-size: 18px;
+			transform: translateX(30px);
+			transition: 0.5s ease-in-out;
+		}
+		
+	
+		/* 取消連結樣式 */
+		.member_menu_button:focus{
+			text-decoration: none;
+		}
+		
+		.member_menu_button:visited{
+			text-decoration: none;
+		}
+
+
+
+			/* 修改會員資料 */
+			#member_menu_update_button{
+				background-color: #A3DAFF;
+				color: #0000A1;
+			}
+
+				#member_menu_update_button:hover{
+					background-color: #003399;
+					color: #FFFFFF;
+				}
+
+				
+			/* 我的物資箱 */
+			#member_menu_goodsCart_button{
+				background-color: #1EC0FF;
+				color: #003399;
+			}
+
+				#member_menu_goodsCart_button:hover{
+					background-color: #003399;
+					color: #FFFFFF;
+				}
+			
+			
+			/* 我的站內信 */
+			#member_menu_message_button{
+				background-color: #03A6FF;
+				color: #B9EDF8;
+			}
+
+				#member_menu_message_button:hover{
+					background-color: #003399;
+					color: #FFFFFF;
+				}
+				
+				
+			/* 紀錄與評價 */
+			#member_menu_feedback_button{
+				background-color: #007AFF;
+				color: #FFFFFF;
+			}
+
+				#member_menu_feedback_button:hover{
+					background-color: #003399;
+					color: #FFFFFF;
+				}

@@ -5,24 +5,27 @@
 
 	<!-- title -->
 	<div class="row">
-		<div id="member_feedback_content_title" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 member_contnet_title">
+		<div id="member_message_content_title" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 member_contnet_title">
 			<h3>
-				<b>紀錄與評價</b>
+				<b>我的站內信</b>
 			</h3>
 		</div>
 	</div>
 	
 	<!-- body -->
 	<div class="row">
-		<div id="member_feedback_content_body" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 member_content_body">							
-			
-			
-						
+		<div id="member_message_content_body" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 member_content_body">
+		
+		
+		
 		</div>
 	</div>
 	
 	<!-- footer -->
 	<div class="row">
-		<div id="member_feedback_content_footer" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 member_content_footer">	
+		<div id="member_message_content_footer" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 member_content_footer">	
 		</div>
 	</div>
+		
+	
+	
