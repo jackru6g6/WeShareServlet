@@ -161,11 +161,15 @@
 				// 產生會員資料
 				showMbData(responseMbData, javaRoot);
 				
+				//修改會員密碼
+				
 // 				$( "#passsword_update_button" ).click(function() {
 // 					console.log("#passsword_update_button click");
 // // 					$("#passsword_update_content").slideToggle();
 													  
 // 				});
+				
+				
 				
 			}
 		}
