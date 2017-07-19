@@ -39,16 +39,16 @@
 										<div class="col-xs-offset-2 col-xs-4 col-sm-offset-2 col-sm-4 col-md-offset-3 col-md-3 col-lg-offset-3 col-lg-3">
 											<!-- 會員圖片 -->
 											<div id="thisMemberImgLayout">
-												<img id="thisMemberImg" class="img-responsive img-circle center-block" src="${pageContext.servletContext.contextPath}/_00_init/getImage?id=' + mbId + '&type=MEMBER">
+												<img id="thisMemberImg" class="img-responsive img-circle center-block">
 											</div>
 											<!-- 會員姓名 -->
 											<div id="thisMemberName" class="text-center">
-												<span>會員姓名</span>
+
 											</div>
 										</div>
 										<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 											<!-- 會員分數 -->
-											<div id="thisMemberScore" class="progress-pie-chart" data-percent="60">
+											<div id="thisMemberScore">
 												<canvas id="blockCanvas" width="229" height="229"></canvas>
 												<div id="score"></div>
 											</div>
@@ -80,6 +80,7 @@
 		var mbId = location.search.slice(1);
 		var javaRoot = "${pageContext.servletContext.contextPath}";
 		var xhr = new XMLHttpRequest();
+		var xhrName = new XMLHttpRequest();
 		var servletPath = javaRoot + '/web/_07_Feedback/controller/FindFeedback?key=' + mbId;
 		var responseData;
 		
@@ -98,6 +99,22 @@
 					// 產生評價資料
 					showData(responseData, javaRoot);
 
+				}
+			}
+			
+			// 產生會員圖片
+			$('#thisMemberImg').attr('src', javaRoot + '/_00_init/getImage?id=' + mbId + '&type=MEMBER');
+			var imgWidth = $('#thisMemberImg').width();
+	        $('#thisMemberImg').css('height', imgWidth);
+			// 產生會員姓名
+			xhrName.open('GET', javaRoot + '/web/_00_intit/getNameByKey?key=' + mbId, true);
+			xhrName.send();
+			xhrName.onreadystatechange = function(){
+				if(xhrName.status == 200 && xhrName.readyState == 4){
+					console.log(xhrName.responseText);
+					var responseNameData = JSON.parse(xhrName.responseText);
+					var mbName = "<span>" + responseNameData.Message + "</span>"
+					$('#thisMemberName').append(mbName);
 				}
 			}
 		};

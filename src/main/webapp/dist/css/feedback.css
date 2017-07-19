@@ -12,10 +12,16 @@
     #sectionFeedback #blockFeedback #aBack {
       margin: 10px;
       color: #337ab7;
-      border-color: #accce8;
-      font-size: 16px; }
+      border-width: 0px;
+      font-size: 16px;
+      transition: 1s; }
       #sectionFeedback #blockFeedback #aBack .fa-reply {
         margin-right: 10px; }
+      #sectionFeedback #blockFeedback #aBack:hover {
+        box-shadow: inset -150px 0 0 0 #337ab7;
+        color: #ffffff;
+        transition: 1s;
+        background-color: #ffffff; }
     #sectionFeedback #blockFeedback #thisMember {
       margin-bottom: 5%;
       /* 會員圖片 */
@@ -24,6 +30,7 @@
       #sectionFeedback #blockFeedback #thisMember #thisMemberImgLayout {
         margin-bottom: 5%; }
         #sectionFeedback #blockFeedback #thisMember #thisMemberImgLayout #thisMemberImg {
+          width: 100%;
           background-color: cadetblue; }
       #sectionFeedback #blockFeedback #thisMember #thisMemberName {
         margin-top: 10px;
@@ -48,12 +55,35 @@
           text-align: center;
           color: #ff9800;
           font-size: 30px; }
+        @media screen and (min-width: 992px) and (max-width: 1199px) {
+          #sectionFeedback #blockFeedback #thisMember #thisMemberScore #blockCanvas {
+            width: 180px; }
+          #sectionFeedback #blockFeedback #thisMember #thisMemberScore #score {
+            font-size: 24px; } }
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+          #sectionFeedback #blockFeedback #thisMember #thisMemberScore #blockCanvas {
+            width: 140px; }
+          #sectionFeedback #blockFeedback #thisMember #thisMemberScore #score {
+            font-size: 16px; } }
+        @media screen and (max-width: 767px) {
+          #sectionFeedback #blockFeedback #thisMember #thisMemberScore #blockCanvas {
+            width: 100px; }
+          #sectionFeedback #blockFeedback #thisMember #thisMemberScore #score {
+            font-size: 16px; } }
     #sectionFeedback #blockFeedback .otherMember {
       /* 給評者圖片 */
       /* 給評者姓名 */
       /* 給評者評分 */
       /* 給評者評語 */
       /* 給評日期 */ }
+      #sectionFeedback #blockFeedback .otherMember .blockMedia {
+        border-top: 1px solid #f2f2f2;
+        margin: 0px;
+        padding: 15px 50px;
+        transition: 0.5s; }
+        #sectionFeedback #blockFeedback .otherMember .blockMedia:hover {
+          background-color: #fcf8e3;
+          transition: 0.5s; }
       #sectionFeedback #blockFeedback .otherMember .otherMemberImgLayout {
         margin-right: 10px; }
         #sectionFeedback #blockFeedback .otherMember .otherMemberImgLayout .otherMemberImg {
@@ -64,6 +94,9 @@
       #sectionFeedback #blockFeedback .otherMember .otherMemberScore {
         color: #ff9800; }
       #sectionFeedback #blockFeedback .otherMember .otherMemberFeedback {
-        text-indent: 2em; }
+        text-indent: 2em;
+        margin-bottom: 0px; }
       #sectionFeedback #blockFeedback .otherMember .feedbackDate {
-        text-align: right; }
+        text-align: right;
+        margin-top: 0px;
+        color: #888888; }

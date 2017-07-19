@@ -1,7 +1,7 @@
 function showData(data, path) {
 	var javaRoot = path;
 	var resultData;
-	var score = 0;
+	var score = Number(0);
 	var scoreAvg = 0;
 	if(data.length == 0){
 		resultData = 
@@ -13,8 +13,8 @@ function showData(data, path) {
 	}
 	for(var i = 0; i < data.length; i++){
 		resultData =
-			`<!-- 其他會員評價 -->
-			<div class="media">
+			`<!-- 其他會員給的評價 -->
+			<div class="media blockMedia">
 				<div class="media-left">
 					<!-- 給評者圖片 -->
 					<div class="otherMemberImgLayout">
@@ -23,9 +23,9 @@ function showData(data, path) {
 				</div>
 				<div class="media-body">
 					<!-- 給評者姓名 -->
-					<h4 class="media-heading otherMemberName">${data[i].FBSOURCEID}</h4>
+					<h4 class="media-heading otherMemberName oMbName` + i +`"></h4>
 					<!-- 給評者評分 -->
-					<div class="star-ratings otherMemberScore">
+					<div class="star-ratings otherMemberScore showStars` + i +`">
 
 					</div>
 					<!-- 給評者評語 -->
@@ -35,17 +35,32 @@ function showData(data, path) {
 				</div>
 			</div>`;
 		$('.otherMember').append(resultData);
-		showStars(`${data[i].FBSCORE}`);
-		score += `${data[i].FBSCORE}`;
-		scoreAvg = score / (i+1);
+		otherMbName(`${data[i].FBSOURCEID}`, i);
+		showStars(`${data[i].FBSCORE}`, i);
+		score += Number(`${data[i].FBSCORE}`);
 	}
-	scoreCircle(score * 36);
-	$('#score').append(scoreAvg);
+	scoreAvg = Math.round((score / (i)) * 10) / 10;
+	scoreCircle(scoreAvg * 36);
+	$('#score').append(scoreAvg + "分");
+}
+
+// 取得給評者姓名
+function otherMbName(e, i){
+	var xhrOMbName = new XMLHttpRequest();
+	xhrOMbName.open('GET', javaRoot + '/web/_00_intit/getNameByKey?key=' + e, true);
+	xhrOMbName.send();
+	xhrOMbName.onreadystatechange = function(){
+		if(xhrOMbName.status == 200 && xhrOMbName.readyState == 4){
+			var responseONameData = JSON.parse(xhrOMbName.responseText);
+			// 產生class名稱，將給評者姓名放到相對應的位置
+			var oMbNameClass = ".oMbName" + i;
+			$(oMbNameClass).append(responseONameData.Message);
+		}
+	}
 }
 
 // 產生星星
-function showStars(e) {
-	starString = "";
+function showStars(e, i) {
 	// 計算全星的數量
 	var star = Math.floor(e / 2);
 	// 計算半星的數量
@@ -59,39 +74,66 @@ function showStars(e) {
 
 	var starString = "";
 	// 產生全星
-	for (var i = 0; i < star; i++) {
+	for (var x = 0; x < star; x++) {
 		starString += `<span><i class="fa fa-star" aria-hidden="true"></i></span>`;
 	}
 	// 產生半星
-	for (var i = 0; i < starHalf; i++) {
+	for (var x = 0; x < starHalf; x++) {
 		starString += `<span><i class="fa fa-star-half-o" aria-hidden="true"></i></span>`;
 	}
 	// 產生空星
-	for (var i = 0; i < starO; i++) {
+	for (var x = 0; x < starO; x++) {
 		starString += `<span><i class="fa fa-star-o" aria-hidden="true"></i></span>`;
 	}
-	$('.otherMemberScore').append(starString);
+	// 產生class名稱，將starString放到相對應的位置
+	var showStarsClass = ".showStars" + i;
+	$(showStarsClass).append(starString);
 }
 
 // 產生評價圓圈
+//window.requestAnimationFrame()
+(function() {
+  var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                              window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+  window.requestAnimationFrame = requestAnimationFrame;
+})();
+
 function scoreCircle(e) {
 	var w = $('#blockCanvas').width();
 	var h = $('#blockCanvas').height();
-	console.log("w = " + w + ", h = " + h);
-	console.log("w/2 = " + (w / 2) + ", h/2 = " + (h / 2));
 	// 取得繪圖環境
 	var scoreCircle = $('#blockCanvas')[0].getContext('2d');
-	// 清空繪圖環境
-	// scoreCircle.clearRect(0, 0, w, h)
-	// 設定顏色
-	scoreCircle.strokeStyle = '#87cefa';
-	// 設定線寬跟兩端樣式
-	scoreCircle.lineWidth = 10;
-	scoreCircle.lineCap = "round";
-	// 開始一條路徑或重製當前的路徑
-	scoreCircle.beginPath();
-	// 畫圓
-	scoreCircle.arc(w / 2, h / 2, w / 4, 0, e * Math.PI / 180, false);
-	// 結束
-	scoreCircle.stroke();
+	// 起始數值
+	var curPerc = 0;
+	// 結束數值
+	var endPercent = e;
+	
+	// 底部灰圈
+	scoreCircle.strokeStyle = '#ececec';
+    scoreCircle.lineWidth = 10;
+    scoreCircle.beginPath();
+    scoreCircle.arc(w / 2, h / 2, w / 4, 0, 2 * Math.PI, false);
+    scoreCircle.stroke();
+	
+	function animate(x){
+		// 設定顏色
+		scoreCircle.strokeStyle = '#87cefa';
+		// 設定線寬
+		scoreCircle.lineWidth = 10;
+		// 開始一條路徑或重製當前的路徑
+		scoreCircle.beginPath();
+		// 畫圓
+		scoreCircle.arc(w / 2, h / 2, w / 4, 0, x * Math.PI / 180, false);
+		// 結束
+		scoreCircle.stroke();
+		// curPerc每次加3
+	    curPerc+=3;
+	    // 若curPerc沒大於endPercent，繼續執行animate()
+	    if (curPerc <= endPercent) {
+	        requestAnimationFrame(function () {
+	          animate(curPerc);
+	        });
+	    }
+	}
+	animate();
 }

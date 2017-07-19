@@ -152,7 +152,8 @@
             margin: 30px;
             border-color: #ff3333;
             color: #ff3333;
-            letter-spacing: 2px; }
+            letter-spacing: 2px;
+            transition: 1s; }
             #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgContact .orgGoods:hover {
               box-shadow: inset 180px 0 0 0 #ff3333;
               color: #ffffff;

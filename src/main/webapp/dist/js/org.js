@@ -16,7 +16,7 @@ function showData(data) {
 			<div class="rowUpper">
 				<!-- 上左_圖片 -->
 				<div class="orgImgLayout blockUpper">
-					<img class="img-responsive orgImg" src="${javaRoot}/_00_init/getImage?id=${data[i].indid}&type=MEMBER">
+					<img class="img-responsive orgImg" src="${javaRoot}/_00_init/getImage?id=${data[i].indid}&type=ORG">
 				</div>
 				<!-- 上右_地圖 -->
 				<div class="orgMap blockUpper">
