@@ -96,7 +96,7 @@ public class MessageServlet extends HttpServlet {
 				// 只要送一張圖，就不用轉json，指定他傳送的型態，如果要用json就要用Base64
 				// // encode才能傳送
 				response.setContentLength(image.length);// 輸出圖的長度
-				System.out.println(image);
+				//System.out.println(image);
 			} else {
 				System.out.println("沒收到喔~");
 			}
@@ -145,7 +145,7 @@ public class MessageServlet extends HttpServlet {
 			String msgJson = jsonObject.get("msg").getAsString();
 			MessageBean msg = gson.fromJson(msgJson, MessageBean.class);
 			String imageBase64 = jsonObject.get("imageBase64").getAsString();
-			System.out.println("imageBase64=" + imageBase64);
+//			System.out.println("imageBase64=" + imageBase64);
 			int count = 0;
 			try {
 				// Blob imageBlob = new SerialBlob(image);

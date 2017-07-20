@@ -122,6 +122,8 @@ public class MemberServlet extends HttpServlet {
 				if (check == true) {
 					System.out.println("Login" + mb.getUserId());
 					userName = mbDAO.getName(mb.getUserId());
+				}else{
+					userName = "null";
 				}
 
 			} catch (Exception e) {

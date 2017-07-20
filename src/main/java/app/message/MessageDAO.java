@@ -277,7 +277,7 @@ public class MessageDAO {
 			// MessageBean(m.msgNo,m.msgStatus,m.msgSourceId,m.msgEndId,m.msgText,m.roomNo)
 			// FROM MessageBean m WHERE (m.msgSourceId = :uid AND m.msgEndId =
 			// :aid) OR (m.msgSourceId = :sid AND m.msgEndId = :zid)";
-			String hql = "FROM MessageBean m WHERE (m.msgSourceId = :uid AND m.msgEndId = :aid) OR (m.msgSourceId = :sid AND m.msgEndId = :zid)";
+			String hql = "FROM MessageBean m WHERE (m.msgSourceId = :uid AND m.msgEndId = :aid) OR (m.msgSourceId = :sid AND m.msgEndId = :zid) ORDER BY m.msgNo ASC";
 
 			Query query = session.createQuery(hql);
 			query.setParameter("uid", userId);
