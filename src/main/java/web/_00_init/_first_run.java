@@ -106,9 +106,9 @@ public class _first_run {
 				new SerialBlob(GlobalService.read_BinaryFile_To_ByteArray("src\\main\\webapp\\images\\micky.png")),
 				"micky.png");
 		ORGTYPE_DATA(con);
-		IND_DATA(mb1, con);
+//		IND_DATA(mb1, con);
 //		ORG_DATA(mb2, ob2, con);
-		IND_DATA(mb3, con);
+//		IND_DATA(mb3, con);
 		LOCAL_DATA(con);
 		GOODSTYPE_DATA(con);
 		ind_data(con);

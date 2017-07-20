@@ -6,7 +6,6 @@
 2|null|rgn1250s|123456|社團法人真佛宗華光功德會中區分會|0424061348|lotusli.middle@msa.hinet.net|台中市大里區國光路二段779號六樓|06.jpg
 2|null|oldcitybook|123456|中華懷恩慈善協會|0229930885|f90771@yahoo.com.tw|新北市新莊區中港路615巷26號|07.jpg
 2|null|ms1952|123456|基督教芥菜種會|0225972200|pr@mustard.org.tw|台北市中山區雙城街49巷6-1號|08.jpg
-2|null|sl|123456|社團法人台灣基督教好牧人全人關顧協會|0424063624|slow.service.learning@gmail.com|台中市北區錦新街30號11樓|09.jpg
 2|null|women38word|123456|社團法人高雄市多元家庭關愛協會|076960456|women_38word@yahoo.com.tw|高雄市路竹區中正路9號|10.png
 2|null|help5979066|123456|寧園安養院|035979066|stjoseph6@gmail.com|新竹縣湖口鄉鳳山村12鄰榮光路19號|11.jpg
 2|null|tctl|123456|真愛基金會|0422382522|tctl.tctl@msa.hinet.net|台中市北區永興街338號|12.jpg

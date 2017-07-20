@@ -1,2 +1,10 @@
 1|null|chenfu|123456|張丞富|0223958275|aa830310@yahoo.com.tw|台北市大安區仁愛路三段53號|001.jpg
-1|null|kt40909|123456|高挺耀|0223958275|aa830310@yahoo.com.tw|台北市大安區仁愛路三段53號|001.jpg
+1|null|gm_bug|123456|問題回報|0900000000|bug@mail.com|106台北市大安區師大路39巷|feedback.jpg
+1|null|gm_tech|123456|技術問題|0900000000|tech@mail.com|106台北市大安區師大路39巷|feedback.jpg
+1|null|gm_trade|123456|交易問題|0900000000|trade@mail.com|106台北市大安區師大路39巷|feedback.jpg
+1|null|gm_account|123456|帳號回報|0900000000|account@mail.com|106台北市大安區師大路39巷|feedback.jpg
+1|null|gm_suggestion|123456|意見回饋|0900000000|suggestion@mail.com|106台北市大安區師大路39巷|feedback.jpg
+1|null|kt40909|123456|高挺耀|0900000000|kt40909@mail.com|106台北市大安區師大路39巷|memkao.jpg
+1|null|jackchen|123456|陳韋儒|0922658748|jack@gmail.com|新北式淡水區學府路51巷6弄7號5樓|01.jpg
+1|null|yun|123456|Yuna|0222129753|yun@gmail.com|新北市永和區中山路66號8樓|yuna.png
+1|null|teresa|123456|Teresa|0221910096|back@gmail.com|新北市板橋區縣民大道二段7號|002.jpg

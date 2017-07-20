@@ -1,4 +1,11 @@
-2|haiching|micky|熟度ㄟ丟|1
-22|chaca|micky|值得信賴的好賣家|8
-11|chensenmeipr|kitty|值得信賴的好賣家|8
-19|chaca|micky|值得信賴的好賣家|8
+1|chaca|chenfu|感謝您的慷慨解囊|7
+2|haiching|kt40909|感謝您的慷慨解囊|9
+4|rgn1250s|jackchen|感謝您的慷慨解囊|8
+8|rgn1250s|jackchen|感謝您的慷慨解囊|7
+11|chensenmeipr|jackchen|非常感謝您的幫助|9
+14|chaca|yun|感謝您的慷慨解囊|8
+16|chaca|jackchen|感謝您的慷慨解囊|7
+18|haiching|yun|非常感謝您的幫助|9
+19|chaca|chenfu|非常感謝您的幫助|8
+22|chaca|jackchen|感謝您的慷慨解囊|8
+26|rgn1250s|yun|感謝您的慷慨解囊|7
