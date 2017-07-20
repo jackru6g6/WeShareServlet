@@ -123,7 +123,7 @@ public class MemberServlet extends HttpServlet {
 					System.out.println("Login" + mb.getUserId());
 					userName = mbDAO.getName(mb.getUserId());
 				}else{
-					userName = "null";
+					userName = "-1";
 				}
 
 			} catch (Exception e) {
