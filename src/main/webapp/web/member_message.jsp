@@ -78,27 +78,6 @@
 											<div class="col-sm-9">																	
 												<input type="file" name="goods_image_upload" value="" id="upload_img_message">
 													<img id="preview_img_message">
-													
-													<script>
-														$(document).ready(function(){
-			
-															$("#upload_img_message").change(function(){
-																
-																if (this.files && this.files[0]) {
-																	var reader = new FileReader();
-																	
-																	reader.onload = function (e) {
-																		$("#preview_img_message").attr("src", e.target.result);
-																	}
-																	
-																	reader.readAsDataURL(this.files[0]);
-																}
-																
-															});
-			
-														}) ;
-													</script>
-									
 											</div>																												
 										
 										</div>
@@ -147,19 +126,72 @@
 					</div>	
 				</div>
 				
-			</div> 
+			</div>
 			
 			<!-- 站內信_table -->
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				
-				
-				
-				
-				
-				
+					
+					<table class="table table-hover" id="member_message_table" rules="all">
+						<thead>
+							<tr>													
+								<th><b>狀態</b></th>
+								<th><b>對象</b></th>													
+								<th><b>最新消息</b></th>
+								<th><b>內容</b></th>
+							</tr>
+						</thead>
+						
+						<tbody>	
+						
+							<tr>													
+								<td>
+								<span>已讀取</span>
+								<span>未讀取</span>
+								</td>
+								
+								<td>
+									<ul class="member_message_data">
+										<li>
+											<span class="member_message_span"><b>會員圖片</b></span>
+											~~~~~~~~~
+										</li>
+										<li>
+											<span class="member_message_span"><b>對象名稱</b></span>
+											~~~~~~~~~
+										</li>
+										<li>
+											<span class="member_message_span"><b>時&nbsp &nbsp &nbsp間</b></span>
+											~~~~~~~~~
+										</li>
+									</ul>
+								</td>													
+								<td>~最新消息~</td>
+								<td>									
+									<button class="btn btn-default member_message_content_button">
+										<span class="glyphicon glyphicon-list-alt"></span>
+										內容
+									</button>														
+									<!-- 按下圖樣，向下滑出內容，並可以回復信息-->														
+								</td>												
+							</tr>
+							
+							<tr>
+								<td colspan="4" class="member_message_content">
+									<div class="member_message_content_show"></div>
+									<input class="member_message_content_texarea" type="textarea" row="5" wrap="physical">
+									<button class="btn btn-default member_message_send_button" type="submit">傳送信息</button>
+								</td>
+							</tr>
+								
+						
+						</tbody>
+						
+					</table>
+					
 				</div>								
 			</div>
+		
 		
 		</div>
 	</div>
@@ -169,6 +201,47 @@
 		<div id="member_message_content_footer" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 member_content_footer">	
 		</div>
 	</div>
+	
+	
+	
+	
+	<!-- 預覽新增站內信的上傳圖片 -->
+	<script>
+		$(document).ready(function(){
+
+			$("#upload_img_message").change(function(){
+				
+				if (this.files && this.files[0]) {
+					var reader = new FileReader();
+					
+					reader.onload = function (e) {
+						$("#preview_img_message").attr("src", e.target.result);
+					}
+					
+					reader.readAsDataURL(this.files[0]);
+				}
+				
+			});
+
+		}) ;
+	</script>
+	
+	
+	
+	<!-- 按下內容圖樣，向下滑出內容，並可以回復信息-->
+	<script>
+		$(document).ready(function(){
+			$(".member_message_content_button").click(function(){
+				$(".member_message_content").show();
+			});															
+			
+			
+		});
+	
+	</script>
+									
+	
+	
 		
 	
 	

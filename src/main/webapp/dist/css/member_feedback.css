@@ -42,9 +42,75 @@
 			margin: 0px;
 		}
 	
+		
+		/* 紀錄與評價_table */
+		#member_feedback_table{
+			border-top: solid 3px #A3DAFF;
+			border-bottom: solid 3px #A3DAFF;
+			border-left: dashed 3px #A3DAFF;
+			border-right: dashed 3px #A3DAFF;
+			border-collapse: collapse;
+			cellspacing: 0px;
+			cillpadding: 0px;
+			border-radius: 5px;
+			text-align: center;
+			vertical-align: middle;
+			padding: 3px;
+			margin-top: 20px;
+		}
+		
+		
+			/* 標頭設定 */
+			#member_feedback_table th{
+				background-color: #A3DAFF;
+				color: #0000A1;
+				letter-spacing: 5px;
+				font-size: 18px;
+				text-align: center;
+				vertical-align:middle;
+				border-bottom: dashed 2px #1EC0FF;
+			}	
+			
+			/* tr的邊框底部樣式 */
+			#member_feedback_table tr{
+				border-top: dashed 2px #1EC0FF;
+			}
 	
-	
-	
+			/* 交易內容 */
+			.member_feedback_data{
+				text-align: left;
+				vertical-align: middle;
+			}
+				.member_feedback_data li{
+					margin: 10px auto 15px auto;
+				}
+				
+					/* 交易內容的span */
+						#member_feedback_data li .member_feedback_span{
+							background-color: #A3DAFF;
+							color: #0000A1;
+							padding: 5px; 
+							border-radius: 5px;
+							letter-spacing: 3px;
+							margin-right: 5px;
+						}
+			
+			
+			/* 副標題加底色 */
+			#member_feedback_table .member_feedback_hightlight_td{
+				letter-spacing: 2px;
+				text-align: left;
+				vertical-align: middle;
+				background-color: #A3DAFF;
+				color: #0000A1;
+			}
+			
+			/* 一般的td樣式設定 */
+			#member_feedback_table td{
+				text-align: center;
+				vertical-align: middle;
+			}
+			
 	
 	/* 頁面內容footer */
 	#member_feedback_content_footer{

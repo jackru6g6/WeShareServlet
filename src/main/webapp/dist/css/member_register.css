@@ -1,0 +1,92 @@
+/* 滑鼠移至 [註冊帳號]，游標變成手的樣式*/
+
+	/* 註冊視窗header */
+	
+	#register_modal_header{
+		background-color: #3381b1;
+	}
+	
+		/* 滑鼠移至關閉符號(X)變紅色 */
+		#modal_header_close:hover{
+			color: red;
+		}
+		
+		/* 會員註冊title */
+		#register_modal_title{
+			color: #FFFFFF;
+			letter-spacing: 2px;
+		}
+		
+		
+	/* 註冊視窗body */
+	
+	/* 去除原本的樣式，讓表單左側可以留白 */
+	#register_modal_form_horizontal{
+		margin-left: 0px;
+		margin-top: 20px;
+	}
+	
+		/* 去除原本的樣式，讓表單左側可以留白 */
+		#register_modal_form_horizontal .register_form_group{
+			margin-left: 0px;
+		}
+		
+			/* 註冊表單label */
+			#register_modal_form_horizontal .register_form_label{
+				background-color: #A3DAFF;
+				color: #0000A1;
+				font-size: 16px;
+				text-align: center;
+				padding: 2px;
+				border-radius: 5px;
+			}
+			
+			/* 註冊表單input */
+			#register_modal_form_horizontal .register_form_input{
+				background-color: #E0E0E0;
+				font-size: 16px;
+			}
+			
+			/* 身分radio */
+			.register_member_types{
+				padding: 5px 10px 5px 15px;
+				font-size: 18px;
+			}
+			
+			/* 會員圖片 */
+			#register_preview_img_ind{
+				width: 100%;
+				margin: 5px;
+			}
+			
+			/* 社福圖片 */
+			#register_preview_img_org{
+				width: 100%;
+				margin: 5px;
+			}
+			
+			/* 隱私權政策 */
+			#check_privacy{
+				color: #0000A1;
+				display: block;
+				float: left;
+				margin: 3px 0px 3px 10%;
+			}
+			
+			/* 會員註冊按鈕 */
+			#register_submit_button{
+				background-color: #A3DAFF;
+				color: #0000A1;
+				margin: 30px auto;
+			}
+			
+		/* 社福會員 */
+		.org{
+			display: none;
+		}
+		
+	/* 註冊視窗footer */
+	#register_modal_footer{
+		background-color: #3381b1;
+		height: 50px;
+	}

@@ -70,7 +70,7 @@
 									
 						<!-- 我的物資箱 -->
 						<li>
-							<a href="#member_goodsCart_content" data-toggle="tab">
+							<a href="#member_goodsCart_content_jsp" data-toggle="tab">
 								<button id="member_menu_goodsCart_button" class="btn btn-block member_menu_button">
 									<span class="glyphicon glyphicon-gift">
 										<b>我的物資箱</b>
@@ -115,7 +115,7 @@
 					</div>
 					
 					<!-- 我的物資箱 -->
-					<div id="member_goodsCart_content" class="tab-pane fade">
+					<div id="member_goodsCart_content_jsp" class="tab-pane fade">
 						<jsp:include page="/web/member_goodsCart.jsp" />
 					</div>
 					
@@ -143,9 +143,10 @@
 	<!-- 相關的js檔 -->
 	<script src="${pageContext.request.contextPath}/dist/js/member_menu.js"></script>
 	
-	<!-- 修改會員資料__按下選單的按鈕，要求資料 -->
 	<script type="text/javascript">
 	var javaRoot = "${pageContext.servletContext.contextPath}";
+	
+// 	修改會員資料__按下選單的按鈕，要求資料
 	$('#member_menu_update_button').click(function(){
 		var xhrMbData = new XMLHttpRequest();
 		var servletPath = javaRoot + '/web/_03_updateMember/controller/FindMemberServlet';
@@ -156,25 +157,81 @@
 		xhrMbData.onreadystatechange = function(){
 			if(xhrMbData.status == 200 && xhrMbData.readyState == 4){
 				responseMbData = JSON.parse(xhrMbData.responseText);
-				console.log("responseMbData = ");
-				console.log(responseMbData);
+// 				console.log("responseMbData = ");
+// 				console.log(responseMbData);
 				// 產生會員資料
 				showMbData(responseMbData, javaRoot);
 				
 				//修改會員密碼
-				
 // 				$( "#passsword_update_button" ).click(function() {
 // 					console.log("#passsword_update_button click");
-// // 					$("#passsword_update_content").slideToggle();
-													  
+// // 					$("#passsword_update_content").slideToggle();						  
 // 				});
-				
-				
-				
 			}
 		}
-		
 	});
+	
+	
+// 	我的物資箱__按下選單的按鈕，要求資料
+	$('#member_menu_goodsCart_button').click(function(){
+		var xhrGCData = new XMLHttpRequest();
+		var servletPath = javaRoot + '/web/_04_productMaintain/controller/DisplayPageProducts';
+		var responseGCData;
+	
+		xhrGCData.open('GET', servletPath, true);
+		xhrGCData.send();
+		xhrGCData.onreadystatechange = function(){
+			if(xhrGCData.status == 200 && xhrGCData.readyState == 4){
+				responseGCData = JSON.parse(xhrGCData.responseText);
+				console.log("responseGCData = ");
+				console.log(responseGCData);
+				// 產生會員資料
+				showGCData(responseGCData, javaRoot);
+				
+//	 			預覽上傳照片
+				$("#upload_img_goods").change(function(){
+					if (this.files && this.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function (e) {
+							$("#preview_img_goods").attr("src", e.target.result);
+						}
+						reader.readAsDataURL(this.files[0]);
+					}				
+				});
+				
+				
+//	 			按下物資title滑出選單 
+				$(".goods_item_title").click(function() {
+					$(this).closest(".goods_item_caption").find(".goods_item_content").slideToggle();
+				});
+				
+				
+//		 		點選修改按鈕
+				$(".goods_item_update_button").click(function() {
+//	 				 送出按鈕出現，表單可以修改、背景變灰色，修改按鈕消失  
+					$(this).closest(".goods_item_content_li").find(".goods_item_submit_button").show();
+					$(this).closest(".goods_item_content").find("input").attr("disabled", false);
+					$(this).closest(".goods_item_content").find("select").attr("disabled", false);
+					$(this).closest(".goods_item_content").find(".goods_item_content_li_input").css("background-color", "#E0E0E0").css("border-radius", "8px");
+					$(this).hide();																				
+				});
+
+
+//		 		點選送出按鈕
+				$(".goods_item_submit_button").click(function() {
+					var goodsno = $(this).val();
+					goodsCartUpdate($(this), goodsno);
+				});
+				
+				
+//		 		點選刪除按鈕
+				$('.goods_item_delete_button').click(function(){
+					$(this).closest(".block_goods_item").hide();
+				});
+			}
+		}
+	});
+	
 	</script>
 
 </body>

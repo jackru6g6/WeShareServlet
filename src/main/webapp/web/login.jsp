@@ -147,8 +147,10 @@
 																	<a data-toggle="modal" data-target="#register_modal">註冊帳號</a>
 																	<!-- 按下 [註冊帳號] 跳出會員註冊頁面 -->
 																	<div class="modal fade" id="register_modal" role="dialog">
-																		<jsp:include page="register.jsp" />													
-																	</div>
+<%-- 																		<jsp:include page="register.jsp" /> --%>
+																		<jsp:include page="member_register.jsp" />													
+																	</div>																	
+																			
 																</h5>
 															</div>
 														</div>

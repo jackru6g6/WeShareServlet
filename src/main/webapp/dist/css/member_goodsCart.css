@@ -156,22 +156,22 @@
 		/* 我的物資箱內容 */
 		
 		/* 物資項目_背景顏色 */
-		#goods_item{
+		#member_goodsCart_content .goods_item{
 			background-color: #03A6FF;
 			padding: 20px 0px 30px 0px;
 		}
 			/* 物資圖片 */
-			#goods_item_image{	
+			.goods_item_image{	
 				padding: 0px 6px 10px 6px;
 				border-radius: 20px;
 			}
 			
 			/* 物資內容 */
-			#goods_item_caption{
+			.goods_item_caption{
 				padding: 0px;
 			}
 				/* 物資_title */
-				#goods_item_title{
+				.goods_item_title{
 					width: 100%;
 					font-size: 20px;
 					letter-spacing: 2px;
@@ -214,7 +214,7 @@
 						}						
 				
 						/* 刪除按鈕 */
-						#goods_item_delete_button{	
+						.goods_item_delete_button{	
 							letter-spacing: 2px;
 							background-color: #007AFF;
 							color: #FFFFFF;
@@ -222,12 +222,12 @@
 							margin: 20px 0px 0px 0px;
 						}
 						
-							#goods_item_delete_button:hover{
+							.goods_item_delete_button:hover{
 								background-color: #FF2D2D;  /* 紅色 */
 							}
 						
 						/* 修改按鈕 */
-						#goods_item_update_button{							
+						.goods_item_update_button{							
 							letter-spacing: 2px;
 							background-color: #007AFF;
 							color: #FFFFFF;
@@ -235,12 +235,12 @@
 							margin: 20px 0px 0px 0px;
 						}
 						
-							#goods_item_update_button:hover{
+							.goods_item_update_button:hover{
 								background-color: #00A600; /* 綠色 */
 							}	
 						
 						/* 送出按鈕 */
-						#goods_item_submit_button{
+						.goods_item_submit_button{
 							letter-spacing: 2px;
 							background-color: #007AFF;
 							color: #FFFFFF;
@@ -248,7 +248,7 @@
 							margin: 20px 0px 0px 0px;
 							display: none;
 						}
-							#goods_item_submit_button:hover{
+							.goods_item_submit_button:hover{
 								background-color: #FFE66F; /* 黃色 */
 								color: #003399;
 							}

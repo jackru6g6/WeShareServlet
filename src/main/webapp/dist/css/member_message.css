@@ -49,15 +49,16 @@
 			/* 去除原本的樣式，讓表單左側可以留白 */
 			#member_message_form_horizontal{
 				margin-left: 0px;
+				margin-top: 20px;
 			}
 				
 				/* 去除原本的樣式，讓表單左側可以留白 */
-				#member_message_form_group{
+				#member_message_form_horizontal .member_message_form_group{
 					margin-left: 0px;
 				}
 				
 					/* 撰寫站內信表單label */
-					#message_insert_form_label{
+					#member_message_form_horizontal .message_insert_form_label{
 						color: #007AFF;
 						font-size: 16px;
 						text-align: center;
@@ -72,7 +73,7 @@
 					}
 					
 					/* 撰寫站內信表單input */
-					#message_insert_form_input{
+					#member_message_form_horizontal .message_insert_form_input{
 						background-color: #E0E0E0;
 						font-size: 16px;
 					}
@@ -154,11 +155,111 @@
 		
 		
 		
+		/* 站內信_table */
+		
+		/* 內容設定 */
+		#member_message_table{
+			border-top: solid 3px #007AFF;
+			border-bottom: solid 3px #007AFF;
+			border-left: dashed 3px #007AFF;
+			border-right: dashed 3px #007AFF;
+			border-collapse: collapse;
+			cellspacing: 0px;
+			cillpadding: 0px;
+			border-radius: 5px;
+			text-align: center;
+			vertical-align: middle;
+			padding: 3px;
+			margin-top: 20px;
+		}
 		
 		
+			/* 標頭設定 */
+			#member_message_table thead, th{
+				background-color: #007AFF;
+				color: #FFFFFF;
+				letter-spacing: 5px;
+				font-size: 18px;
+				text-align: center;
+				vertical-align:middle;
+			}
 		
-		
-		
+				/* tr的邊框底部樣式 */
+				#member_message_table tr{
+					border-top: dashed 2px #03A6FF;
+				}
+				
+				/* 一般的td樣式設定 */
+				#member_message_table td{
+					text-align: center;
+					vertical-align: middle;
+				}
+	
+				/* 對象內容 */
+				.member_message_data{
+					text-align: left;
+					vertical-align: middle;
+					/* color: #007AFF; */
+					/* margin-bottom: 5px; */
+				}
+				
+					.member_message_data li{
+						margin: 10px auto 15px auto;
+					}
+					
+						/* 對象內容的span */
+						.member_message_data li .member_message_span{
+							background-color: #007AFF;
+							color: #FFFFFF;
+							padding: 5px; 
+							border-radius: 5px;
+							letter-spacing: 3px;
+							margin-right: 5px;
+						}
+						
+						#member_message_table .member_message_content_button{
+							background-color: #007AFF;
+							color: #FFFFFF;
+							padding: 8px;
+							border-radius: 5px;
+							letter-spacing: 3px;
+							text-align: center;
+							vertical-align: middle;
+						}
+						
+						 /* 按下圖樣，向下滑出內容，並可以回復信息 */
+						.member_message_content{
+							background-color: #03A6FF;
+							display: none;							
+						}
+							/* 展示信息的div */
+							.member_message_content_show{
+								width: 80%;
+								height: 100px;
+								background-color: #FFFFFF;
+								margin: 10px auto 10px auto;
+							}
+							
+							/* 輸入信息 */
+							.member_message_content_texarea{
+								width: 60%;
+								height: 50px;
+								margin-bottom: 10px;
+							}
+							
+							
+							/* 信息送出按鈕 */
+							#member_message_table .member_message_send_button{
+								background-color: #007AFF;
+								color: #FFFFFF;
+								padding: 8px;
+								border-radius: 5px;
+								letter-spacing: 3px;
+								text-align: center;
+								vertical-align: middle;
+							}
+						
+					
 		
 		
 	/* 頁面內容footer */
