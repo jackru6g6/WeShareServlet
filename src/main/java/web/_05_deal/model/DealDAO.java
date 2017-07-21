@@ -16,6 +16,8 @@ import javax.sql.DataSource;
 
 import web._00_init.GlobalService;
 import web._00_init.sql_Common;
+import web._07_Feedback.model.FeedbackBean;
+import web._07_Feedback.model.FeedbackDAO;
 
 public class DealDAO {
 
@@ -145,8 +147,31 @@ public class DealDAO {
 				dealb.setGOODSTYPES(rs.getInt(16));
 				dealb.setGOODSLOC(rs.getInt(17));
 				dealb.setGOODSNOTE(rs.getString(18));
+				dealb.setGOODSSTATUS(rs.getString(19));
+				if (dealb.getGOODSSTATUS().equals("0")) {
+					dealb.setGOODSSTATUSNAME("處理中");
+				} else if (dealb.getGOODSSTATUS().equals("1")) {
+					dealb.setGOODSSTATUSNAME("交易中");
+
+				} else if (dealb.getGOODSSTATUS().equals("2")) {
+					dealb.setGOODSSTATUSNAME("已完成");
+
+				} else if (dealb.getGOODSSTATUS().equals("3")) {
+					dealb.setGOODSSTATUSNAME("取消");
+
+				} else {
+					dealb.setGOODSSTATUSNAME("未宣告的參數=" + dealb.getGOODSSTATUS());
+
+				}
 				dealb.setSOURCENAME(rs.getString(20));
 				dealb.setENDNAME(rs.getString(21));
+				FeedbackBean fb = new FeedbackDAO().FindFBbyDEALNO(dealb.getDEALNO());
+				if (fb.getAns() != 1) {
+					dealb.setFEEDBACKANS("FALSE");
+				} else {
+					dealb.setFEEDBACKANS("TRUE");
+					dealb.setFEEDTEXT(fb.getFBTEXT());
+				}
 				coll.add(dealb);
 			}
 			rs.close();

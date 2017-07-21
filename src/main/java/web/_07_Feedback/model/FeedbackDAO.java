@@ -55,6 +55,30 @@ public class FeedbackDAO {
 		return ans;
 	}
 
+	public FeedbackBean FindFBbyDEALNO(int dealno) {
+		FeedbackBean fdbb = new FeedbackBean();
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con
+						.prepareStatement("SELECT f1.*,COUNT(*) FROM FEEDBACK AS f1 WHERE dealno=? ;");) {
+			pstmt.setInt(1, dealno);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				fdbb.setDEALNO(String.valueOf(rs.getInt(1)));
+				fdbb.setPOSTDATE(rs.getTimestamp(2));
+				fdbb.setFBSOURCEID(rs.getString(3));
+				fdbb.setFBENDID(rs.getString(4));
+				fdbb.setFBTEXT(rs.getString(5));
+				fdbb.setFBSCORE(rs.getInt(6));
+				fdbb.setFBFILENAME(rs.getString(7));
+				fdbb.setAns(rs.getInt(9));
+			}
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return fdbb;
+	}
+
 	public Collection<FeedbackBean> FindByINDID(String INDID) {
 		Collection<FeedbackBean> coll = new ArrayList<FeedbackBean>();
 		try (Connection con = ds.getConnection();
@@ -84,8 +108,8 @@ public class FeedbackDAO {
 	public Collection<FeedbackBean> FindByINDID_NOT_SESSION(String INDID) {
 		Collection<FeedbackBean> coll = new ArrayList<FeedbackBean>();
 		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con
-						.prepareStatement("SELECT fbsourceid,fbtext,fbscore,postdate,fbfilename FROM FEEDBACK WHERE fbendid=?");) {
+				PreparedStatement pstmt = con.prepareStatement(
+						"SELECT fbsourceid,fbtext,fbscore,postdate,fbfilename FROM FEEDBACK WHERE fbendid=?");) {
 			pstmt.setString(1, INDID);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {

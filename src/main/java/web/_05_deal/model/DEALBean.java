@@ -25,6 +25,11 @@ public class DEALBean {
 	String GOODSNOTE;
 	String SOURCENAME;
 	String ENDNAME;
+	String GOODSSTATUS;
+	String GOODSSTATUSNAME;
+	String DEALSTATUSNAME;
+	String FEEDBACKANS;
+	String FEEDTEXT;
 
 	public DEALBean() {
 		// TODO Auto-generated constructor stub
@@ -52,6 +57,14 @@ public class DEALBean {
 		GOODSTYPES = gOODSTYPES;
 		GOODSLOC = gOODSLOC;
 		GOODSNOTE = gOODSNOTE;
+	}
+
+	public String getGOODSSTATUSNAME() {
+		return GOODSSTATUSNAME;
+	}
+
+	public void setGOODSSTATUSNAME(String gOODSSTATUSNAME) {
+		GOODSSTATUSNAME = gOODSSTATUSNAME;
 	}
 
 	public int getDEALNO() {
@@ -212,6 +225,38 @@ public class DEALBean {
 
 	public void setENDNAME(String eNDNAME) {
 		ENDNAME = eNDNAME;
+	}
+
+	public String getGOODSSTATUS() {
+		return GOODSSTATUS;
+	}
+
+	public void setGOODSSTATUS(String gOODSSTATUS) {
+		GOODSSTATUS = gOODSSTATUS;
+	}
+
+	public String getDEALSTATUSNAME() {
+		return DEALSTATUSNAME;
+	}
+
+	public void setDEALSTATUSNAME(String dEALSTATUSNAME) {
+		DEALSTATUSNAME = dEALSTATUSNAME;
+	}
+
+	public String getFEEDBACKANS() {
+		return FEEDBACKANS;
+	}
+
+	public void setFEEDBACKANS(String fEEDBACKANS) {
+		FEEDBACKANS = fEEDBACKANS;
+	}
+
+	public String getFEEDTEXT() {
+		return FEEDTEXT;
+	}
+
+	public void setFEEDTEXT(String fEEDTEXT) {
+		FEEDTEXT = fEEDTEXT;
 	}
 
 }
