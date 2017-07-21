@@ -145,8 +145,8 @@ public class DealDAO {
 				dealb.setGOODSTYPES(rs.getInt(16));
 				dealb.setGOODSLOC(rs.getInt(17));
 				dealb.setGOODSNOTE(rs.getString(18));
-				dealb.setSOURCENAME(rs.getString(19));
-				dealb.setENDNAME(rs.getString(20));
+				dealb.setSOURCENAME(rs.getString(20));
+				dealb.setENDNAME(rs.getString(21));
 				coll.add(dealb);
 			}
 			rs.close();

@@ -46,6 +46,9 @@ public class GetImageFromDB extends HttpServlet {
 			} else if (ib.FileName.equals("FALSE") & type.equals("GOODS")) {
 				System.out.println("[Image GOODS]DEF");
 				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
+			} else if (ib.FileName.equals("FALSE") & type.equals("DEAL")) {
+				System.out.println("[Image DEAL]DEF");
+				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
 			} else {
 				System.out.println("[Image]OK");
 				mimeType = getServletContext().getMimeType(ib.FileName);
@@ -101,6 +104,12 @@ public class GetImageFromDB extends HttpServlet {
 				} else if (type.equals("GOODS")) {
 					pstmt = conn.prepareStatement(
 							"SELECT count(goodsFileName),goodsImage,goodsFileName from goods where goodsno = ?");
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();
+
+				} else if (type.equals("DEAL")) {
+					pstmt = conn.prepareStatement(
+							"SELECT COUNT(DEALFILENAME),DEALIMAGE,DEALFILENAME FROM DEAL WHERE DEALNO = ?");
 					pstmt.setString(1, id);
 					rs = pstmt.executeQuery();
 
