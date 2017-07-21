@@ -3,6 +3,8 @@ package web._05_deal.model;
 import java.sql.Blob;
 import java.sql.Timestamp;
 
+import web._07_Feedback.model.FeedbackBean;
+
 public class DEALBean {
 	int DEALNO;
 	Timestamp POSTDATE;
@@ -10,6 +12,7 @@ public class DEALBean {
 	String ENDID;
 	int DEALSTATUS;
 	int ENDSHIPWAY;
+	String ENDSHIPWAYNAME;
 	int DEALQTY;
 	String DEALNOTE;
 	Timestamp SHIPDATE;
@@ -25,6 +28,11 @@ public class DEALBean {
 	String GOODSNOTE;
 	String SOURCENAME;
 	String ENDNAME;
+	String GOODSSTATUS;
+	String GOODSSTATUSNAME;
+	String DEALSTATUSNAME;
+	String FEEDBACKANS;
+	FeedbackBean fb;
 
 	public DEALBean() {
 		// TODO Auto-generated constructor stub
@@ -52,6 +60,22 @@ public class DEALBean {
 		GOODSTYPES = gOODSTYPES;
 		GOODSLOC = gOODSLOC;
 		GOODSNOTE = gOODSNOTE;
+	}
+
+	public String getENDSHIPWAYNAME() {
+		return ENDSHIPWAYNAME;
+	}
+
+	public void setENDSHIPWAYNAME(String eNDSHIPWAYNAME) {
+		ENDSHIPWAYNAME = eNDSHIPWAYNAME;
+	}
+
+	public String getGOODSSTATUSNAME() {
+		return GOODSSTATUSNAME;
+	}
+
+	public void setGOODSSTATUSNAME(String gOODSSTATUSNAME) {
+		GOODSSTATUSNAME = gOODSSTATUSNAME;
 	}
 
 	public int getDEALNO() {
@@ -212,6 +236,38 @@ public class DEALBean {
 
 	public void setENDNAME(String eNDNAME) {
 		ENDNAME = eNDNAME;
+	}
+
+	public String getGOODSSTATUS() {
+		return GOODSSTATUS;
+	}
+
+	public void setGOODSSTATUS(String gOODSSTATUS) {
+		GOODSSTATUS = gOODSSTATUS;
+	}
+
+	public String getDEALSTATUSNAME() {
+		return DEALSTATUSNAME;
+	}
+
+	public void setDEALSTATUSNAME(String dEALSTATUSNAME) {
+		DEALSTATUSNAME = dEALSTATUSNAME;
+	}
+
+	public String getFEEDBACKANS() {
+		return FEEDBACKANS;
+	}
+
+	public void setFEEDBACKANS(String fEEDBACKANS) {
+		FEEDBACKANS = fEEDBACKANS;
+	}
+
+	public FeedbackBean getFb() {
+		return fb;
+	}
+
+	public void setFb(FeedbackBean fb) {
+		this.fb = fb;
 	}
 
 }

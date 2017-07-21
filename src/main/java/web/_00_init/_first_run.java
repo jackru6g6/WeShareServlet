@@ -440,8 +440,17 @@ public class _first_run {
 					cs.setInt(4, Integer.parseInt(sa[2]));
 					cs.setInt(5, Integer.parseInt(sa[3]));
 					cs.setString(6, sa[4]);
-					cs.setBinaryStream(7, null, 0L);
-					cs.setString(8, null);
+//					cs.setBinaryStream(7, null, 0L);
+//					cs.setString(8, null);
+					
+					File aFile = new File("src\\main\\webapp\\images\\deal\\" + sa[5].trim());
+					long size = aFile.length();
+					InputStream is = new FileInputStream(aFile);
+					cs.setBinaryStream(7, is, size);
+					String fileName = aFile.getName();
+					fileName = GlobalService.adjustFileName(fileName, GlobalService.IMAGE_FILENAME_LENGTH);
+					cs.setString(8, fileName);
+					
 					cs.executeUpdate();
 					GlobalService.random_time_1_2();
 				} catch (Exception e) {
