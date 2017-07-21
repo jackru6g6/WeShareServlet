@@ -62,9 +62,9 @@ public class SubmitByKeyServlet extends HttpServlet {
 			}
 		}
 		if (Ans.equals("TRUE")) {
-			String shipno = " ";
-			shipno = request.getParameter("shipno");
-			String SQLAns = new DealDAO().OK_DEAL(key, INDID, shipno);
+			String shipno = null;
+			// shipno = request.getParameter("shipno");
+			String SQLAns = new DealDAO().OK_DEAL(shipno, key, INDID);
 			System.out.println("Ans=" + SQLAns);
 			if (!SQLAns.equals("TRUE")) {
 				Ans = "FALSE";

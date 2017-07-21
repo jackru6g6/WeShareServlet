@@ -55,13 +55,13 @@ public class DealDAO {
 	}
 
 	public String OK_DEAL(String SHIPNO, String key, String INDID) {
+		System.out.println("SHIPNO=" + SHIPNO + "  key=" + key + " INDID=" + INDID);
 		String ans = "FALSE";
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
 						"UPDATE DEAL SET DEALSTATUS=2, SHIPNO=? WHERE (DEALNO =? AND SOURCEID=? AND DEALSTATUS=1)");) {
 			pstmt.setString(1, SHIPNO);
 			pstmt.setString(2, key);
-			pstmt.setString(3, INDID);
 			pstmt.setString(3, INDID);
 			int buf = pstmt.executeUpdate();
 			if (buf == 1) {
