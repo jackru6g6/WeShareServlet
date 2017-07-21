@@ -44,85 +44,35 @@
 						</span>
 					</div>	
 				</div>
-				
-			</div> 
+			</div>
 			
 			
-			<!-- 紀錄與評價_table -->
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				
-					<table class="table table-hover" id="member_feedback_table" rules="all">
-						<thead>
-							<tr>
-								<th>時間</th>
-								<th>對象</th>
-								<th>狀態</th>
-								<th>內容</th>
-								<th>照片</th>
-								<th>備註</th>
-								<th>評價</th>
-							</tr>
-						</thead>
-						
-						<tbody>
-							<tr>
-								<td rowspan="4"></td>
-								<td rowspan="4">~提供者~</td>
-								<td class="member_feedback_hightlight_td"><b>狀態：</b></td>
-								<td rowspan="4">
-									<ul class="member_feedback_data">
-										<li>
-											<span class="member_feedback_span"><b>物資名稱</b></span>
-											~~~~~
-										</li>
-										<li>
-											<span class="member_feedback_span"><b>需求類別</b></span>
-											~~~~~~
-										</li>
-										<li>
-											<span class="member_feedback_span"><b>數&nbsp &nbsp &nbsp量</b></span>
-											~~~~~~~~
-										</li>
-										<li>
-											<span class="member_feedback_span"><b>商品地點</b></span>
-											~~~~~~~~~
-										</li>
-									</ul>
-								</td>
-								<td rowspan="4">~備註~</td>
-								<td rowspan="4">~圖片~</td>
-								<td class="member_feedback_hightlight_td"><b>給出的評價：</b></td>
-							</tr>
-							
-							<tr>
-								<td>~狀態內容~</td>													
-								<td>
-									~給出的評價~
-									<input type="number" min="1" max="10" step="1">
-								</td>
-							</tr>
-							
-							<tr>													
-								<td class="member_feedback_hightlight_td"><b>配送方式：</b></td>
-								<td class="member_feedback_hightlight_td"><b>收到的評價：</b></td>
-							</tr>
-							
-							<tr>
-								<td>~配送方式~</td>									
-								<td>
-									~收到的評價~
-								</td>
-							</tr>
-							
-							
-						</tbody>
-					
-					</table>
-					
-				</div>								
+					<div id="btStatusAll">
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<button id="btStatus0" class="btn btn-default btStatusStyle">等待回應中</button>
+							</div>
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<button id="btStatus1" class="btn btn-default btStatusStyle">已接受</button>
+							</div>
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<button id="btStatus2" class="btn btn-default btStatusStyle">已完成</button>
+							</div>
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<button id="btStatus3" class="btn btn-default btStatusStyle">已取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-					
+			
+			
+			<!-- 紀錄與評價 -->
+			<div id="dealContent">
+
+			</div>
 		</div>
 	</div>
 	

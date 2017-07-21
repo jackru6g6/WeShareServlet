@@ -1,18 +1,13 @@
-/* member_goodsCart.css */
-
-/* 頁面內容設定 */
-
-	/* 頁面內容title */
+@charset "UTF-8";
+/* 頁面內容title */
 	#member_feedback_content_title{
 		background-color: #007AFF;
 		color: #FFFFFF;
 	}
-
 	/* 頁面內容body */
 	#member_feedback_content_body{
 		border: solid #007AFF 1px;
 	}
-		
 		/* 我的評價排序底色 */
 		#feedback_priority_button{
 			background-color: #A3DAFF;
@@ -22,17 +17,14 @@
 			margin: 30px auto 10px auto;
 			padding: 5px;
 		}
-
 		/* 我的評價查詢*/
 		#feedback_search_bar{
 			margin: 30px auto 10px auto;
 		}
-		
 			#feedback_search_bar_input{
 				margin: 0px;
 				padding: 9px;
 			}
-		
 		#feedback_search_button{
 			background-color: #A3DAFF;
 			color: #0000A1;
@@ -41,82 +33,55 @@
 			padding: 4.5px;
 			margin: 0px;
 		}
-	
-		
-		/* 紀錄與評價_table */
-		#member_feedback_table{
-			border-top: solid 3px #A3DAFF;
-			border-bottom: solid 3px #A3DAFF;
-			border-left: dashed 3px #A3DAFF;
-			border-right: dashed 3px #A3DAFF;
-			border-collapse: collapse;
-			cellspacing: 0px;
-			cillpadding: 0px;
-			border-radius: 5px;
-			text-align: center;
-			vertical-align: middle;
-			padding: 3px;
-			margin-top: 20px;
-		}
-		
-		
-			/* 標頭設定 */
-			#member_feedback_table th{
-				background-color: #A3DAFF;
-				color: #0000A1;
-				letter-spacing: 5px;
-				font-size: 18px;
-				text-align: center;
-				vertical-align:middle;
-				border-bottom: dashed 2px #1EC0FF;
-			}	
-			
-			/* tr的邊框底部樣式 */
-			#member_feedback_table tr{
-				border-top: dashed 2px #1EC0FF;
-			}
-	
-			/* 交易內容 */
-			.member_feedback_data{
-				text-align: left;
-				vertical-align: middle;
-			}
-				.member_feedback_data li{
-					margin: 10px auto 15px auto;
-				}
-				
-					/* 交易內容的span */
-						#member_feedback_data li .member_feedback_span{
-							background-color: #A3DAFF;
-							color: #0000A1;
-							padding: 5px; 
-							border-radius: 5px;
-							letter-spacing: 3px;
-							margin-right: 5px;
-						}
-			
-			
-			/* 副標題加底色 */
-			#member_feedback_table .member_feedback_hightlight_td{
-				letter-spacing: 2px;
-				text-align: left;
-				vertical-align: middle;
-				background-color: #A3DAFF;
-				color: #0000A1;
-			}
-			
-			/* 一般的td樣式設定 */
-			#member_feedback_table td{
-				text-align: center;
-				vertical-align: middle;
-			}
-			
-	
-	/* 頁面內容footer */
-	#member_feedback_content_footer{
-		background-color: #007AFF;
-	}
-	
-	
 
-	
+
+/* 訂單狀態選項 */
+#btStatusAll {
+  margin: 20px; }
+  #btStatusAll .btStatusStyle {
+    width: 100%;
+    font-size: 20px;
+    text-align: center; }
+
+/* 訂單區塊 */
+#dealContent {
+  margin-top: 20px;
+  margin-bottom: 25px;
+  font-size: 18px;
+  /* 每筆訂單 */ }
+  #dealContent > div:last-child .dealEach {
+    border-bottom: 2px dashed #1EC0FF; }
+  #dealContent .dealEach {
+    padding: 10px;
+    border: 2px dashed #1EC0FF;
+    border-bottom: 0px;
+    /* 訂單資訊 */
+    /* 訂單快照 */
+    /* 訂單其他資訊 */
+    /* 訂單確認 */ }
+    #dealContent .dealEach .dealInfo li {
+      margin-top: 3px;
+      margin-bottom: 3px; }
+      #dealContent .dealEach .dealInfo li span {
+        margin-left: 5px; }
+    #dealContent .dealEach .dealImageLayout {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 100%; }
+      #dealContent .dealEach .dealImageLayout .dealImage {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%); }
+    #dealContent .dealEach .dealOtherInfo li {
+      margin-top: 3px;
+      margin-bottom: 3px; }
+      #dealContent .dealEach .dealOtherInfo li span {
+        margin-left: 5px; }
+    #dealContent .dealEach .dealConfirm li {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: center; }
+      #dealContent .dealEach .dealConfirm li button, #dealContent .dealEach .dealConfirm li a {
+        font-size: 18px; }
