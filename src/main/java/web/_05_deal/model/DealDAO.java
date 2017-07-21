@@ -177,7 +177,8 @@ public class DealDAO {
 					dealb.setFEEDBACKANS("FALSE");
 				} else {
 					dealb.setFEEDBACKANS("TRUE");
-					dealb.setFEEDTEXT(fb.getFBTEXT());
+					dealb.setFb(fb);
+
 				}
 				coll.add(dealb);
 			}

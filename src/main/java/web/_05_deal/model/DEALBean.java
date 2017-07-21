@@ -3,6 +3,8 @@ package web._05_deal.model;
 import java.sql.Blob;
 import java.sql.Timestamp;
 
+import web._07_Feedback.model.FeedbackBean;
+
 public class DEALBean {
 	int DEALNO;
 	Timestamp POSTDATE;
@@ -30,7 +32,7 @@ public class DEALBean {
 	String GOODSSTATUSNAME;
 	String DEALSTATUSNAME;
 	String FEEDBACKANS;
-	String FEEDTEXT;
+	FeedbackBean fb;
 
 	public DEALBean() {
 		// TODO Auto-generated constructor stub
@@ -260,12 +262,12 @@ public class DEALBean {
 		FEEDBACKANS = fEEDBACKANS;
 	}
 
-	public String getFEEDTEXT() {
-		return FEEDTEXT;
+	public FeedbackBean getFb() {
+		return fb;
 	}
 
-	public void setFEEDTEXT(String fEEDTEXT) {
-		FEEDTEXT = fEEDTEXT;
+	public void setFb(FeedbackBean fb) {
+		this.fb = fb;
 	}
 
 }
