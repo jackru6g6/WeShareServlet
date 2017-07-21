@@ -10,6 +10,7 @@ public class DEALBean {
 	String ENDID;
 	int DEALSTATUS;
 	int ENDSHIPWAY;
+	String ENDSHIPWAYNAME;
 	int DEALQTY;
 	String DEALNOTE;
 	Timestamp SHIPDATE;
@@ -57,6 +58,14 @@ public class DEALBean {
 		GOODSTYPES = gOODSTYPES;
 		GOODSLOC = gOODSLOC;
 		GOODSNOTE = gOODSNOTE;
+	}
+
+	public String getENDSHIPWAYNAME() {
+		return ENDSHIPWAYNAME;
+	}
+
+	public void setENDSHIPWAYNAME(String eNDSHIPWAYNAME) {
+		ENDSHIPWAYNAME = eNDSHIPWAYNAME;
 	}
 
 	public String getGOODSSTATUSNAME() {
