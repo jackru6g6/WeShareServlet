@@ -139,6 +139,13 @@ public class DealDAO {
 				dealb.setENDID(rs.getString(4));
 				dealb.setDEALSTATUS(rs.getInt(5));
 				dealb.setENDSHIPWAY(rs.getInt(6));
+				if (dealb.getENDSHIPWAY() == 0) {
+					dealb.setENDSHIPWAYNAME("面交");
+				} else if (dealb.getENDSHIPWAY() == 1) {
+					dealb.setENDSHIPWAYNAME("郵寄");
+				} else {
+					dealb.setENDSHIPWAYNAME("未宣告的參數=" + dealb.getENDSHIPWAY());
+				}
 				dealb.setDEALQTY(rs.getInt(7));
 				dealb.setSHIPDATE(rs.getTimestamp(8));
 				dealb.setSHIPNO(rs.getString(9));
@@ -148,21 +155,21 @@ public class DealDAO {
 				dealb.setGOODSLOC(rs.getInt(17));
 				dealb.setGOODSNOTE(rs.getString(18));
 				dealb.setGOODSSTATUS(rs.getString(19));
-				if (dealb.getGOODSSTATUS().equals("0")) {
-					dealb.setGOODSSTATUSNAME("處理中");
-				} else if (dealb.getGOODSSTATUS().equals("1")) {
-					dealb.setGOODSSTATUSNAME("交易中");
-
-				} else if (dealb.getGOODSSTATUS().equals("2")) {
-					dealb.setGOODSSTATUSNAME("已完成");
-
-				} else if (dealb.getGOODSSTATUS().equals("3")) {
-					dealb.setGOODSSTATUSNAME("取消");
-
-				} else {
-					dealb.setGOODSSTATUSNAME("未宣告的參數=" + dealb.getGOODSSTATUS());
-
-				}
+				// if (dealb.getGOODSSTATUS().equals("0")) {
+				// dealb.setGOODSSTATUSNAME("處理中");
+				// } else if (dealb.getGOODSSTATUS().equals("1")) {
+				// dealb.setGOODSSTATUSNAME("交易中");
+				//
+				// } else if (dealb.getGOODSSTATUS().equals("2")) {
+				// dealb.setGOODSSTATUSNAME("已完成");
+				//
+				// } else if (dealb.getGOODSSTATUS().equals("3")) {
+				// dealb.setGOODSSTATUSNAME("取消");
+				//
+				// } else {
+				// dealb.setGOODSSTATUSNAME("未宣告的參數=" + dealb.getGOODSSTATUS());
+				//
+				// }
 				dealb.setSOURCENAME(rs.getString(20));
 				dealb.setENDNAME(rs.getString(21));
 				FeedbackBean fb = new FeedbackDAO().FindFBbyDEALNO(dealb.getDEALNO());
