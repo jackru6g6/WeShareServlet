@@ -13,7 +13,7 @@
 	<jsp:include page="../fragment/refJs.jsp" />
 	
 	<!-- 自訂CSS -->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/register.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/member_register.css">
 
 	<!-- Google Login -->
 	<meta name="google-signin-scope" content="profile email">
@@ -147,10 +147,8 @@
 																	<a data-toggle="modal" data-target="#register_modal">註冊帳號</a>
 																	<!-- 按下 [註冊帳號] 跳出會員註冊頁面 -->
 																	<div class="modal fade" id="register_modal" role="dialog">
-<%-- 																		<jsp:include page="register.jsp" /> --%>
 																		<jsp:include page="member_register.jsp" />													
-																	</div>																	
-																			
+																	</div>
 																</h5>
 															</div>
 														</div>

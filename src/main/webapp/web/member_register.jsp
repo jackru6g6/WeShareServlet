@@ -3,19 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<!DOCTYPE html>
-<html lang="zh-Hant">
-
-<head>
-	<meta charset="utf-8">
-	<jsp:include page="../fragment/refCss.jsp" />
-	<!-- 自訂CSS -->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/member_register.css">
-	<jsp:include page="../fragment/refJs.jsp" />
-	<title>WeShare 微分享</title>
-</head>
-
-<body>
 	<div class="container">
 		<div class="modal-dialog modal-lg">
 			<!-- 會員註冊視窗內容 -->
@@ -329,6 +316,3 @@
 
 		}) ;
 	</script>
-	
-</body>
-</html>
