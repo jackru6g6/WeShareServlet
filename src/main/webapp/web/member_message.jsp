@@ -17,178 +17,73 @@
 		<div id="member_message_content_body" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 member_content_body">
 			<!-- 我的站內信_撰寫站內信按鈕 -->
 			<div class="row">
-				<div class="col-xs-8 col-sm-6 col-md-6 col-lg-6">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<button type="button" name="" value="" id="message_insert_button" class="btn btn-block" data-toggle="modal" data-target="#message_insert_modal">
 						<span class="glyphicon glyphicon-edit"></span>
 						<b>撰寫站內信</b>
 					</button>										
-
-					<!-- 跳出撰寫站內信視窗 -->
-					<div class="modal fade" id="message_insert_modal" role="dialog">
-						<div class="modal-dialog modal-lg">
-							<!-- 撰寫站內信視窗內容 -->
-							<div class="modal-content">
-							
-								<!-- 撰寫站內信視窗_header -->
-								<div class="modal-header" id="message_insert_modal_header">
-									<!-- 標題及關閉符號(X) -->
-									<button type="button" class="close" id="message_insert_modal_header_close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title" id="message_insert_modal_title"><b>撰寫站內信</b></h4>
-								</div>
-								
-								<!-- 撰寫站內信視窗_body -->
-								<div class="modal-body">
-									<!-- 撰寫站內信 -->
-									<form id="member_message_form_horizontal" class="form-horizontal" action="">
-										
-										<!-- 收件人 -->
-										<div id="member_message_form_group" class="form-group">
-											<label id="message_insert_form_label" class="control-label col-sm-3">
-												<span class="glyphicon glyphicon-user"></span>
-												&nbsp收&nbsp &nbsp件&nbsp &nbsp人&nbsp &nbsp
-											</label>
-											
-											<div class="col-sm-9">
-												<input type="text" name="goods_name" value="" id="message_insert_form_input" class="form-control" placeholder="請輸入收件人帳號" required>
-											</div>
-										</div>													
-										
-										
-										<!-- 信件內容 -->
-										<div id="member_message_form_group" class="form-group">
-											<label id="message_insert_form_label" class="control-label col-sm-3">
-												<span class="glyphicon glyphicon-list"></span>
-												&nbsp信&nbsp件&nbsp內&nbsp容&nbsp &nbsp
-											</label>
-											
-											<div class="col-sm-9">
-												<textarea name="" value="" id="message_insert_form_input" class="form-control" rows="5"  Wrap="physical" required></textarea>
-											</div>
-										</div>			
-										
-										
-										<!-- 附加檔案 -->
-										<div id="member_message_form_group" class="form-group">
-											<label id="message_insert_form_label" class="control-label col-sm-3">
-												<span class="glyphicon glyphicon-paperclip"></span>
-												&nbsp附&nbsp加&nbsp檔&nbsp案&nbsp &nbsp
-											</label>
-
-											<!-- 上傳及預覽檔案 -->
-											<div class="col-sm-9">																	
-												<input type="file" name="goods_image_upload" value="" id="upload_img_message">
-													<img id="preview_img_message">
-											</div>																												
-										
-										</div>
-										
-										<!-- 發送按鈕 -->
-										<button type="submit" name="" value="" id="message_insert_form_submit_button" class="btn btn-block" data-dismiss="modal">
-											<b>發&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp送</b>
-										</button>
-
-									</form>
-								</div>
-								
-								<!-- 撰寫站內信視窗_footer -->
-								<div class="modal-footer" id="message_insert_modal_footer"></div>
-								
-							</div>
-						</div>
-					</div>
 				</div>
-				
-				<!-- 排序選項 -->
-				<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-					<div class="dropdown">
-						<button type="button" name="" value="" id="message_priority_button" class="btn btn-block dropdown-toggle" data-toggle="dropdown">
-							排序
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">依時間排序</a></li>
-							<li><a href="#">依寄件人排序</a></li>
-							<li><a href="#">依收件人排序</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<!-- 查詢欄位 -->
-				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-					<div class="input-group" id="message_search_bar">
-						<input type="search" name="" value="" class="form-control" id="message_search_bar_input">
-						<span class="input-group-btn">
-							<button type="button" name="" value="" id="message_search_button" class="btn btn-block">
-								<span class="glyphicon glyphicon-search"></span>
-								搜尋
-							</button>
-						</span>
-					</div>	
-				</div>
-				
 			</div>
 			
 			<!-- 站內信_table -->
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					
-					<table class="table table-hover" id="member_message_table" rules="all">
-						<thead>
-							<tr>													
-								<th><b>狀態</b></th>
-								<th><b>對象</b></th>													
-								<th><b>最新消息</b></th>
-								<th><b>內容</b></th>
-							</tr>
-						</thead>
-						
-						<tbody>	
-						
-							<tr>													
-								<td>
-								<span>已讀取</span>
-								<span>未讀取</span>
-								</td>
-								
-								<td>
-									<ul class="member_message_data">
-										<li>
-											<span class="member_message_span"><b>會員圖片</b></span>
-											~~~~~~~~~
-										</li>
-										<li>
-											<span class="member_message_span"><b>對象名稱</b></span>
-											~~~~~~~~~
-										</li>
-										<li>
-											<span class="member_message_span"><b>時&nbsp &nbsp &nbsp間</b></span>
-											~~~~~~~~~
-										</li>
-									</ul>
-								</td>													
-								<td>~最新消息~</td>
-								<td>									
-									<button class="btn btn-default member_message_content_button">
-										<span class="glyphicon glyphicon-list-alt"></span>
-										內容
-									</button>														
-									<!-- 按下圖樣，向下滑出內容，並可以回復信息-->														
-								</td>												
-							</tr>
+<!-- 					<div > -->
+						<table class="table table-hover" id="member_message_table" rules="all">
+							<thead>
+								<tr>												
+									<th><b>對象</b></th>													
+									<th><b>最新消息</b></th>
+									<th><b>內容</b></th>
+								</tr>
+							</thead>
 							
-							<tr>
-								<td colspan="4" class="member_message_content">
-									<div class="member_message_content_show"></div>
-									<input class="member_message_content_texarea" type="textarea" row="5" wrap="physical">
-									<button class="btn btn-default member_message_send_button" type="submit">傳送信息</button>
-								</td>
-							</tr>
+							<tbody id="member_message">	
+<!-- 								<tr>	 -->
+<!-- 									<td> -->
+<!-- 										<ul class="member_message_data"> -->
+<!-- 											<li> -->
+<!-- 												<img src="" class="message_end_img"> -->
+<!-- 											</li> -->
+<!-- 										</ul> -->
+<!-- 									</td>													 -->
+<!-- 									<td> -->
+<!-- 										<ul> -->
+<!-- 											<li> -->
+<!-- 												<span class="member_message_span"><b>對象名稱</b></span> -->
+<!-- 												~~~~~~~~~MSGENAME -->
+<!-- 											</li> -->
+<!-- 											<li> -->
+<!-- 												<span class="member_message_span"><b>時&nbsp &nbsp &nbsp間</b></span> -->
+<!-- 												~~~~~~~~~ -->
+<!-- 											</li> -->
+<!-- 											<li> -->
+<!-- 												~最新消息~ -->
+<!-- 											</li> -->
+<!-- 										</ul>										 -->
+<!-- 									</td> -->
+<!-- 									<td>									 -->
+<!-- 										<button class="btn btn-default member_message_content_button"> -->
+<!-- 											<span class="glyphicon glyphicon-list-alt"></span> -->
+<!-- 											內容 -->
+<!-- 										</button>														 -->
+											
+<!-- 										<button class="btn btn-default member_message_close"> -->
+<!-- 											<span class="glyphicon glyphicon-list-alt"></span> -->
+<!-- 											收起 -->
+<!-- 										</button>													 -->
+<!-- 									</td>												 -->
+<!-- 								</tr> -->
 								
-						
-						</tbody>
-						
-					</table>
-					
+<!-- 								<tr> -->
+<!-- 									<td colspan="4" class="member_message_all"> -->
+<!-- 										<div class="member_message_show"></div>		 -->
+<!-- 									</td> -->
+<!-- 								</tr> -->
+							</tbody>
+								
+						</table>
+<!-- 					</div> -->
 				</div>								
 			</div>
 		
@@ -232,9 +127,16 @@
 	<script>
 		$(document).ready(function(){
 			$(".member_message_content_button").click(function(){
-				$(".member_message_content").show();
+				$(".member_message_all").show();
+				$(".member_message_content_button").hide();
+				$("member_message_close").show();
 			});															
 			
+			$(".member_message_close").click(function(){
+				$(".member_message_all").hide();
+				$(".member_message_close").hide();
+				$("member_message_content_button").show();
+			});	
 			
 		});
 	

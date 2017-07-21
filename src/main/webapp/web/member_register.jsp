@@ -140,7 +140,7 @@
 							</label>
 							
 							<div class="col-sm-9">
-								<select name="org_types" id="" class="form-control register_form_input">
+								<select name="orgtypes" id="" class="form-control register_form_input">
 									<option value="1">兒少福利</option>
 									<option value="2">偏鄉教育</option>
 									<option value="3">老人福利</option>

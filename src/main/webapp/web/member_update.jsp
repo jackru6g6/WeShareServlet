@@ -16,8 +16,8 @@
 	<!-- body -->
 	<div class="row">
 		<div id="member_update_content_body" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 member_content_body">
-		
-			<form id="member_update_form_horizontal" class="form-horizontal" action="">
+<!-- 			<form id="member_update_form_horizontal" class="form-horizontal" action=""> -->
+			<div id="member_update_form_horizontal" class="form-horizontal" action="">
 				
 <!-- 				姓名 -->
 <!-- 				<div class="form-group member_update_form_group"> -->
@@ -257,8 +257,8 @@
 <!-- 					<b>修&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp改</b>														 -->
 <!-- 				</button> -->
 				
-			</form>
-		
+<!-- 			</form> -->
+			</div>
 		</div>
 	</div>
 	
@@ -281,31 +281,11 @@
 <!-- }) ;																 -->
 <!-- </script> -->
 
-<!-- 上傳及預覽社福圖片 -->
+<!-- 預覽個人圖片 -->
 <script>
 		$(document).ready(function(){
-
-			$("#upload_img_org").change(function(){
-								
-				if (this.files && this.files[0]) {
-					var reader = new FileReader();
-									
-					reader.onload = function (e) {
-						$("#preview_img_org").attr("src", e.target.result);
-					}
-									
-					reader.readAsDataURL(this.files[0]);
-				}
-								
-			});
-
-		}) ;
-</script>
-
-<!-- 上傳及預覽個人圖片 -->
-<script>
-		$(document).ready(function(){
-
+			
+// 			預覽個人圖片
 			$("#upload_img_ind").change(function(){
 								
 				if (this.files && this.files[0]) {
@@ -319,6 +299,24 @@
 				}
 								
 			});
+			
+			
+// 			預覽社福圖片
+			$("#upload_img_org").change(function(){
+				
+				if (this.files && this.files[0]) {
+					var reader = new FileReader();
+									
+					reader.onload = function (e) {
+						$("#preview_img_org").attr("src", e.target.result);
+					}
+									
+					reader.readAsDataURL(this.files[0]);
+				}
+								
+			});
+			
+			
 
 		}) ;
 </script>

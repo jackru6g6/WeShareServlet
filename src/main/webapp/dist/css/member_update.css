@@ -34,7 +34,7 @@
 					background-color: #E0E0E0;
 				}
 				
-				/* 可修改的 glyphicon 顏色 */
+				/* 不可修改的 glyphicon 顏色 */
 				.form_input_disabled_icon{
 					color: #FF2D2D;  /* 紅色 */
 				}
@@ -53,23 +53,89 @@
 					text-align: center;
 				}
 				
-					#passsword_update_content{
-						display: none;
-						list-style: none;
-						background-color: #1EC0FF;
-						color: #003399;
-						margin-top: -1px;
-						padding: 20px;
+					#passsword_update_button:hover{
+						background-color: #003399;
+						color: #1EC0FF;
 					}
-				
+					
+					/* 修改會員密碼視窗_header */
+					#password_update_modal_header{
+						background-color: #003399;
+					}
+						/* 關閉符號滑動過去十，變紅色 */
+						#password_update_modal_header_close:hover{
+							color: red;
+						}
+						
+						/* 修改會員密碼視窗_title */
+						#password_update_modal_title{
+							color: #1EC0FF;
+							letter-spacing: 2px;
+						}
+					
+					/* 修改會員密碼視窗_body */
+					
+					/* 舊密碼設定 */
+					#old_password_form_group{
+						margin: 5px 0px;
+					}
+					 
+						#old_password_form_label{
+							color: blue;				
+						}
+						
+						#old_password_form_input{
+							background-color: #E0E0E0;
+						}
+						
+					/* 新密碼設定 */
+					#new_password_form_group{
+						margin: 5px 0px;
+					}
+					 
+						#new_password_form_label{
+							color: blue;				
+						}
+						
+						#new_password_form_input{
+							background-color: #E0E0E0;
+						}
+						
+					/* 再次確認密碼設定 */
+					#check_password_form_group{
+						margin: 5px 0px;
+					}
+					 
+						#check_password_form_label{
+							color: blue;				
+						}
+						
+						#check_password_form_input{
+							background-color: #E0E0E0;
+						}
+					
+						/* 修改會員密碼按鈕 */
+						#password_update_form_submit_button{
+							background-color: #003399;
+							color: #1EC0FF;
+							margin: 20px auto 10px auto;
+						}
+						
+					/* 修改會員密碼視窗_footer */
+					#password_update_modal_footer{
+						background-color: #003399;
+						height: 50px;
+					}
+					
+					
+					
 				/* 上傳及預覽檔案 */
 				.upload_img{
 					margin: 10px 0px;
 				}
 				
 				.preview_img{
-					max-width: 300px;
-					max-height: 300px;
+					width: 100%;
 					margin: 5px;
 				}
 		

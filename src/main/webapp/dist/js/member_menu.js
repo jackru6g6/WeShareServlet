@@ -41,9 +41,11 @@ function showMbData(data, path){
 					&nbsp身&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp分
 				</label>	
 									
-				<div id="member_types" class="col-sm-9">
-					<input type="radio" name="usertypes" value="1" id="" class="radio-inline member_update_form_input" disabled>個人
-					<input type="radio" name="usertypes" value="2" id="" class="radio-inline member_update_form_input" disabled>社福團體
+				<div class="col-sm-9" id="member_types">
+					<select class="form-control member_update_form_input user_type">
+						<option value="1">個人</option>
+						<option value="2">社福團體</option>
+					</select>
 				</div>                                    
 			</div>
 			
@@ -60,61 +62,20 @@ function showMbData(data, path){
 			</div>
 			
 			<!-- 會員密碼 -->
-			<!-- 按下修改密碼按鈕滑出修改表單 -->
+			<!-- 按下修改密碼按鈕出現修改表單 -->
 			<div class="form-group member_update_form_group">
 				<label class="control-label col-sm-3 member_update_form_label">
 					<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
 					&nbsp會&nbsp&nbsp員&nbsp密&nbsp&nbsp碼
 				</label>
 									
-				<div class="col-sm-9">
-										
-					<button class="btn btn-block" id="passsword_update_button">
-						<b>修改會員密碼</b>
-											
-						<script>
-						$(document).ready(function(){
-																
-							$( "#passsword_update_button" ).click(function() {
-																
-								$("#passsword_update_content").slideToggle();
-																  
-							});
-																
-						}) ;																
-						</script>
-																		
-					</button>	
-										
-					<ul id="passsword_update_content">
-						<li>
-							<label class="control-label col-sm-3">
-								<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-								請輸入舊密碼
-							</label>
-							<input type="password" name="ind_password" value="" id="" class="form-control member_update_form_input">
-						</li>
-												
-						<li>
-							<label class="control-label col-sm-3">
-								<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-								請輸入新密碼
-							</label>
-							<input type="password" name="ind_password" value="" id="" class="form-control member_update_form_input">												
-						</li>
-												
-						<li>
-							<label class="control-label col-sm-3">
-								<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-								再次確認密碼
-							</label>
-							<input type="password" name="ind_password" value="" id="" class="form-control member_update_form_input">											
-						</li>													
-					</ul>
-										
+				<div class="col-sm-9">				
+					<button class="btn btn-block" id="passsword_update_button" data-toggle="modal" data-target="#password_update_modal">
+						<b>修改會員密碼</b>									
+					</button>		
 				</div>
 			</div>
-			
+				
 			<!-- 連絡電話 -->
 			<div class="form-group member_update_form_group">
 				<label class="control-label col-sm-3 member_update_form_label">
@@ -161,33 +122,12 @@ function showMbData(data, path){
 				<!-- 上傳及預覽檔案 -->
 				<div class="col-sm-9">
 					<input type="file" name="" value="" id="upload_img_ind" class="upload_img" accept="image/jpeg, image/png">
-					<img src="${javaRoot}/_00_init/getImage?id=${data.mb.indid}&type=MEMBER" id="preview_img_ind" class="preview_img">
-										
-					<script>
-						$(document).ready(function(){
-	
-							$("#upload_img_ind").change(function(){
-													
-								if (this.files && this.files[0]) {
-									var reader = new FileReader();
-														
-									reader.onload = function (e) {
-										$("#preview_img_ind").attr("src", e.target.result);
-									}
-														
-									reader.readAsDataURL(this.files[0]);
-								}
-													
-							});
-	
-						}) ;
-					</script>
-										
+					<img src="${javaRoot}/_00_init/getImage?id=${data.mb.indid}&type=MEMBER" id="preview_img_ind" class="preview_img">		
 				</div>
 			</div>
 			
 			<!-- 修改會員資料送出按鈕 -->
-			<button type="submit" name="" value="" id="member_update_submit_button" class="btn btn-block">										
+			<button type="submit" id="member_update_submit_button" class="btn btn-block member_update_submit_button">										
 				<b>修&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp改</b>														
 			</button>
 			`;
@@ -195,7 +135,8 @@ function showMbData(data, path){
 			$('#member_update_form_horizontal').append(result_Mb);
 			
 			// 會員身分
-			$("#member_types input[value=" + data.mb.usertype + "]").attr("checked", true);
+			$(".user_type option[value=" + data.mb.usertype + "]").attr("selected", true);
+			$(".user_type").attr("disabled", true);
 			
 			return;
 			
@@ -211,7 +152,7 @@ function showMbData(data, path){
 				</label>
 									
 				<div class="col-sm-9">
-					<input type="text" name="" value="${data.mb.indname}" id="" class="form-control member_update_form_input" required>
+					<input type="text" name="" value="${data.mb.indname}" class="form-control member_update_form_input ind_name" required>
 				</div>
 			</div>
 			
@@ -222,9 +163,11 @@ function showMbData(data, path){
 					&nbsp身&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp分
 				</label>	
 									
-				<div id="member_types" class="col-sm-9">
-					<input type="radio" name="usertypes" value="1" id="" class="radio-inline member_update_form_input" disabled>個人
-					<input type="radio" name="usertypes" value="2" id="" class="radio-inline member_update_form_input" disabled>社福團體
+				<div class="col-sm-9" id="member_types">
+					<select class="form-control member_update_form_input user_type">
+						<option value="1">個人</option>
+						<option value="2">社福團體</option>
+					</select>
 				</div>                                    
 			</div>
 			
@@ -236,7 +179,7 @@ function showMbData(data, path){
 				</label>
 									
 				<div class="col-sm-9">
-					<input type="text" name="" value="${data.mb.indid}" id="" class="form-control member_update_form_input" disabled>
+					<input type="text" value="${data.mb.indid}" class="form-control member_update_form_input ind_id" disabled>
 				</div>
 			</div>
 			
@@ -248,40 +191,13 @@ function showMbData(data, path){
 					&nbsp會&nbsp&nbsp員&nbsp密&nbsp&nbsp碼
 				</label>
 									
-				<div class="col-sm-9">
-										
-					<button class="btn btn-block" id="passsword_update_button">
+				<div class="col-sm-9">				
+					<button class="btn btn-block" id="passsword_update_button" data-toggle="modal" data-target="#password_update_modal">
 						<b>修改會員密碼</b>									
-					</button>	
-										
-					<ul id="passsword_update_content">
-						<li>
-							<label class="control-label col-sm-3">
-								<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-								請輸入舊密碼
-							</label>
-							<input type="password" name="ind_password" value="" id="" class="form-control member_update_form_input">
-						</li>
-												
-						<li>
-							<label class="control-label col-sm-3">
-								<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-								請輸入新密碼
-							</label>
-							<input type="password" name="ind_password" value="" id="" class="form-control member_update_form_input">												
-						</li>
-												
-						<li>
-							<label class="control-label col-sm-3">
-								<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-								再次確認密碼
-							</label>
-							<input type="password" name="ind_password" value="" id="" class="form-control member_update_form_input">											
-						</li>													
-					</ul>
-										
+					</button>		
 				</div>
 			</div>
+			
 			
 			<!-- 連絡電話 -->
 			<div class="form-group member_update_form_group">
@@ -291,7 +207,7 @@ function showMbData(data, path){
 				</label>
 										
 				<div class="col-sm-9">
-					<input type="tel" name="" value="${data.mb.indphone}" id="" class="form-control member_update_form_input">
+					<input type="tel" value="${data.mb.indphone}" class="form-control member_update_form_input ind_phone">
 				</div>
 			</div>
 			
@@ -303,7 +219,7 @@ function showMbData(data, path){
 				</label>
 									
 				<div class="col-sm-9">
-					<input type="email" name="" value="${data.mb.indemail}" id="" class="form-control member_update_form_input">
+					<input type="email" value="${data.mb.indemail}" class="form-control member_update_form_input ind_email">
 				</div>
 			</div>
 			
@@ -315,7 +231,7 @@ function showMbData(data, path){
 				</label>
 										
 				<div class="col-sm-9">
-					<input type="text" name="" value="${data.mb.indaddress}" id="" class="form-control member_update_form_input">
+					<input type="text" value="${data.mb.indaddress}" class="form-control member_update_form_input ind_address">
 				</div>
 			</div>
 			
@@ -329,7 +245,7 @@ function showMbData(data, path){
 				</label>
 										
 				<div class="col-sm-9">
-					<input  type="text" name="" value="${data.ob.leader}" id="" class="form-control member_update_form_input">
+					<input type="text" value="${data.ob.leader}" class="form-control member_update_form_input org_leader">
 				</div>
 			</div>
 			
@@ -341,7 +257,7 @@ function showMbData(data, path){
 				</label>
 									
 				<div class="col-sm-9">
-					<select name="" id="org_types" class="form-control member_update_form_input">
+					<select id="org_types" class="form-control member_update_form_input org_types">
 						<option value="1">兒少福利</option>
 						<option value="2">偏鄉教育</option>
 						<option value="3">老人福利</option>
@@ -359,7 +275,7 @@ function showMbData(data, path){
 				</label>
 									
 				<div class="col-sm-9">
-					<input type="text" name="" value="${data.ob.registerno}" id="" class="form-control member_update_form_input">
+					<input type="text" value="${data.ob.registerno}" class="form-control member_update_form_input org_registerno">
 				</div>
 			</div>
 			
@@ -371,7 +287,7 @@ function showMbData(data, path){
 				</label>
 										
 				<div class="col-sm-9">
-					<input type="text" name="" value="${data.ob.raiseno}" id="" class="form-control member_update_form_input">
+					<input type="text" value="${data.ob.raiseno}" class="form-control member_update_form_input org_raiseno">
 				</div>
 			</div>
 			
@@ -383,7 +299,7 @@ function showMbData(data, path){
 				</label>
 										
 				<div class="col-sm-9">
-					<input type="text" name="" value="${data.ob.website}" id="" class="form-control member_update_form_input">
+					<input type="text" value="${data.ob.website}" class="form-control member_update_form_input org_website">
 				</div>
 			</div>
 			
@@ -395,7 +311,7 @@ function showMbData(data, path){
 				</label>
 									
 				<div class="col-sm-9">
-					<textarea name="" value="${data.ob.intro}" id="" class="form-control member_update_form_input" rows="5" Wrap="physical"></textarea>
+					<textarea value="${data.ob.intro}" class="form-control member_update_form_input org_intro" rows="5" Wrap="physical"></textarea>
 				</div>
 			</div>
 			
@@ -408,7 +324,7 @@ function showMbData(data, path){
 									
 				<!-- 上傳及預覽檔案 -->
 				<div class="col-sm-9">
-					<input type="file" name="" value="" id="upload_img_ind" class="upload_img" accept="image/jpeg, image/png">
+					<input type="file" value="" id="upload_img_ind" class="upload_img" accept="image/jpeg, image/png">
 					<img src="${javaRoot}/_00_init/getImage?id=${data.mb.indid}&type=MEMBER" id="preview_img_ind" class="preview_img">		
 				</div>
 			</div>
@@ -428,7 +344,7 @@ function showMbData(data, path){
 			</div>
 			
 			<!-- 修改會員資料送出按鈕 -->
-			<button type="submit" name="" value="" id="member_update_submit_button" class="btn btn-block">										
+			<button type="submit" id="member_update_submit_button" class="btn btn-block member_update_submit_button">										
 				<b>修&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp改</b>														
 			</button>
 			`;
@@ -436,16 +352,89 @@ function showMbData(data, path){
 		$('#member_update_form_horizontal').append(result_Ob);
 		
 		// 會員身分
-		$("#member_types input[value=" + data.mb.usertype + "]").attr("checked", true);
+		$(".user_type option[value=" + data.mb.usertype + "]").attr("selected", true);
+		$(".user_type").attr("disabled", true);
 
 		//	社福類型
-		$("#org_types option[value=" + data.ob.orgtypes + "]").attr("selected", true);
-	
+		$(".org_types option[value=" + data.ob.orgtypes + "]").attr("selected", true);
 	}
 }
 
 
-// 我的物資箱資料顯示
+
+
+
+
+
+// 修改會員資料(送出)
+function memberDataUpdate(){
+	var update_ServletPath = javaRoot + '/web/_03_updateMember/controller/updateMember';
+	var INDNAME = $(".ind_name").val();
+	var USERTYPE = $(".user_type").val();
+	var INDID = $(".ind_id").val();
+	var INDPHONE = $(".ind_phone").val();
+	var INDEMAIL = $(".ind_email").val();
+	var INDADDRESS = $(".ind_address").val();
+	var LEADER = $(".org_leader").val();
+	var ORGTYPES = $(".org_types").val();
+	var REGISTERNO = $(".org_registerno").val();
+	var RAISENO = $(".org_raiseno").val();
+	var WEBSITE = $(".org_website").val();
+	var INTRO = $(".org_intro").val();
+
+	
+	// post傳資料(JSON格式)
+	var memberDataUpdate_String = JSON.stringify({
+		indname : INDNAME,
+		usertype : USERTYPE,
+		indid : INDID,
+		indphone : INDPHONE,
+		indemail : INDEMAIL,
+		indaddress : INDADDRESS,
+		leader : LEADER,
+		orgtypes : ORGTYPES,
+		registerno : REGISTERNO,
+		raisno : RAISENO,
+		website : WEBSITE,
+		intro : INTRO,
+		indfilename : Update_img_ind.result,
+		orgfilename : Update_img_org.result
+	});
+	
+	console.log(" memberDataUpdate_String = " + memberDataUpdate_String);
+	
+	$.ajax({
+		type: 'post',
+		url: update_ServletPath,
+		data: memberDataUpdate_String,
+		dataType: 'json',
+		success: function(response){
+//			console.log(response);
+			// 出現錯誤訊息
+			if(response.Ans == "TRUE"){
+				alert("修改已送出，詳細資訊請至會員專區瀏覽");
+			} else {
+				alert("發生了一點錯誤，請檢查您的傳送資料，謝謝!");
+			}
+		},
+		error: function(response){
+			// 出現錯誤訊息
+			alert("發生了一點錯誤，請重新傳送，謝謝!");
+		}
+	});
+		
+		
+		
+}
+
+
+
+
+
+
+
+
+// 我的物資箱_資料顯示
 function showGCData(data, path){
 	var javaRoot = path;
 	var result_goodsCart;
@@ -510,9 +499,12 @@ function showGCData(data, path){
 								<span class="input-group-addon goods_item_content_li_span">
 									<i class="glyphicon glyphicon-list-alt"></i>
 								</span>
-								<input type="radio" name="goods_status" value="1" id="" class="radio-inline goods_item_content_li_input" disabled>募資
-								<input type="radio" name="goods_status" value="2" id="" class="radio-inline goods_item_content_li_input" disabled>捐贈
-								<input type="radio" name="goods_status" value="3" id="" class="radio-inline goods_item_content_li_input" disabled>以物易物														
+								
+								<select class="form-control goods_item_content_li_input goods_status" disabled>
+									<option value="1">募資</option>
+									<option value="2">捐贈</option>
+									<option value="3">以物易物</option>								
+								</select>			
 							</li>
 							
 							<!-- 需求地區 -->
@@ -587,17 +579,26 @@ function showGCData(data, path){
 			</div>`;
 				
 		$('#member_goodsCart_content').append(result_goodsCart);
+		
+//		物品類別
+		$(".goods_type option[value=" + data.cgb[i].goodstype + "]").attr("selected", true);
+//		需求類別
+		$(".goods_status option[value=" + data.cgb[i].goodsstatus + "]").attr("selected", true);
+//		需求地區
+		$(".goods_loc option[value=" + data.cgb[i].goodsloc + "]").attr("selected", true);
+		
+		
 	}
 }
 
 
-// 修改物資箱資料
+// 我的物資箱_修改物資箱資料
 function goodsCartUpdate(goal, e){
 	var gno = e;
-	var gstatus = "";
+	var gstatus = goal.closest(".goods_item_content").find('.goods_status').val();;
 	var gtype = goal.closest(".goods_item_content").find('.goods_type').val();
 	var gname = goal.closest(".goods_item_content").find('.goods_name').val();
-	var gloc = goal.closest(".goods_item_content").find('.goods_type').val();
+	var gloc = goal.closest(".goods_item_content").find('.goods_loc').val();
 	var gnote = goal.closest(".goods_item_content").find('.goods_note').val();
 	var gqty = goal.closest(".goods_item_content").find('.goods_qty').val();
 	var gshipway = 3;
@@ -605,6 +606,7 @@ function goodsCartUpdate(goal, e){
 	var goodsCartUpdateServletPath = javaRoot + '/web/_04_productMaintain/controller/GoodsUpdate';
 	
 //	console.log("gstatus = " + gstatus);
+	
 	var goodsCartUpdateDataString = "?goodsno=" + gno 
 					+ "&goodsstatus=" + gstatus 
 					+ "&goodstype=" + gtype 
@@ -613,6 +615,7 @@ function goodsCartUpdate(goal, e){
 					+ "&goodsnote=" + gnote 
 					+ "&qty=" + gqty
 					+ "&goodsshipway=3&deadline=" + gdeadline;
+	
 
 	$.ajax({
 		type: 'post',
@@ -638,4 +641,129 @@ function goodsCartUpdate(goal, e){
 			alert("發生了一點錯誤，請重新進入此頁面，謝謝!");
 		}
 	});
+}
+
+
+//我的物資箱_新增物資
+function insertGoods(){
+	console.log(2);
+	var GOODSSTATUS = $(".goods_status").val();
+	var GOODSTYPE = $(".goods_type").val();
+	var GOODSNAME = $(".goods_name").val();
+	var GOODSLOC = $(".goods_loc").val();
+	var GOODSNOTE= $(".goods_note").val();
+	var QTY = $(".qty").val();
+	var GOODSSHIPWAY = $(".goods_shipway").val();
+	var DEADLINE = $(".deadline").val();
+	
+	var insertGoods_ServletPath = javaRoot + '/web/_04_productMaintain/controller/GoodsInsert';
+	
+	var insertGoods_String = "?goodsstatus=" + GOODSSTATUS
+							+ "&goodstype=" + GOODSTYPE
+							+ "&goodsname=" + GOODSNAME
+							+ "&goodsloc=" + GOODSLOC
+							+ "&goodsnote=" + GOODSNOTE
+							+ "&qty=" + QTY
+							+ "&goodsshipway=" + GOODSSHIPWAY
+							+ "&deadline=" + DEADLINE;
+	
+	console.log(insertGoods_String);
+	
+//	$.ajax({
+//		type: 'post',
+//		url: insertGoods_ServletPath + insertGoods_String,
+//		data: "",
+//		dataType: 'json',
+//		success: function(response){
+//			// 出現錯誤訊息
+//			if(response.Ans == "TRUE"){
+//				alert("資料已送出");
+//				var successString = "<div>資料已送出</div>"
+//				$('#goods_insert_modal').find('.modal-body').html(successString);
+//				$('#goods_insert_form_submit_button').html("關閉視窗").attr("data-dismiss","modal");
+//			} else {
+//				alert("發生了一點錯誤，請檢查資料是否正確，並重新送出，謝謝!");
+//			}
+//		},
+//		error: function(response){
+//			// 出現錯誤訊息
+//			alert("發生了一點錯誤，請重新進入此頁面，謝謝!");
+//		}
+//	});	 
+}	 
+
+
+
+
+
+//我的站內信_顯示站內信
+function showMSG_Data(data, path){
+	var javaRoot = path;
+	var result_message;
+	//錯誤訊息
+	if(data.Ans == "FALSE"){
+		result_message = 
+		`<div style="font-size:24px; color:#ff0000; text-align:center; margin-top:30px;">
+			尚未有站內信內容。
+		</div>`;
+		$('#member_message').append(result_goodsCart);
+		return;
+	}
+	
+	// 清除先前的表格
+	$("#member_message").empty();
+	
+	// 顯示站內信資料
+	for(var i = 0; i < data.coll.length; i++){
+		result_message =
+			`<tr>	
+				<td>
+					<ul class="member_message_data">
+						<li>
+							<img src="${javaRoot}/_00_init/getImage?id=${data.coll[i].MSGENDID}&type=MEMBER" class="message_end_img">
+						</li>
+					</ul>
+				</td>													
+				<td>
+					<ul>
+						<li>
+							<span class="member_message_span"><b>對象名稱</b></span>
+							${data.coll[i].MSGENDNAME}
+						</li>
+						<li>
+							<span class="member_message_span"><b>時&nbsp &nbsp &nbsp間</b></span>
+							${data.coll[i].POSTDATE}
+						</li>
+						<li>
+							${data.coll[i].MSGTEXT}
+						</li>
+					</ul>										
+				</td>
+				<td>									
+					<button class="btn btn-default member_message_content_button">
+						<span class="glyphicon glyphicon-list-alt"></span>
+						內容
+					</button>														
+						
+					<button class="btn btn-default member_message_close">
+						<span class="glyphicon glyphicon-list-alt"></span>
+						收起
+					</button>													
+				</td>												
+			</tr>
+			
+			<tr>
+				<td colspan="4" class="member_message_all">
+					<div class="member_message_show">
+					  
+					  
+					  
+					  
+					</div>		
+				</td>
+			</tr>
+			`;
+		
+		$('#member_message').append(result_message);
+	}
 }

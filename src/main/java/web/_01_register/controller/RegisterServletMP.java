@@ -222,7 +222,7 @@ public class RegisterServletMP extends HttpServlet {
 			// 如果有錯誤
 			if (!errorMsg.isEmpty()) {
 				// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
-				RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/web/member_register.jsp");
 				rd.forward(request, response);
 				return;
 			}
@@ -272,14 +272,14 @@ public class RegisterServletMP extends HttpServlet {
 			// 5.依照 Business Logic 運算結果來挑選適當的畫面
 			if (!errorMsg.isEmpty()) {
 				// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
-				RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/web/member_register.jsp");
 				rd.forward(request, response);
 				return;
 			}		
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMsg.put("errorIDDup", e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/web/member_register.jsp");
 			rd.forward(request, response);
 		}		
      }
