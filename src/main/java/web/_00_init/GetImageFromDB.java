@@ -49,6 +49,9 @@ public class GetImageFromDB extends HttpServlet {
 			} else if (ib.FileName.equals("FALSE") & type.equals("DEAL")) {
 				System.out.println("[Image DEAL]DEF");
 				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
+			} else if (ib.FileName.equals("FALSE")) {
+				System.out.println("[Image DEAL]DEF");
+				is = getServletContext().getResourceAsStream("/dist/img/icon_member1.png");
 			} else {
 				System.out.println("[Image]OK");
 				mimeType = getServletContext().getMimeType(ib.FileName);
@@ -78,6 +81,7 @@ public class GetImageFromDB extends HttpServlet {
 		Connection conn = null;
 		ResultSet rs = null;
 		System.out.println("id=" + id + "  type=" + type);
+		boolean ans = true;
 		try {
 
 			Context context = new InitialContext();
@@ -140,10 +144,10 @@ public class GetImageFromDB extends HttpServlet {
 
 		} catch (NamingException e) {
 			ib.setFileName("FALSE");
-			e.printStackTrace();
-		} catch (SQLException e) {
+			// e.printStackTrace();
+		} catch (Exception e) {
 			ib.setFileName("FALSE");
-			e.printStackTrace();
+			// e.printStackTrace();
 		} finally {
 		}
 		// System.out.println("[Image SQL]Ans=" + ib.getFileName());
