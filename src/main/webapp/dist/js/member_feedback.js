@@ -1,9 +1,9 @@
-// 產生等待回應中的訂單
+// 產生等待回應的訂單
 function showStatus0Date(data, path){
 	var javaRoot = path;
 	var result_Status0;
 	
-	// 錯誤訊息
+	// 若無資料
 	if(data.Ans == "FALSE"){
 		$('#dealContent').empty();
 		result_Status0 = 
@@ -20,7 +20,7 @@ function showStatus0Date(data, path){
 	// 計算是否有資料
 	var dataNum = 0;
 	
-	// 產生物資箱資料
+	// 產生等待回應的訂單資料
 	for(var i = 0; i < data.coll.length; i++){
 		dataNum++;
 		if(data.coll[i].DEALSTATUS == "0"){
@@ -30,14 +30,14 @@ function showStatus0Date(data, path){
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="dealEach">
 							<div class="row">
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealInfo">
 										<ul type="none">
 											<li>日期：
 												<span>` + postDate.toLocaleDateString() + `</span>
 											</li>
 											<li>對象：
-												<span class="dealMb` + i +`"></span>
+												<span id="dealMb` + i +`"></span>
 											</li>
 											<li>品名：
 												<span>${data.coll[i].GOODSNAME}</span>
@@ -45,12 +45,14 @@ function showStatus0Date(data, path){
 										</ul>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealImageLayout">
-										<img src="${javaRoot}/_00_init/getImage?id=${data.coll[i].dealno}&type=DEAL" class="img-responsive dealImage">
+										<a href="${javaRoot}/_00_init/getImage?id=${data.coll[i].DEALNO}&type=DEAL" data-lightbox="image${data.coll[i].DEALNO}">
+											<img src="${javaRoot}/_00_init/getImage?id=${data.coll[i].DEALNO}&type=DEAL" class="img-responsive dealImage">
+										</a>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealOtherInfo">
 										<ul type="none">
 											<li>配送方式：
@@ -62,14 +64,14 @@ function showStatus0Date(data, path){
 										</ul>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealConfirm">
 										<ul type="none">
 											<li>
-												<button value=${data.coll[i].DEALNO} class="btn btn-default btAgree">接受交易</button>
+												<button id="btAgree` + i +`" value=${data.coll[i].DEALNO} class="btn btn-default btAgree">接受交易</button>
 											</li>
 											<li>
-												<button value=${data.coll[i].DEALNO} class="btn btn-default btCancel">取消交易</button>
+												<button id="btCancel` + i +`" value=${data.coll[i].DEALNO} class="btn btn-default btCancel">取消交易</button>
 											</li>
 										</ul>
 									</div>
@@ -79,30 +81,35 @@ function showStatus0Date(data, path){
 					</div>								
 				</div>`;
 			$('#dealContent').append(result_Status0);
+			
 			// 顯示交易對象姓名
-			var dealMbName = ".dealMb" + i;
-//			if(`${data.coll[i].ENDID}` == indid){
-//				$(dealMbName).html(`${data.coll[i].SOURCENAME}`);
-//			}else {
-//				$(dealMbName).html(`${data.coll[i].ENDNAME}`);
-//			}
-			console.log(i);
-			console.log("GOODSSTATUS = " + `${data.coll[i].GOODSSTATUS}`);
-			console.log("SOURCEID = " + `${data.coll[i].SOURCEID}`);
-			// 若是許願池的訂單且提出訂單者為自己，則看不到接受訂單按鈕，交易對象放ENDNAME
+			var dealMbId = "#dealMb" + i;
+			// 接受交易按鈕
+			var btAgreeId = "#btAgree" + i;
+			// 取消交易按鈕
+			var btCancelId = "#btCancel" + i;
+			
+
 			if(`${data.coll[i].GOODSSTATUS}` == "1" && `${data.coll[i].SOURCEID}` == indid){
-				$('.btAgree').hide();
-				$(dealMbName).html(`${data.coll[i].ENDNAME}`);
+				// 若是許願池的訂單且提出訂單者為自己，則看不到接受訂單按鈕，交易對象放ENDNAME
+				$(btAgreeId).hide();
+				$(dealMbId).html(`${data.coll[i].ENDNAME}` + "(募集者)");
+				$(dealMbId).closest('.dealEach').css("background", "rgba(255, 151, 151, 0.12)");
 			} else if(`${data.coll[i].GOODSSTATUS}` == "1" && `${data.coll[i].ENDID}` == indid) {
-				$(dealMbName).html(`${data.coll[i].SOURCENAME}`);
+				// 若是許願池的訂單且提出訂單者不是自己，則看得到接受訂單按鈕，交易對象放SOURCENAME
+				$(dealMbId).html(`${data.coll[i].SOURCENAME}` + "(贈送者)");
+				$(dealMbId).closest('.dealEach').css("background", "rgba(255, 151, 151, 0.12)");
 			}
 			
-			// 若是送愛心的訂單且提出訂單者為自己，則看不到接受訂單按鈕，交易對象放SOURCENAME
 			if(`${data.coll[i].GOODSSTATUS}` == "2" && `${data.coll[i].ENDID}` == indid){
-				$('.btAgree').hide();
-				$(dealMbName).html(`${data.coll[i].SOURCENAME}`);
+				// 若是送愛心的訂單且提出訂單者為自己，則看不到接受訂單按鈕，交易對象放SOURCENAME
+				$(btAgreeId).hide();
+				$(dealMbId).html(`${data.coll[i].SOURCENAME}` + "(贈送者)");
+				$(dealMbId).closest('.dealEach').css("background", "#f7e3cf");
 			} else if(`${data.coll[i].GOODSSTATUS}` == "2" && `${data.coll[i].SOURCEID}` == indid) {
-				$(dealMbName).html(`${data.coll[i].ENDNAME}`);
+				// 若是送愛心的訂單且提出訂單者不是自己，則看得到接受訂單按鈕，交易對象放ENDNAME
+				$(dealMbId).html(`${data.coll[i].ENDNAME}` + "(索取者)");
+				$(dealMbId).closest('.dealEach').css("background", "#f7e3cf");
 			}
 		}
 	}
@@ -111,7 +118,7 @@ function showStatus0Date(data, path){
 		$('#dealContent').empty();
 		result_Status0 = 
 		`<div style="font-size:24px; color:#ff0000; text-align:center; margin-top:30px;">
-			目前沒有等待回應中的訂單唷~
+			目前沒有等待回應的訂單唷~
 		</div>`;
 		$('#dealContent').append(result_Status0);
 	}
@@ -128,9 +135,9 @@ function dealAgree(e){
 		data: "",
 		dataType: 'json',
 		success: function(response){
-			// 出現錯誤訊息
+			// 回應訊息
 			if(response.Ans == "TRUE"){
-				// 此筆訂單隱藏  
+				// 成功傳到資料庫，此筆訂單隱藏  
 				e.closest('.dealEach').closest('.row').hide();
 				alert("資料已送出");
 			} else {
@@ -138,7 +145,7 @@ function dealAgree(e){
 			}
 		},
 		error: function(response){
-			// 出現錯誤訊息
+			// 出現錯誤訊息(無法送到server)
 			alert("發生了一點錯誤，請重新進入此頁面，謝謝!");
 		}
 	});
@@ -155,9 +162,9 @@ function dealCancel(e){
 		data: "",
 		dataType: 'json',
 		success: function(response){
-			// 出現錯誤訊息
+			// 回應訊息
 			if(response.Ans == "TRUE"){
-				// 此筆訂單隱藏  
+				// 成功傳到資料庫，此筆訂單隱藏  
 				e.closest('.dealEach').closest('.row').hide();
 				alert("訂單已取消");
 			} else {
@@ -165,7 +172,7 @@ function dealCancel(e){
 			}
 		},
 		error: function(response){
-			// 出現錯誤訊息
+			// 出現錯誤訊息(無法送到server)
 			alert("發生了一點錯誤，請重新進入此頁面，謝謝!");
 		}
 	});
@@ -177,7 +184,7 @@ function showStatus1Date(data, path){
 	var javaRoot = path;
 	var result_Status1;
 	
-	// 錯誤訊息
+	// 若無資料
 	if(data.Ans == "FALSE"){
 		$('#dealContent').empty();
 		result_Status1 = 
@@ -194,7 +201,7 @@ function showStatus1Date(data, path){
 	// 計算是否有資料
 	var dataNum = 0;
 	
-	// 產生物資箱資料
+	// 產生已接受的訂單資料
 	for(var i = 0; i < data.coll.length; i++){
 		if(data.coll[i].DEALSTATUS == "1"){
 			dataNum++;
@@ -204,14 +211,14 @@ function showStatus1Date(data, path){
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="dealEach">
 							<div class="row">
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealInfo">
 										<ul type="none">
 											<li>日期：
 												<span>` + postDate.toLocaleDateString() + `</span>
 											</li>
 											<li>對象：
-												<span class="dealMb` + i +`"></span>
+												<span id="dealMb` + i +`"></span>
 											</li>
 											<li>品名：
 												<span>${data.coll[i].GOODSNAME}</span>
@@ -219,12 +226,14 @@ function showStatus1Date(data, path){
 										</ul>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealImageLayout">
-										<img src="${javaRoot}/_00_init/getImage?id=${data.coll[i].dealno}&type=DEAL" class="img-responsive dealImage">
+										<a href="${javaRoot}/_00_init/getImage?id=${data.coll[i].DEALNO}&type=DEAL" data-lightbox="image${data.coll[i].DEALNO}">
+											<img src="${javaRoot}/_00_init/getImage?id=${data.coll[i].DEALNO}&type=DEAL" class="img-responsive dealImage">
+										</a>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealOtherInfo">
 										<ul type="none">
 											<li>配送方式：
@@ -236,75 +245,64 @@ function showStatus1Date(data, path){
 										</ul>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealConfirm">
 										<ul type="none">
-											<li>
-												<a data-toggle="modal" data-target="#dealMsg` + i +`" class="btn btn-default aDealMsg">結單</a>
+											<li id="dealMsg` + i + `">結單訊息
+												<textarea class="form-control dealMsgText" rows="3" maxlength="200" placeholder="請填寫寄件資訊/面交資訊" style="resize : none;"></textarea>
 											</li>
-											<li class="waitText">
-												等待對方寄出物資
+											<li id="dealBt` + i + `">
+												<button id="btDealMsg` + i + `" class="btn btn-default btDealMsg" name=${data.coll[i].DEALNO}>結單</button>
+											</li>
+											<li id="waitMsg` + i + `" class="waitText">
+												等待對方寄送物資
 											</li>
 										</ul>
 									</div>
 								</div>
-								
-								<!-- 結單modal -->
-								<div id="dealMsg` + i +`" class="modal fade" role="dialog">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<!-- 標題 -->
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal">&times;</button>
-												<h3 id="dealMsgName` + i +`" class="modal-title"></h3>
-											</div>
-											<!-- 內容 -->
-											<div class="modal-body dealMsgBody">
-												<textarea class="form-control dealMsgText" rows="5" required="required" maxlength="200" placeholder="留言最多200字" style="resize : none;"></textarea>
-											</div>
-											<!-- 關閉鈕 -->
-											<div class="modal-footer dealMsgFooter">
-												<button type="button" id="btSendDealMsg` + i +`" class="btn btn-default btSendDealMsgClass" name=${data.coll[i].DEALNO}>傳送訊息</button>
-												<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								
 							</div>
 						</div>
 					</div>								
 				</div>`;
 			$('#dealContent').append(result_Status1);
-			var dealMb = ".dealMb" + i;
-			var dealMsgName = "#dealMsgName" + i;
-			var btSendDealMsg = "#btSendDealMsg" + i;
-			if(`${data.coll[i].ENDID}` == indid){
-//				$(dealMb).html(`${data.coll[i].SOURCENAME}`);
-				$(dealMsgName).html("發送訊息給" + `${data.coll[i].SOURCENAME}`);
-				$(btSendDealMsg).attr("value", `${data.coll[i].SOURCEID}`);
-			}else {
-//				$(dealMb).html(`${data.coll[i].ENDNAME}`);
-				$(dealMsgName).html("發送訊息給" + `${data.coll[i].ENDNAME}`);
-				$(btSendDealMsg).attr("value", `${data.coll[i].ENDID}`);
-			}
 			
-			// 若是許願池的訂單且提出訂單者為自己，則可以看到結單按鈕，交易對象放ENDNAME
+			// 顯示交易對象姓名
+			var dealMbId = "#dealMb" + i;
+			// 結單訊息li
+			var dealMsgId = "#dealMsg" + i;
+			// 結單按鈕li
+			var dealBtId = "#dealBt" + i;
+			// 等待訊息li
+			var waitMsgId = "#waitMsg" + i;
+			// 結單按鈕
+			var btDealMsgId = "#btDealMsg" + i;
+			
 			if(`${data.coll[i].GOODSSTATUS}` == "1" && `${data.coll[i].SOURCEID}` == indid){
-				$('.waitText').hide();
-				$(dealMb).html(`${data.coll[i].ENDNAME}`);
+				// 若是許願池的訂單且提出訂單者為自己，則可以看到結單訊息、結單按鈕，不可以看到等待訊息，交易對象放ENDNAME
+				$(waitMsgId).hide();
+				$(dealMbId).html(`${data.coll[i].ENDNAME}` + "(募集者)");
+				$(btDealMsgId).attr("value", `${data.coll[i].ENDID}`);
+				$(dealMbId).closest('.dealEach').css("background", "rgba(255, 151, 151, 0.12)");
 			} else if(`${data.coll[i].GOODSSTATUS}` == "1" && `${data.coll[i].ENDID}` == indid) {
-				$('.aDealMsg').hide();
-				$(dealMb).html(`${data.coll[i].SOURCENAME}`);
+				// 若是許願池的訂單且提出訂單者不是自己，則不可以看到結單訊息、結單按鈕，可以看到等待訊息，交易對象放SOURCENAME
+				$(dealMsgId).hide();
+				$(dealBtId).hide();
+				$(dealMbId).html(`${data.coll[i].SOURCENAME}` + "(贈送者)");
+				$(dealMbId).closest('.dealEach').css("background", "rgba(255, 151, 151, 0.12)");
 			}
 			
-			// 若是送愛心的訂單且提出訂單者為自己，則看不到結單按鈕，交易對象放SOURCENAME
 			if(`${data.coll[i].GOODSSTATUS}` == "2" && `${data.coll[i].ENDID}` == indid){
-				$('.aDealMsg').hide();
-				$(dealMbName).html(`${data.coll[i].SOURCENAME}`);
-			} else if(`v{data.coll[i].GOODSSTATUS}` == "2" && `${data.coll[i].SOURCEID}` == indid) {
-				$('.waitText').hide();
-				$(dealMbName).html(`${data.coll[i].ENDNAME}`);
+				// 若是送愛心的訂單且提出訂單者為自己，則不可以看到結單訊息、結單按鈕，可以看到等待訊息，交易對象放SOURCENAME
+				$(dealMsgId).hide();
+				$(dealBtId).hide();
+				$(dealMbId).html(`${data.coll[i].SOURCENAME}` + "(贈送者)");
+				$(dealMbId).closest('.dealEach').css("background", "#f7e3cf");
+			} else if(`${data.coll[i].GOODSSTATUS}` == "2" && `${data.coll[i].SOURCEID}` == indid) {
+				// 若是送愛心的訂單且提出訂單者不是自己，則可以看到結單訊息、結單按鈕，不可以看到等待訊息，交易對象放SOURCENAME
+				$(waitMsgId).hide();
+				$(dealMbId).html(`${data.coll[i].ENDNAME}` + "(索取者)");
+				$(btDealMsgId).attr("value", `${data.coll[i].ENDID}`);
+				$(dealMbId).closest('.dealEach').css("background", "#f7e3cf");
 			}
 		}
 	}
@@ -320,10 +318,10 @@ function showStatus1Date(data, path){
 }
 
 
-// 點擊結單的傳送訊息
+// 點擊結單
 function sendDealMsg(e){
 	var dealMsgEndId = e.val();
-	var dealMsgText = e.closest('.modal-content').find('.dealMsgText').val();
+	var dealMsgText = e.closest('.dealConfirm').find('.dealMsgText').val();
 	var dealMsgServletPath = javaRoot + '/web/_06_MSG/controller/AddNewMSG';
 
 	// post傳資料(JSON格式)
@@ -338,40 +336,38 @@ function sendDealMsg(e){
 		data: dealMsgDataString,
 		dataType: 'json',
 		success: function(response){
-			console.log(response);
-			// 出現錯誤訊息
+			// 回應訊息
 			if(response.Ans == "TRUE"){
-				// 交易訂單送出(1 to 2)
+				// 成功傳到資料庫，交易訂單送出(1 to 2)
 				var dealNo = e.attr("name");
 				var dealSubmitServletPath = javaRoot + '/web/_05_deal/controller/SubmitByKey?key=' + dealNo;
-				console.log(dealSubmitServletPath);
+
 				$.ajax({
 					type: 'post',
 					url: dealSubmitServletPath,
 					data: "",
 					dataType: 'json',
 					success: function(response){
-						// 出現錯誤訊息
+						// 回應訊息
 						if(response.Ans == "TRUE"){
-							// 此筆訂單隱藏  
+							// 成功傳到資料庫，此筆訂單隱藏  
 							alert("訊息已送出");
-							e.closest('.modal').modal('hide');
 							e.closest('.dealEach').closest('.row').hide();
 						} else {
 							alert("發生了一點錯誤，請重新進入此頁面後再點選結單按鈕，謝謝!");
 						}
 					},
 					error: function(response){
-						// 出現錯誤訊息
+						// 出現錯誤訊息(無法送到server)
 						alert("發生了一點錯誤，請重新進入此頁面，謝謝!");
 					}
 				});
 			} else {
-				alert("發生了一點錯誤，請重新發送訊息，謝謝!");
+				alert("發生了一點錯誤，請重新進入此頁面後再點選結單按鈕，謝謝!");
 			}
 		},
 		error: function(response){
-			// 出現錯誤訊息
+			// 出現錯誤訊息(無法送到server)
 			alert("發生了一點錯誤，請重新進入此頁面，謝謝!");
 		}
 	});
@@ -383,7 +379,7 @@ function showStatus2Date(data, path){
 	var javaRoot = path;
 	var result_Status2;
 	
-	// 錯誤訊息
+	// 若無資料
 	if(data.Ans == "FALSE"){
 		$('#dealContent').empty();
 		result_Status2 = 
@@ -400,7 +396,7 @@ function showStatus2Date(data, path){
 	// 計算是否有資料
 	var dataNum = 0;
 	
-	// 產生物資箱資料
+	// 產生已完成的訂單資料
 	for(var i = 0; i < data.coll.length; i++){
 		dataNum++;
 		if(data.coll[i].DEALSTATUS == "2"){
@@ -410,14 +406,14 @@ function showStatus2Date(data, path){
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="dealEach">
 							<div class="row">
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealInfo">
 										<ul type="none">
 											<li>日期：
 												<span>` + postDate.toLocaleDateString() + `</span>
 											</li>
 											<li>對象：
-												<span class="dealMb` + i +`"></span>
+												<span id="dealMb` + i +`"></span>
 											</li>
 											<li>品名：
 												<span>${data.coll[i].GOODSNAME}</span>
@@ -425,12 +421,14 @@ function showStatus2Date(data, path){
 										</ul>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealImageLayout">
-										<img src="${javaRoot}/_00_init/getImage?id=${data.coll[i].dealno}&type=DEAL" class="img-responsive dealImage">
+										<a href="${javaRoot}/_00_init/getImage?id=${data.coll[i].DEALNO}&type=DEAL" data-lightbox="image${data.coll[i].DEALNO}">
+											<img src="${javaRoot}/_00_init/getImage?id=${data.coll[i].DEALNO}&type=DEAL" class="img-responsive dealImage">
+										</a>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealOtherInfo">
 										<ul type="none">
 											<li>配送方式：
@@ -442,19 +440,19 @@ function showStatus2Date(data, path){
 										</ul>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealConfirm">
 										<ul type="none">
-											<li class="liFeedbackStatus">
-												<span class="feedbackStatus">尚未收到評價</span>
+											<li id="liFeedbackStatus` + i + `" class="liFeedbackStatus">
+												<span id="getFeedbackStatus` + i + `" class="feedbackStatus">尚未收到評價</span>
 											</li>
-											<li class="liGiveScore">評分(1~10分)
+											<li id="liGiveScore` + i + `" class="liGiveScore">評分(1~10分)
 												<input type="number" class="form-control giveScore" min="1" max="10" step="1" required="required">
 											</li>
-											<li class="liGiveFeedback">評語
-												<textarea class="form-control giveFeedback" rows="5" maxlength="200" placeholder="評語最多200字"></textarea>
+											<li id="liGiveFeedback` + i + `" class="liGiveFeedback">評語
+												<textarea class="form-control giveFeedback" rows="3" maxlength="200" placeholder="評語最多200字"></textarea>
 											</li>
-											<li class="liBtGiveFeedback">
+											<li id="liBtGiveFeedback` + i + `" class="liBtGiveFeedback">
 												<button id="btGiveFeedback` + i +`" value=${data.coll[i].DEALNO} class="btn btn-default btGiveFeedbackClass">送出評價</button>
 											</li>
 										</ul>
@@ -466,35 +464,83 @@ function showStatus2Date(data, path){
 				</div>`;
 			$('#dealContent').append(result_Status2);
 			// 顯示交易對象姓名
-			var dealMbName = ".dealMb" + i;
-//			if(`${data.coll[i].ENDID}` == indid){
-//				$(dealMbName).html(`${data.coll[i].SOURCENAME}`);
-//			}else {
-//				$(dealMbName).html(`${data.coll[i].ENDNAME}`);
-//			}
+			var dealMbId = "#dealMb" + i;
+			// 評價狀態li
+			var liFeedbackStatusId = "#liFeedbackStatus" + i;
+			// 給評分li
+			var liGiveScoreId = "#liGiveScore" + i;
+			// 給評語li
+			var liGiveFeedbackId = "#liGiveFeedback" + i;
+			// 送出評價li
+			var liBtGiveFeedbackId = "#liBtGiveFeedback" + i;
+			// 顯示已獲得/已送出的評價
+			var getFeedbackStatusId = "#getFeedbackStatus" + i;
+			// 送出評價name值
+			var btGiveFeedbackId = "#btGiveFeedback" + i;
 			
-			// 若是許願池的訂單且提出訂單者為自己，則無法給評價，交易對象放ENDNAME
+			
+			
 			if(`${data.coll[i].GOODSSTATUS}` == "1" && `${data.coll[i].SOURCEID}` == indid){
-				$('.liGiveScore').hide();
-				$('.liGiveFeedback').hide();
-				$('.liBtGiveFeedback').hide();
-				$(dealMbName).html(`${data.coll[i].ENDNAME}`);
+				// 若是許願池的訂單且提出訂單者為自己，則無法給評價，交易對象放ENDNAME
+				$(liGiveScoreId).hide();
+				$(liGiveFeedbackId).hide();
+				$(liBtGiveFeedbackId).hide();
+				$(dealMbId).html(`${data.coll[i].ENDNAME}` + "(募集者)");
+				$(dealMbId).closest('.dealEach').css("background", "rgba(255, 151, 151, 0.12)");
+				
+				// 如果已獲得評價，則顯示評價內容
+				if(`${data.coll[i].FEEDBACKANS}` == "TRUE"){
+					var fbAll = "得到評價：" + `${data.coll[i].fb.FBSCORE}` + "分<br>" + "評語：" + `${data.coll[i].fb.FBTEXT}`;
+					$(getFeedbackStatusId).html(fbAll);
+				}
 			} else if(`${data.coll[i].GOODSSTATUS}` == "1" && `${data.coll[i].ENDID}` == indid) {
-				$('.liFeedbackStatus').hide();
-				$(dealMbName).html(`${data.coll[i].SOURCENAME}`);
-				$(btGiveFeedbackClass).attr("name", `${data.coll[i].SOURCEID}`);
+				// 若是許願池的訂單且提出訂單者不是自己，則可以給評價，交易對象放SOURCENAME
+				$(dealMbId).html(`${data.coll[i].SOURCENAME}` + "(贈送者)");
+				$(liFeedbackStatusId).hide();
+				$(btGiveFeedbackId).attr("name", `${data.coll[i].SOURCEID}`);
+				$(dealMbId).closest('.dealEach').css("background", "rgba(255, 151, 151, 0.12)");
+				
+				// 如果已給過評價，則顯示評價內容，且不能再給評價
+				if(`${data.coll[i].FEEDBACKANS}` == "TRUE"){
+					var fbAll = "已給評價：" + `${data.coll[i].fb.FBSCORE}` + "分<br>" + "評語：" + `${data.coll[i].fb.FBTEXT}`;
+					$(getFeedbackStatusId).html(fbAll);
+					$(liFeedbackStatusId).show();
+					$(liGiveScoreId).hide();
+					$(liGiveFeedbackId).hide();
+					$(liBtGiveFeedbackId).hide();
+				}
 			}
 			
-			// 若是送愛心的訂單且提出訂單者為自己，則看不到接受訂單按鈕，交易對象放SOURCENAME
+			
 			if(`${data.coll[i].GOODSSTATUS}` == "2" && `${data.coll[i].ENDID}` == indid){
-				$('.liFeedbackStatus').hide();
-				$(dealMbName).html(`${data.coll[i].SOURCENAME}`);
-				$(btGiveFeedbackClass).attr("name", `${data.coll[i].SOURCEID}`);
+				// 若是送愛心的訂單且提出訂單者為自己，則可以給評價，交易對象放SOURCENAME
+				$(liFeedbackStatusId).hide();
+				$(dealMbId).html(`${data.coll[i].SOURCENAME}` + "(贈送者)");
+				$(btGiveFeedbackId).attr("name", `${data.coll[i].SOURCEID}`);
+				$(dealMbId).closest('.dealEach').css("background", "#f7e3cf");
+				
+				// 如果已給過評價，則顯示評價內容
+				if(`${data.coll[i].FEEDBACKANS}` == "TRUE"){
+					var fbAll = "已給評價：" + `${data.coll[i].fb.FBSCORE}` + "分<br>" + "評語：" + `${data.coll[i].fb.FBTEXT}`;
+					$(getFeedbackStatusId).html(fbAll);
+					$(liFeedbackStatusId).show();
+					$(liGiveScoreId).hide();
+					$(liGiveFeedbackId).hide();
+					$(liBtGiveFeedbackId).hide();
+				}
 			} else if(`${data.coll[i].GOODSSTATUS}` == "2" && `${data.coll[i].SOURCEID}` == indid) {
-				$('.liGiveScore').hide();
-				$('.liGiveFeedback').hide();
-				$('.liBtGiveFeedback').hide();
-				$(dealMbName).html(`${data.coll[i].ENDNAME}`);
+				// 若是送愛心的訂單且提出訂單者不是自己，則無法給評價，交易對象放SOURCENAME
+				$(liGiveScoreId).hide();
+				$(liGiveFeedbackId).hide();
+				$(liBtGiveFeedbackId).hide();
+				$(dealMbId).html(`${data.coll[i].ENDNAME}` + "(索取者)");
+				$(dealMbId).closest('.dealEach').css("background", "#f7e3cf");
+				
+				// 如果已獲得評價，則顯示評價內容
+				if(`${data.coll[i].FEEDBACKANS}` == "TRUE"){
+					var fbAll = "得到評價：" + `${data.coll[i].fb.FBSCORE}` + "分<br>" + "評語：" + `${data.coll[i].fb.FBTEXT}`;
+					$(getFeedbackStatusId).html(fbAll);
+				}
 			}
 		}
 	}
@@ -520,7 +566,7 @@ function sendFeedback(e){
 	var sendFeedbackServletPath = javaRoot + '/web/_07_Feedback/controller/InsertFeedback?';
 	var dataFeedbackString = "dealno=" + dealNo + "&fbendid=" + fbEndId + "&fbscore=" + fbScore + "&fbtext=" + fbText;
 
-	var fbAll = "已給評價：" + fbScore + "分\n" + "評語：" + fbText;
+	var fbAll = "已給評價：" + fbScore + "分<br>" + "評語：" + fbText;
 		
 	$.ajax({
 		type: 'post',
@@ -529,12 +575,14 @@ function sendFeedback(e){
 		dataType: 'json',
 		success: function(response){
 			console.log(response);
-			// 出現錯誤訊息
+			// 回應訊息
 			if(response.Ans == "TRUE"){
+				// 成功傳到資料庫，顯示評價內容
 				e.closest('.dealConfirm').find('.liGiveScore').hide();
 				e.closest('.dealConfirm').find('.liGiveFeedback').hide();
 				e.closest('.dealConfirm').find('.liBtGiveFeedback').hide();
-				e.closest('.dealConfirm').find('.feedbackStatus').html(fbAll).show();
+				e.closest('.dealConfirm').find('.liFeedbackStatus').show();
+				e.closest('.dealConfirm').find('.feedbackStatus').html(fbAll);
 			} else {
 				alert("發生了一點錯誤，請重新發送評價，謝謝!");
 			}
@@ -546,12 +594,13 @@ function sendFeedback(e){
 	});
 }
 
+
 // 產生已取消的訂單
 function showStatus3Date(data, path){
 	var javaRoot = path;
 	var result_Status3;
 	
-	// 錯誤訊息
+	// 若無資料
 	if(data.Ans == "FALSE"){
 		$('#dealContent').empty();
 		result_Status3 = 
@@ -568,7 +617,7 @@ function showStatus3Date(data, path){
 	// 計算是否有資料
 	var dataNum = 0;
 	
-	// 產生物資箱資料
+	// 產生已取消的訂單資料
 	for(var i = 0; i < data.coll.length; i++){
 		dataNum++;
 		if(data.coll[i].DEALSTATUS == "3"){
@@ -578,14 +627,14 @@ function showStatus3Date(data, path){
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="dealEach">
 							<div class="row">
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealInfo">
 										<ul type="none">
 											<li>日期：
 												<span>` + postDate.toLocaleDateString() + `</span>
 											</li>
 											<li>對象：
-												<span class="dealMb` + i +`"></span>
+												<span id="dealMb` + i +`"></span>
 											</li>
 											<li>品名：
 												<span>${data.coll[i].GOODSNAME}</span>
@@ -593,12 +642,14 @@ function showStatus3Date(data, path){
 										</ul>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealImageLayout">
-										<img src="${javaRoot}/_00_init/getImage?id=${data.coll[i].dealno}&type=DEAL" class="img-responsive dealImage">
+										<a href="${javaRoot}/_00_init/getImage?id=${data.coll[i].DEALNO}&type=DEAL" data-lightbox="image${data.coll[i].DEALNO}">
+											<img src="${javaRoot}/_00_init/getImage?id=${data.coll[i].DEALNO}&type=DEAL" class="img-responsive dealImage">
+										</a>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealOtherInfo">
 										<ul type="none">
 											<li>配送方式：
@@ -610,7 +661,7 @@ function showStatus3Date(data, path){
 										</ul>
 									</div>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 									<div class="dealConfirm">
 										<ul type="none">
 											<li>
@@ -624,13 +675,30 @@ function showStatus3Date(data, path){
 					</div>								
 				</div>`;
 			$('#dealContent').append(result_Status3);
+			
 			// 顯示交易對象姓名
-			var dealMbName = ".dealMb" + i;
-			if(`${data.coll[i].ENDID}` == indid){
-				$(dealMbName).html(`${data.coll[i].SOURCENAME}`);
-			}else {
-				$(dealMbName).html(`${data.coll[i].ENDNAME}`);
+			var dealMbId = "#dealMb" + i;
+			
+			if(`${data.coll[i].GOODSSTATUS}` == "1" && `${data.coll[i].SOURCEID}` == indid){
+				// 若是許願池的訂單且提出訂單者為自己，則交易對象放ENDNAME
+				$(dealMbId).html(`${data.coll[i].ENDNAME}` + "(募集者)");
+				$(dealMbId).closest('.dealEach').css("background", "rgba(255, 151, 151, 0.12)");
+			} else if(`${data.coll[i].GOODSSTATUS}` == "1" && `${data.coll[i].ENDID}` == indid) {
+				// 若是許願池的訂單且提出訂單者不是自己，則交易對象放SOURCENAME
+				$(dealMbId).html(`${data.coll[i].SOURCENAME}` + "(贈送者)");
+				$(dealMbId).closest('.dealEach').css("background", "rgba(255, 151, 151, 0.12)");
 			}
+			
+			if(`${data.coll[i].GOODSSTATUS}` == "2" && `${data.coll[i].ENDID}` == indid){
+				// 若是送愛心的訂單且提出訂單者為自己，則交易對象放SOURCENAME
+				$(dealMbId).html(`${data.coll[i].SOURCENAME}` + "(贈送者)");
+				$(dealMbId).closest('.dealEach').css("background", "#f7e3cf");
+			} else if(`${data.coll[i].GOODSSTATUS}` == "2" && `${data.coll[i].SOURCEID}` == indid) {
+				// 若是送愛心的訂單且提出訂單者不是自己，則交易對象放ENDNAME
+				$(dealMbId).html(`${data.coll[i].ENDNAME}` + "(索取者)");
+				$(dealMbId).closest('.dealEach').css("background", "#f7e3cf");
+			}
+			
 		}
 	}
 	// 若無符合的資料

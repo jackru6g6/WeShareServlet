@@ -1,87 +1,94 @@
 @charset "UTF-8";
 /* 頁面內容title */
-	#member_feedback_content_title{
-		background-color: #007AFF;
-		color: #FFFFFF;
-	}
-	/* 頁面內容body */
-	#member_feedback_content_body{
-		border: solid #007AFF 1px;
-	}
-		/* 我的評價排序底色 */
-		#feedback_priority_button{
-			background-color: #A3DAFF;
-			color: #0000A1;
-			font-size: 16px;
-			letter-spacing: 2px;
-			margin: 30px auto 10px auto;
-			padding: 5px;
-		}
-		/* 我的評價查詢*/
-		#feedback_search_bar{
-			margin: 30px auto 10px auto;
-		}
-			#feedback_search_bar_input{
-				margin: 0px;
-				padding: 9px;
-			}
-		#feedback_search_button{
-			background-color: #A3DAFF;
-			color: #0000A1;
-			font-size: 16px;
-			letter-spacing: 2px;
-			padding: 4.5px;
-			margin: 0px;
-		}
+#member_feedback_content_title {
+  background-color: #007AFF;
+  color: #ffffff; }
 
-
-/* 訂單狀態選項 */
-#btStatusAll {
-  margin: 20px; }
-  #btStatusAll .btStatusStyle {
-    width: 100%;
-    font-size: 20px;
-    text-align: center; }
-
-/* 訂單區塊 */
-#dealContent {
-  margin-top: 20px;
-  margin-bottom: 25px;
-  font-size: 18px;
-  /* 每筆訂單 */ }
-  #dealContent > div:last-child .dealEach {
-    border-bottom: 2px dashed #1EC0FF; }
-  #dealContent .dealEach {
-    padding: 10px;
-    border: 2px dashed #1EC0FF;
-    border-bottom: 0px;
-    /* 訂單資訊 */
-    /* 訂單快照 */
-    /* 訂單其他資訊 */
-    /* 訂單確認 */ }
-    #dealContent .dealEach .dealInfo li {
-      margin-top: 3px;
-      margin-bottom: 3px; }
-      #dealContent .dealEach .dealInfo li span {
-        margin-left: 5px; }
-    #dealContent .dealEach .dealImageLayout {
-      position: relative;
-      overflow: hidden;
-      padding-bottom: 100%; }
-      #dealContent .dealEach .dealImageLayout .dealImage {
-        position: absolute;
-        width: 100%;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%); }
-    #dealContent .dealEach .dealOtherInfo li {
-      margin-top: 3px;
-      margin-bottom: 3px; }
-      #dealContent .dealEach .dealOtherInfo li span {
-        margin-left: 5px; }
-    #dealContent .dealEach .dealConfirm li {
-      margin-top: 10px;
-      margin-bottom: 10px;
+/* 頁面內容body */
+#member_feedback_content_body {
+  border: 1px solid #007AFF;
+  /* 訂單排序 */
+  /* 查詢 */
+  /* 訂單狀態選項 */
+  /* 訂單區塊 */ }
+  #member_feedback_content_body #feedback_priority_button {
+    background-color: #A3DAFF;
+    color: #0000A1;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin: 30px auto 10px auto;
+    padding: 5px; }
+  #member_feedback_content_body .dropdown ul {
+    width: 100%; }
+    #member_feedback_content_body .dropdown ul li {
+      font-size: 18px;
       text-align: center; }
-      #dealContent .dealEach .dealConfirm li button, #dealContent .dealEach .dealConfirm li a {
-        font-size: 18px; }
+  #member_feedback_content_body #feedback_search_bar {
+    margin: 30px auto 10px auto; }
+    #member_feedback_content_body #feedback_search_bar #feedback_search_bar_input {
+      margin: 0px;
+      padding: 9px; }
+    #member_feedback_content_body #feedback_search_bar #feedback_search_button {
+      background-color: #A3DAFF;
+      color: #0000A1;
+      font-size: 16px;
+      letter-spacing: 2px;
+      padding: 4.5px;
+      margin: 0px; }
+  #member_feedback_content_body #btStatusAll {
+    margin: 20px; }
+    #member_feedback_content_body #btStatusAll .btStatusStyle {
+      width: 100%;
+      font-size: 20px;
+      text-align: center;
+      background: #A3DAFF;
+      color: #0000A1;
+      border-color: #1EC0FF;
+      transition: 0.5s; }
+      #member_feedback_content_body #btStatusAll .btStatusStyle:hover {
+        box-shadow: inset 100px 0 0 0 #007AFF, inset -100px 0 0 0 #007AFF;
+        color: #ffffff;
+        transition: 0.5s; }
+  #member_feedback_content_body #dealContent {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    font-size: 18px;
+    /* 每筆訂單 */ }
+    #member_feedback_content_body #dealContent > div:last-child .dealEach {
+      border-bottom: 2px dashed #1EC0FF; }
+    #member_feedback_content_body #dealContent .dealEach {
+      padding: 10px;
+      border: 2px dashed #1EC0FF;
+      border-bottom: 0px;
+      word-break: break-all;
+      /* 訂單資訊 */
+      /* 訂單快照 */
+      /* 訂單其他資訊 */
+      /* 訂單確認 */ }
+      #member_feedback_content_body #dealContent .dealEach .dealInfo li {
+        margin-top: 3px;
+        margin-bottom: 3px; }
+        #member_feedback_content_body #dealContent .dealEach .dealInfo li span {
+          margin-left: 5px; }
+      #member_feedback_content_body #dealContent .dealEach .dealImageLayout {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 100%; }
+        #member_feedback_content_body #dealContent .dealEach .dealImageLayout .dealImage {
+          position: absolute;
+          width: 100%;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%); }
+      #member_feedback_content_body #dealContent .dealEach .dealOtherInfo li {
+        margin-top: 3px;
+        margin-bottom: 3px; }
+        #member_feedback_content_body #dealContent .dealEach .dealOtherInfo li span {
+          margin-left: 5px; }
+      #member_feedback_content_body #dealContent .dealEach .dealConfirm li {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: center; }
+        #member_feedback_content_body #dealContent .dealEach .dealConfirm li button,
+        #member_feedback_content_body #dealContent .dealEach .dealConfirm li a {
+          font-size: 18px; }

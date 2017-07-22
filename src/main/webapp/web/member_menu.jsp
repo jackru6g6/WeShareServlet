@@ -24,6 +24,8 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/member_message.css">
 <!-- member_feedback.css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/member_feedback.css">
+<!-- lightbox.css -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/lightbox.css">
 
 <jsp:include page="../fragment/refJs.jsp" />
 
@@ -453,6 +455,7 @@
 	<!-- 相關的js檔 -->
 	<script src="${pageContext.request.contextPath}/dist/js/member_menu.js"></script>
 	<script src="${pageContext.request.contextPath}/dist/js/member_feedback.js"></script>
+	<script src="${pageContext.request.contextPath}/dist/js/lightbox.js"></script>
 	
 	<script type="text/javascript">
 	var javaRoot = "${pageContext.servletContext.contextPath}";
@@ -644,15 +647,15 @@
 		var xhrDealData = new XMLHttpRequest();
 		var servletPath = javaRoot + '/web/_05_deal/controller/FindDEALByKey';
 		var responseDealData;
-	
-		xhrDealData.open('GET', servletPath, true);
-		xhrDealData.send();
-		xhrDealData.onreadystatechange = function(){
-			if(xhrDealData.status == 200 && xhrDealData.readyState == 4){
-				responseDealData = JSON.parse(xhrDealData.responseText);
-
-				// 點等待回應中
-				$('#btStatus0').click(function(){
+		
+		// 點等待回應
+		$('#btStatus0').click(function(){
+			xhrDealData.open('GET', servletPath, true);
+			xhrDealData.send();
+			xhrDealData.onreadystatechange = function(){
+				if(xhrDealData.status == 200 && xhrDealData.readyState == 4){
+					responseDealData = JSON.parse(xhrDealData.responseText);
+					// 產生等待回應的訂單
 					showStatus0Date(responseDealData, javaRoot);
 					// 點接受交易
 					$('.btAgree').click(function(){
@@ -662,34 +665,58 @@
 					$('.btCancel').click(function(){
 						dealCancel($(this));
 					});
-				});
-				
-				// 點已接受
-				$('#btStatus1').click(function(){
+				}
+			}
+		});
+		
+		// 點已接受
+		$('#btStatus1').click(function(){
+			xhrDealData.open('GET', servletPath, true);
+			xhrDealData.send();
+			xhrDealData.onreadystatechange = function(){
+				if(xhrDealData.status == 200 && xhrDealData.readyState == 4){
+					responseDealData = JSON.parse(xhrDealData.responseText);
+					// 產生已接受的訂單
 					showStatus1Date(responseDealData, javaRoot);
-					// 點結單的傳送訊息
-					$('.btSendDealMsgClass').click(function(){
+					// 點結單
+					$('.btDealMsg').click(function(){
 						sendDealMsg($(this));
 					});
-				});
-				
-				// 點已完成
-				$('#btStatus2').click(function(){
+				}
+			}
+		});
+		
+		// 點已完成
+		$('#btStatus2').click(function(){
+			xhrDealData.open('GET', servletPath, true);
+			xhrDealData.send();
+			xhrDealData.onreadystatechange = function(){
+				if(xhrDealData.status == 200 && xhrDealData.readyState == 4){
+					responseDealData = JSON.parse(xhrDealData.responseText);
+					// 產生已完成的訂單
 					showStatus2Date(responseDealData, javaRoot);
 					// 點送出評價
 					$('.btGiveFeedbackClass').click(function(){
 						sendFeedback($(this));
 					});
-				});
-				
-				// 點已取消
-				$('#btStatus3').click(function(){
-					showStatus3Date(responseDealData, javaRoot);
-				});
-				
+				}
 			}
-		}
+		});
+		
+		// 點已取消
+		$('#btStatus3').click(function(){
+			xhrDealData.open('GET', servletPath, true);
+			xhrDealData.send();
+			xhrDealData.onreadystatechange = function(){
+				if(xhrDealData.status == 200 && xhrDealData.readyState == 4){
+					responseDealData = JSON.parse(xhrDealData.responseText);
+					// 產生已取消的訂單
+					showStatus3Date(responseDealData, javaRoot);
+				}
+			}
+		});
 	});
+	
 	</script>
 
 </body>
