@@ -1,5 +1,7 @@
 package web._04_productMaintain.controller;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -7,6 +9,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,6 +27,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import web._00_init.GlobalService;
 import web._01_register.model.MemberBean;
@@ -69,14 +73,57 @@ public class GoodsInsertServlet extends HttpServlet {
 			jfb.setMessage("Session Not Found");
 		}
 		Gson gson = new Gson();
-		String goodsstatus = request.getParameter("goodsstatus");
-		String goodstype = request.getParameter("goodstype");
-		String goodsname = request.getParameter("goodsname");
-		String goodsloc = request.getParameter("goodsloc");
-		String goodsnote = request.getParameter("goodsnote");
-		String qty = request.getParameter("qty");
-		String goodsshipway = request.getParameter("goodsshipway");
-		String deadline = request.getParameter("deadline");
+		String goodsstatus = null;
+		String goodstype = null;
+		String goodsname = null;
+		String goodsloc = null;
+		String goodsnote = null;
+		String qty = null;
+		String goodsshipway = null;
+		String deadline = null;
+		boolean Insert_IMG = true;
+		byte[] image = null;
+
+		if (Ans.equals("TRUE")) {
+			try (BufferedReader br = request.getReader();) {
+				StringBuffer jsonIn = new StringBuffer();
+				String line = "";
+				while ((line = br.readLine()) != null) {
+					jsonIn.append(line);
+				}
+				System.out.println("JSON size=" + jsonIn.length());
+				JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
+				goodsstatus = jsonObject.get("goodsstatus").getAsString();
+				goodstype = jsonObject.get("goodstype").getAsString();
+				goodsname = jsonObject.get("goodsname").getAsString();
+				goodsloc = jsonObject.get("goodsloc").getAsString();
+				goodsnote = jsonObject.get("goodsnote").getAsString();
+				qty = jsonObject.get("qty").getAsString();
+				goodsstatus = jsonObject.get("goodsstatus").getAsString();
+				goodstype = jsonObject.get("goodstype").getAsString();
+				goodsshipway = jsonObject.get("goodsshipway").getAsString();
+				deadline = jsonObject.get("deadline").getAsString();
+				try {
+					String MSGIMAGE = jsonObject.get("MSGIMAGE").getAsString();
+					image = Base64.getMimeDecoder().decode(MSGIMAGE.split(",")[1]);
+				} catch (Exception e) {
+					Insert_IMG = false;
+				}
+
+			} catch (Exception e1) {
+				Ans = "FALSE";
+				jfb.setMessage("Json Decode ERROR");
+				e1.printStackTrace();
+			}
+		}
+		// String goodsstatus = request.getParameter("goodsstatus");
+		// String goodstype = request.getParameter("goodstype");
+		// String goodsname = request.getParameter("goodsname");
+		// String goodsloc = request.getParameter("goodsloc");
+		// String goodsnote = request.getParameter("goodsnote");
+		// String qty = request.getParameter("qty");
+		// String goodsshipway = request.getParameter("goodsshipway");
+		// String deadline = request.getParameter("deadline");
 		// System.out.println("goodsstatus=" + goodsstatus);
 		// System.out.println("goodstype=" + goodstype);
 		// System.out.println("goodsname=" + goodsname);
@@ -138,10 +185,16 @@ public class GoodsInsertServlet extends HttpServlet {
 		if (Ans.equals("TRUE")) {
 
 			try {
-				GoodsBean gb = new GoodsBean(0, Integer.parseInt(goodsstatus), INDID,
-						Integer.parseInt(goodstype), goodsname, Integer.parseInt(goodsloc), goodsnote,
-						Integer.parseInt(qty), Integer.parseInt(goodsshipway), deadlineLong);
-				int n = new GoodsServiceDAO_JDBC().insertGoods(gb, null, 0L, null);
+				int n = 0;
+				GoodsBean gb = new GoodsBean(0, Integer.parseInt(goodsstatus), INDID, Integer.parseInt(goodstype),
+						goodsname, Integer.parseInt(goodsloc), goodsnote, Integer.parseInt(qty),
+						Integer.parseInt(goodsshipway), deadlineLong);
+				if (Insert_IMG) {
+					n = new GoodsServiceDAO_JDBC().insertGoods(gb, new ByteArrayInputStream(image), image.length,
+							String.valueOf(new Date().getTime()));
+				} else {
+					n = new GoodsServiceDAO_JDBC().insertGoods(gb, null, 0L, null);
+				}
 				if (n != 1) {
 					Ans = "FALSE";
 					jfb.setMessage("SQL ERROR");
