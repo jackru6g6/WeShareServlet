@@ -1,0 +1,281 @@
+$sectionGiveBg: rgba(247, 227, 207, 1);
+$sectionOverlayColor: rgba(255, 255, 255, 0.9);
+$sectionTitleColor: #666666;
+$byBg: #ffb8b8;
+$classBg: #feb36b;
+$locBg: #b25cc1;
+$giveGoods: #f8f7f7;
+$giveGoodsByText: #543939;
+$giveGoodsByAuthor: #01B468;
+$giveGoodsNameText: #888888;
+$sectionFilter: #f9e8d7;
+$iconFilter:#ef7b00;
+$giveGoodsDesc:#337ab7;
+#sectionGive {
+	padding-top: 30px;
+	font-size: 18px;
+	min-height: calc(100vh - 306px);
+	background-color: $sectionGiveBg;
+	/* 左邊條件篩選區 */
+	#sectionFilter {
+		position: fixed;
+		padding-top: 10px;
+		background-color: $sectionFilter;
+		transition: left 0.4s ease-in-out;
+		/* Bootstrap3 fix z-index: 1030; */
+		z-index: 1031;
+		/* xs */
+		top: 80px;
+		left: -66.66666667%;
+		height: calc(100vh - 80px);
+		/* sm */
+		@media screen and (min-width: 768px) {
+			top: 160px;
+			left: -41.66666667%;
+			height: calc(100vh - 160px);
+		}
+		/* md */
+		@media screen and (min-width: 992px) {
+			top: 80px;
+			left: -33.33333333%;
+			height: calc(100vh - 80px);
+		}
+		/* lg */
+		@media screen and (min-width: 1200px) {
+			top: 80px;
+			left: -25%;
+			height: calc(100vh - 80px);
+		}
+		#sectionFilterContent {
+			position: relative;
+			/* 捲軸 */
+			#contentScroll {
+				overflow-y: scroll;
+				height: calc(100vh - 90px);
+				@media screen and (min-width: 768px) and (max-width: 1023px) {
+					height: calc(100vh - 170px);
+				}
+			}
+			/* 搜尋 */
+			#blockKWSearch {
+				position: relative;
+				margin: 10px 0 10px 0;
+				/* 搜尋輸入框 */
+				#searchInput {
+					font-size: 18px;
+					width: 150px;
+					padding: 5px 5px 5px 40px;
+					transition: .5s;
+					&:focus {
+						width: 100%;
+						transition: .1s;
+					}
+				}
+				/* 搜尋鈕圖式 */
+				#btKWSearch {
+					position: absolute;
+					top: 13%;
+					left: 3%;
+					cursor: pointer;
+					margin-bottom: 10px;
+				}
+			}
+			/* 條件區塊樣式 */
+			.blockFilter {
+				/* 條件標題樣式 */
+				.btFilterTitle {
+					padding-left: 20px;
+					height: 60px;
+					font-size: 18px;
+					text-align: left;
+					border-radius: 0;
+					border-left: 15px solid;
+					&:hover,
+					&:focus,
+					&:active {
+						outline-color: rgba(255, 255, 255, 0);
+						box-shadow: inset 0 0px 0px rgba(255, 255, 255, 0);
+						background-color: #ffffff;
+					}
+				}
+				/* 條件選項樣式 */
+				.btFilterBlock>ul {
+					padding: 5px 5px 5px 20px;
+					margin-bottom: 0;
+					>li {
+						display: inline-block;
+						width: 44%;
+						margin: 5px;
+						/* 條件選項按鈕 */
+						.btnFilterType {
+							width: 100%;
+							font-size: 18px;
+							color: #f5f5f5;
+						}
+					}
+				}
+				/* 需求者身份標題及選項顏色 */
+				#btBy {
+					border-color: $byBg;
+				}
+				#blockBy {
+					background-color: lighten($byBg, 5%);
+					.btnFilterType {
+						background-color: darken($byBg, 5%);
+					}
+				}
+				/* 物資類別標題及選項顏色 */
+				#btClass {
+					border-color: $classBg;
+				}
+				#blockClass {
+					background-color: lighten($classBg, 10%);
+					.btnFilterType {
+						background-color: darken($classBg, 10%);
+					}
+				}
+				/* 物資需求地標題及選項顏色 */
+				#btLoc {
+					border-color: $locBg;
+				}
+				#blockLoc {
+					background-color: lighten($locBg, 10%);
+					.btnFilterType {
+						background-color: darken($locBg, 10%);
+					}
+				}
+			}
+			/* 收和按鈕 */
+			#slideMenuTrigger {
+				position: absolute;
+				top: 0;
+				right: -75px;
+				width: 60px;
+				height: 60px;
+				font-size: 30px;
+				background-color: $sectionFilter;
+				color: $iconFilter;
+			}
+		}
+	}
+	/* 左邊條件篩選區的收和設定 */
+	#sectionFilter.active {
+		left: 0;
+	}
+	/* 右邊物資區 */
+	#sectionGoods {
+		padding-left: 50px;
+		padding-right: 50px;
+		/* 物資區塊樣式 */
+		.giveGoods {
+			background-color: $giveGoods;
+			border-radius: 5px;
+			border: 1px solid rgba(0, 0, 0, 0.11);
+			margin-bottom: 20px;
+			opacity: 0;
+			.giveGoodsA {
+				position: relative;
+				display: block;
+				border-radius: 5px;
+				overflow: hidden;
+			}
+			/* 滑鼠移至物資 */
+			.giveGoodsA:hover {
+				.giveGoodsOverlay {
+					background-color: $sectionOverlayColor;
+					transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+					z-index: 3;
+					.giveGoodsOverlayText {
+						top: 40%;
+						transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+						@media screen and (min-width: 768px) and (max-width: 991px) {
+							top:25%;
+						}
+						.giveGoodsDesc {
+							margin-top: 30px;
+						}
+					}
+				}
+			}
+			/* 物資圖片樣式 */
+			.giveGoodsImgLayout {
+				position: relative;
+				overflow: hidden;
+				padding-bottom: 100%;
+				.giveGoodsImg {
+					position: absolute;
+					width: 100%;
+					top: 50%;
+					left: 50%;
+					transform: translateX(-50%) translateY(-50%);
+					z-index: 2;
+				}
+				.imgBackground {
+					position: absolute;
+					height: 100%;
+					width: 100%;
+					background: #ffffff;
+					z-index: 1;
+				}
+			}
+			.giveGoodsOverlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				padding: 10px;
+				opacity: 1;
+				border-radius: 5px;
+				transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+			}
+			/* 物資文字區塊 */
+			.giveGoodsOverlayText {
+				position: absolute;
+				top: 75%;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				color: $sectionTitleColor;
+				transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+				z-index: 4;
+				/* 文字間距 */
+				.giveGoodsContent {
+					letter-spacing: 2px;
+					margin-top: 5px;
+				}
+				/* 需求物資名稱 */
+				.giveGoodsName {
+					color: $giveGoodsNameText;
+					font-size: 22px;
+					padding-left: 10px;
+				}
+				/* 需求物資發佈者 */
+				.giveGoodsBy {
+					color: $giveGoodsByText;
+					font-size: 18px;
+					padding-left: 10px;
+					.giveGoodsByAuthor{
+						color: $giveGoodsByAuthor;
+					}
+				}
+				/* 需求物資描述 */
+				.giveGoodsDesc {
+					font-size: 18px;
+					margin-top: 100px;
+					padding: 10px;
+					text-align: center;
+					border: 2px solid $giveGoodsDesc;
+					color: $giveGoodsDesc;
+					transition: 0.5s;
+				}
+				/* 滑鼠移至需求物資描述 */
+				.giveGoodsDesc:hover {
+					box-shadow: inset 0 0 0 2em $giveGoodsDesc;
+					color: #ffffff;
+					transition: 0.5s;
+				}
+			}
+		}
+	}
+}

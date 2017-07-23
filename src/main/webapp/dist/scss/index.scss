@@ -1,0 +1,206 @@
+$bodyBg: #f8fbf9;
+
+$sectionWishColor: #ff9797;
+$sectionGiveColor: #ffaf5a;
+$sectionExchangeColor: #06c574;
+
+$sectionTitleColor: #FFFFFF;
+$sectionOverlayColor: rgba(0, 0, 0, 0.5);
+
+$itemColor: #f8f7f7;
+
+$itemNameText: #543939;
+$itemByAuthorText: #01B468;
+$itemByText: #888888;
+
+
+body {
+	background-color: $bodyBg;
+}
+
+
+/* sectionSlider設定 */
+
+#sectionSlider {
+	margin-top: 30px;
+}
+
+/* 幻燈片圖片尺寸 */
+
+.carousel-control.left {
+	background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .0001) 100%);
+	.glyphicon.glyphicon-chevron-left {
+		text-shadow: 2px 4px #46463d;
+	}
+}
+
+.carousel-control.right {
+	background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .0001) 100%);
+	.glyphicon.glyphicon-chevron-right {
+		text-shadow: -2px 4px #46463d;
+	}
+}
+
+
+/* 物資內容寬度 */
+@media screen and (min-width: 1500px) {
+	#sectionContent {
+		width: 1300px;
+	}
+}
+
+
+/* 標題背景色及文字樣式 */
+
+#wishTitle {
+	border: 1px solid darken($sectionWishColor, 10%);
+	background-color: lighten($sectionWishColor, 19%) ;
+	.titleLeft {
+		color: darken($sectionWishColor, 20%);
+	}
+	.titleRight {
+		color: $sectionWishColor;
+	}
+}
+
+#giveTitle {
+	border: 1px solid darken($sectionGiveColor, 10%);
+	background-color: lighten($sectionGiveColor, 25%);
+	.titleLeft {
+		color:  darken($sectionGiveColor, 20%);
+	}
+	.titleRight {
+		color: $sectionGiveColor;
+	}
+}
+
+#exchangeTitle {
+	border: 1px solid darken($sectionExchangeColor, 10%);
+	background-color: lighten($sectionExchangeColor, 57%);
+	.titleLeft {
+		color: darken($sectionExchangeColor, 20%);
+	}
+	.titleRight {
+		color: $sectionExchangeColor;
+	}
+}
+
+
+/* 物資清單樣式 */
+
+#wishContent,
+#giveContent,
+#exchangeContent {
+	margin-bottom: 100px;
+}
+
+
+/* 標題及文字樣式 */
+
+.sectionTitle {
+	margin: 60px 0 40px 0;
+	border-radius: 5px;
+	.titleLeft {
+		font-size: 23px;
+		line-height: 40px;
+		.titleLeftText {
+			padding-left: 15px;
+		}
+	}
+	.titleRight {
+		font-size: 19px;
+		line-height: 40px;
+	}
+}
+
+
+/* 滑鼠移至物資 */
+
+.itemA {
+	position: relative;
+	display: block;
+	padding-bottom: 100%;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.itemA:hover .itemOverlay {
+	opacity: 0.9;
+}
+
+.itemOverlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 30px;
+	opacity: 0;
+	border-radius: 5px;
+	background-color: $sectionOverlayColor;
+	transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+	color: $sectionTitleColor;
+	font-size: 24px;
+	z-index: 3;
+}
+
+
+/* 物資圖片樣式 */
+.itemImg {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	max-height: 100%;
+	z-index: 2;
+}
+
+/* 物資圖片背景 */
+.imgBackground {
+	position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+    z-index: 1;
+}
+
+/* 物資文字樣式 */
+
+.wishItem,
+.giveItem,
+.exchangeItem {
+	background-color: $itemColor;
+	border-radius: 5px;
+	border: 1px solid rgba(0, 0, 0, 0.11);
+	margin-bottom: 20px;
+	.itemContent {
+		letter-spacing: 2px;
+		padding-bottom: 15px;
+	}
+	.itemName {
+		font-size: 24px;
+		padding: 15px 15px 5px 15px;
+		a {
+			color: $itemNameText;
+		}
+	}
+	.itemBy {
+		font-size: 18px;
+		padding: 5px 15px 10px 15px;
+		a {
+			color: $itemByText;
+			>span>span {
+				font-size: 20px;
+				color: $itemByAuthorText;
+			}
+			h5 {
+				text-align:right;
+				span {
+					color: darken($itemByText, 100%);
+				}
+			}
+		}
+	}
+}

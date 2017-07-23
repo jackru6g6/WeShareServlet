@@ -18,13 +18,21 @@
       position: relative;
       overflow: hidden;
       padding-bottom: 100%;
-      margin: auto; }
+      margin: auto;
+      margin-top: 10px; }
       #sectionWTrans #wTransBlock #wTransImgLayout #wTransImg {
         position: absolute;
         width: 100%;
         top: 50%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%); }
+        transform: translateX(-50%) translateY(-50%);
+        z-index: 2; }
+      #sectionWTrans #wTransBlock #wTransImgLayout #imgBackground {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: #ffffff;
+        z-index: 1; }
     #sectionWTrans #wTransBlock #wTransInfo {
       margin-top: 40px;
       color: #3e3e3e;

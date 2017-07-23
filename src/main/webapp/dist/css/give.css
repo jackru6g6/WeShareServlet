@@ -145,7 +145,8 @@
         overflow: hidden; }
       #sectionGive #sectionGoods .giveGoods .giveGoodsA:hover .giveGoodsOverlay {
         background-color: rgba(255, 255, 255, 0.9);
-        transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); }
+        transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        z-index: 3; }
         #sectionGive #sectionGoods .giveGoods .giveGoodsA:hover .giveGoodsOverlay .giveGoodsOverlayText {
           top: 40%;
           transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); }
@@ -163,7 +164,14 @@
           width: 100%;
           top: 50%;
           left: 50%;
-          transform: translateX(-50%) translateY(-50%); }
+          transform: translateX(-50%) translateY(-50%);
+          z-index: 2; }
+        #sectionGive #sectionGoods .giveGoods .giveGoodsImgLayout .imgBackground {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          background: #ffffff;
+          z-index: 1; }
       #sectionGive #sectionGoods .giveGoods .giveGoodsOverlay {
         position: absolute;
         top: 0;
@@ -182,6 +190,7 @@
         height: 100%;
         color: #666666;
         transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+        z-index: 4;
         /* 文字間距 */
         /* 需求物資名稱 */
         /* 需求物資發佈者 */

@@ -1,0 +1,136 @@
+#sectionWGoods {
+	padding: 30px 45px;
+	min-height: calc(100vh - 306px);
+	font-size: 20px;
+	/*  物資圖片 */
+	#wGoodsImgLayout {
+		position: relative;
+		padding-bottom: 100%;
+		margin: 0 auto 40px;
+		animation-delay: .1s;
+		&::before, &::after {
+			z-index: -1;
+			position: absolute;
+			content: '';
+			bottom: 10px;
+			width: 50%;
+			top: 80%;
+			max-width: 100%;
+			background: #8d8c8c;
+			box-shadow: 0 15px 10px #8d8c8c;
+		}
+		&::before {
+			left: 10px;
+			transform: rotate(-5deg);
+		}
+		&::after {
+			right: 10px;
+			transform: rotate(5deg);
+		}
+		#imgMask {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			#wGoodsImg {
+				position: absolute;
+				width: 100%;
+				top: 50%;
+				left: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				z-index: 2;
+			}
+			#imgBackground {
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				background: #ffffff;
+				z-index: 1;
+			}
+		}
+	}
+	/* 捐贈&詢問按鈕 */
+	#blockWGoodsOption {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		animation-delay: .2s;
+		>ul {
+			margin: 0px;
+			padding: 20px;
+			>li {
+				display: inline-block;
+				&:first-child {
+					margin-bottom: 20px;
+				}
+				.wGoodsOption {
+					border-radius: 6px;
+					width: 100%;
+					font-size: 20px;
+					background-color: #fe5c5c;
+					color: #ffffff;
+					transition: 0.3s;
+					&:hover {
+						background-color: white;
+						color: #fe5c5c;
+						border-color: #ff9797;
+						box-shadow: 0px 15px 15px -10px #ff9797;
+						transform: translateY(-8px);
+						transition: 0.3s;
+					}
+				}
+			}
+		}
+	}
+	/* 留言詢問modal */
+	#sendMsg {
+		#msgText, button {
+			font-size: 18px;
+			margin: 5px;
+		}
+		#msgImg {
+			font-size: 16px;
+			margin: 5px;
+		}
+	}
+
+	/* 物資資訊 */
+	#wGoodsInfo {
+		color: #3e3e3e;
+		animation-delay: .3s;
+		/* 欄位 */
+		.wGoodsCol {
+			padding-left: 10px;
+			font-size: 22px;
+		}
+		/* 值 */
+		.wGoodsVal {
+			margin-bottom: 20px;
+			padding-left: 10px;
+			text-indent: 2em;
+			border-bottom: 1px solid #bdbdbd;
+			letter-spacing: 2px;
+		}
+	}
+	/* 詳細說明及簡介 */
+	#wGoodsOtherInfo {
+		color: #3e3e3e;
+		margin-bottom: 20px;
+		animation-delay: .4s;
+		letter-spacing: 2px;
+		/* 項目 */
+		#wGoodsOtherInfoTabs li>a {
+			color: #3e3e3e;
+			border-top-width: 5px;
+		}
+		#wGoodsOtherInfoTabs li.active a {
+			border-top: 5px solid #ff9797;
+		}
+		/* 內容 */
+		#wGoodsOtherInfoContent {
+			border: 1px solid #e0e0e0;
+			border-top: 0;
+			text-indent: 2em;
+			padding: 10px;
+		}
+	}
+}

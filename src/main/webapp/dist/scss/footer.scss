@@ -1,0 +1,37 @@
+$footerBg: #87cefa;
+$footerColor: #3e3e3e;
+footer {
+	padding: 0 20px;
+	.footerSocial {
+		background-color: lighten($footerBg, 22%);
+		padding: 10px;
+		a {
+			font-size: 60px;
+			color: $footerColor;
+			.fa-facebook-square {
+				color: lighten(blue, 20%);
+			}
+			.fa-youtube-play {
+				color: lighten(red, 20%);
+			}
+			.fa-google-plus-square {
+				color: lighten(red, 10%);
+			}
+			.fa-instagram {
+				color: lighten(blue, 20%);
+			}
+		}
+	}
+	.footerContent {
+		background-color: lighten($footerBg, 17%);
+		padding: 20px;
+		a {
+			font-size: 18px;
+			color: $footerColor;
+		}
+	}
+	.footerCopyright {
+		background-color: lighten($footerBg, 12%);
+		padding: 10px;
+	}
+}

@@ -19,6 +19,7 @@ function showData(data, javaRoot) {
 						<!-- 需求物資圖片 -->
 						<div class="wishGoodsImgLayout">
 							<img class="img-responsive wishGoodsImg" src="${javaRoot}/_00_init/getImage?id=${data[i].goodsno}&type=GOODS">
+							<div class="imgBackground"></div>
 						</div>
 						<!-- 需求物資文字敘述 -->
 						<div class="wishGoodsOverlay">

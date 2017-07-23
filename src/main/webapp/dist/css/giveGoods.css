@@ -29,12 +29,24 @@
     #sectionGGoods #gGoodsImgLayout::after {
       right: 10px;
       transform: rotate(5deg); }
-    #sectionGGoods #gGoodsImgLayout #gGoodsImg {
+    #sectionGGoods #gGoodsImgLayout #imgMask {
       position: absolute;
       width: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%); }
+      height: 100%;
+      overflow: hidden; }
+      #sectionGGoods #gGoodsImgLayout #imgMask #gGoodsImg {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        z-index: 2; }
+      #sectionGGoods #gGoodsImgLayout #imgMask #imgBackground {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: #ffffff;
+        z-index: 1; }
   #sectionGGoods #blockGGoodsOption {
     margin-top: 20px;
     margin-bottom: 20px;

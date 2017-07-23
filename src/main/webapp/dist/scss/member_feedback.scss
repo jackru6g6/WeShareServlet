@@ -1,0 +1,132 @@
+$titleBackgroundColor: #007AFF;
+$btBackgroundColor: #A3DAFF;
+$btColor: #0000A1;
+$borderColor: #1EC0FF;
+$fontColor: #ffffff;
+
+/* 頁面內容title */
+
+#member_feedback_content_title {
+	background-color: $titleBackgroundColor;
+	color: $fontColor;
+}
+
+
+/* 頁面內容body */
+
+#member_feedback_content_body {
+	border: 1px solid $titleBackgroundColor;
+	/* 訂單排序 */
+	#feedback_priority_button {
+		background-color: $btBackgroundColor;
+		color: $btColor;
+		font-size: 18px;
+		letter-spacing: 2px;
+		margin: 30px auto 10px auto;
+		padding: 5px;
+	}
+	.dropdown {
+		ul {
+			width: 100%;
+			li {
+				font-size: 18px;
+				text-align: center;
+			}
+		}
+	}
+	/* 查詢 */
+	#feedback_search_bar {
+		margin: 30px auto 10px auto;
+		#feedback_search_bar_input {
+			margin: 0px;
+			padding: 9px;
+		}
+		#feedback_search_button {
+			background-color: $btBackgroundColor;
+			color: $btColor;
+			font-size: 16px;
+			letter-spacing: 2px;
+			padding: 4.5px;
+			margin: 0px;
+		}
+	}
+	/* 訂單狀態選項 */
+	#btStatusAll {
+		margin: 20px;
+		.btStatusStyle {
+			width: 100%;
+			font-size: 20px;
+			text-align: center;
+			background: $btBackgroundColor;
+			color: $btColor;
+			border-color: $borderColor;
+			transition: 0.5s;
+			&:hover {
+				box-shadow: inset 100px 0 0 0 $titleBackgroundColor, inset -100px 0 0 0 $titleBackgroundColor;
+				color: $fontColor;
+				transition: 0.5s;
+			}
+		}
+	}
+	/* 訂單區塊 */
+	#dealContent {
+		margin-top: 20px;
+		margin-bottom: 25px;
+		font-size: 18px;
+		>div:last-child .dealEach {
+			border-bottom: 2px dashed $borderColor;
+		}
+		/* 每筆訂單 */
+		.dealEach {
+			padding: 10px;
+			border: 2px dashed $borderColor;
+			border-bottom: 0px;
+			word-break: break-all;
+			/* 訂單資訊 */
+			.dealInfo {
+				li {
+					margin-top: 3px;
+					margin-bottom: 3px;
+					span {
+						margin-left: 5px;
+					}
+				}
+			}
+			/* 訂單快照 */
+			.dealImageLayout {
+				position: relative;
+				overflow: hidden;
+				padding-bottom: 100%;
+				.dealImage {
+					position: absolute;
+					width: 100%;
+					top: 50%;
+					left: 50%;
+					transform: translateX(-50%) translateY(-50%);
+				}
+			}
+			/* 訂單其他資訊 */
+			.dealOtherInfo {
+				li {
+					margin-top: 3px;
+					margin-bottom: 3px;
+					span {
+						margin-left: 5px;
+					}
+				}
+			}
+			/* 訂單確認 */
+			.dealConfirm {
+				li {
+					margin-top: 10px;
+					margin-bottom: 10px;
+					text-align: center;
+					button,
+					a {
+						font-size: 18px;
+					}
+				}
+			}
+		}
+	}
+}

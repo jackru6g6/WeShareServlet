@@ -1,0 +1,293 @@
+$navWishColor: #ff9797;
+$navGiveColor: #ef7b00;
+$navExchangeColor: #01B468;
+$navGroupColor: #ffc107;
+$navMemberColor: #3381b1;
+$navLanguageColor: #AB82FF;
+$navFBColor: #6161fd;
+
+
+/* 加入Google font字型(圓體) */
+@font-face{
+    font-family: yen;
+    src: url(../font/cwTeXYen-zhonly.ttf);
+}
+
+
+/* 加入Google font字型(Oxygen) */
+@font-face{
+    font-family: Oxygen;
+    src: url(../font/Oxygen-Regular.ttf);
+}
+
+
+/* 連結不出現底線&出現手的符號 */
+
+a:hover,
+a:focus {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+/* 內容跟頂端的距離及網站字體 */
+body {
+    padding-top: 80px;
+    font-family: yen, Oxygen, serif;
+}
+
+@media screen and (min-width: 768px) and (max-width:1023px) {
+	body {
+		padding-top: 155px;
+	}
+}
+
+/* 手機選單鈕位置 */
+
+#navButton {
+	margin-top: 23px;
+	margin-right: 15px;
+}
+
+
+/* 手機導覽列不要出現橫向卷軸 */
+
+#navMenuLeft,
+#navMenuRight {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+
+/* Logo區的高度及圖片尺寸 */
+
+#navLogo {
+	height: 80px;
+	padding-top: 10px;
+	>img {
+		height: 60px;
+	}
+}
+
+
+/* 導覽列背景色、字體 */
+
+#navLayout {
+    background-color: #ffffff;
+    font-size: 24px;
+}
+
+/* 導覽列左右內縮40px */
+#navLeft {
+	margin-left: 40px;
+}
+#navMenu {
+	margin-right: 40px;
+}
+
+/* 導覽列文字垂直置中 */
+
+#navMenu>ul>li>a {
+	line-height: 60px;
+	padding: 10px 25px;
+}
+
+
+/* 導覽列-許願池顏色 */
+
+#navWish span:nth-child(1) {
+	color: $navWishColor;
+}
+
+#navWish span:nth-child(2) {
+	background-color: $navWishColor;
+}
+
+
+/* 導覽列-送愛心顏色 */
+
+#navGive span:nth-child(1) {
+	color: $navGiveColor;
+}
+
+#navGive span:nth-child(2) {
+	background-color: $navGiveColor;
+}
+
+
+/* 導覽列-以物易物顏色 */
+
+#navExchange span:nth-child(1) {
+	color: $navExchangeColor;
+}
+
+#navExchange span:nth-child(2) {
+	background-color: $navExchangeColor;
+}
+
+
+/* 導覽列-社福團體顏色 */
+
+#navGroup span:nth-child(1) {
+	color: $navGroupColor;
+}
+
+#navGroup span:nth-child(2) {
+	background-color: $navGroupColor;
+}
+
+
+/* 導覽列-登入 / 註冊顏色 */
+
+#navLogin span:nth-child(1) {
+	color: $navMemberColor;
+}
+
+#navLogin span:nth-child(2) {
+	background-color: $navMemberColor;
+}
+
+
+/* 導覽列-會員姓名顏色 */
+
+#navMember span:nth-child(1) {
+	color: $navMemberColor;
+}
+
+#navMember span:nth-child(2) {
+	background-color: $navMemberColor;
+}
+
+
+/* 導覽列-語言顏色 */
+
+#navLanguage span:nth-child(1) {
+	color: $navLanguageColor;
+}
+
+#navLanguage span:nth-child(2) {
+	background-color: $navLanguageColor;
+}
+
+#navFBImg {
+	font-size: 30px;
+	color: $navFBColor;
+}
+
+
+/* 導覽列-選單樣式 */
+
+#navMenu span:nth-child(1) {
+    position: relative;
+    transition: 1s;
+}
+
+#navMenu span:nth-child(2) {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: skewX(16deg);
+	transition: 1s;
+}
+
+.afterLogin {
+	display:none;
+}
+
+/* 導覽列-滑鼠移至或點選選單時的動畫 */
+
+#navMenu a:hover span:nth-child(1),
+#navMenu .open a span:nth-child(1) {
+	z-index: 2;
+	color: #ffffff;
+	transition: 1s;
+}
+
+#navMenu a:hover span:nth-child(2),
+#navMenu .open a span:nth-child(2) {
+	z-index: 1;
+	opacity: 1;
+	transition: 1s;
+}
+
+
+/* 導覽列-點選選單 */
+
+.open #navLanguage,
+.open #navMember {
+	width: 100%;
+	height: 100%;
+	transition: 1s;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+
+/* 導覽列-會員子選單 */
+
+@media screen and (min-width:768px) {
+	#navMemberSub {
+		position: absolute;
+		top: 80px;
+		left: 31px;
+		width: 100%;
+	}
+}
+
+#navMemberSub {
+	opacity: 1;
+	/* 手機導覽列不要出現橫向卷軸 */
+	margin: auto;
+	/* 手機導覽列不要出現橫向卷軸 */
+	width: 95%;
+	transform: skewX(16deg);
+	font-size: 18px;
+	li a {
+		transform: skewX(-16deg);
+	}
+	transition: 1s;
+}
+
+#navMemberSub li a {
+	color: $navMemberColor;
+	&:hover {
+		color: #ffffff;
+		background-color: $navMemberColor;
+		transform: skewX(0deg);
+		transition: .3s;
+	}
+}
+
+
+/* 導覽列-語言子選單 */
+
+@media screen and (min-width:768px) {
+	#navLanguageSub {
+		position: absolute;
+		top: 80px;
+		left: 22px;
+	}
+}
+
+#navLanguageSub {
+	opacity: 1;
+	width: 100%;
+	transform: skewX(16deg);
+	font-size: 18px;
+	li a {
+		transform: skewX(-16deg);
+	}
+	transition: 1s;
+}
+
+#navLanguageSub li a {
+	color: $navLanguageColor;
+	&:hover {
+		color: #ffffff;
+		background-color: $navLanguageColor;
+		transform: skewX(0deg);
+		transition: .3s;
+	}
+}

@@ -19,6 +19,7 @@ function showData(data, javaRoot) {
 						<!-- 交換物資圖片 -->
 						<div class="exchangeGoodsImgLayout">
 							<img class="img-responsive exchangeGoodsImg" src="${javaRoot}/_00_init/getImage?id=${data[i].goodsno}&type=GOODS">
+							<div class="imgBackground"></div>
 						</div>
 						<!-- 交換物資文字敘述 -->
 						<div class="exchangeGoodsOverlay">

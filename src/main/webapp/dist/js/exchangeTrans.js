@@ -23,6 +23,7 @@ function showData(data, path) {
 			<!-- 物資圖片 -->
 			<div id="eTransImgLayout">
 				<img id="eTransImg" class="img-responsive" src="${javaRoot}/_00_init/getImage?id=${responseData[0].goodsno}&type=GOODS">
+				<div id="imgBackground"></div>
 			</div>
 		</div>
 		<!-- 右邊物資資訊 -->

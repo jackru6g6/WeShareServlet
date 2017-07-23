@@ -1,0 +1,297 @@
+$btOrgGoodsColor:#ff3333;
+
+#sectionOrg {
+	min-height: calc(100vh - 306px);
+	font-size: 22px;
+	padding-top: 30px;
+	/* 篩選器 */
+	#sectionOrgFilter {
+		margin-bottom: 30px;
+		/* 關鍵字搜尋 */
+		#blockKWSearch {
+			position: relative;
+			margin: 10px 0 10px 0;
+			/* 搜尋輸入框 */
+			#searchInput {
+				font-size: 18px;
+				padding: 5px 5px 5px 40px;
+			}
+			/* 搜尋鈕圖式 */
+			#btKWSearch {
+				position: absolute;
+				top: 13%;
+				left: 3%;
+				cursor: pointer;
+				margin-bottom: 10px;
+			}
+		}
+		/* 社福團體類型搜尋 */
+		#blockTypeSearch {
+			margin: 10px 0 10px 0;
+			#searchType {
+				font-size: 18px;
+				padding: 5px 5px 5px 10px;
+			}
+		}
+		/* 社福團體所在地搜尋 */
+		#blockLocSearch {
+			margin: 10px 0 10px 0;
+			#searchLoc {
+				font-size: 18px;
+				padding: 5px 5px 5px 10px;
+			}
+		}
+		/* 清除搜尋條件 */
+		#blockClearSearch {
+			font-size: 18px;
+			margin: 10px 0 10px 0;
+			padding-top: 5px;
+			cursor: pointer;
+			#btClearSearch {
+				color: #868686;
+				padding: 5px 5px 5px 10px;
+				.fa-times{
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+	/* 社福團體簡介 */
+	#sectionOrgAbout {
+		/* 社福團體簡介第一筆 */
+		.rowOrg {
+			width: 1130px;
+			height: 600px;
+			perspective: 2000px;
+			/* 上層翻轉列 */
+			.rowUpper {
+				position: relative;
+				width: 550px;
+				height: 550px;
+				transform-style: preserve-3d;
+				z-index: 2;
+				transform-origin: 50% 50%;
+				/* 顯示社福圖片 */
+				&.rotate0{
+					transform: rotate(0deg);
+					animation: flipImg 0.5s ease-in-out forwards;
+				}
+				/* 顯示地圖 */
+				&.rotate180 {
+					transform: rotateY(180deg);
+					animation: flipMap 0.5s ease-in-out forwards;
+				}
+				@keyframes flipImg {
+						0% {
+							left: 550px;
+							transform: rotateY(0deg) translateX(0) scale(1);
+						}
+						35% {
+							transform: rotateY(-120deg) translateX(0) scale(1.5);
+						}
+						70% {
+							transform: rotateY(-240deg) translateX(0) scale(1.5);
+						}
+						100% {
+							left: 0px;
+							transform: rotateY(-360deg) translateX(0) scale(1);
+						}
+				}
+				@keyframes flipMap {
+					0% {
+						left: 0px;
+						transform: rotateY(0deg) translateX(0) scale(1);
+					}
+					35% {
+						transform: rotateY(180deg) translateX(0) scale(1.5);
+					}
+					70% {
+						transform: rotateY(360deg) translateX(0) scale(1.5);
+					}
+					100% {
+						left: 550px;
+						transform: rotateY(540deg) translateX(0) scale(1);
+					}
+				}
+				
+				.blockUpper {
+					position: absolute;
+					top: 0px;
+					left: 0px;
+					width: 100%;
+					height: 100%;
+					display: inline-block;
+					text-align: center;
+					vertical-align: top;
+				}
+				/* 圖片 */
+				.orgImgLayout {
+					position: absolute;
+					overflow: hidden;
+					padding-bottom: 100%;
+					backface-visibility: hidden;
+					background-color: #ffffff;
+					.orgImg {
+						position: absolute;
+						width: 100%;
+						top: 50%;
+						left: 50%;
+						transform: translateX(-50%) translateY(-50%);
+						backface-visibility: hidden;
+					}
+				}
+				/* 地圖 */
+				.orgMap {
+					transform: rotateY(180deg);
+					background-color: #eeeeee;
+					width: 550px;
+					height: 550px;
+					max-width: 100%;
+					padding-bottom: 100%;
+					backface-visibility: hidden;
+					overflow: hidden;
+					.iframeMap {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+					}
+				}
+			}
+			/* 下層固定列 */
+			.rowLower {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+				.blockLower {
+					width: 550px;
+					height: 550px;
+					display: inline-block;
+					text-align: center;
+					vertical-align: top;
+				}
+				/* 聯絡資訊 */
+				.orgContact {
+					.orgContactList {
+						margin-top: 60px;
+						word-break: break-all;
+						li {
+							color: #666666;
+							letter-spacing: 2px;
+							margin: 10px;
+							display: inline-block;
+							.fa {
+								color: #ffc107;
+								width: 20px;
+								text-align: center;
+								margin-right: 10px;
+							}
+						}
+					}
+					/* 查看募集物資連結 */
+					.orgGoods {
+						font-size: 25px;
+						margin: 30px;
+						border-color: $btOrgGoodsColor;
+						color: $btOrgGoodsColor;
+						letter-spacing: 2px;
+						transition: 1s;
+						&:hover {
+							box-shadow: inset 180px 0 0 0 $btOrgGoodsColor;
+							color: #ffffff;
+							transition: 1s;
+							background-color: #ffffff;
+						}
+					}
+				}
+				/* 簡介 */
+				.orgInfo {
+					color: #666666;
+					letter-spacing: 2px;
+					margin-left: -4px;
+					.orgInfoList {
+						margin-top: 60px;
+						/* 社福團體名稱 */
+						.orgName {
+							text-align: center;
+							font-size: 30px;
+							margin-top: 10px;
+							margin-bottom: 10px;
+						}
+						ul {
+							padding: 0px;
+							li {
+								margin: 10px;
+								display: inline-block;
+								.fa {
+									color: #ff6666;
+									width: 20px;
+									text-align: center;
+									margin-right: 10px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	/* 回到頂端 */
+	#toTop {
+		position: fixed;
+		bottom: 20px;
+		right: -50px;
+		width: 50px;
+		height: 50px;
+		color: #ffc107;
+		font-size: 50px;
+		text-align: center;
+		line-height: 50px;
+		cursor: pointer;
+	}
+
+	// toTop進場動畫
+	.toTopRotate {
+		animation: rotate 1s linear forwards;
+	}
+	@keyframes rotate {
+		0% {
+			right: 0px;
+			transform: rotate(0deg);
+		}
+		25% {
+			right: 60px;
+			transform: rotate(-180deg);
+		}
+		50% {
+			right: 120px;
+			transform: rotate(-360deg);
+		}
+		75% {
+			right: 60px;
+			transform: rotate(-180deg);
+		}
+		100% {
+			right: 20px;
+			transform: rotate(0deg);
+		}
+	}
+
+	// toTop離場動畫
+	.toTopLeave {
+		animation: rotateLeave 1s linear forwards;
+	}
+	@keyframes rotateLeave {
+		0% {
+			right: 20px;
+			transform: rotate(0deg);
+		}
+		100% {
+			right: -50px;
+			transform: rotate(360deg);
+			color: #fbfbfb;
+		}
+	}
+}

@@ -18,7 +18,10 @@ function showData(data, path) {
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 						<!-- 物資圖片 -->
 						<div id="wGoodsImgLayout" class="animated fadeInLeft">
-							<img id="wGoodsImg" class="img-responsive" src="${javaRoot}/_00_init/getImage?id=${data[0].goodsno}&type=GOODS">
+							<div id="imgMask">
+								<img id="wGoodsImg" class="img-responsive" src="${javaRoot}/_00_init/getImage?id=${data[0].goodsno}&type=GOODS">
+								<div id="imgBackground"></div>
+							</div>
 						</div>
 						<!-- 捐贈&詢問按鈕區 -->
 						<div id="blockWGoodsOption" class="animated fadeInLeft">

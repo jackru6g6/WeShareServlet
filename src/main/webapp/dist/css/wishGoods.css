@@ -29,12 +29,24 @@
     #sectionWGoods #wGoodsImgLayout::after {
       right: 10px;
       transform: rotate(5deg); }
-    #sectionWGoods #wGoodsImgLayout #wGoodsImg {
+    #sectionWGoods #wGoodsImgLayout #imgMask {
       position: absolute;
       width: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%); }
+      height: 100%;
+      overflow: hidden; }
+      #sectionWGoods #wGoodsImgLayout #imgMask #wGoodsImg {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        z-index: 2; }
+      #sectionWGoods #wGoodsImgLayout #imgMask #imgBackground {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: #ffffff;
+        z-index: 1; }
   #sectionWGoods #blockWGoodsOption {
     margin-top: 20px;
     margin-bottom: 20px;

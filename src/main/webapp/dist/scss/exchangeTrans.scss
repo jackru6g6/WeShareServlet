@@ -1,0 +1,99 @@
+#sectionETrans {
+	padding: 30px 45px;
+	min-height: calc(100vh - 306px);
+	font-size: 20px;
+	/* 標題 */
+	#eTransTitle {
+		text-align: center;
+		font-size: 26px;
+		margin-bottom: 30px;
+	}
+	#eTransBlock {
+		box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, .25);
+		font-size: 24px;
+		/*  左邊物資圖片 */
+		#eTransImgLayout {
+			position: relative;
+			overflow: hidden;
+			padding-bottom: 100%;
+			margin: auto;
+			margin-top: 10px;
+			#eTransImg {
+				position: absolute;
+				width: 100%;
+				top: 50%;
+				left: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				z-index: 2;
+			}
+			#imgBackground {
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				background: #ffffff;
+				z-index: 1;
+			}
+		}
+		/* 右邊物資資訊 */
+		#eTransInfo {
+			margin-top: 40px;
+			color: #3e3e3e;
+			padding-left: 30px;
+			margin-bottom: 20px;
+			li {
+				margin-bottom: 20px;
+				span {
+					margin-left: 20px;
+				}
+				input,
+				select,
+				textarea {
+					display: inline-block;
+					vertical-align: top;
+					font-size: 20px;
+				}
+				textarea {
+					resize : none;
+				}
+			}
+		}
+	}
+	/* 取消&確定按鈕 */
+	#blockETransOption {
+		margin-top: 30px;
+		margin-bottom: 20px;
+		>ul {
+			margin: 0px;
+			padding: 10px;
+			>li {
+				display: inline-block;
+				.eTransOption {
+					border-radius: 0px;
+					width: 100%;
+					font-size: 20px;
+					background-color: #ffffff;
+					color: #4caf50;
+					border-color: #4caf50;
+					transition: 0.3s;
+					&:hover {
+						animation: spread 1s;
+						@keyframes spread {
+							0% {
+								box-shadow: 0px 0px 0px 0px #4caf50;
+							}
+							100% {
+								box-shadow: 0px 0px 20px 10px #ffffff;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#transMsg {
+	.modalFont {
+		font-size: 18px;
+	}
+}

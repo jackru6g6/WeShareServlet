@@ -28,6 +28,7 @@ function showWishData(data, path, colName, way) {
 					<div>
 						<a href="wishGoods.jsp?goodsno=${responseWishData[i].goodsno}" class="itemA">
 							<img class="img-responsive itemImg" src="${javaRoot}/_00_init/getImage?id=${responseWishData[i].goodsno}&type=GOODS">
+							<span class="imgBackground"></span>
 							<div class="itemOverlay">
 								<p>${responseWishData[i].goodsnote}</p>
 							</div>
@@ -62,6 +63,7 @@ function showGiveData(data, path, colName, way) {
 					<div>
 						<a href="giveGoods.jsp?goodsno=${responseGiveData[i].goodsno}" class="itemA">
 							<img class="img-responsive itemImg" src="${javaRoot}/_00_init/getImage?id=${responseGiveData[i].goodsno}&type=GOODS">
+							<span class="imgBackground"></span>
 							<div class="itemOverlay">
 								<p>${responseGiveData[i].goodsnote}</p>
 							</div>
@@ -96,6 +98,7 @@ function showExchangeData(data, path, colName, way) {
 					<div>
 						<a href="exchangeGoods.jsp?goodsno=${responseExchangeData[i].goodsno}" class="itemA">
 							<img class="img-responsive itemImg" src="${javaRoot}/_00_init/getImage?id=${responseExchangeData[i].goodsno}&type=GOODS">
+							<span class="imgBackground"></span>
 							<div class="itemOverlay">
 								<p>${responseExchangeData[i].goodsnote}</p>
 							</div>

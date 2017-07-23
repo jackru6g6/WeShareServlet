@@ -29,12 +29,24 @@
     #sectionEGoods #eGoodsImgLayout::after {
       right: 10px;
       transform: rotate(5deg); }
-    #sectionEGoods #eGoodsImgLayout #eGoodsImg {
+    #sectionEGoods #eGoodsImgLayout #imgMask {
       position: absolute;
       width: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%); }
+      height: 100%;
+      overflow: hidden; }
+      #sectionEGoods #eGoodsImgLayout #imgMask #eGoodsImg {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        z-index: 2; }
+      #sectionEGoods #eGoodsImgLayout #imgMask #imgBackground {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: #ffffff;
+        z-index: 1; }
   #sectionEGoods #blockEGoodsOption {
     margin-top: 20px;
     margin-bottom: 20px;
