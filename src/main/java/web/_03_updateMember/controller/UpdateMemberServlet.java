@@ -1,7 +1,11 @@
 package web._03_updateMember.controller;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Base64;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import web._01_register.model.MemberBean;
 import web._01_register.model.OrgBean;
@@ -45,6 +50,7 @@ public class UpdateMemberServlet extends HttpServlet {
 		String INDID = "";
 		String Type = "UPDATE";
 		String Ans = "TRUE";
+		Gson gson = new Gson();
 		JSON_In_Up_Bean jiub = new JSON_In_Up_Bean();
 		try {
 			HttpSession session = request.getSession(false);
@@ -55,17 +61,73 @@ public class UpdateMemberServlet extends HttpServlet {
 			Ans = "FALSE";
 			jiub.setMessage("Session Not Found");
 		}
-		String usertype = request.getParameter("usertype");
-		String indName = request.getParameter("indName");
-		String indPhone = request.getParameter("indPhone");
-		String indEmail = request.getParameter("indEmail");
-		String indAddress = request.getParameter("indAddress");
-		String intro = request.getParameter("intro");
-		String leader = request.getParameter("leader");
-		String orgtypes = request.getParameter("orgtypes");
-		String registerno = request.getParameter("registerno");
-		String raiseno = request.getParameter("raiseno");
-		String website = request.getParameter("website");
+		String usertype = null;
+		String indName = null;
+		String indPhone = null;
+		String indEmail = null;
+		String indAddress = null;
+		String intro = null;
+		String leader = null;
+		String orgtypes = null;
+		String registerno = null;
+		String raiseno = null;
+		String website = null;
+		byte[] ind_image = null;
+		byte[] org_image = null;
+		boolean Insert_ind_IMG = true;
+		boolean Insert_org_IMG = true;
+		if (Ans.equals("TRUE")) {
+			try (BufferedReader br = request.getReader();) {
+				StringBuffer jsonIn = new StringBuffer();
+				String line = "";
+				while ((line = br.readLine()) != null) {
+					jsonIn.append(line);
+				}
+				System.out.println("JSON size=" + jsonIn.length());
+				JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
+				usertype = jsonObject.get("usertype").getAsString();
+				if (usertype.equals("2")) {
+					intro = jsonObject.get("intro").getAsString();
+					leader = jsonObject.get("leader").getAsString();
+					orgtypes = jsonObject.get("orgtypes").getAsString();
+					registerno = jsonObject.get("registerno").getAsString();
+					raiseno = jsonObject.get("raiseno").getAsString();
+					website = jsonObject.get("website").getAsString();
+				}
+				indName = jsonObject.get("indName").getAsString();
+				indPhone = jsonObject.get("indPhone").getAsString();
+				indEmail = jsonObject.get("indEmail").getAsString();
+				indAddress = jsonObject.get("indAddress").getAsString();
+
+				try {
+					String indimage = jsonObject.get("indimage").getAsString();
+					ind_image = Base64.getMimeDecoder().decode(indimage.split(",")[1]);
+				} catch (Exception e) {
+					Insert_ind_IMG = false;
+				}
+				try {
+					String indimage = jsonObject.get("orgimage").getAsString();
+					org_image = Base64.getMimeDecoder().decode(indimage.split(",")[1]);
+				} catch (Exception e) {
+					Insert_org_IMG = false;
+				}
+			} catch (Exception e1) {
+				Ans = "FALSE";
+				jiub.setMessage("Json Decode ERROR");
+				e1.printStackTrace();
+			}
+		}
+		// String usertype = request.getParameter("usertype");
+		// String indName = request.getParameter("indName");
+		// String indPhone = request.getParameter("indPhone");
+		// String indEmail = request.getParameter("indEmail");
+		// String indAddress = request.getParameter("indAddress");
+		// String intro = request.getParameter("intro");
+		// String leader = request.getParameter("leader");
+		// String orgtypes = request.getParameter("orgtypes");
+		// String registerno = request.getParameter("registerno");
+		// String raiseno = request.getParameter("raiseno");
+		// String website = request.getParameter("website");
 		System.out.println("usertype=" + usertype);
 		System.out.println("indName=" + indName);
 		System.out.println("indPhone=" + indPhone);
@@ -136,23 +198,43 @@ public class UpdateMemberServlet extends HttpServlet {
 			try {
 				RegisterServiceDAO rs = new RegisterServiceDAO_JDBC();
 				if (usertype.equals("1")) {
-
+					int n = 0;
 					MemberBean mem = new MemberBean(Integer.parseInt(usertype), INDID, null, indName, indPhone,
 							indEmail, indAddress);
+					if (Insert_ind_IMG) {
+						n = rs.updateMember(mem, new ByteArrayInputStream(ind_image), ind_image.length,
+								String.valueOf(new Date().getTime()));
+					} else {
+						n = rs.updateMember(mem, null, 0L, null);
+
+					}
 					// updateMember(MemberBean mb, InputStream is,long
 					// size,String filename)
-					int n = rs.updateMember(mem, null, 0L, null);
+					// int n = rs.updateMember(mem, null, 0L, null);
 					if (n != 1) {
 						Ans = "FALSE";
 					}
 				} else if (usertype.equals("2")) {
 					MemberBean mem = new MemberBean(Integer.parseInt(usertype), INDID, null, indName, indPhone,
 							indEmail, indAddress);
-					OrgBean ob = new OrgBean(INDID, intro, leader, Integer.parseInt(orgtypes), registerno, raiseno,website);
+					OrgBean ob = new OrgBean(INDID, intro, leader, Integer.parseInt(orgtypes), registerno, raiseno,
+							website);
 					// updateOrg(MemberBean mb,OrgBean ob, InputStream is,long
 					// size, String filename, InputStream is2,long size2, String
 					// filename2)
-					int n = rs.updateOrg(mem, ob, null, 0L, null, null, 0L, null);
+					int n = 0;
+					if (Insert_org_IMG) {
+						n = rs.updateOrg(mem, ob, new ByteArrayInputStream(ind_image), ind_image.length,
+								String.valueOf(new Date().getTime()), new ByteArrayInputStream(org_image),
+								org_image.length, String.valueOf(new Date().getTime()));
+
+					} else {
+						n = rs.updateOrg(mem, ob, null, 0L, null, null, 0L, null);
+
+					}
+
+					// n = rs.updateOrg(mem, ob, null, 0L, null, null, 0L,
+					// null);
 					if (n != 1) {
 						Ans = "FALSE";
 					}
@@ -169,7 +251,6 @@ public class UpdateMemberServlet extends HttpServlet {
 
 		jiub.setType(Type);
 		jiub.setAns(Ans);
-		Gson gson = new Gson();
 		String jiub_json = gson.toJson(jiub);
 		System.out.println(jiub_json);
 		response.setContentType("application/json; charset=UTF8");

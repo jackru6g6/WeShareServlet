@@ -77,29 +77,31 @@ public class AddNewMSGServlet extends HttpServlet {
 		String MSGENDID = null;
 		String MSGTEXT = null;
 		byte[] image = null;
-		
-		try (BufferedReader br = request.getReader();) {
-			StringBuffer jsonIn = new StringBuffer();
-			String line = "";
-			while ((line = br.readLine()) != null) {
-				jsonIn.append(line);
-			}
-			System.out.println("JSON size=" + jsonIn.length());
-			JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
-			MSGENDID = jsonObject.get("MSGENDID").getAsString();
-			MSGTEXT = jsonObject.get("MSGTEXT").getAsString();
-			try {
-				String MSGIMAGE = jsonObject.get("MSGIMAGE").getAsString();
-				image = Base64.getMimeDecoder().decode(MSGIMAGE.split(",")[1]);
-			} catch (Exception e) {
-				Insert_IMG = false;
-			}
+		if (Ans.equals("TRUE")) {
+			try (BufferedReader br = request.getReader();) {
+				StringBuffer jsonIn = new StringBuffer();
+				String line = "";
+				while ((line = br.readLine()) != null) {
+					jsonIn.append(line);
+				}
+				System.out.println("JSON size=" + jsonIn.length());
+				JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
+				MSGENDID = jsonObject.get("MSGENDID").getAsString();
+				MSGTEXT = jsonObject.get("MSGTEXT").getAsString();
+				try {
+					String MSGIMAGE = jsonObject.get("MSGIMAGE").getAsString();
+					image = Base64.getMimeDecoder().decode(MSGIMAGE.split(",")[1]);
+				} catch (Exception e) {
+					Insert_IMG = false;
+				}
 
-		} catch (Exception e1) {
-			Ans = "FALSE";
-			mfjb.setMessage("Json Decode ERROR");
-			e1.printStackTrace();
+			} catch (Exception e1) {
+				Ans = "FALSE";
+				mfjb.setMessage("Json Decode ERROR");
+				e1.printStackTrace();
+			}
 		}
+
 		// String MSGENDID = request.getParameter("MSGENDID");
 		// String MSGTEXT = request.getParameter("MSGTEXT");
 		System.out.println("MSGENDID=" + MSGENDID + "	MSGTEXT=" + MSGTEXT);
