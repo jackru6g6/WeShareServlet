@@ -109,7 +109,7 @@ public class FeedbackDAO {
 		Collection<FeedbackBean> coll = new ArrayList<FeedbackBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						"SELECT fbsourceid,fbtext,fbscore,postdate,fbfilename FROM FEEDBACK WHERE fbendid=?");) {
+						"SELECT fbsourceid,fbtext,fbscore,postdate,fbfilename FROM FEEDBACK WHERE fbendid=? ORDER BY POSTDATE DESC;");) {
 			pstmt.setString(1, INDID);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {

@@ -538,8 +538,11 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO, Serializable {
 		int n = 0;
 		PreparedStatement pStmt = null;
 		Connection connection = null;
+//		String updateString = "UPDATE goods SET goodsstatus=?,  updatetime=?,  goodstype=?, goodsname=?, "
+//				+ " goodsloc=?, goodsnote=?, qty=?, goodsshipway=?, deadline=?, goodsimage = ?, goodsfilename=? WHERE goodsno = ? AND indid= ?";
 		String updateString = "UPDATE goods SET goodsstatus=?,  updatetime=?,  goodstype=?, goodsname=?, "
-				+ " goodsloc=?, goodsnote=?, qty=?, goodsshipway=?, deadline=?, goodsimage = ?, goodsfilename=? WHERE goodsno = ? AND indid= ?";
+				+ " goodsloc=?, goodsnote=?, qty=?, goodsshipway=?, deadline=? WHERE goodsno = ? AND indid= ?";
+
 		if (sizeInBytes == -1) { // 不修改圖片
 			n = updateGoods2(bean, INDID);
 			return n;
@@ -558,10 +561,12 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO, Serializable {
 			pStmt.setInt(7, bean.getQty());
 			pStmt.setInt(8, bean.getGoodsshipway());
 			pStmt.setLong(9, bean.getDeadline());
-			pStmt.setBinaryStream(10, is, sizeInBytes);
-			pStmt.setString(11, filename);
-			pStmt.setInt(12, bean.getGoodsno());
-			pStmt.setString(13, INDID);
+			pStmt.setInt(10, bean.getGoodsno());
+			pStmt.setString(11, INDID);
+//			pStmt.setBinaryStream(10, is, sizeInBytes);
+//			pStmt.setString(11, filename);
+//			pStmt.setInt(12, bean.getGoodsno());
+//			pStmt.setString(13, INDID);
 			n = pStmt.executeUpdate();
 		} finally {
 			if (pStmt != null) {
