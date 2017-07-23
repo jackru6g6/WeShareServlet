@@ -5,7 +5,7 @@
   #sectionFeedback #blockFeedback {
     margin-top: 5%;
     margin-bottom: 5%;
-    box-shadow: 0 0 10px 1px black;
+    box-shadow: 0 0 10px 1px #949494;
     /* 回上一頁 */
     /* 會員資料 */
     /* 評價清單 */ }
@@ -77,7 +77,7 @@
       /* 給評者評語 */
       /* 給評日期 */ }
       #sectionFeedback #blockFeedback .otherMember .blockMedia {
-        border-top: 1px solid #f2f2f2;
+        border-top: 1px solid #cccccc;
         margin: 0px;
         padding: 15px 50px;
         transition: 0.5s; }

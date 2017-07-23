@@ -202,7 +202,6 @@ function imgChange(input){
 		$('#showMsgImg').attr('src', this.result);
 		$('#showMsgImg').css('maxWidth', '500px');
 		$('#showMsgImg').css('maxHeight', '350px');
-		console.log("readImg end");
 	}
 }
 
@@ -225,8 +224,7 @@ function sendMsg(){
 		data: msgDataString,
 		dataType: 'json',
 		success: function(response){
-			console.log(response);
-			// 出現錯誤訊息
+			// 回應訊息
 			if(response.Ans == "TRUE"){
 				alert("訊息已送出，詳細資訊請至會員專區瀏覽");
 				$('#sendMsg').modal('hide');

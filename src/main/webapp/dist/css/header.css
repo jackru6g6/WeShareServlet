@@ -127,6 +127,9 @@ body {
   transform: skewX(16deg);
   transition: 1s; }
 
+.afterLogin {
+  display: none; }
+
 /* 導覽列-滑鼠移至或點選選單時的動畫 */
 #navMenu a:hover span:nth-child(1),
 #navMenu .open a span:nth-child(1) {
@@ -147,10 +150,6 @@ body {
   height: 100%;
   transition: 1s;
   background-color: rgba(255, 255, 255, 0); }
-
-.afterLogin {
-	display:none;
-}
 
 /* 導覽列-會員子選單 */
 @media screen and (min-width: 768px) {

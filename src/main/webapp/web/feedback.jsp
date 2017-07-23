@@ -90,12 +90,8 @@
 			xhr.send();
 			xhr.onreadystatechange = function(){
 				if(xhr.status == 200 && xhr.readyState == 4){
-					console.log(xhr.responseText);
 					responseData = JSON.parse(xhr.responseText);
-					console.log("-------------------");
-					console.log("feedback符合的資料筆數:" + responseData.length);
-					console.log("-------------------");
-					console.log(responseData);
+
 					// 產生評價資料
 					showData(responseData, javaRoot);
 
@@ -111,7 +107,6 @@
 			xhrName.send();
 			xhrName.onreadystatechange = function(){
 				if(xhrName.status == 200 && xhrName.readyState == 4){
-					console.log(xhrName.responseText);
 					var responseNameData = JSON.parse(xhrName.responseText);
 					var mbName = "<span>" + responseNameData.Message + "</span>"
 					$('#thisMemberName').append(mbName);

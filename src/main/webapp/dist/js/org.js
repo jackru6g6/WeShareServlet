@@ -32,18 +32,18 @@ function showData(data) {
 						<ul type="none">
 							<li><i class="fa fa-phone" aria-hidden="true"></i>
 								<span>${data[i].indphone}</span>
-							</li>
+							</li><br>
 							<li><i class="fa fa-envelope" aria-hidden="true"></i>
 								<a href="mailto:${data[i].indemail}">${data[i].indemail}</a>
-							</li>
+							</li><br>
 							<li><i class="fa fa-home" aria-hidden="true"></i>
 								<span>${data[i].indaddress}</span>
-							</li>
+							</li><br>
 							<li><i class="fa fa-globe" aria-hidden="true"></i>
 								<a href="${data[i+1].website}" target="_blank">${data[i+1].website}</a>
-							</li>
+							</li><br>
 						</ul>
-						<a href="wish.jsp?${data[i].indname}" type="button" class="orgGoods btn btn-default">查看募集物資</a>
+						<a href="wish.jsp?${data[i].indname}" type="button" class="orgGoods btn btn-default" target="_blank">查看募集物資</a>
 					</div>
 				</div>
 				<!-- 底右_簡介 -->
@@ -53,19 +53,19 @@ function showData(data) {
 						<ul type="none">
 							<li><i class="fa fa-heart" aria-hidden="true"></i>社福類別：
 								<span>${data[i+1].orgname_TEMP}</span>
-							</li>
+							</li><br>
 							<li><i class="fa fa-heart" aria-hidden="true"></i>社福負責人：
 								<span>${data[i+1].leader}</span>
-							</li>
+							</li><br>
 							<li><i class="fa fa-heart" aria-hidden="true"></i>立案核准字號：
 								<span>${data[i+1].registerno}</span>
-							</li>
+							</li><br>
 							<li><i class="fa fa-heart" aria-hidden="true"></i>勸募許可字號：
 								<span>${data[i+1].raiseno}</span>
-							</li>
+							</li><br>
 							<li>
 								<span>${data[i+1].intro}</span>
-							</li>
+							</li><br>
 						</ul>
 					</div>
 				</div>

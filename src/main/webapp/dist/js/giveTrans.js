@@ -81,9 +81,7 @@ function sendTrans(){
 		data: transDataString,
 		dataType: 'json',
 		success: function(response){
-			console.log("response = " + response);
-			console.log("responseAns = " + response.Ans);
-			// 出現錯誤訊息
+			// 回應訊息
 			if(response.Ans == "TRUE"){
 				$('#msgText').html("資料已送出，詳細資訊請至會員專區瀏覽");
 				$('#aMsgClose').attr('href', 'giveGoods.jsp?goodsno=' + `${responseData[0].goodsno}`);

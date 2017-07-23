@@ -574,7 +574,6 @@ function sendFeedback(e){
 		data: "",
 		dataType: 'json',
 		success: function(response){
-			console.log(response);
 			// 回應訊息
 			if(response.Ans == "TRUE"){
 				// 成功傳到資料庫，顯示評價內容

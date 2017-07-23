@@ -4,12 +4,14 @@
   font-size: 22px;
   padding-top: 30px;
   /* 篩選器 */
-  /* 社福團體簡介 */ }
+  /* 社福團體簡介 */
+  /* 回到頂端 */ }
   #sectionOrg #sectionOrgFilter {
     margin-bottom: 30px;
     /* 關鍵字搜尋 */
     /* 社福團體類型搜尋 */
-    /* 社福團體所在地搜尋 */ }
+    /* 社福團體所在地搜尋 */
+    /* 清除搜尋條件 */ }
     #sectionOrg #sectionOrgFilter #blockKWSearch {
       position: relative;
       margin: 10px 0 10px 0;
@@ -34,6 +36,16 @@
       #sectionOrg #sectionOrgFilter #blockLocSearch #searchLoc {
         font-size: 18px;
         padding: 5px 5px 5px 10px; }
+    #sectionOrg #sectionOrgFilter #blockClearSearch {
+      font-size: 18px;
+      margin: 10px 0 10px 0;
+      padding-top: 5px;
+      cursor: pointer; }
+      #sectionOrg #sectionOrgFilter #blockClearSearch #btClearSearch {
+        color: #868686;
+        padding: 5px 5px 5px 10px; }
+        #sectionOrg #sectionOrgFilter #blockClearSearch #btClearSearch .fa-times {
+          margin-right: 10px; }
   #sectionOrg #sectionOrgAbout {
     /* 社福團體簡介第一筆 */ }
     #sectionOrg #sectionOrgAbout .rowOrg {
@@ -141,7 +153,8 @@
             #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgContact .orgContactList li {
               color: #666666;
               letter-spacing: 2px;
-              padding: 10px; }
+              margin: 10px;
+              display: inline-block; }
               #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgContact .orgContactList li .fa {
                 color: #ffc107;
                 width: 20px;
@@ -174,9 +187,51 @@
             #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo .orgInfoList ul {
               padding: 0px; }
               #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo .orgInfoList ul li {
-                padding: 10px; }
+                margin: 10px;
+                display: inline-block; }
                 #sectionOrg #sectionOrgAbout .rowOrg .rowLower .orgInfo .orgInfoList ul li .fa {
                   color: #ff6666;
                   width: 20px;
                   text-align: center;
                   margin-right: 10px; }
+  #sectionOrg #toTop {
+    position: fixed;
+    bottom: 20px;
+    right: -50px;
+    width: 50px;
+    height: 50px;
+    color: #ffc107;
+    font-size: 50px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer; }
+  #sectionOrg .toTopRotate {
+    animation: rotate 1s linear forwards; }
+
+@keyframes rotate {
+  0% {
+    right: 0px;
+    transform: rotate(0deg); }
+  25% {
+    right: 60px;
+    transform: rotate(-180deg); }
+  50% {
+    right: 120px;
+    transform: rotate(-360deg); }
+  75% {
+    right: 60px;
+    transform: rotate(-180deg); }
+  100% {
+    right: 20px;
+    transform: rotate(0deg); } }
+  #sectionOrg .toTopLeave {
+    animation: rotateLeave 1s linear forwards; }
+
+@keyframes rotateLeave {
+  0% {
+    right: 20px;
+    transform: rotate(0deg); }
+  100% {
+    right: -50px;
+    transform: rotate(360deg);
+    color: #fbfbfb; } }

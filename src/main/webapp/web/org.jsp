@@ -27,14 +27,14 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="row">
 							<!-- 關鍵字搜尋 -->
-							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 								<div id="blockKWSearch">
 									<input id="searchInput" type="search" class="form-control" placeholder="搜尋">
 									<span id="btKWSearch"><i class="fa fa-search" aria-hidden="true"></i></span>
 								</div>
 							</div>
 							<!-- 社福團體類型搜尋 -->
-							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 								<div id="blockTypeSearch">
 									<select id="searchType" name="orgtypes" class="form-control selectSearch">
 										<option selected style="display: none;">社福團體類型</option>
@@ -47,7 +47,7 @@
 								</div>
 							</div>
 							<!-- 社福團體所在地搜尋 -->
-							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 								<div id="blockLocSearch">
 									<select id="searchLoc" name="indaddress" class="form-control selectSearch">
 										<option selected style="display: none;">社福團體所在地</option>
@@ -61,6 +61,12 @@
 									</select>
 								</div>
 							</div>
+							<!-- 清除搜尋條件 -->
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+								<div id="blockClearSearch">
+									<span id="btClearSearch"><i class="fa fa-times" aria-hidden="true"></i>清除搜尋條件</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -69,6 +75,11 @@
 			<!-- 社福團體簡介 -->
 			<div id="sectionOrgAbout" class="container">
 				
+			</div>
+			
+			<!-- 回到頂端 -->
+			<div id="toTop">
+				<i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
 			</div>
 		</div>
 	</section>
@@ -90,17 +101,25 @@
 			xhr.send();
 			xhr.onreadystatechange = function(){
 				if(xhr.status == 200 && xhr.readyState == 4){
-					console.log(xhr.responseText);
 					responseData = JSON.parse(xhr.responseText);
-					console.log("-------------------");
-					console.log("org符合的資料筆數:" + responseData.length);
-					console.log("-------------------");
+
 					// 產生社福資料
 					showData(responseData, javaRoot);
 					
 					// 點下層固定列，翻轉上層翻轉列
 					$(".rowLower").click(function () {
 						turnPage($(this));
+					});
+					
+					// 中止冒泡事件，當orgName、li、a被點選時不會翻轉
+					$('.orgName').click(function (e) {
+						e.stopPropagation();
+					});
+					$('li').click(function (e) {
+						e.stopPropagation();
+					});
+					$('a').click(function (e) {
+						e.stopPropagation();
 					});
 				}
 			}
@@ -118,19 +137,30 @@
 		function keyWordSearch(){
 			servletPath = javaRoot + '/_08_query/OrgQuery.do';
 			var keyWord = $('#searchInput').val();
-			console.log("keyWord = " + keyWord);
 			servletPath += '?&type=keyword&value=' + keyWord;
 			xhr.open('GET', servletPath, true);
 			xhr.send();
 			xhr.onreadystatechange = function(){
 				if(xhr.status == 200 && xhr.readyState == 4){
 					responseData = JSON.parse(xhr.responseText);
+					
 					// 產生社福資料
 					showData(responseData, javaRoot);
 					
 					// 點下層固定列，翻轉上層翻轉列
 					$(".rowLower").click(function () {
 						turnPage($(this));
+					});
+					
+					// 中止冒泡事件，當orgName、li、a被點選時不會翻轉
+					$('.orgName').click(function (e) {
+						e.stopPropagation();
+					});
+					$('li').click(function (e) {
+						e.stopPropagation();
+					});
+					$('a').click(function (e) {
+						e.stopPropagation();
 					});
 				}
 			}
@@ -141,24 +171,94 @@
 			servletPath = javaRoot + '/_08_query/OrgQuery.do';
 			var col = $(this).attr("name");
 			var val = $(this).val();
-			console.log("col" + col);
-			console.log("val" + val);
 			servletPath += '?&type=' + col + '&value=' + val;
 			xhr.open('GET', servletPath, true);
 			xhr.send();
 			xhr.onreadystatechange = function(){
 				if(xhr.status == 200 && xhr.readyState == 4){
 					responseData = JSON.parse(xhr.responseText);
-					console.log(responseData);
+					
 					// 產生社福資料
 					showData(responseData, javaRoot);
+					
+					// 清空關鍵字內容
+					$('#searchInput').val("");
 					
 					// 點下層固定列，翻轉上層翻轉列
 					$(".rowLower").click(function () {
 						turnPage($(this));
 					});
+					
+					// 中止冒泡事件，當orgName、li、a被點選時不會翻轉
+					$('.orgName').click(function (e) {
+						e.stopPropagation();
+					});
+					$('li').click(function (e) {
+						e.stopPropagation();
+					});
+					$('a').click(function (e) {
+						e.stopPropagation();
+					});
 				}
 			}
+		});
+		
+		// 清除搜尋條件
+		$('#btClearSearch').click(function(){
+			servletPath = javaRoot + '/_08_query/OrgQuery.do';
+			xhr.open('GET', servletPath, true);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					responseData = JSON.parse(xhr.responseText);
+					
+					// 產生社福資料
+					showData(responseData, javaRoot);
+					
+					// 清空選項內容
+					$('#searchInput').val("");
+					$('#searchType option').attr("selected", false);
+					$('#searchType option:eq(0)').attr("selected", true);
+					$('#searchLoc option').attr("selected", false);
+					$('#searchLoc option:eq(0)').attr("selected", true);
+					
+					// 點下層固定列，翻轉上層翻轉列
+					$(".rowLower").click(function () {
+						turnPage($(this));
+					});
+					
+					// 中止冒泡事件，當orgName、li、a被點選時不會翻轉
+					$('.orgName').click(function (e) {
+						e.stopPropagation();
+					});
+					$('li').click(function (e) {
+						e.stopPropagation();
+					});
+					$('a').click(function (e) {
+						e.stopPropagation();
+					});
+				}
+			}
+		});
+		
+		// 捲軸距離頂端超過300px時，出現回到頂端圖示
+		$(window).scroll(function(){
+			if($(this).scrollTop() > 300){
+				$('#toTop').css('right', '0px');
+				$('#toTop').addClass('toTopRotate').removeClass('toTopLeave');
+			} else {
+				$('#toTop').css('right', '-50px');
+				if($('#toTop').hasClass('toTopRotate')){
+					$('#toTop').removeClass('toTopRotate').addClass('toTopLeave');
+				}
+			}
+		});
+
+		// 點回到頂端圖示
+		$('#toTop').click(function(){
+			$('body').animate({
+				scrollTop: 0
+			}, 1000, 'swing');
 		});
 	</script>
 		

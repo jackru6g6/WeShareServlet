@@ -12,7 +12,6 @@
 	var indid = "${LoginOK.indid}";
 	var rememberMe = "${sessionScope.rememberMe}";
 	var sessionId = "${pageContext.session.id}";
-	console.log("sessionId = " + sessionId);
 </script>
 
 <!-- jQuery -->

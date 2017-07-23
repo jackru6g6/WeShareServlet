@@ -61,28 +61,21 @@
                     <span>${ LoginOK.indname }</span>
                     <span></span>
                 </a>
-                <ul id="navMemberSub" class="dropdown-menu">
-<!--                     <li><a href="/Demo/web/_03_updateMember/controller/FindMemberServlet">個人檔案</a></li> -->
-                    <li>
-                    	<a href="${pageContext.request.contextPath}/web/_03_updateMember/controller/FindMemberServlet">
-                    		(後端功能測試)
-                    	</a>
-                    </li>                
+                <ul id="navMemberSub" class="dropdown-menu">              
                     <li>
                     	<a href="${pageContext.request.contextPath}/web/member_home.jsp">
-<%--                     	<a href="${pageContext.request.contextPath}/web/member_menu.jsp"> --%>
                     		會員專區
                     	</a>
-                    </li>                    
-                
+                    </li>
                     <li class="divider"></li>
-                    <li><a href="${pageContext.request.contextPath}/web/logout.jsp">登出</a></li>
+                    <li>
+                    	<a href="${pageContext.request.contextPath}/web/logout.jsp">登出</a>
+                    </li>
                 </ul>
             </li>
             <li class="afterLogin">
                 <a>
                     <img id="navMemberImg" class="img-circle" src="${pageContext.servletContext.contextPath}/_00_init/getImage?id=${LoginOK.indid}&type=MEMBER" width="40">
-                    <!-- <img id="navMemberImg" class="img-circle" width="40"> -->
                 </a>
             </li>
             <li class="dropdown">
