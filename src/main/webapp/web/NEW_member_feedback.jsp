@@ -15,6 +15,8 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/member_content.css">
 <!-- 紀錄與評價樣式 member_feedback.css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/member_feedback.css">
+<!-- lightbox.css -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dist/css/lightbox.css">
 <!-- JS -->
 <jsp:include page="../fragment/refJs.jsp" />
 <title>WeShare 微分享</title>
