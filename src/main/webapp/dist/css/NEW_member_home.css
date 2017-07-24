@@ -1,0 +1,90 @@
+/*mrmber_home.css*/
+
+/* 背景圖案 */
+#background_img{  
+	background: url("https://i1.wp.com/www.firesticks.org.tw/wp-content/uploads/2017/02/%E9%97%9C%E6%87%B7%E5%BC%B1%E5%8B%A2.jpg?fit=1000%2C667&ssl=1") no-repeat center center fixed;
+	background-size: cover;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#member_home_img_row{
+	text-align: center;
+	vertical-align: middle;
+}
+	/* 會員圖片 */
+	#member_img{
+		width: 50%;
+		text-align: center;
+		margin: 60px auto 20px auto;
+	}
+
+/* 會員名稱 */
+#member_name{
+	font-size: 24px;
+	text-align: center;
+	margin: 10px auto 10px auto;	
+}
+
+/* 會員評價 */
+#member_feedback{
+	font-size: 24px;
+	text-align: center;
+	margin: 10px auto 50px auto;	
+}
+
+	
+/* 功能按鈕=================================================================== */
+.member_home_button_row{
+	text-align: center;
+	vertical-align: middle;
+}
+
+	.member_home_button{
+		width: 85%;
+		height: 50px;
+		letter-spacing: 2px;
+		font-size: 20px;
+		text-align: center;
+		margin: 30px auto;
+		padding: 0px;
+	}
+		
+		/* 修改會員資料 */
+		#update_button{
+			background-color: #A3DAFF;
+			color: #0000A1;
+		}
+		
+		/* 我的物資箱 */
+		#goodsCart_button{
+			background-color: #1EC0FF;
+			color: #003399;
+		}
+		
+		/* 我的站內信 */
+		#message_button{
+			background-color: #03A6FF;
+			color: #B9EDF8;
+		}
+		
+		/* 紀錄與評價 */
+		#feedback_button{
+			background-color: #007AFF;
+			color: #FFFFFF;
+		}
+	
+			/* 按鈕動畫 */
+			button:hover{	
+				cursor: pointer;
+				animation-name: button_animation;
+				animation-duration: 0.8s;
+				animation-iteration-count: infinite;
+				animation-timing-function: linear;
+			}
+	
+			@keyframes button_animation{
+				0%   { transform: scale(1);}
+				50%  { transform: scale(1.1);}	
+				100% { transform: scale(1);}
+			}

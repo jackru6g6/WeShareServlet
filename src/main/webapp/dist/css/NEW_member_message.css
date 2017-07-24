@@ -1,0 +1,236 @@
+/* member_message.css */
+
+/* 頁面內容設定 */
+
+	/* 頁面內容title */
+	#member_message_content_title{
+		background-color: #03A6FF;
+		color: #B9EDF8;
+	}
+
+	/* 頁面內容body */
+	#member_message_content_body{
+		border: solid #03A6FF 1px;
+	}
+	
+	
+		/* 撰寫站內信按鈕 */	
+		#message_insert_button{
+			background-color: #007AFF;
+			color: #FFFFFF;
+			font-size: 16px;
+			letter-spacing: 2px;
+			margin: 30px auto;
+			padding: 5px;
+		}
+		
+		
+			/* 撰寫站內信視窗*/
+			/* 撰寫站內信視窗_header */
+			#message_insert_modal_header{
+				background-color: #03A6FF;
+			}
+			
+				/* 滑鼠移至關閉(X)時，變成紅色*/
+				#message_insert_modal_header_close:hover{
+					color: red;
+				}
+				
+				/* 視窗_title */
+				#message_insert_modal_title{
+					color: #B9EDF8;
+					letter-spacing: 2px;
+					font-size: 20px;
+				}
+			
+			
+			/* 撰寫站內信視窗_body*/
+			
+			/* 去除原本的樣式，讓表單左側可以留白 */
+			#member_message_form_horizontal{
+				margin-left: 0px;
+				margin-top: 20px;
+			}
+				
+				/* 去除原本的樣式，讓表單左側可以留白 */
+				#member_message_form_horizontal .member_message_form_group{
+					margin-left: 0px;
+				}
+				
+					/* 撰寫站內信表單label */
+					#member_message_form_horizontal .message_insert_form_label{
+						color: #007AFF;
+						font-size: 16px;
+						text-align: center;
+						padding: 2px;
+						border-radius: 5px;
+						border: dashed #007AFF 2px;	
+						
+						background: -webkit-linear-gradient(left, #FFFFFF, #B9EDF8, #1EC0FF);
+						background: -o-linear-gradient(left, #FFFFFF, #B9EDF8, #1EC0FF);
+						background: -moz-linear-gradient(left, #FFFFFF, #B9EDF8, #1EC0FF);
+						background: linear-gradient(left, #FFFFFF, #B9EDF8, #1EC0FF);
+					}
+					
+					/* 撰寫站內信表單input */
+					#member_message_form_horizontal .message_insert_form_input{
+						background-color: #E0E0E0;
+						font-size: 16px;
+					}
+					
+						/* 上傳及預覽檔案 */
+						#upload_img_message{
+							margin: 10px 0px;
+						}
+						
+						#preview_img_message{
+							width: 100%;
+							margin: 5px;
+						}
+
+						
+
+					/* 發送按鈕*/
+					#message_insert_form_submit_button{
+						font-size: 20px;
+						/* background-color: #007AFF; */
+						color: #FFFFFF;
+						margin: 30px auto 10px auto;
+						padding: 5px;
+						cursor: pointer;
+
+						background: -webkit-linear-gradient(left, #B9EDF8, #03A6FF, #007AFF, #03A6FF, #B9EDF8);
+						background: -o-linear-gradient(left, #B9EDF8, #03A6FF, #007AFF, #03A6FF, #B9EDF8);
+						background: -moz-linear-gradient(left, #B9EDF8, #03A6FF, #007AFF, #03A6FF, #B9EDF8);
+						background: linear-gradient(left, #B9EDF8, #03A6FF, #007AFF, #03A6FF, #B9EDF8);
+	
+						animation-name: button_animation;
+						animation-duration: 1.5s;
+						animation-iteration-count: infinite;
+						animation-timing-function: linear;	
+					}
+						
+						@keyframes button_animation{
+							0%   { transform: scale(0.95);}
+							50%  { transform: scale(1);}								
+							100% { transform: scale(0.95);}
+						}
+			
+			
+			/* 撰寫站內信視窗_footer */
+			#message_insert_modal_footer{
+				height: 50px;
+				background-color: #03A6FF;
+			}
+		
+		
+		/* 站內信_table */
+		
+		/* 內容設定 */
+		#member_message_table{
+			border-top: solid 3px #007AFF;
+			border-bottom: solid 3px #007AFF;
+			border-left: dashed 3px #007AFF;
+			border-right: dashed 3px #007AFF;
+			border-collapse: collapse;
+			cellspacing: 0px;
+			cillpadding: 0px;
+			border-radius: 5px;
+			text-align: center;
+			vertical-align: middle;
+			padding: 3px;
+			margin-top: 20px;
+		}
+		
+			/* 標頭設定 */
+			#member_message_table thead, th{
+				background-color: #007AFF;
+				color: #FFFFFF;
+				letter-spacing: 5px;
+				font-size: 18px;
+				text-align: center;
+				vertical-align:middle;
+			}
+			
+				/* tr的邊框底部樣式 */
+				#member_message tr{
+					border-bottom: solid 3px #007AFF;
+				}
+				
+					 /* 對象照片 */
+					.message_end_img{
+						width: 100px; 
+						height: 100px;
+						border-radius: 50px;
+						align: center;
+						margin-legt: 3px;
+						vertical-align: middle;
+					}
+					
+					/* 對象內容 */
+					.member_message_data{
+						text-align: left;
+						margin:　10px auto 10px 10px;
+						padding: 5px;
+						vertical-align: middle;
+					}
+				
+					/* 按鈕欄樣式 */
+					#member_message .button_row{
+						text-align: center;
+						vertical-align: middle;
+					}
+					
+					/* 內容按鈕 */
+					 .member_message_show_button{
+							background-color: #03A6FF;
+							color: #B9EDF8;
+							padding: 8px;
+							border-radius: 5px;
+							letter-spacing: 3px;
+							text-align: center;
+						}
+						
+						 /* 按下圖樣，向下滑出內容，並可以回復信息 */
+						.member_message_all{
+							background-color: #03A6FF;
+							display: none;							
+						}
+							/* 展示信息的div */
+							.member_message_all_content{
+								width: 95%;
+								height: 200px;
+								background-color: #FFFFFF;
+								margin: 20px auto;
+								
+								overflow: scroll;
+							}
+							
+							/* 輸入信息 */
+							.member_message_sendBack{
+								width: 85%;
+								margin:　10px auto;
+								background: #E0E0E0;
+							}
+							
+							.member_message_sendBack_button{
+								background-color: #007AFF; 
+								color: #FFFFFF;
+								padding: 8px;
+								border-radius: 5px;
+								letter-spacing: 3px;
+								text-align: center;
+								vertical-align: middle;
+								margin-bottom: 30px;					
+							}
+							
+							/* 未讀時，背景為藍色 */
+							.notread{
+								background-color: #03A6FF;
+							}
+							
+							
+	/* 頁面內容footer */
+	#member_message_content_footer{
+		background-color: #03A6FF;
+	}

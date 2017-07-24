@@ -63,7 +63,8 @@
                 </a>
                 <ul id="navMemberSub" class="dropdown-menu">              
                     <li>
-                    	<a href="${pageContext.request.contextPath}/web/member_home.jsp">
+<%--                     	<a href="${pageContext.request.contextPath}/web/member_home.jsp"> --%>
+                    	<a href="${pageContext.request.contextPath}/web/NEW_member_home.jsp">
                     		會員專區
                     	</a>
                     </li>
