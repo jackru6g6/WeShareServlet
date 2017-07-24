@@ -31,8 +31,8 @@ function showMSG_Data(data, path){
 						</td>													
 						<td>
 							<ul>
-								<li class="member_message_data">
-									${data.coll[i].MSGENDNAME}
+								<li id="member_message_data${data.coll[i].ROOMNO}" class="member_message_data">
+									
 								</li>
 								<li class="member_message_data">
 									${data.coll[i].POSTDATE}
@@ -62,7 +62,7 @@ function showMSG_Data(data, path){
 							<textarea class="member_message_sendBack" rows="3" wrap="physical" placeholder="請輸入信息內容" required></textarea>
 							<input type="file" class="member_message_img" accept="image/jpeg, image/png">
 							<img class="member_message_show_img">
-							<button class="btn member_message_sendBack_button" value="${data.coll[i].MSGENDID}">送出</button>
+							<button id="member_message_sendBack_button${data.coll[i].ROOMNO}" class="btn member_message_sendBack_button">送出</button>
 						</td>
 					</tr>
 				</tbody>`;
@@ -70,7 +70,19 @@ function showMSG_Data(data, path){
 			// 移除未讀的class
 //			$(".message_data").removeClass(".notread");
 			$('#member_message_table').append(result_message);
-//		} 
+			
+			var member_message_data_id = "#member_message_data" + `${data.coll[i].ROOMNO}`;
+			var member_message_sendBack_button_id = "#member_message_sendBack_button" + `${data.coll[i].ROOMNO}`;
+			
+			if(`${data.coll[i].MSGSOURCEID}` == indid){
+				// 若是訊息來源者為自己，則聊天室名稱放MSGENDNAME，送出按鈕的value=MSGENDID
+				$(member_message_data_id).html(`${data.coll[i].MSGENDNAME}`);
+				$(member_message_sendBack_button_id).val(`${data.coll[i].MSGENDID}`);
+			} else if(`${data.coll[i].MSGENDID}` == indid) {
+				// 若是訊息來源者不是自己，則聊天室名稱放MSGSOURCENAME，送出按鈕的value=MSGSOURCEID
+				$(member_message_data_id).html(`${data.coll[i].MSGSOURCENAME}`);
+				$(member_message_sendBack_button_id).val(`${data.coll[i].MSGSOURCEID}`);
+			}
 		
 	}
 }
