@@ -25,7 +25,7 @@ function showMSG_Data(data, path){
 						<td>
 							<ul>
 								<li>
-									<img src="${javaRoot}/_00_init/getImage?id=${data.coll[i].MSGENDID}&type=MEMBER" class="message_end_img">
+									<img id="message_end_img${data.coll[i].ROOMNO}" class="message_end_img">
 								</li>
 							</ul>
 						</td>													
@@ -73,15 +73,18 @@ function showMSG_Data(data, path){
 			
 			var member_message_data_id = "#member_message_data" + `${data.coll[i].ROOMNO}`;
 			var member_message_sendBack_button_id = "#member_message_sendBack_button" + `${data.coll[i].ROOMNO}`;
+			var message_end_img_id = "#message_end_img" + `${data.coll[i].ROOMNO}`;
 			
 			if(`${data.coll[i].MSGSOURCEID}` == indid){
 				// 若是訊息來源者為自己，則聊天室名稱放MSGENDNAME，送出按鈕的value=MSGENDID
 				$(member_message_data_id).html(`${data.coll[i].MSGENDNAME}`);
 				$(member_message_sendBack_button_id).val(`${data.coll[i].MSGENDID}`);
+				$(message_end_img_id).attr("src", `${javaRoot}` + "/_00_init/getImage?id=" + `${data.coll[i].MSGENDID}` + "&type=MEMBER");
 			} else if(`${data.coll[i].MSGENDID}` == indid) {
 				// 若是訊息來源者不是自己，則聊天室名稱放MSGSOURCENAME，送出按鈕的value=MSGSOURCEID
 				$(member_message_data_id).html(`${data.coll[i].MSGSOURCENAME}`);
 				$(member_message_sendBack_button_id).val(`${data.coll[i].MSGSOURCEID}`);
+				$(message_end_img_id).attr("src", `${javaRoot}` + "/_00_init/getImage?id=" + `${data.coll[i].MSGSOURCEID}` + "&type=MEMBER");
 			}
 		
 	}
