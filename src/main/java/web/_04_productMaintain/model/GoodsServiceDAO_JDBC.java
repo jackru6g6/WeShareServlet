@@ -432,7 +432,7 @@ public class GoodsServiceDAO_JDBC implements GoodsServiceDAO, Serializable {
 		List<GoodsBean> list = new ArrayList<>();
 		Connection con = ds.getConnection();
 		try {
-			String sql = "Select * from goods where indid = ? and deadline > ?";
+			String sql = "Select * from goods where indid = ? and deadline > ? ORDER BY updatetime DESC";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, indid);
 			stmt.setLong(2, now);
