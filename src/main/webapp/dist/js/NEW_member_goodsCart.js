@@ -49,7 +49,7 @@ function showGCData(data, path){
 									<i class="glyphicon glyphicon-th-list"></i>
 								</span>
 															
-								<select name="goods_type" class="form-control goods_item_content_li_input goods_type" disabled>
+								<select id="goods_type` + i + `" name="goods_type" class="form-control goods_item_content_li_input goods_type" disabled>
 									<option value="1">食品</option>
 									<option value="2">服飾配件</option>
 									<option value="3">生活用品</option>
@@ -59,12 +59,12 @@ function showGCData(data, path){
 							</li>
 							
 							<!-- 需求類別 -->
-							<li class="input-group goods_item_content_li goods_status">
+							<li class="input-group goods_item_content_li">
 								<span class="input-group-addon goods_item_content_li_span">
 									<i class="glyphicon glyphicon-list-alt"></i>
 								</span>
 								
-								<select class="form-control goods_item_content_li_input goods_status" disabled>
+								<select id="goods_status`+ i +`" class="form-control goods_item_content_li_input goods_status" disabled>
 									<option value="1">募資</option>
 									<option value="2">捐贈</option>
 									<option value="3">以物易物</option>								
@@ -78,7 +78,7 @@ function showGCData(data, path){
 								</span>
 								<!-- <input type="text" name="goods_loc" value="" id="" class="form-control goods_item_content_li_input" disabled> -->
 															
-								<select name="goods_loc" class="form-control goods_item_content_li_input goods_loc" disabled>																	
+								<select id="goods_loc`+ i +`" name="goods_loc" class="form-control goods_item_content_li_input goods_loc" disabled>																	
 									<option value="1">苗栗縣</option>
 									<option value="2">桃園市</option>
 									<option value="4">新北市</option>
@@ -137,23 +137,53 @@ function showGCData(data, path){
 					</div>
 				</div>
 			</div>`;
-
-		// 判斷並顯示_物品類別
-		$(".goods_type option[value=" + data.cgb[i].goodstype + "]").attr("selected", true);
-		// 判斷並顯示_需求類別
-		$(".goods_status option[value=" + data.cgb[i].goodsstatus + "]").attr("selected", true);
-		// 判斷並顯示_需求地區
-		$(".goods_loc option[value=" + data.cgb[i].goodsloc + "]").attr("selected", true);
 		
 		// 產生內容
 		$('#member_goodsCart_content').append(result_goodsCart);
+		
+		// 判斷並顯示_需求類別
+		var goods_status_id = "#goods_status" + i + " option";
+		var status_n = `${data.cgb[i].goodsstatus}`;
+		$(goods_status_id).attr("selected", false);
+		$(goods_status_id + ":eq(" + (status_n - 1) + ")").attr("selected", true);
+		
+		// 判斷並顯示_需求地區
+		var goods_loc_id = "#goods_loc" + i + " option";
+		$(goods_loc_id).attr("selected", false);
+		
+		var loc_n = `${data.cgb[i].goodsloc}`;
+		switch(loc_n) {
+			case 1: 
+				loc_n = 0;
+			case 2: 
+				loc_n = 1;
+			case 4: 
+				loc_n = 2;
+			case 6: 
+				loc_n = 3;
+			case 7: 
+				loc_n = 4;
+			case 13: 
+				loc_n = 5;
+			case 15: 
+				loc_n = 6;
+		}
+		
+		$(goods_loc_id  + ":eq(" + (loc_n) + ")").attr("selected", true);
+		
+		
+		// 判斷並顯示_物品類別
+		var goods_type_id = "#goods_type" + i + " option";
+		var type_n = `${data.cgb[i].goodstype}`;
+		$(goods_type_id).attr("selected", false);
+		$(goods_type_id + ":eq(" + (type_n - 1) + ")").attr("selected", true);
 	}
 }
 
 //我的物資箱_修改物資箱資料，按下"送出"按鈕
 function goodsCartUpdate(goal, e){
 	var gno = e;
-	var gstatus = goal.closest(".goods_item_content").find('.goods_status').val();;
+	var gstatus = goal.closest(".goods_item_content").find('.goods_status').val();
 	var gtype = goal.closest(".goods_item_content").find('.goods_type').val();
 	var gname = goal.closest(".goods_item_content").find('.goods_name').val();
 	var gloc = goal.closest(".goods_item_content").find('.goods_loc').val();
@@ -172,7 +202,9 @@ function goodsCartUpdate(goal, e){
 								  + "&qty=" + gqty
 								  + "&goodsshipway=3&deadline=" + gdeadline;
 	
-	console.log("goodsCartUpdateDataString = " +  goodsCartUpdateDataString);
+	console.log("goods_type = " +  gtype);
+	console.log("goodsstatus = " +  gstatus);
+	console.log("goodsloc = " +  gloc);
 	
 	$.ajax({
 		type: 'post',
