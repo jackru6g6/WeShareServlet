@@ -124,8 +124,9 @@
 	<script src="${pageContext.request.contextPath}/dist/js/member_feedback.js"></script>
 	<script src="${pageContext.request.contextPath}/dist/js/lightbox.js"></script>
 	<script>
+		var javaRoot = "${pageContext.servletContext.contextPath}";
 		// 紀錄與評價__按下選單的按鈕，要求資料
-		$('#member_menu_feedback_button').click(function(){
+		window.onload = function(){
 			var xhrDealData = new XMLHttpRequest();
 			var servletPath = javaRoot + '/web/_05_deal/controller/FindDEALByKey';
 			var responseDealData;
@@ -197,7 +198,7 @@
 					}
 				}
 			});
-		});
+		};
 	</script>
 </body>
 </html>
