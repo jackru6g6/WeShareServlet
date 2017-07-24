@@ -205,7 +205,7 @@ public class UpdateMemberServlet extends HttpServlet {
 						n = rs.updateMember(mem, new ByteArrayInputStream(ind_image), ind_image.length,
 								String.valueOf(new Date().getTime()));
 					} else {
-						n = rs.updateMember(mem, null, 0L, null);
+						n = rs.updateMember(mem, null, -1, null);
 
 					}
 					// updateMember(MemberBean mb, InputStream is,long
@@ -229,7 +229,7 @@ public class UpdateMemberServlet extends HttpServlet {
 								org_image.length, String.valueOf(new Date().getTime()));
 
 					} else {
-						n = rs.updateOrg(mem, ob, null, 0L, null, null, 0L, null);
+						n = rs.updateOrg(mem, ob, null, -1, null, null, -1, null);
 
 					}
 
