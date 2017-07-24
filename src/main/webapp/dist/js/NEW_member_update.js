@@ -124,7 +124,12 @@ function showMbData(data, path){
 					<input type="file" value="" id="upload_img_ind" class="upload_img" accept="image/jpeg, image/png">
 					<img src="${javaRoot}/_00_init/getImage?id=${data.mb.indid}&type=MEMBER" id="preview_img_ind" class="preview_img">		
 				</div>
-			</div>`;
+			</div>
+			
+			<!-- 修改會員資料送出按鈕 -->
+			<button type="submit" id="member_update_submit_button" class="btn btn-block member_update_submit_button">										
+				<b>修&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp改</b>														
+			</button>`;
 			
 			$('#member_update_form_horizontal').append(result_Mb);
 			
