@@ -29,7 +29,7 @@
 							</label>
 							
 							<div class="col-sm-9">
-								<input type="text" name="indname" value="${param.indname}" id="" class="form-control register_form_input" placeholder="請輸入您的姓名 (必填欄位)" required>
+								<input type="text" name="indname" value="${param.indname}" id="name" class="form-control register_form_input" placeholder="請輸入您的姓名 (必填欄位)" required>
 							</div>
 						</div>
 						
@@ -54,7 +54,7 @@
 							</label>
 							
 							<div class="col-sm-9">
-								<input type="text" name="indid" value="${param.indid}" id="" class="form-control register_form_input" placeholder="請輸入您的會員帳號 (必填欄位)" required>
+								<input type="text" name="indid" value="${param.indid}" id="id" class="form-control register_form_input" placeholder="請輸入您的會員帳號 (必填欄位)" required>
 							</div>
 						</div>
 						
@@ -66,7 +66,7 @@
 							</label>
 							
 							<div class="col-sm-9">
-								<input type="password" name="indpassword" value="${param.indpassword}" id="" class="form-control register_form_input" placeholder="請輸入您的會員密碼 (必填欄位)" required>
+								<input type="password" name="indpassword" value="${param.indpassword}" id="pw1" class="form-control register_form_input" placeholder="請輸入您的會員密碼 (必填欄位)" required>
 							</div>
 						</div>
 						
@@ -78,7 +78,7 @@
 							</label>
 							
 							<div class="col-sm-9">
-								<input type="password" name="indpassword2" value="${param.indpassword2}" id="" class="form-control register_form_input" placeholder="請再次輸入您的會員密碼 (必填欄位)" required>
+								<input type="password" name="indpassword2" value="${param.indpassword2}" id="pw2" class="form-control register_form_input" placeholder="請再次輸入您的會員密碼 (必填欄位)" required>
 							</div>
 						</div>
 						
@@ -90,7 +90,7 @@
 							</label>
 								
 							<div class="col-sm-9">
-								<input type="tel" name="indphone" value="${param.indphone}" id="" class="form-control register_form_input" placeholder="02-12345678">
+								<input type="tel" name="indphone" value="${param.indphone}" id="phone" class="form-control register_form_input" placeholder="02-12345678">
 							</div>
 						</div>
 						
@@ -102,7 +102,7 @@
 							</label>
 							
 							<div class="col-sm-9">
-								<input type="email" name="indemail" value="${param.indemail}" id="" class="form-control register_form_input" placeholder="example@email.com">
+								<input type="email" name="indemail" value="${param.indemail}" id="email" class="form-control register_form_input" placeholder="example@email.com">
 							</div>
 						</div>
 						
@@ -114,7 +114,7 @@
 							</label>
 								
 							<div class="col-sm-9">
-								<input type="text" name="indaddress" value="${param.indaddress}" id="" class="form-control register_form_input" placeholder="O縣O市O區O路O巷O號">
+								<input type="text" name="indaddress" value="${param.indaddress}" id="address" class="form-control register_form_input" placeholder="O縣O市O區O路O巷O號">
 							</div>
 						</div>
 						
@@ -250,7 +250,11 @@
 				</div>
 				
 				<!-- 註冊視窗footer -->
-				<div class="modal-footer" id="register_modal_footer"></div>
+				<div class="modal-footer" id="register_modal_footer">
+					<div id="help" onclick="onhelp()">												
+						<p>小幫手</p>											
+					</div>
+				</div>
 						
 			</div>
 		</div>
@@ -316,3 +320,19 @@
 
 		}) ;
 	</script>
+	<script type="text/javascript">
+
+	function onhelp() {
+		document.getElementById("name").value = "林曉倩";
+		document.getElementById("register_member_type_ind").value = "1";
+		document.getElementById("id").value = "test";
+		document.getElementById("pw1").value = "123456";
+		document.getElementById("pw2").value = "123456";
+		document.getElementById("phone").value = "0225818867";
+		document.getElementById("email").value = "sqlin@gmail.com";
+		document.getElementById("address").value = "臺北市中正區黎明里北平西路3號";
+
+	}
+
+</script>
+	
