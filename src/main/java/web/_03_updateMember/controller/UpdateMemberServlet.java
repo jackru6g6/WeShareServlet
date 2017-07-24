@@ -102,12 +102,14 @@ public class UpdateMemberServlet extends HttpServlet {
 				try {
 					String indimage = jsonObject.get("indimage").getAsString();
 					ind_image = Base64.getMimeDecoder().decode(indimage.split(",")[1]);
+					System.out.println("indimage");
 				} catch (Exception e) {
 					Insert_ind_IMG = false;
 				}
 				try {
 					String indimage = jsonObject.get("orgimage").getAsString();
 					org_image = Base64.getMimeDecoder().decode(indimage.split(",")[1]);
+					System.out.println("orgimage");
 				} catch (Exception e) {
 					Insert_org_IMG = false;
 				}
@@ -208,9 +210,6 @@ public class UpdateMemberServlet extends HttpServlet {
 						n = rs.updateMember(mem, null, -1, null);
 
 					}
-					// updateMember(MemberBean mb, InputStream is,long
-					// size,String filename)
-					// int n = rs.updateMember(mem, null, 0L, null);
 					if (n != 1) {
 						Ans = "FALSE";
 					}
@@ -223,12 +222,21 @@ public class UpdateMemberServlet extends HttpServlet {
 					// size, String filename, InputStream is2,long size2, String
 					// filename2)
 					int n = 0;
-					if (Insert_org_IMG) {
+					if (Insert_org_IMG && Insert_ind_IMG) {
+						System.out.println("01");
 						n = rs.updateOrg(mem, ob, new ByteArrayInputStream(ind_image), ind_image.length,
 								String.valueOf(new Date().getTime()), new ByteArrayInputStream(org_image),
 								org_image.length, String.valueOf(new Date().getTime()));
-
+					} else if (Insert_org_IMG) {
+						System.out.println("02");
+						n = rs.updateOrg(mem, ob, null, -1, null, new ByteArrayInputStream(org_image), org_image.length,
+								String.valueOf(new Date().getTime()));
+					} else if (Insert_ind_IMG) {
+						System.out.println("03");
+						n = rs.updateOrg(mem, ob, new ByteArrayInputStream(ind_image), ind_image.length,
+								String.valueOf(new Date().getTime()), null, -1, null);
 					} else {
+						System.out.println("04");
 						n = rs.updateOrg(mem, ob, null, -1, null, null, -1, null);
 
 					}
