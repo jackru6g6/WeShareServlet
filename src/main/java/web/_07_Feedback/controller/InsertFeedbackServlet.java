@@ -85,9 +85,22 @@ public class InsertFeedbackServlet extends HttpServlet {
 			}
 		}
 		if (Ans.equals("TRUE")) {
+			if (Integer.parseInt(FBSCORE) >= 11) {
+				fdbe.setERRORFBSCORE("不允許的參數:" + FBSCORE);
+				Ans = "FALSE";
+			}
+			if (Integer.parseInt(FBSCORE) <= 0) {
+				fdbe.setERRORFBSCORE("不允許的參數:" + FBSCORE);
+				Ans = "FALSE";
+			}
+			if (!Ans.equals("TRUE")) {
+				jiub.setFdbeb(fdbe);
+			}
+		}
+		if (Ans.equals("TRUE")) {
 
-			FeedbackBean fb = new FeedbackBean(DEALNO, null, INDID, FBENDID, FBTEXT, Integer.parseInt(FBSCORE),
-					null, null);
+			FeedbackBean fb = new FeedbackBean(DEALNO, null, INDID, FBENDID, FBTEXT, Integer.parseInt(FBSCORE), null,
+					null);
 			String SQLAns = new FeedbackDAO().Insert_FB(fb, INDID, null, 0L);
 			System.out.println("SQLAns=" + SQLAns);
 			String buf[] = SQLAns.split("\\|");
