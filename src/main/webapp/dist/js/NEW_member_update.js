@@ -29,7 +29,7 @@ function showMbData(data, path){
 				</label>
 									
 				<div class="col-sm-9">
-					<input type="text" name="" value="${data.mb.indname}" id="" class="form-control member_update_form_input" required>
+					<input type="text" name="" value="${data.mb.indname}" class="form-control member_update_form_input ind_name" required>
 				</div>
 			</div>
 			
@@ -56,12 +56,12 @@ function showMbData(data, path){
 				</label>
 									
 				<div class="col-sm-9">
-					<input type="text" name="" value="${data.mb.indid}" id="" class="form-control member_update_form_input" disabled>
+					<input type="text" value="${data.mb.indid}" class="form-control member_update_form_input ind_id" disabled>
 				</div>
 			</div>
 			
 			<!-- 會員密碼 -->
-			<!-- 按下修改密碼按鈕出現修改表單 -->
+			<!-- 按下修改密碼按鈕滑出修改表單 -->
 			<div class="form-group member_update_form_group">
 				<label class="control-label col-sm-3 member_update_form_label">
 					<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
@@ -74,7 +74,8 @@ function showMbData(data, path){
 					</button>		
 				</div>
 			</div>
-				
+			
+			
 			<!-- 連絡電話 -->
 			<div class="form-group member_update_form_group">
 				<label class="control-label col-sm-3 member_update_form_label">
@@ -83,7 +84,7 @@ function showMbData(data, path){
 				</label>
 										
 				<div class="col-sm-9">
-					<input type="tel" name="" value="${data.mb.indphone}" id="" class="form-control member_update_form_input">
+					<input type="tel" value="${data.mb.indphone}" class="form-control member_update_form_input ind_phone">
 				</div>
 			</div>
 			
@@ -95,7 +96,7 @@ function showMbData(data, path){
 				</label>
 									
 				<div class="col-sm-9">
-					<input type="email" name="" value="${data.mb.indemail}" id="" class="form-control member_update_form_input">
+					<input type="email" value="${data.mb.indemail}" class="form-control member_update_form_input ind_email">
 				</div>
 			</div>
 			
@@ -107,7 +108,7 @@ function showMbData(data, path){
 				</label>
 										
 				<div class="col-sm-9">
-					<input type="text" name="" value="${data.mb.indaddress}" id="" class="form-control member_update_form_input">
+					<input type="text" value="${data.mb.indaddress}" class="form-control member_update_form_input ind_address">
 				</div>
 			</div>
 			
@@ -120,16 +121,10 @@ function showMbData(data, path){
 									
 				<!-- 上傳及預覽檔案 -->
 				<div class="col-sm-9">
-					<input type="file" name="" value="" id="upload_img_ind" class="upload_img" accept="image/jpeg, image/png">
+					<input type="file" value="" id="upload_img_ind" class="upload_img" accept="image/jpeg, image/png">
 					<img src="${javaRoot}/_00_init/getImage?id=${data.mb.indid}&type=MEMBER" id="preview_img_ind" class="preview_img">		
 				</div>
-			</div>
-			
-			<!-- 修改會員資料送出按鈕 -->
-			<button type="submit" id="member_update_submit_button" class="btn btn-block member_update_submit_button">										
-				<b>修&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp改</b>														
-			</button>
-			`;
+			</div>`;
 			
 			$('#member_update_form_horizontal').append(result_Mb);
 			
