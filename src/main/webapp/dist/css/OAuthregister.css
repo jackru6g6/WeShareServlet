@@ -1,0 +1,42 @@
+body {
+  background-color: #f8fbf9; }
+
+#sectionOAuthregister {
+  min-height: calc(100vh - 306px); }
+  #sectionOAuthregister .register_main #formOAuth #titleOAuth {
+    font-size: 28px;
+    text-align: center;
+    margin: 20px;
+    color: #3381b1;
+    font-weight: bold;
+    letter-spacing: 2px; }
+  #sectionOAuthregister .register_main #formOAuth label {
+    text-align: center;
+    font-size: 24px;
+    width: 100%;
+    color: #6495ed; }
+  #sectionOAuthregister .register_main #formOAuth #orgtable #tableOAuth {
+    margin-top: 20px;
+    border: 1px solid #cccccc;
+    font-size: 18px; }
+    #sectionOAuthregister .register_main #formOAuth #orgtable #tableOAuth td {
+      vertical-align: middle; }
+      #sectionOAuthregister .register_main #formOAuth #orgtable #tableOAuth td .fa-heart {
+        color: #ff6666;
+        margin-right: 10px;
+        margin-left: 5px; }
+    #sectionOAuthregister .register_main #formOAuth #orgtable #tableOAuth input {
+      font-size: 18px; }
+  #sectionOAuthregister .register_main #formOAuth #blockSubmit {
+    margin-top: 30px; }
+    #sectionOAuthregister .register_main #formOAuth #blockSubmit #submit {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      width: 100px;
+      height: 45px;
+      border-radius: 5px;
+      font-size: 18px; }
