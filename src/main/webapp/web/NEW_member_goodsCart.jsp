@@ -42,7 +42,7 @@
 								&nbsp需&nbsp求&nbsp名&nbsp稱&nbsp &nbsp													
 							</label>						
 							<div class="col-sm-9">
-								<input type="text" class="form-control goods_insert_form_input goods_name">
+								<input type="text" id="GOODSNAME" class="form-control goods_insert_form_input goods_name">
 							</div>																
 						</div>
 						
@@ -104,7 +104,7 @@
 								&nbsp需&nbsp求&nbsp數&nbsp量&nbsp &nbsp
 							</label>						
 							<div class="col-sm-9">
-								<input type="number" class="form-control goods_insert_form_input qty" min="1">
+								<input type="number" id="GOODSQTY" class="form-control goods_insert_form_input qty" min="1">
 							</div>
 						</div>
 						
@@ -130,7 +130,7 @@
 								&nbsp截&nbsp止&nbsp時&nbsp間&nbsp &nbsp 
 							</label>							
 							<div class="col-sm-9">
-								<input type="date" class="form-control goods_insert_form_input deadline">
+								<input type="date" id="GOODSDEADLINE" class="form-control goods_insert_form_input deadline">
 							</div>
 						</div>
 						
@@ -141,7 +141,7 @@
 								&nbsp需&nbsp求&nbsp說&nbsp明&nbsp &nbsp
 							</label>						
 							<div class="col-sm-9">
-								<textarea class="form-control goods_insert_form_input goods_note" rows="5"  Wrap="physical"></textarea>
+								<textarea class="form-control goods_insert_form_input goods_note" rows="5"  Wrap="physical" id="GOODSNOTE"></textarea>
 							</div>
 						</div>
 						
@@ -163,23 +163,12 @@
 						<button id="goods_insert_form_submit_button" class="btn btn-block" data-dismiss="modal">
 							<b>新&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp增</b>
 						</button>
-<!-- 					<button class="btn btn-block" data-dismiss="modal"> -->
-<!-- 						<b>關閉</b> -->
-<!-- 					</button> -->
 					</div>	
 				</div>
 				
 				<!-- 新增物資視窗_footer -->
 				<div class="modal-footer" id="goods_insert_modal_footer">
-					<!-- 新增物資按鈕 -->
-<!-- 					<button id="goods_insert_form_submit_button" class="btn btn-block"> -->
-<!-- 					<button id="goods_insert_form_submit_button" class="btn btn-block" data-dismiss="modal"> -->
-<!-- 						<b>新&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp增</b> -->
-<!-- 					</button> -->
-						
-<!-- 					<button class="btn btn-block" data-dismiss="modal"> -->
-<!-- 						<b>關閉</b> -->
-<!-- 					</button> -->
+				<img src="../dist/img/Helper_InsertGoods.png" id="helper_goodsInsert" onclick="goodsInsert_onhelp()">
 				</div>
 			</div>
 		</div>
@@ -317,6 +306,15 @@
 		$("#goods_insert_form_submit_button").click(function() {
 			insertGoods();
 		});
+		
+		
+		// 新增物資_小幫手
+		function goodsInsert_onhelp() {
+			document.getElementById("GOODSNAME").value = "滑鼠";
+			document.getElementById("GOODSQTY").value = "3";
+			document.getElementById("GOODSDEADLINE").value = "2017-08-26";
+			document.getElementById("GOODSNOTE").value = "使用1年，五成新。等待有緣人。";
+		}	
 	</script>
 </body>
 </html>

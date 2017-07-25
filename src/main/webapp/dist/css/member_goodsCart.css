@@ -115,6 +115,15 @@
 					}
 					
 					
+			/* 新增物資_小幫手*/				
+			#helper_goodsInsert{
+				width: 30px;
+				height: 30px;
+				float: right;
+				border-radius: 50%;
+				margin-right: 10px;
+			}
+					
 			/* 新增物資視窗_footer */
 			#goods_insert_modal_footer{
 				height: 50px;
@@ -252,6 +261,8 @@
 								background-color: #FFE66F; /* 黃色 */
 								color: #003399;
 							}
+	
+	
 					
 	/* 頁面內容footer */
 	#goods_insert_modal_footer{

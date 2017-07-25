@@ -151,6 +151,10 @@
 																	</div>
 																</h5>
 															</div>
+															<!-- 個人登入_小幫手 -->
+															<img src="../dist/img/Helper_login_ind.png" id="loginHelp_ind" onclick="ind_onhelp()">	
+															<!-- 社福登入_小幫手 -->
+															<img src="../dist/img/Helper_login_org.png" id="loginHelp_org" onclick="org_onhelp()">														
 														</div>
 													</div>
 												</div>
@@ -169,6 +173,20 @@
 	<footer>
 		<jsp:include page="../fragment/footer.jsp" />
 	</footer>
+	
+	<script>
+		// 社福登入_小幫手
+		function org_onhelp() {
+			document.getElementById("loginId").value = "chaca";
+			document.getElementById("loginPW").value = "123456";
+		}
+	
+		// 個人登入_小幫手
+		function ind_onhelp() {
+			document.getElementById("loginId").value = "test";
+			document.getElementById("loginPW").value = "123456";
+		}
+	</script>
 </body>
 
 </html>
