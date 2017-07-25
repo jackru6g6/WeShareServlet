@@ -17,8 +17,6 @@ function showMSG_Data(data, path){
 	
 	// 顯示站內信資料
 	for(var i = 0; i < data.coll.length; i++){
-		// 判斷已讀或未讀   已讀： ${data.coll[i].MSGSTATUS} == 2
-//		if(${data.coll[i].MSGSTATUS} == 2){
 			result_message = 
 				`<tbody class="member_message">
 					<tr class="message_data notread">	
@@ -67,8 +65,7 @@ function showMSG_Data(data, path){
 					</tr>
 				</tbody>`;
 			
-			// 移除未讀的class
-//			$(".message_data").removeClass(".notread");
+			
 			$('#member_message_table').append(result_message);
 			
 			var member_message_data_id = "#member_message_data" + `${data.coll[i].ROOMNO}`;
@@ -86,7 +83,7 @@ function showMSG_Data(data, path){
 				$(member_message_sendBack_button_id).val(`${data.coll[i].MSGSOURCEID}`);
 				$(message_end_img_id).attr("src", `${javaRoot}` + "/_00_init/getImage?id=" + `${data.coll[i].MSGSOURCEID}` + "&type=MEMBER");
 			}
-		
+			
 	}
 }
 
@@ -95,10 +92,8 @@ function showMSG_Data(data, path){
 function showDetail_MSG_Data(data, path){
 	var javaRoot = path;
 	var result_Detail_message;
-	console.log("ROOMNO = " + `${data.coll[0].ROOMNO}`);
-//	console.log("ROOMNO = " + `${data.coll[i].ROOMNO}`);
 	var member_message_all_content_id = "#member_message_all_content" + `${data.coll[0].ROOMNO}`;
-//	var member_message_all_content_id = "#member_message_all_content" + `${data.coll[i].ROOMNO}`;
+
 	//錯誤訊息
 	if(data.Ans == "FALSE"){
 		result_Detail_message = 
@@ -122,10 +117,16 @@ function showDetail_MSG_Data(data, path){
 				</div>
 				<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">${data.coll[i].POSTDATE}</div>
 				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">${data.coll[i].MSGTEXT}</div>
-				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><img src="${javaRoot}/_00_init/getImage?id=${data.coll[i].MSGNO}&type=MSG" class="message_detail_img" style="max-width:100px;"></div>
+				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><img id="message_detail_img` + i + `" class="message_detail_img" style="max-width:100px;"></div>
 			</div>`;
 		// 內容
 		$(member_message_all_content_id).append(result_Detail_message);
+		
+		var msg_detail_img_id = "#message_detail_img" + i;
+		
+		if(`${data.coll[i].MSGFILENAME}` !== "undefined"){
+			$(msg_detail_img_id).attr("src", `${javaRoot}` + "/_00_init/getImage?id=" + `${data.coll[i].MSGNO}` + "&type=MSG");
+		}
 	}
 }
 

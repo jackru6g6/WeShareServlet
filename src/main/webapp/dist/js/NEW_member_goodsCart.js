@@ -152,24 +152,24 @@ function showGCData(data, path){
 		$(goods_loc_id).attr("selected", false);
 		
 		var loc_n = `${data.cgb[i].goodsloc}`;
-		switch(loc_n) {
-			case 1: 
-				loc_n = 0;
-			case 2: 
-				loc_n = 1;
-			case 4: 
-				loc_n = 2;
-			case 6: 
-				loc_n = 3;
-			case 7: 
-				loc_n = 4;
-			case 13: 
-				loc_n = 5;
-			case 15: 
-				loc_n = 6;
+		var n = "";
+		if (loc_n == "1") {
+			n = 0;
+		} else if(loc_n == "2") {
+			n = 1;
+		} else if(loc_n == "4") {
+			n = 2;
+		} else if(loc_n == "6") {
+			n = 3;
+		} else if(loc_n == "7") {
+			n = 4;
+		} else if(loc_n == "13") {
+			n = 5;
+		} else if(loc_n == "15") {
+			n = 6;
 		}
 		
-		$(goods_loc_id  + ":eq(" + (loc_n) + ")").attr("selected", true);
+		$(goods_loc_id  + ":eq(" + n + ")").attr("selected", true);
 		
 		
 		// 判斷並顯示_物品類別

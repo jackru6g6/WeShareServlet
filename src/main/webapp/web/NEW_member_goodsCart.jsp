@@ -315,7 +315,6 @@
 		
 		// 新增物資
 		$("#goods_insert_form_submit_button").click(function() {
-//				console.log("goods_insert_form_submit_button");
 			insertGoods();
 		});
 	</script>

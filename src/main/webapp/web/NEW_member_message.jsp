@@ -208,6 +208,10 @@
 					// 產生會員資料
 					showMSG_Data(responseMSG_Data, javaRoot);
 					
+					// 按下"送出"按鈕，送出textarea內的信息
+					$(".member_message_sendBack_button").click(function(){
+							secndBackMessage($(this));
+					});
 					
 					// 按下"內容"按鈕，滑出聊天室內容
 					$(".member_message_show_button").click(function() {
@@ -227,26 +231,14 @@
 								// 產生聊天室詳細內容
 								showDetail_MSG_Data(responseDetail_MSG_Data, javaRoot);
 								
-								// 預覽站內信圖片
-								$(".member_message_img").change(function(e){
-// 									if (this.files && this.files[0]) {
-										messageImg = new FileReader();
-										messageImg.readAsDataURL(this.files[0]);
-										messageImg.onload = function () {
-// 											thisE.closest(".member_message_all").css("background", "red");
+								// 預覽站內信圖片(發送訊息)
+// 								$(".member_message_img").change(function(e){
+// 										messageImg = new FileReader();
+// 										messageImg.readAsDataURL(this.files[0]);
+// 										messageImg.onload = function () {
 // 											thisE.closest(".member_message_all").find(".member_message_show_img").attr("src", this.result);
-
-										}
-
-// 									}
-													
-								});
-								
-								// 按下"送出"按鈕，送出textarea內的信息
-								$(".member_message_sendBack_button").click(function(){
-									secndBackMessage($(this));
-								});
-								
+// 										}			
+// 								});
 							}
 						}
 					});

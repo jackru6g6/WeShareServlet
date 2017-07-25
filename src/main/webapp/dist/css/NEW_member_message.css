@@ -207,8 +207,8 @@
 							}
 							
 							/* 輸入信息 */
-							.member_message_sendBack{
-								width: 85%;
+							.member_message_sendBack{								
+								width: 95%;
 								margin:　10px auto;
 								background: #E0E0E0;
 							}
@@ -216,18 +216,27 @@
 							.member_message_sendBack_button{
 								background-color: #007AFF; 
 								color: #FFFFFF;
-								padding: 8px;
+								padding: 6px 10px;
 								border-radius: 5px;
 								letter-spacing: 3px;
 								text-align: center;
 								vertical-align: middle;
-								margin-bottom: 30px;					
+								display: inline-block;
+								float: right;
+								margin: 10px 20px 10px auto;　
+							}
+							
+							/* 回復訊息_照片 */
+							.member_message_img{
+								display:inline-block;
+								float: left;
+   								margin: 10px auto 10px 20px;
 							}
 							
 							/* 未讀時，背景為藍色 */
-							.notread{
-								background-color: #03A6FF;
-							}
+/* 							.notread{ */
+/* 								background-color: #03A6FF; */
+/* 							} */
 							
 							
 	/* 頁面內容footer */

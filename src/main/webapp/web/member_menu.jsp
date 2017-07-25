@@ -475,17 +475,9 @@
 		xhrMbData.onreadystatechange = function(){
 			if(xhrMbData.status == 200 && xhrMbData.readyState == 4){
 				responseMbData = JSON.parse(xhrMbData.responseText);
-// 				console.log("responseMbData = ");
-// 				console.log(responseMbData);
 				// 產生會員資料
 				showMbData(responseMbData, javaRoot);
-				
-				//修改會員密碼
-// 				$( "#passsword_update_button" ).click(function() {
-// 					console.log("#passsword_update_button click");
-// // 					$("#passsword_update_content").slideToggle();						  
-// 				});
-				
+
 //				預覽上傳照片
 				$("#upload_img_goods").change(function(){
 					if (this.files && this.files[0]) {
@@ -509,19 +501,11 @@
 				});
 				
 				
-				
-				
-				
-				
 //			 	修改會員資料_點選"修改"按鈕，送出資料
 				$(".member_update_submit_button").click(function() {
 					alert("送出訊息");
 					memberDataUpdate();
 				});
-				
-				
-
-				
 			}
 		}
 	});
@@ -547,8 +531,7 @@
 		xhrGCData.onreadystatechange = function(){
 			if(xhrGCData.status == 200 && xhrGCData.readyState == 4){
 				responseGCData = JSON.parse(xhrGCData.responseText);
-// 				console.log("responseGCData = ");
-// 				console.log(responseGCData);
+
 				// 產生會員資料
 				showGCData(responseGCData, javaRoot);
 				
@@ -600,9 +583,7 @@
 			
 //			新增物資
 			$("#goods_insert_form_submit_button").click(function() {
-				console.log("goods_insert_form_submit_button");
-				
-// 				insertGoods();
+				insertGoods();
 			});
 				
 		}
@@ -625,17 +606,10 @@
 			if(xhrMSG_Data.status == 200 && xhrMSG_Data.readyState == 4){
 				responseMSG_Data = JSON.parse(xhrMSG_Data.responseText);
 				
-// 				console.log("responseMSG_Data = " + responseMSG_Data);
-				
 				// 產生會員資料
 				showMSG_Data(responseMSG_Data, javaRoot);
 			}
-			
-			
-// 		撰寫站內信
-// 		$("#message_insert_form_submit_button").click(function() {
-// 			insertGoods();
-// 		});
+
 		
 		}
 	});
