@@ -19,7 +19,7 @@ function showMSG_Data(data, path){
 	for(var i = 0; i < data.coll.length; i++){
 			result_message = 
 				`<tbody class="member_message">
-					<tr class="message_data notread">	
+					<tr class="message_data">	
 						<td>
 							<ul>
 								<li>
@@ -50,12 +50,7 @@ function showMSG_Data(data, path){
 					<tr>
 						<td colspan="4" class="member_message_all">
 							<div id="member_message_all_content${data.coll[i].ROOMNO}" class="member_message_all_content">
-								<div>
-									A名稱   時間
-									<br>
-									內容
-									<br>
-								</div>
+								
 							</div>
 							<textarea class="member_message_sendBack" rows="3" wrap="physical" placeholder="請輸入信息內容" required></textarea>
 							<input type="file" class="member_message_img" accept="image/jpeg, image/png">
@@ -110,8 +105,8 @@ function showDetail_MSG_Data(data, path){
 	// 顯示站內信資料
 	for(var i = 0; i < data.coll.length; i++){
 		result_Detail_message = 
-			`<div class="row">
-				<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+			`<div class="row detail_message">
+				<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" style="text-align: left;">
 					<div>發送者：${data.coll[i].MSGSOURCENAME}</div>
 					<div>接收者：${data.coll[i].MSGENDNAME}</div>
 				</div>

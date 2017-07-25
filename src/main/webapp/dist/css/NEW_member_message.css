@@ -128,10 +128,10 @@
 		
 		/* 內容設定 */
 		#member_message_table{
-			border-top: solid 3px #007AFF;
-			border-bottom: solid 3px #007AFF;
-			border-left: dashed 3px #007AFF;
-			border-right: dashed 3px #007AFF;
+/* 			border-top: solid 3px #007AFF; */
+/* 			border-bottom: solid 3px #007AFF; */
+/* 			border-left: dashed 3px #007AFF; */
+/* 			border-right: dashed 3px #007AFF; */
 			border-collapse: collapse;
 			cellspacing: 0px;
 			cillpadding: 0px;
@@ -149,11 +149,11 @@
 				letter-spacing: 5px;
 				font-size: 18px;
 				text-align: center;
-				vertical-align:middle;
+				vertical-align: middle;
 			}
 			
 				/* tr的邊框底部樣式 */
-				#member_message tr{
+				.member_message tr{
 					border-bottom: solid 3px #007AFF;
 				}
 				
@@ -176,7 +176,7 @@
 					}
 				
 					/* 按鈕欄樣式 */
-					#member_message .button_row{
+					#member_message_table .member_message .message_data .button_row{
 						text-align: center;
 						vertical-align: middle;
 					}
@@ -196,15 +196,29 @@
 							background-color: #03A6FF;
 							display: none;							
 						}
+						
 							/* 展示信息的div */
 							.member_message_all_content{
 								width: 95%;
 								height: 200px;
 								background-color: #FFFFFF;
 								margin: 20px auto;
-								
 								overflow: scroll;
 							}
+								
+								/* 詳細內容 */
+								.row.detail_message{
+									padding:10px;
+									text-align: center;
+									vertical-align: middle;
+									background-color: #FFFFFF;
+								} 
+									
+									/* 偶數列背景*/
+									.row.detail_message:nth-child(even) {
+									    background-color: #B9EDF8;
+									}
+								
 							
 							/* 輸入信息 */
 							.member_message_sendBack{								
@@ -233,11 +247,8 @@
    								margin: 10px auto 10px 20px;
 							}
 							
-							/* 未讀時，背景為藍色 */
-/* 							.notread{ */
-/* 								background-color: #03A6FF; */
-/* 							} */
 							
+
 							
 	/* 頁面內容footer */
 	#member_message_content_footer{
