@@ -62,3 +62,13 @@ body {
     width: 3px;
     border-radius: 15px;
     background: #00bbd6; }
+    
+ /* 社福登入、個人登入_小幫手 */
+ #loginHelp_ind, 
+ #loginHelp_org{
+ 	width: 30px; 
+	height: 30px; 
+	border-radius: 50%;
+	float: right;
+	margin: 5px 40px;
+ }
