@@ -6,7 +6,8 @@ body {
   #sectionOAuthregister .register_main #formOAuth #titleOAuth {
     font-size: 28px;
     text-align: center;
-    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     color: #3381b1;
     font-weight: bold;
     letter-spacing: 2px; }
