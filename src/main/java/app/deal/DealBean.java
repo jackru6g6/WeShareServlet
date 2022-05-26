@@ -56,8 +56,8 @@ public class DealBean {
 		this.goodstype = goodstype;
 		this.goodsLoc = goodsLoc;
 		this.goodsNote = goodsNote;
-		this.dealNote = dealNote;
-	}
+		this.dealNote = dealNote; 
+	} 
 
 	@Id
 	// @GeneratedValue(strategy=GenerationType.AUTO)
